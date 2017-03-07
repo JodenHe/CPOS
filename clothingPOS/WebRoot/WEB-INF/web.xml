@@ -4,9 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>clothingPOS</display-name>
-	<welcome-file-list>
-		<welcome-file>${contextPath}/login</welcome-file>
-	</welcome-file-list>
+	<!-- 配置jfinal -->
 	<filter>
 		<filter-name>jfinal</filter-name>
 		<filter-class>com.jfinal.core.JFinalFilter</filter-class>
