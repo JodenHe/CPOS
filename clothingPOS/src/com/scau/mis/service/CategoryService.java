@@ -1,12 +1,9 @@
 package com.scau.mis.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.jfinal.log.Log;
-import com.jfinal.plugin.activerecord.Page;
 import com.scau.mis.model.Category;
 
 /**
@@ -33,30 +30,59 @@ public class CategoryService {
 	 * 获取所有类别
 	 * @return 封装在Map中的所有Category数据
 	 */
-	public Map<String, Object> selectAllCategory() {  
-		Page<Category> page =Category.dao.paginate(1, 1000, "select *","from category order by `parentId` asc");
-		List<Category> list = page.getList();
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("datas", list);
-		result.put("count", list.size());
-		return result;
+	public List<Object> selectAllCategory() {  
+		String sql ="SELECT * FROM category WHERE parentId IS NULL ORDER BY `name` ASC"; 
+		List<Category> list = Category.dao.find(sql);
+		List<Object> lists = new ArrayList<Object>();
+		if(list.size()>0){
+			lists.add(list);
+		}
+		for (int i = 0; i < list.size(); i++) {
+			if(getChildren(list.get(i).getId()).size()>0)
+				lists.add(getChildren(list.get(i).getId()));
+		}
+		return lists;
 	}  
-	
+
 	/**
 	 * 返回指定id的父类别
 	 * @param id 指定的类别id
-	 * @return 封装在List中的父Category数据
+	 * @return 封装在List中的父Category数据（包含原类别）
 	 */
 	public List<Category> selectParents(long id) {  
-		String sql ="SELECT * FROM category WHERE id = '"+id+"' AND parentId!=null"; 
+		String sql ="SELECT * FROM category WHERE id = "+id; 
 		List<Category> categorys = Category.dao.find(sql);
 		List<Category> parents = new ArrayList<Category>();
-		if(categorys!=null){
-			parents.add(categorys.get(0));
-			selectParents(categorys.get(0).getId());
-			return parents;
+
+		if(categorys.size()>0){
+			if (categorys.get(0).getParentId()!=null) {
+				parents.addAll(selectParents(categorys.get(0).getParentId()));
+			}
+			parents.addAll(categorys);
 		}
-		return null;
+		return parents;
+	}  
+
+	/**
+	 * 返回指定id的子类别
+	 * @param id 指定的类别id
+	 * @return 封装在List中的子Category数据
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private List getChildren(long pid) {  
+		String sql ="SELECT * FROM category WHERE parentId = "+pid; 
+		List<Category> categorys = Category.dao.find(sql);
+		List list = new ArrayList();
+
+		if(categorys.size()>0){
+			list.add(categorys);
+			for (int i = 0; i < categorys.size(); i++) {
+				if(getChildren(categorys.get(i).getId()).size()>0)
+					list.add(getChildren(categorys.get(i).getId()));
+			}
+		}
+
+		return list;
 	}  
 
 	/**
@@ -67,7 +93,8 @@ public class CategoryService {
 	public Category selectCategory(long id) {  
 		String sql ="select * from category where id = "+id; 
 		List<Category> categorys = Category.dao.find(sql);
-		if(categorys!=null){
+
+		if(categorys.size()>0){
 			return categorys.get(0);
 		}
 		return null;

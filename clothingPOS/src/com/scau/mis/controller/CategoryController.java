@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.sf.json.JSONObject;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Category;
@@ -39,7 +41,7 @@ public class CategoryController extends Controller {
 	 */
 	public void selectCategory(){
 		long id = getParaToLong("id");
-		renderJson(service.selectCategory(id));
+		renderJson(service.selectCategory(id)!=null?service.selectCategory(id):JSONObject.fromObject("{}"));
 	}
 	
 	/**
@@ -109,5 +111,5 @@ public class CategoryController extends Controller {
 		}
 		renderJson(result);
 	}
-
+	
 }
