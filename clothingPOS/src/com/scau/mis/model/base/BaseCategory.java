@@ -41,4 +41,12 @@ public abstract class BaseCategory<M extends BaseCategory<M>> extends Model<M> i
 		return get("script");
 	}
 
+	public void setCreateTime(java.util.Date createTime) {
+		set("createTime", createTime);
+	}
+
+	public java.util.Date getCreateTime() {
+		return get("createTime");
+	}
+
 }

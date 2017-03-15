@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.jfinal.core.JFinal;
 import com.scau.mis.model.Category;
 
 public class CategoryServiceTest {
