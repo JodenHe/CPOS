@@ -1,7 +1,9 @@
 package com.scau.mis.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONObject;
@@ -80,6 +82,7 @@ public class CategoryController extends Controller {
 	/**
 	 * 修改类别信息
 	 */
+	
 	public void update(){
 		Map<String, Object> result = new HashMap<String, Object>();
 		Category category = new Category();
@@ -111,5 +114,31 @@ public class CategoryController extends Controller {
 		}
 		renderJson(result);
 	}
-	
+
+	/**
+	 * 查询是否拥有子目录
+	 */
+	public void getChildren(){
+		
+		Map<String, Object> result  =new HashMap<String, Object>();
+		long id = getParaToLong("id");
+		if(service.getChildren(id).size()!=0){
+			result.put("status", true);
+		}else{
+			result.put("status", false);
+		}
+		renderJson(result);
+	}
+	/**
+	 * 删除商品类别
+	 */
+	public void delete(){
+		Map<String, Object> result  =new HashMap<String, Object>();
+		long id = getParaToLong("id");
+		if(service.deleteCategory(id))
+			result.put("status", true);
+		else
+			result.put("status", false);
+		renderJson(result);
+	}
 }
