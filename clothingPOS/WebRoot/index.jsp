@@ -18,7 +18,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/combo.select.css">
 	
+	<!-- jQuery -->
+	<script src="${contextPath}/resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="${contextPath}/resources/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.combo.select.js"></script>
+	
+	<script type="text/javascript">
+	$(function() {
+		$('#showparents').comboSelect()
+	});
+	function t(){
+		
+	}
+	</script>
 	<script type="text/javascript">
 		var contextPath = '${contextPath}';
 	</script>
@@ -29,5 +44,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div><a href="${contextPath}/admin">系统管理员界面</a></div>
   <div><a href="${contextPath}/cashier">收银员界面</a></div>
   <div><a href="${contextPath}/warehouse">仓库管理员界面</a></div>
+  
+  <div>
+  	<h3>添加类别</h3>
+  	<form action="${contextPath}/category/insert" method="post">
+  		类别名称：<input type="text" name="name"/><br>
+  		 <label>父类别 <select id="showparents" class="form-control" style="width:150px;">
+				        	<option value="方法一" >方法一</option>
+				        	<option value="方法2" >方法2</option>
+				        </select></label>
+  		备注：<input type="text" name="script"/>
+  		<button type="submit">添加</button>
+  	</form>
+  	
+  </div>
+  <div>
+  	<h3>列出所有类别</h3>
+  	
+  </div>
+  <div>
+  	<h3>删除所有类别</h3>
+  	
+  </div>
+  <div>
+  	<h3>更新类别</h3>
+  	
+  </div>
   </body>
 </html>
