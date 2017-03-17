@@ -25,7 +25,7 @@ public class CategoryController extends Controller {
 	 * 获取所有类别信息
 	 */
 	public void selectAllCategory(){
-		renderJson(service.selectAllCategory());
+		renderJson(service.selectAllCategory2());
 	}
 
 	/**

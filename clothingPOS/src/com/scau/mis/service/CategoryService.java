@@ -30,8 +30,18 @@ public class CategoryService {
 	 * 获取所有类别
 	 * @return 封装在Map中的所有Category数据
 	 */
+	public List<Category> selectAllCategory2() {  
+		String sql ="SELECT * FROM category ORDER BY `name` ASC"; 
+		List<Category> categorys = Category.dao.find(sql);
+		return categorys;
+	}  
+	
+	/**
+	 * 获取所有类别
+	 * @return 封装在Map中的所有Category数据
+	 */
 	public List<Object> selectAllCategory() {  
-		String sql ="SELECT * FROM category WHERE parentId IS NULL ORDER BY `name` ASC"; 
+		String sql ="SELECT * FROM category WHERE pId IS NULL ORDER BY `name` ASC"; 
 		List<Category> list = Category.dao.find(sql);
 		List<Object> lists = new ArrayList<Object>();
 		if(list.size()>0){
@@ -70,7 +80,7 @@ public class CategoryService {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List getChildren(long id) {  
-		String sql ="SELECT * FROM category WHERE parentId = "+id; 
+		String sql ="SELECT * FROM category WHERE pId = "+id; 
 		List<Category> categorys = Category.dao.find(sql);
 		List list = new ArrayList();
 
