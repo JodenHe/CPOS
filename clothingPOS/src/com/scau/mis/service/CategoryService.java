@@ -2,9 +2,6 @@ package com.scau.mis.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.collections.map.LinkedMap;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.Category;
@@ -58,8 +55,8 @@ public class CategoryService {
 		List<Category> parents = new ArrayList<Category>();
 
 		if(categorys.size()>0){
-			if (categorys.get(0).getParentId()!=null) {
-				parents.addAll(selectParents(categorys.get(0).getParentId()));
+			if (categorys.get(0).getPId()!=null) {
+				parents.addAll(selectParents(categorys.get(0).getPId()));
 			}
 			parents.addAll(categorys);
 		}
@@ -72,8 +69,8 @@ public class CategoryService {
 	 * @return 封装在List中的子Category数据
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List getChildren(long pid) {  
-		String sql ="SELECT * FROM category WHERE parentId = "+pid; 
+	public List getChildren(long id) {  
+		String sql ="SELECT * FROM category WHERE parentId = "+id; 
 		List<Category> categorys = Category.dao.find(sql);
 		List list = new ArrayList();
 

@@ -1,9 +1,7 @@
 package com.scau.mis.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONObject;
@@ -59,7 +57,7 @@ public class CategoryController extends Controller {
 			category.setName(name);
 			category.setScript(script);
 			if (getParaToLong("parentId")!=null) {
-				category.setParentId(getParaToLong("parentId"));
+				category.setPId(getParaToLong("pId"));
 			}
 			category.setCreateTime(new Date());
 			boolean status = service.insertCategory(category);
@@ -95,7 +93,7 @@ public class CategoryController extends Controller {
 			category.setName(name);
 			category.setScript(script);
 			if (getParaToLong("parentId")!=null) {
-				category.setParentId(getParaToLong("parentId"));
+				category.setPId(getParaToLong("pId"));
 			}
 			category.setCreateTime(new Date());
 			boolean status = service.updateCategory(category);
