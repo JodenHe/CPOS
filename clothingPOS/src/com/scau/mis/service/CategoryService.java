@@ -28,7 +28,7 @@ public class CategoryService {
 
 	/**
 	 * 获取所有类别
-	 * @return 封装在Map中的所有Category数据
+	 * @return 封装在List中的所有Category数据
 	 */
 	public List<Category> selectAllCategory2() {  
 		String sql ="SELECT * FROM category ORDER BY `name` ASC"; 
@@ -37,8 +37,8 @@ public class CategoryService {
 	}  
 	
 	/**
-	 * 获取所有类别
-	 * @return 封装在Map中的所有Category数据
+	 * 获取所有类别（暂废弃）
+	 * @return 封装在List中的所有Category数据
 	 */
 	public List<Object> selectAllCategory() {  
 		String sql ="SELECT * FROM category WHERE pId IS NULL ORDER BY `name` ASC"; 
