@@ -77,7 +77,7 @@
                         $.fn.zTree.init(treeObj, setting, zNodes);
                         zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
                      // curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-                      if(zTree_Menu.getNodes()[0].children!=null){
+                      if(zTree_Menu.getNodes()!=null&&zTree_Menu.getNodes()[0].children!=null&&zTree_Menu.getNodes()[0].children[0].children!=null){
                     	curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
                       }
                         zTree_Menu.selectNode(curMenu);
