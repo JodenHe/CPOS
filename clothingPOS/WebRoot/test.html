@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    
+    <title>晓锋测试页</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/combo.select.css">
+	
+	<!-- jQuery -->
+	<script src="${contextPath}/resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="${contextPath}/resources/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${contextPath}/resources/js/jquery.combo.select.js"></script>
+	<!-- zTree -->
+    <script type="text/javascript" src="${contextPath}/zTree_v3/js/jquery.ztree.core.js"></script>
+    <SCRIPT type="text/javascript">
+                <!--
+               function test(){
+			$.ajax({
+				type : "POST", // 提交方式
+				url : contextPath+'/category/selectAllCategory',// 路径
+				data : {},// 数据，这里使用的是Json格式进行传输
+				success : function(data) {// 返回数据根据结果进行相应的处理
+				  var curMenu = null, zTree_Menu = null;
+					var setting = {
+						view: {
+						        showLine: false,
+						        showIcon: false,
+						        selectedMulti: false,
+						        dblClickExpand: false,
+						        addDiyDom: addDiyDom
+						},
+						data: {
+						        simpleData: {
+						                enable: true
+						        }
+						},
+						callback: {
+						        beforeClick: beforeClick
+						}
+					};
+					 zNodes=data;
+						var treeObj = $("#treeDemo");
+                        $.fn.zTree.init(treeObj, setting, zNodes);
+                        zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
+                        curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+                        zTree_Menu.selectNode(curMenu);
+
+                         treeObj.hover(function () {
+                                if (!treeObj.hasClass("showIcon")) {
+                                        treeObj.addClass("showIcon");
+                                }
+                        }, function() {
+                                treeObj.removeClass("showIcon");
+                        });
+				}
+			});
+		}
+
+
+                function addDiyDom(treeId, treeNode) {
+                        var spaceWidth = 5;
+                        var switchObj = $("#" + treeNode.tId + "_switch"),
+                        icoObj = $("#" + treeNode.tId + "_ico");
+                        switchObj.remove();
+                        icoObj.before(switchObj);
+
+                        if (treeNode.level > 1) {
+                                var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level)+ "px'></span>";
+                                switchObj.before(spaceStr);
+                        }
+                }
+
+                function beforeClick(treeId, treeNode) {
+                        if (treeNode.level == 0 ) {
+                                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                                zTree.expandNode(treeNode);
+                                return false;
+                        }
+                        return true;
+                }
+
+		$(document).ready(function(){
+			test();		
+		});
+                //-->
+        </SCRIPT>
+	
+	<script src="${contextPath}/resources/js/test.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		$('.selectCombo').comboSelect()
+		t()
+	});
+	
+	function t(){
+		$.ajax({
+		  	type:"post",
+		  	url:contextPath+"/category/selectAllCategory",
+		  	dataType:"json",
+		  	data:{},
+		  	success:function(result){
+		  		for(var i=0;i<result.length;i++){
+		  			$('#showparents').append('<option value="'+result[i].id+'" >'+result[i].name+'</option>');
+		  		}
+		  		$('#showparents').comboSelect();
+		  	},
+			error:function(){
+		  		console.log("false")
+		  	}
+		});
+		
+	}
+	</script>
+	<script type="text/javascript">
+		var contextPath = '${contextPath}';
+	</script>
+  </head>
+  
+  <body>
+  <div><a href="${contextPath}/login">登录界面</a></div>
+  <div><a href="${contextPath}/admin">系统管理员界面</a></div>
+  <div><a href="${contextPath}/cashier">收银员界面</a></div>
+  <div><a href="${contextPath}/warehouse">仓库管理员界面</a></div>
+  
+  <div>
+  	<h3>添加类别</h3>
+  	<form action="${contextPath}/category/insert" method="post">
+  		类别名称：<input type="text" name="name"/><br>
+  		 <label>父类别 
+  		 <select name="pId" id="showparents" class="selectCombo form-control" style="width:200px;">
+		</select>
+		</label>
+  		备注：<input type="text" name="script"/>
+  		<button type="submit">添加</button>
+  	</form>
+  	
+  </div>
+  <div>
+  	<h3>列出所有类别</h3>
+  	 <div class="zTreeDemoBackground left">
+                <ul id="treeDemo" class="ztree"></ul>
+     </div>
+             <style type="text/css">
+.ztree * {font-size: 10pt;font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial}
+.ztree li ul{ margin:0; padding:0}
+.ztree li {line-height:30px;}
+.ztree li a {width:200px;height:30px;padding-top: 0px;}
+.ztree li a:hover {text-decoration:none; background-color: #E7E7E7;}
+.ztree li a span.button.switch {visibility:hidden}
+.ztree.showIcon li a span.button.switch {visibility:visible}
+.ztree li a.curSelectedNode {background-color:#D4D4D4;border:0;height:30px;}
+.ztree li span {line-height:30px;}
+.ztree li span.button {margin-top: -7px;}
+.ztree li span.button.switch {width: 16px;height: 16px;}
+
+.ztree li a.level0 span {font-size: 150%;font-weight: bold;}
+.ztree li span.button {background-image:url("zTree_v3/img/left_menuForOutLook.png"); *background-image:url("zTree_v3/img/left_menuForOutLook.gif")}
+.ztree li span.button.switch.level0 {width: 20px; height:20px}
+.ztree li span.button.switch.level1 {width: 20px; height:20px}
+.ztree li span.button.noline_open {background-position: 0 0;}
+.ztree li span.button.noline_close {background-position: -18px 0;}
+.ztree li span.button.noline_open.level0 {background-position: 0 -18px;}
+.ztree li span.button.noline_close.level0 {background-position: -18px -18px;}
+        </style>
+  </div>
+  <div>
+  	<h3>删除所有类别</h3>
+  	
+  </div>
+  <div>
+  	<h3>更新类别</h3>
+  	
+  </div>
+  <div>
+  	<table>
+  		<tbody>
+  			<tr>
+  				<td>颜色名：</td><td><input type="text" id="name"/></td>
+  			</tr>
+  			<tr>
+  				<td>描述：</td><td><input type="text" id="script"/></td>
+  			</tr>
+  			<tr>
+  				<td></td><td><button onclick="addColor()">提交</button></td>
+  			</tr>
+  		</tbody>
+  	</table>
+  </div>
+  <div>
+    	<table>
+  		<tbody>
+  			<tr>
+  				<td><button onclick="getAllColor()">查询</button></td>
+  			</tr>
+  			<tr>
+  				<td><span id = "showAllColor"></span></td>
+  			</tr>
+  		</tbody>
+  	</table>
+  </div>
+  </body>
+  <script type="text/javascript">
+  
+  </script>
+</html>
+  	
