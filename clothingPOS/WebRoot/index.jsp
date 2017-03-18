@@ -75,13 +75,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<table>
   		<tbody>
   			<tr>
-  				<td>颜色名：</td><td><input type="text" id="name"/></td>
+  				<td>尺码名：</td><td><input type="text" id="sizeName"/></td>
   			</tr>
   			<tr>
-  				<td>描述：</td><td><input type="text" id="script"/></td>
+  				<td>描述：</td><td><input type="text" id="sizeScript"/></td>
   			</tr>
   			<tr>
-  				<td></td><td><button onclick="addColor()">提交</button></td>
+  				<td></td><td><button onclick="addSize()">提交</button></td>
   			</tr>
   		</tbody>
   	</table>
@@ -99,8 +99,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	</table>
   </div>
   </body>
-  <script type="text/javascript">
-  
-  </script>
 </html>
   	

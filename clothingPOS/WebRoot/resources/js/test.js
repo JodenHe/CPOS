@@ -1,4 +1,4 @@
-
+//获得所有颜色
   	function getAllColor(){
   	alert("test1");
   	$.ajax({
@@ -27,7 +27,8 @@
   	},
   	});
   	}
-	function addColor(){
+//增加颜色
+  	function addColor(){
 
 	  	var name = $("#name").val();
 	  	var script = $("#script").val();
@@ -44,6 +45,7 @@
 	  			}
 	  		});
 	  	}
+//删除一个颜色  	
   	function deleteColor(id){
   	alert(id);
   	$.ajax({
@@ -61,4 +63,19 @@
   		alert("sb");
   	}
   	});
+  	}
+//增加一个尺码
+  	function addSize(){
+  		$.ajax({
+  			type:"post",
+  			url:contextPath+"/size/add",
+  			dataType:"json",
+  			data:{"name":$("#sizeName").val(),"script":$("#sizeScript").val()},
+  		success:function(result){
+  			alert(result.status);
+  		},
+  		error:function(result){
+  			alert("sb");
+  		}
+  		});
   	}
