@@ -14,7 +14,7 @@ import com.scau.mis.model.Color;
 import com.scau.mis.service.ColorService;
 
 public class ColorController extends Controller {
-	public static Log log = Log.getLog(CategoryController.class);
+	public static Log log = Log.getLog(ColorController.class);
 	private ColorService colorService = new ColorService();
 	/**
 	 * 添加一个颜色类别

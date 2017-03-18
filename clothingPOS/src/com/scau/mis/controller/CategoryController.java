@@ -56,7 +56,7 @@ public class CategoryController extends Controller {
 		if (name!=null&&!"".equals(name)) {
 			category.setName(name);
 			category.setScript(script);
-			if (getParaToLong("parentId")!=null) {
+			if (getParaToLong("pId")!=null) {
 				category.setPId(getParaToLong("pId"));
 			}
 			category.setCreateTime(new Date());

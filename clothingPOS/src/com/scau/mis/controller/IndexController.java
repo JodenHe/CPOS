@@ -48,6 +48,6 @@ public class IndexController  extends Controller {
 	 */
 	public void test() {
 		log.info("测试页面");
-		render("index.jsp");
+		render("test.html");
 	}
 }
