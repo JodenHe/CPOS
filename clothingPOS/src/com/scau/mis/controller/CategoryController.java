@@ -56,7 +56,7 @@ public class CategoryController extends Controller {
 		if (name!=null&&!"".equals(name)) {
 			category.setName(name);
 			category.setScript(script);
-			if (getParaToLong("pId")!=null) {
+			if (getParaToLong("pId")!=null&&getParaToLong("pId")!=0) {
 				category.setPId(getParaToLong("pId"));
 			}
 			category.setCreateTime(new Date());
@@ -72,7 +72,7 @@ public class CategoryController extends Controller {
 		}
 		else {
 			result.put("data", "类别名称不能为空！");
-			result.put("status", true);
+			result.put("status", false);
 		}
 		renderJson(result);
 	}
@@ -92,7 +92,7 @@ public class CategoryController extends Controller {
 			category.setId(id);
 			category.setName(name);
 			category.setScript(script);
-			if (getParaToLong("parentId")!=null) {
+			if (getParaToLong("parentId")!=null&&getParaToLong("pId")!=0) {
 				category.setPId(getParaToLong("pId"));
 			}
 			category.setCreateTime(new Date());

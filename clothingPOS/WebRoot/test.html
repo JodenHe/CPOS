@@ -2,13 +2,42 @@
 <html>
   <head>
     
-    <title>晓锋测试页</title>
+    <title>35组服装POS系统测试页面</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	
+	<!-- Bootstrap Core CSS -->
+	<link href="..${contextPath}/resources/sbAdmin/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+	<!-- comboSelect -->
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/combo.select.css">
+	<!-- zTree -->
+	<link rel="stylesheet" href="${contextPath}/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<style type="text/css">
+		.ztree * {font-size: 10pt;font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial}
+		.ztree li ul{ margin:0; padding:0}
+		.ztree li {line-height:30px;}
+		.ztree li a {width:200px;height:30px;padding-top: 0px;}
+		.ztree li a:hover {text-decoration:none; background-color: #E7E7E7;}
+		.ztree li a span.button.switch {visibility:hidden}
+		.ztree.showIcon li a span.button.switch {visibility:visible}
+		.ztree li a.curSelectedNode {background-color:#D4D4D4;border:0;height:30px;}
+		.ztree li span {line-height:30px;}
+		.ztree li span.button {margin-top: -7px;}
+		.ztree li span.button.switch {width: 16px;height: 16px;}
+		
+		.ztree li a.level0 span {font-size: 150%;font-weight: bold;}
+		.ztree li span.button {background-image:url("${contextPath}/zTree_v3/img/left_menuForOutLook.png"); *background-image:url("${contextPath}/zTree_v3/img/left_menuForOutLook.gif")}
+		.ztree li span.button.switch.level0 {width: 20px; height:20px}
+		.ztree li span.button.switch.level1 {width: 20px; height:20px}
+		.ztree li span.button.noline_open {background-position: 0 0;}
+		.ztree li span.button.noline_close {background-position: -18px 0;}
+		.ztree li span.button.noline_open.level0 {background-position: 0 -18px;}
+		.ztree li span.button.noline_close.level0 {background-position: -18px -18px;}
+	</style>
 	
 	<!-- jQuery -->
 	<script src="${contextPath}/resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
@@ -47,7 +76,10 @@
 						var treeObj = $("#treeDemo");
                         $.fn.zTree.init(treeObj, setting, zNodes);
                         zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-                        curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+                     // curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+                      if(zTree_Menu.getNodes()[0].children!=null){
+                    	curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+                      }
                         zTree_Menu.selectNode(curMenu);
 
                          treeObj.hover(function () {
@@ -93,8 +125,8 @@
 	<script src="${contextPath}/resources/js/test.js"></script>
 	<script type="text/javascript">
 	$(function() {
-		$('.selectCombo').comboSelect()
-		t()
+		$('.selectCombo').comboSelect();	
+		t();
 	});
 	
 	function t(){
@@ -105,9 +137,12 @@
 		  	data:{},
 		  	success:function(result){
 		  		for(var i=0;i<result.length;i++){
-		  			$('#showparents').append('<option value="'+result[i].id+'" >'+result[i].name+'</option>');
-		  		}
-		  		$('#showparents').comboSelect();
+		  			$('#categorys-content').append('<tr><td>'+result[i].id+'</td><td>'+(result[i].pId==null?"无":result[i].pId)+'</td><td>'+result[i].name+'</td><td>'+result[i].script+'</td><td>'+result[i].createTime+'</td><td><button class="btn btn-default btn-lg" onclick="deleteCategory('+result[i].id+')">删除</button></td></tr>');
+		  			$('#categorys-content-input').append('<tr><td>'+result[i].id+'</td><td>'+(result[i].pId==null?"无":result[i].pId)+'</td><td><input type="text" value="'+result[i].name+'" /></td><td><input type="text" value="'+result[i].script+'" /></td><td>'+result[i].createTime+'</td><td><button class="btn btn-default btn-lg" onclick="updateCategory('+result[i].id+',this)">更新</button></td></tr>');
+		  			$('#categorys-content-delete-update').append('<tr><td>'+result[i].id+'</td><td>'+(result[i].pId==null?"无":result[i].pId)+'</td><td><input type="text" value="'+result[i].name+'" /></td><td><input type="text" value="'+result[i].script+'" /></td><td>'+result[i].createTime+'</td><td><button class="btn btn-default" onclick="updateCategory('+result[i].id+',this)">更新</button>&nbsp;&nbsp;<button class="btn btn-primary" onclick="deleteCategory('+result[i].id+')">删除</button></td></tr>');
+		  			$('.pId').append('<option value="'+result[i].id+'" >'+result[i].name+'</option>');
+			  		}
+		  		$('.selectCombo').comboSelect();
 		  	},
 			error:function(){
 		  		console.log("false")
@@ -115,6 +150,104 @@
 		});
 		
 	}
+	
+	function addCategory(){
+		$.ajax({
+		  	type:"post",
+		  	url:contextPath+"/category/insert",
+		  	dataType:"json",
+		  	data:{
+		  		name:$('#name').val(),
+		  		pId:$('#pId').val(),
+		  		script:$('#script').val()
+		  	},
+		  	success:function(data){
+		  		console.log(data)
+		  		if (data.status) {
+					alert(data.data);
+					 window.location.href=contextPath+"/test";
+				} else {
+					alert(data.data);
+				}
+		  	},
+			error:function(){
+		  		console.log("false")
+		  	}
+		});
+	}
+	
+	function deleteCategory(id){
+		$.ajax({
+		  	type:"post",
+		  	url:contextPath+"/category/getChildren",
+		  	dataType:"json",
+		  	data:{
+		  		id:id
+		  	},
+		  	success:function(data){
+		  		console.log(data)
+		  		if (!data.status) {
+		  			deleteCategory2(id)
+				} else {
+					alert("该类别有子类别无法删除！");
+				}
+		  	},
+			error:function(){
+		  		console.log("false")
+		  	}
+		});
+	}
+	
+	function deleteCategory2(id){
+		$.ajax({
+		  	type:"post",
+		  	url:contextPath+"/category/delete",
+		  	dataType:"json",
+		  	data:{
+		  		id:id
+		  	},
+		  	success:function(data){
+		  		console.log(data)
+		  		if (data.status) {
+					alert("成功删除！");
+					 window.location.href=contextPath+"/test";
+				} else {
+					alert("未知错误!");
+				}
+		  	},
+			error:function(){
+		  		console.log("false")
+		  	}
+		});
+	}
+	function updateCategory(id,btnObject){
+		console.log(btnObject);
+		var name = $(btnObject).parents().eq(0).siblings().eq(2).children().val();
+		var script = $(btnObject).parents().eq(0).siblings().eq(3).children().val();
+		$.ajax({
+		  	type:"post",
+		  	url:contextPath+"/category/update",
+		  	dataType:"json",
+		  	data:{
+		  		id : id,
+		  		name : name,
+		  		script : script
+		  	},
+		  	success:function(data){
+		  		console.log(data)
+		  		if (data.status) {
+					alert(data.data);
+					 window.location.href=contextPath+"/test";
+				} else {
+					alert(data.data);
+				}
+		  	},
+			error:function(){
+		  		console.log("false")
+		  	}
+		});
+	}
+	
 	</script>
 	<script type="text/javascript">
 		var contextPath = '${contextPath}';
@@ -122,61 +255,108 @@
   </head>
   
   <body>
-  <div><a href="${contextPath}/login">登录界面</a></div>
-  <div><a href="${contextPath}/admin">系统管理员界面</a></div>
-  <div><a href="${contextPath}/cashier">收银员界面</a></div>
-  <div><a href="${contextPath}/warehouse">仓库管理员界面</a></div>
-  
-  <div>
-  	<h3>添加类别</h3>
-  	<form action="${contextPath}/category/insert" method="post">
-  		类别名称：<input type="text" name="name"/><br>
-  		 <label>父类别 
-  		 <select name="pId" id="showparents" class="selectCombo form-control" style="width:200px;">
-		</select>
-		</label>
-  		备注：<input type="text" name="script"/>
-  		<button type="submit">添加</button>
-  	</form>
-  	
+  <div style="display:none;">
+	  <div><a href="${contextPath}/login">登录界面</a></div>
+	  <div><a href="${contextPath}/admin">系统管理员界面</a></div>
+	  <div><a href="${contextPath}/cashier">收银员界面</a></div>
+	  <div><a href="${contextPath}/warehouse">仓库管理员界面</a></div>
   </div>
-  <div>
-  	<h3>列出所有类别</h3>
-  	 <div class="zTreeDemoBackground left">
-                <ul id="treeDemo" class="ztree"></ul>
-     </div>
-             <style type="text/css">
-.ztree * {font-size: 10pt;font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial}
-.ztree li ul{ margin:0; padding:0}
-.ztree li {line-height:30px;}
-.ztree li a {width:200px;height:30px;padding-top: 0px;}
-.ztree li a:hover {text-decoration:none; background-color: #E7E7E7;}
-.ztree li a span.button.switch {visibility:hidden}
-.ztree.showIcon li a span.button.switch {visibility:visible}
-.ztree li a.curSelectedNode {background-color:#D4D4D4;border:0;height:30px;}
-.ztree li span {line-height:30px;}
-.ztree li span.button {margin-top: -7px;}
-.ztree li span.button.switch {width: 16px;height: 16px;}
 
-.ztree li a.level0 span {font-size: 150%;font-weight: bold;}
-.ztree li span.button {background-image:url("zTree_v3/img/left_menuForOutLook.png"); *background-image:url("zTree_v3/img/left_menuForOutLook.gif")}
-.ztree li span.button.switch.level0 {width: 20px; height:20px}
-.ztree li span.button.switch.level1 {width: 20px; height:20px}
-.ztree li span.button.noline_open {background-position: 0 0;}
-.ztree li span.button.noline_close {background-position: -18px 0;}
-.ztree li span.button.noline_open.level0 {background-position: 0 -18px;}
-.ztree li span.button.noline_close.level0 {background-position: -18px -18px;}
-        </style>
+  
+  <div class="content_wrap">
+	  <div class="form-group">
+	  	<h3>类别树型菜单：</h3>
+	  	 <div class="zTreeDemoBackground left">
+	         <ul id="treeDemo" class="ztree"></ul>
+	     </div>
+	  </div>
+	  
+	  <hr>
+	  <div class="form-group">
+	  	<h3>添加类别</h3>
+	  	<form class="form-horizontal">
+	  		<div class="form-group">
+		  		<div class="col-lg-3">
+		  			<label  for="name">类别名称：</label><input class="form-control input-lg" type="text" id="name" name="name" placeholder="请输入类别名称，不能为空"/>
+		  		</div>
+	  		</div>
+	  		<div class="form-group">
+		  		<div class="col-lg-3">
+		  			<label for="showparents">父类别:</label>
+		    		<select name="pId" id="pId" class="selectCombo form-control input-lg showparents pId">
+		  		 		<option value="0">不选，默认无</option>
+					</select>
+		  		</div>	
+	  		</div>
+	  		<div class="form-group">
+		  		<div class="col-lg-3">
+		  			<label  for="script">备注：</label><input class="form-control input-lg" type="text" id="script" name="script" placeholder="请输入类别描述，可不填"/>
+		  		</div>
+	  		</div>
+	  		<div class="form-group">
+		  		<div class="col-lg-3">
+		  			<button type="button" class="btn btn-default btn-lg" onclick="addCategory();">添加</button>
+		  		</div>
+	  		</div>
+	  		
+	  		
+	  		
+	  		
+	
+	  	</form>
+	  </div>
+	  
+	  
+	  <hr>
+	  <div class="form-group">
+	  	<h3>删除与更新类别</h3>
+	  	<table id="categorys" class="table" style="width:80%;">
+	  		<thead>
+	  			<th>id</th><th>父类id</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th>
+	  		</thead>
+	  		<tbody id="categorys-content-delete-update">
+	  		
+	  		</tbody>
+	  	</table>
+	  </div>
+	  
+	  
+	  <hr>
+	  <div class="form-group">
+	  	<h3>删除类别</h3>
+	  	<table id="categorys" class="table" style="width:80%;" >
+	  		<thead>
+	  			<th>id</th><th>父类id</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th>
+	  		</thead>
+	  		<tbody id="categorys-content">
+	  		
+	  		</tbody>
+	  	</table>
+	  </div>
+	
+	  <hr> 
+	  <div>
+  	    <h3>更新类别</h3>
+  		<table id="categorys" class="table" style="width:80%;" >
+	  		<thead>
+	  			<th>id</th><th>父类id</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th>
+	  		</thead>
+	  		<tbody id="categorys-content-input">
+	  		
+	  		</tbody>
+	  	</table>
+  	  </div>
+		  
   </div>
-  <div>
-  	<h3>删除所有类别</h3>
-  	
-  </div>
-  <div>
-  	<h3>更新类别</h3>
-  	
-  </div>
-  <div>
+
+  
+  
+ 
+
+ 
+ <!-- 颜色测试页面 -->
+<div style="display:none;">
+  <div style="display:none;">
   	<table>
   		<tbody>
   			<tr>
@@ -191,7 +371,7 @@
   		</tbody>
   	</table>
   </div>
-  <div>
+  <div style="display:none;">
     	<table>
   		<tbody>
   			<tr>
@@ -203,6 +383,8 @@
   		</tbody>
   	</table>
   </div>
+
+</div>
   </body>
   <script type="text/javascript">
   
