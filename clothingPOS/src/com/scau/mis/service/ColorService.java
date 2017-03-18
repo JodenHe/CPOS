@@ -6,7 +6,7 @@ import com.jfinal.log.Log;
 import com.scau.mis.model.Color;
 
 public class ColorService {
-	public static Log log = Log.getLog(CategoryService.class);
+	public static Log log = Log.getLog(ColorService.class);
 	/**
 	 * 增加一个颜色
 	 */
