@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="${contextPath}/resources/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${contextPath}/resources/js/jquery.combo.select.js"></script>
 	
+	<script src="${contextPath}/resources/js/test.js"></script>
 	<script type="text/javascript">
 	$(function() {
 		$('#showparents').comboSelect()
@@ -70,5 +71,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<h3>更新类别</h3>
   	
   </div>
+  <div>
+  	<table>
+  		<tbody>
+  			<tr>
+  				<td>颜色名：</td><td><input type="text" id="name"/></td>
+  			</tr>
+  			<tr>
+  				<td>描述：</td><td><input type="text" id="script"/></td>
+  			</tr>
+  			<tr>
+  				<td></td><td><button onclick="addColor()">提交</button></td>
+  			</tr>
+  		</tbody>
+  	</table>
+  </div>
+  <div>
+    	<table>
+  		<tbody>
+  			<tr>
+  				<td><button onclick="getAllColor()">查询</button></td>
+  			</tr>
+  			<tr>
+  				<td><span id = "showAllColor"></span></td>
+  			</tr>
+  		</tbody>
+  	</table>
+  </div>
   </body>
+  <script type="text/javascript">
+  
+  </script>
 </html>
+  	

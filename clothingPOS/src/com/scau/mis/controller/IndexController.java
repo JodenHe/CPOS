@@ -42,4 +42,12 @@ public class IndexController  extends Controller {
 		log.info("仓库管理员界面");
 		render("pages/index3.html");
 	}
+	
+	/**
+	 * 测试页面
+	 */
+	public void test() {
+		log.info("测试页面");
+		render("index.jsp");
+	}
 }
