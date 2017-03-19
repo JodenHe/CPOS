@@ -68,9 +68,9 @@
   	function addSize(){
   		$.ajax({
   			type:"post",
-  			url:contextPath+"/size/add",
+  			url:contextPath+"/style/add",
   			dataType:"json",
-  			data:{"name":$("#sizeName").val(),"script":$("#sizeScript").val()},
+  			data:{"name":$("#sizeName").val(),"script":$("#sizeScript").val(),"sizeId":1,"brandId":2,"categoryId":1},
   		success:function(result){
   			alert(result.status);
   		},

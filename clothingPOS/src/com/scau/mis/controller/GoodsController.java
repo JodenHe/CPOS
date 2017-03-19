@@ -10,6 +10,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Goods;
 import com.scau.mis.service.GoodsService;
+import com.scau.mis.util.TimeUtils;
 
 public class GoodsController extends Controller {
 	public static Log log = Log.getLog(CategoryController.class);
@@ -22,7 +23,7 @@ public class GoodsController extends Controller {
 		Goods goods = new Goods();
 		long styleId = getParaToLong("styleId");
 		long colorId = getParaToLong("colorId");
-		String barcode = getPara("barcode");
+//		String barcode = getPara("barcode");
 		String name = getPara("name");
 		String originalPrice  =getPara("originalPrice");
 		String price = getPara("price");
@@ -35,7 +36,7 @@ public class GoodsController extends Controller {
 		}
 		else if(!name.equals("")&&name!=null){
 			goods.setName(name);
-			goods.setBarcode(barcode);
+			goods.setBarcode(TimeUtils.getCurrentTime());
 			goods.setColorId(colorId);
 			goods.setStyleId(styleId);
 			goods.setScript(script);
