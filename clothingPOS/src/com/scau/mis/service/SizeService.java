@@ -3,7 +3,6 @@ package com.scau.mis.service;
 import java.util.List;
 
 import com.jfinal.log.Log;
-import com.scau.mis.model.Color;
 import com.scau.mis.model.Size;
 
 public class SizeService {

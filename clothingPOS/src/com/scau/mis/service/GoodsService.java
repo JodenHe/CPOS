@@ -34,10 +34,7 @@ public class GoodsService {
 	public List<Goods> getAllGoods(){
 		String sql = "select * from goods";
 		List<Goods> goods = Goods.dao.find(sql);
-		if(goods.size()!=0)
-			return goods;
-		else
-			return null;
+		return goods;
 	}
 	/**
 	 * 通过id删除一个商品
@@ -48,10 +45,13 @@ public class GoodsService {
 		else
 			return false;
 	}
+
 	/**
 	 * 修改商品信息
+	 * @param goods 要修改的商品对象
+	 * @return 成功返回true，失败返回false
 	 */
-	public boolean updataGoods(Goods goods){
+	public boolean updateGoods(Goods goods){
 		if(goods.update())
 			return true;
 		else

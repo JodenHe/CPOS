@@ -37,8 +37,8 @@ public class ColorController extends Controller {
 			else
 				result.put("status", false);
 		}else
-		renderJson(result);
-		
+			renderJson(result);
+
 	}
 	/**
 	 * 通过id删除一个颜色类别
@@ -59,11 +59,7 @@ public class ColorController extends Controller {
 		Map<String,Object> result = new HashMap<String,Object>();
 		List<Color> color = new ArrayList<Color>();
 		color = colorService.getAllColor();
-		if(color!=null)
-			result.put("data",color);
-		else
-			result.put("data", "颜色库暂时没有数据");
-		
+		result.put("data",color);
 		renderJson(result);
 	}
 	/**

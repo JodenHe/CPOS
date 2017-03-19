@@ -5,7 +5,7 @@ import com.jfinal.config.Routes;
 import com.scau.mis.controller.BrandController;
 import com.scau.mis.controller.CategoryController;
 import com.scau.mis.controller.ColorController;
-import com.scau.mis.controller.SizeController;
+import com.scau.mis.controller.GoodsController;
 import com.scau.mis.controller.StyleController;
 
 /**
@@ -21,6 +21,7 @@ public class AdminRoutes extends Routes {
 		add("/color", ColorController.class);
 		add("/brand",BrandController.class);
 		add("/style",StyleController.class);
+		add("/goods",GoodsController.class);
 	}
 
 }

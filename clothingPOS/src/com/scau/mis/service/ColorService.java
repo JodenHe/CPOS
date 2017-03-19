@@ -22,10 +22,7 @@ public class ColorService {
 	public List<Color> getAllColor(){
 		String allColor = "select * from color";
 		List<Color>  color = Color.dao.find(allColor);
-		if(color.size()!=0)
-			return color;
-		else
-			return null;
+		return color;
 	}
 	/**
 	 * 通过传入id 删除一个颜色

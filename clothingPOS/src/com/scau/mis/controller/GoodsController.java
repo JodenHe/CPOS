@@ -23,16 +23,17 @@ public class GoodsController extends Controller {
 		Goods goods = new Goods();
 		long styleId = getParaToLong("styleId");
 		long colorId = getParaToLong("colorId");
-//		String barcode = getPara("barcode");
 		String name = getPara("name");
 		String originalPrice  =getPara("originalPrice");
 		String price = getPara("price");
 		String script = getPara("script");
+		
 		BigDecimal bigDecimal = new BigDecimal(originalPrice);
 		BigDecimal bigPrice = new BigDecimal(price);
-		
+
 		if(goodsService.getGoodsByName(name)!=null){
 			result.put("status", false);
+			result.put("data", "商品名已存在");
 		}
 		else if(!name.equals("")&&name!=null){
 			goods.setName(name);
@@ -43,10 +44,19 @@ public class GoodsController extends Controller {
 			goods.setCreateTime(new Date());
 			goods.setOriginalPrice(bigDecimal);
 			goods.setPrice(bigPrice);
-			if(goodsService.addGoods(goods))
+			if(goodsService.addGoods(goods)){
 				result.put("status", true);
-			else
+				result.put("data", "商品新增成功！");
+			}
+				
+			else{
 				result.put("status", false);
+				result.put("data", "未知错误商品新增失败！");
+			}
+		}
+		else{
+			result.put("status", false);
+			result.put("data", "商品名不能为空！");
 		}
 		renderJson(result);
 	}
@@ -66,14 +76,7 @@ public class GoodsController extends Controller {
 	 * 获得所有商品
 	 */
 	public void getAllGoods(){
-		Map<String,Object> result = new HashMap<String,Object>();
-		List<Goods> goods = goodsService.getAllGoods();
-		if(goods!=null)
-			result.put("data", goods);
-		else
-			result.put("data", "暂时没有商品");
-		renderJson(result);
-		
+		renderJson(goodsService.getAllGoods());
 	}
 	/**
 	 * 获得关键词模糊搜索
@@ -90,7 +93,47 @@ public class GoodsController extends Controller {
 			result.put("data", "暂时没有符合条件的商品");
 			result.put("status", false);
 		}
-			
+
 		renderJson(result);
 	}
+	
+	/**
+	 * 修改商品信息
+	 */
+	public void update(){
+		Map<String, Object> result = new HashMap<String, Object>();
+		Goods goods = new Goods();
+		long id = getParaToLong("id");
+		String name = getPara("name");
+		String originalPrice  =getPara("originalPrice");
+		String price = getPara("price");
+		String script = getPara("script");
+		
+		BigDecimal bOriginalPrice = new BigDecimal(originalPrice);
+		BigDecimal bPrice = new BigDecimal(price);
+
+		if (name!=null&&!"".equals(name)) {
+			goods.setId(id);
+			goods.setName(name);
+			goods.setScript(script);
+			goods.setOriginalPrice(bOriginalPrice);
+			goods.setPrice(bPrice);
+			goods.setCreateTime(new Date());
+			boolean status = goodsService.updateGoods(goods);
+			if (status) {
+				result.put("data", "成功修改！");
+				result.put("status", true);
+			}
+			else{
+				result.put("data", "未知错误，修改失败！");
+				result.put("status", false);
+			}
+		}
+		else {
+			result.put("data", "商品名称不能为空！");
+			result.put("status", true);
+		}
+		renderJson(result);
+	}
+
 }

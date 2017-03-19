@@ -80,7 +80,6 @@ public class CategoryController extends Controller {
 	/**
 	 * 修改类别信息
 	 */
-	
 	public void update(){
 		Map<String, Object> result = new HashMap<String, Object>();
 		Category category = new Category();
