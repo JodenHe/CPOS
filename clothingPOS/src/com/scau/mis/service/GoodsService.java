@@ -14,7 +14,7 @@ public class GoodsService {
 	 */
 	public boolean addGoods(Goods goods){
 		String pathUrl = PathKit.getWebRootPath()+"/barcode/" + goods.getBarcode()+".png";
-        BarcodeUtil.generateFile(goods.getBarcode(), pathUrl);
+		BarcodeUtil.generateFile(goods.getBarcode(), pathUrl);
 		if(goods.save())
 			return true;
 		else

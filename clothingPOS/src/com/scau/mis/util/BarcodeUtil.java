@@ -24,7 +24,7 @@ public class BarcodeUtil {
  
 	/**
 	 * 生成条形码
-	 * @param msg 信息
+	 * @param msg 条形码信息
 	 * @param path 输出路径
 	 * @return
 	 */
