@@ -430,6 +430,7 @@
 			        	  var temp1 = $('td:eq(3)',nRow).html()
 			        	  $('td:eq(2)',nRow).html("<input name='projectLocation' type='text' value="+temp+">");
 			        	  $('td:eq(3)',nRow).html("<input name='remark' type='text' value="+temp1+">") */
+			        	  $('td:eq(3)',nRow).html("<img style='width:120px;' src='"+contextPath+"/barcode/"+aData.barcode+".png'>") 
 			        	  $('td:eq(4)',nRow).html("<input name='goodsName' type='text' value="+aData.name+">") 
 			        	  $('td:eq(5)',nRow).html("<input name='goodsOriginalPrice' type='number' min='0' value="+aData.originalPrice+">") 
 			        	  $('td:eq(6)',nRow).html("<input name='goodsPrice' type='number' min='0' value="+aData.price+">") 

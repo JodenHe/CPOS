@@ -2,8 +2,10 @@ package com.scau.mis.service;
 
 import java.util.List;
 
+import com.jfinal.kit.PathKit;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Goods;
+import com.scau.mis.util.BarcodeUtil;
 
 public class GoodsService {
 	public static Log log = Log.getLog(CategoryService.class);
@@ -11,6 +13,8 @@ public class GoodsService {
 	 * 增加一个商品
 	 */
 	public boolean addGoods(Goods goods){
+		String pathUrl = PathKit.getWebRootPath()+"/barcode/" + goods.getBarcode()+".png";
+        BarcodeUtil.generateFile(goods.getBarcode(), pathUrl);
 		if(goods.save())
 			return true;
 		else
