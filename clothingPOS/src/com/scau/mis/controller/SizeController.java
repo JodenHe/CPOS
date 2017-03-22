@@ -10,7 +10,7 @@ import com.scau.mis.model.Size;
 import com.scau.mis.service.SizeService;
 
 public class SizeController extends Controller {
-	public static Log log = Log.getLog(CategoryController.class);
+	public static Log log = Log.getLog(SizeController.class);
 	private SizeService sizeService = new SizeService();
 	/**
 	 * 添加一个尺码

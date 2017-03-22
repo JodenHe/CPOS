@@ -13,7 +13,7 @@ import com.scau.mis.service.GoodsService;
 import com.scau.mis.util.TimeUtils;
 
 public class GoodsController extends Controller {
-	public static Log log = Log.getLog(CategoryController.class);
+	public static Log log = Log.getLog(GoodsController.class);
 	private GoodsService goodsService = new GoodsService();
 	/**
 	 * 增加一个商品

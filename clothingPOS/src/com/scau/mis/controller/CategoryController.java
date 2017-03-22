@@ -17,7 +17,6 @@ import com.scau.mis.service.CategoryService;
  *
  */
 public class CategoryController extends Controller {
-
 	public static Log log = Log.getLog(CategoryController.class);
 	private CategoryService service = new CategoryService();
 
@@ -27,6 +26,22 @@ public class CategoryController extends Controller {
 	public void selectAllCategory(){
 		renderJson(service.selectAllCategory2());
 	}
+	
+	/**
+	 * 获取所有类别信息
+	 */
+	public void getFirstCategory(){
+		renderJson(service.getFirstCategory());
+	}
+	
+	/**
+	 * 获取所有类别信息
+	 */
+	public void getSecondCategory(){
+		long pId = getParaToLong("pId");
+		renderJson(service.getSecondCategory(pId));
+	}
+
 
 	/**
 	 * 获取指定id的所有父类别信息
@@ -43,7 +58,7 @@ public class CategoryController extends Controller {
 		long id = getParaToLong("id");
 		renderJson(service.selectCategory(id)!=null?service.selectCategory(id):JSONObject.fromObject("{}"));
 	}
-	
+
 	/**
 	 * 添加一条类别信息
 	 */
@@ -116,7 +131,6 @@ public class CategoryController extends Controller {
 	 * 查询是否拥有子目录
 	 */
 	public void getChildren(){
-		
 		Map<String, Object> result  =new HashMap<String, Object>();
 		long id = getParaToLong("id");
 		if(service.getChildren(id).size()!=0){

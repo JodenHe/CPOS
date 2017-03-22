@@ -35,7 +35,27 @@ public class CategoryService {
 		List<Category> categorys = Category.dao.find(sql);
 		return categorys;
 	}  
-	
+
+	/**
+	 * 获取一级类别目录
+	 * @return 封装在List中的所有Category数据
+	 */
+	public List<Category> getFirstCategory() {  
+		String sql ="SELECT * FROM category WHERE pId IS NULL ORDER BY `name` ASC"; 
+		List<Category> categorys = Category.dao.find(sql);
+		return categorys;
+	}  
+
+	/**
+	 * 获取二级类别目录
+	 * @return 封装在List中的所有Category数据
+	 */
+	public List<Category> getSecondCategory(long pId) {
+		String sql ="SELECT * FROM category WHERE pId = "+pId+" ORDER BY `name` ASC"; 
+		List<Category> categorys = Category.dao.find(sql);
+		return categorys;
+	}  
+
 	/**
 	 * 获取所有类别（暂废弃）
 	 * @return 封装在List中的所有Category数据
@@ -137,9 +157,9 @@ public class CategoryService {
 	 * 删除商品类别
 	 */
 	public boolean deleteCategory(long id){
-			if(selectCategory(id).delete())
-				return true;
-			else
-				return false;
+		if(selectCategory(id).delete())
+			return true;
+		else
+			return false;
 	}
 }

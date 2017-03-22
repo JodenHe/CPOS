@@ -8,7 +8,7 @@ import com.scau.mis.model.Goods;
 import com.scau.mis.util.BarcodeUtil;
 
 public class GoodsService {
-	public static Log log = Log.getLog(CategoryService.class);
+	public static Log log = Log.getLog(GoodsService.class);
 	/**
 	 * 增加一个商品
 	 */

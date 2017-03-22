@@ -4,7 +4,7 @@ import com.jfinal.log.Log;
 import com.scau.mis.model.Brand;
 
 public class BrandService {
-	public static Log log = Log.getLog(CategoryService.class);
+	public static Log log = Log.getLog(BrandService.class);
 	/**
 	 * 增加一个品牌
 	 */
