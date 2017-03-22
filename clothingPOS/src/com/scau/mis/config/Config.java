@@ -58,6 +58,7 @@ public class Config extends JFinalConfig {
 		
 		// 所有配置在 MappingKit 中搞定
 		_MappingKit.mapping(arp);
+		arp.setShowSql(true);
 	}
 	
 	/**
