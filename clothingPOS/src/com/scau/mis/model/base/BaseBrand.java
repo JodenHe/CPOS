@@ -17,14 +17,6 @@ public abstract class BaseBrand<M extends BaseBrand<M>> extends Model<M> impleme
 		return get("id");
 	}
 
-	public void setPId(java.lang.Long pId) {
-		set("pId", pId);
-	}
-
-	public java.lang.Long getPId() {
-		return get("pId");
-	}
-
 	public void setName(java.lang.String name) {
 		set("name", name);
 	}

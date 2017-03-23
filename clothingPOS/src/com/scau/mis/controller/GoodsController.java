@@ -21,14 +21,11 @@ public class GoodsController extends Controller {
 	public void add(){
 		Map<String,Object> result = new HashMap<String,Object>();
 		Goods goods = new Goods();
-		long styleId = getParaToLong("styleId");
 		long colorId = getParaToLong("colorId");
 		String name = getPara("name");
-		String originalPrice  =getPara("originalPrice");
 		String price = getPara("price");
 		String script = getPara("script");
 		
-		BigDecimal bigDecimal = new BigDecimal(originalPrice);
 		BigDecimal bigPrice = new BigDecimal(price);
 
 		if(goodsService.getGoodsByName(name)!=null){
@@ -39,10 +36,8 @@ public class GoodsController extends Controller {
 			goods.setName(name);
 			goods.setBarcode(TimeUtils.getCurrentTime());
 			goods.setColorId(colorId);
-			goods.setStyleId(styleId);
 			goods.setScript(script);
 			goods.setCreateTime(new Date());
-			goods.setOriginalPrice(bigDecimal);
 			goods.setPrice(bigPrice);
 			if(goodsService.addGoods(goods)){
 				result.put("status", true);
@@ -105,18 +100,15 @@ public class GoodsController extends Controller {
 		Goods goods = new Goods();
 		long id = getParaToLong("id");
 		String name = getPara("name");
-		String originalPrice  =getPara("originalPrice");
 		String price = getPara("price");
 		String script = getPara("script");
 		
-		BigDecimal bOriginalPrice = new BigDecimal(originalPrice);
 		BigDecimal bPrice = new BigDecimal(price);
 
 		if (name!=null&&!"".equals(name)) {
 			goods.setId(id);
 			goods.setName(name);
 			goods.setScript(script);
-			goods.setOriginalPrice(bOriginalPrice);
 			goods.setPrice(bPrice);
 			goods.setCreateTime(new Date());
 			boolean status = goodsService.updateGoods(goods);

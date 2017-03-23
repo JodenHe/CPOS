@@ -17,12 +17,12 @@ public abstract class BaseGoods<M extends BaseGoods<M>> extends Model<M> impleme
 		return get("id");
 	}
 
-	public void setStyleId(java.lang.Long styleId) {
-		set("styleId", styleId);
+	public void setCategoryId(java.lang.Long categoryId) {
+		set("categoryId", categoryId);
 	}
 
-	public java.lang.Long getStyleId() {
-		return get("styleId");
+	public java.lang.Long getCategoryId() {
+		return get("categoryId");
 	}
 
 	public void setColorId(java.lang.Long colorId) {
@@ -31,6 +31,22 @@ public abstract class BaseGoods<M extends BaseGoods<M>> extends Model<M> impleme
 
 	public java.lang.Long getColorId() {
 		return get("colorId");
+	}
+
+	public void setBrandId(java.lang.Long brandId) {
+		set("brandId", brandId);
+	}
+
+	public java.lang.Long getBrandId() {
+		return get("brandId");
+	}
+
+	public void setSizeId(java.lang.Long sizeId) {
+		set("sizeId", sizeId);
+	}
+
+	public java.lang.Long getSizeId() {
+		return get("sizeId");
 	}
 
 	public void setBarcode(java.lang.String barcode) {
@@ -49,12 +65,12 @@ public abstract class BaseGoods<M extends BaseGoods<M>> extends Model<M> impleme
 		return get("name");
 	}
 
-	public void setOriginalPrice(java.math.BigDecimal originalPrice) {
-		set("originalPrice", originalPrice);
+	public void setStyle(java.lang.String style) {
+		set("style", style);
 	}
 
-	public java.math.BigDecimal getOriginalPrice() {
-		return get("originalPrice");
+	public java.lang.String getStyle() {
+		return get("style");
 	}
 
 	public void setPrice(java.math.BigDecimal price) {

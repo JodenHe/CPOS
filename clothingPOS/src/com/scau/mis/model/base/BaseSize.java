@@ -25,6 +25,14 @@ public abstract class BaseSize<M extends BaseSize<M>> extends Model<M> implement
 		return get("name");
 	}
 
+	public void setType(java.lang.String type) {
+		set("type", type);
+	}
+
+	public java.lang.String getType() {
+		return get("type");
+	}
+
 	public void setScript(java.lang.String script) {
 		set("script", script);
 	}

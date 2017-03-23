@@ -25,6 +25,14 @@ public abstract class BaseInventory<M extends BaseInventory<M>> extends Model<M>
 		return get("goodsId");
 	}
 
+	public void setWarehouseId(java.lang.Long warehouseId) {
+		set("warehouseId", warehouseId);
+	}
+
+	public java.lang.Long getWarehouseId() {
+		return get("warehouseId");
+	}
+
 	public void setAmount(java.lang.Integer amount) {
 		set("amount", amount);
 	}
