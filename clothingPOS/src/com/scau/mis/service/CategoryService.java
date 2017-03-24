@@ -25,6 +25,27 @@ public class CategoryService {
 		}
 		return true;
 	}
+	
+	/**
+	 * 判断类别名称是否存在
+	 * @param name 类别名称
+	 * @return 存在添加返回true，不存在返回false
+	 */
+	public boolean existCategory(String name){
+		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"'");
+		return category.size()>0;
+	}
+	
+	/**
+	 * 判断类别名称是否存在
+	 * @param name 类别名称
+	 * @param id 类别id
+	 * @return 存在添加返回true，不存在返回false
+	 */
+	public boolean existCategory(String name,long id){
+		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"' and `c`.`id` != "+id);
+		return category.size()>0;
+	}
 
 	/**
 	 * 获取所有类别

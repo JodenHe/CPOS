@@ -9,8 +9,11 @@ import com.scau.mis.util.BarcodeUtil;
 
 public class GoodsService {
 	public static Log log = Log.getLog(GoodsService.class);
+	
 	/**
-	 * 增加一个商品
+	 * 新增商品
+	 * @param goods 商品对象
+	 * @return 成功返回true，失败返回false
 	 */
 	public boolean addGoods(Goods goods){
 		String pathUrl = PathKit.getWebRootPath()+"/barcode/" + goods.getBarcode()+".png";
@@ -20,11 +23,13 @@ public class GoodsService {
 		else
 			return false;
 	}
+
 	/**
-	 * 通过name查找指定商品
+	 * 根据name查找商品
+	 * @param name 商品名称
+	 * @return 商品List数组
 	 */
 	public List<Goods> getGoodsByName(String name){
-
 		String sql = "select * from goods where name='"+name+"'";
 		List<Goods> goods = Goods.dao.find(sql);
 		if(goods.size()!=0)
@@ -32,16 +37,21 @@ public class GoodsService {
 		else
 			return null;
 	}
+
 	/**
 	 * 获得所有的商品
+	 * @return 商品List数组
 	 */
 	public List<Goods> getAllGoods(){
 		String sql = "select * from goods";
 		List<Goods> goods = Goods.dao.find(sql);
 		return goods;
 	}
+
 	/**
-	 * 通过id删除一个商品
+	 * 删除商品
+	 * @param id 商品id
+	 * @return 成功返回true，失败返回false
 	 */
 	public boolean deleteGoodsById(long id){
 		if(Goods.dao.deleteById(id))

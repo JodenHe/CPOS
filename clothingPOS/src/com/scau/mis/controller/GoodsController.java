@@ -22,6 +22,10 @@ public class GoodsController extends Controller {
 		Map<String,Object> result = new HashMap<String,Object>();
 		Goods goods = new Goods();
 		long colorId = getParaToLong("colorId");
+		long categoryId = getParaToLong("categoryId");
+		long brandId = getParaToLong("brandId");
+		long sizeId = getParaToLong("sizeId");
+		String style = getPara("style");
 		String name = getPara("name");
 		String price = getPara("price");
 		String script = getPara("script");
