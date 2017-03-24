@@ -20,29 +20,16 @@ public class GoodsController extends Controller {
 	 */
 	public void add(){
 		Map<String,Object> result = new HashMap<String,Object>();
-		Goods goods = new Goods();
-		long colorId = getParaToLong("colorId");
-		long categoryId = getParaToLong("categoryId");
-		long brandId = getParaToLong("brandId");
-		long sizeId = getParaToLong("sizeId");
-		String style = getPara("style");
-		String name = getPara("name");
-		String price = getPara("price");
-		String script = getPara("script");
-		
-		BigDecimal bigPrice = new BigDecimal(price);
+		Goods goods = getModel(Goods.class);
+		String name = goods.getName();
 
 		if(goodsService.getGoodsByName(name)!=null){
 			result.put("status", false);
 			result.put("data", "商品名已存在");
 		}
 		else if(!name.equals("")&&name!=null){
-			goods.setName(name);
 			goods.setBarcode(TimeUtils.getCurrentTime());
-			goods.setColorId(colorId);
-			goods.setScript(script);
 			goods.setCreateTime(new Date());
-			goods.setPrice(bigPrice);
 			if(goodsService.addGoods(goods)){
 				result.put("status", true);
 				result.put("data", "商品新增成功！");

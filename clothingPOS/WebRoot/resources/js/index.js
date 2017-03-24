@@ -1,12 +1,11 @@
 $(function() {
-	$('.selectCombo').comboSelect();
 	selectAllCategory();
 	getFirstCategory();
 	category_zTree();
 	goods();
 	getAllColor();
 	getAllStyle();
-
+	$('.selectCombo').comboSelect();
 });
 
 /* 类别管理 */
@@ -318,14 +317,11 @@ function addgoods() {
 				url : contextPath + "/goods/add",
 				dataType : "json",
 				data : {
-					name : $('#goods-name').val(),
-					styleId : $('#goods-style').val(),
-					colorId : $('#goods-color').val(),
-					originalPrice : $('#goods-originalPrice').val() == "" ? 0
-							: $('#goods-originalPrice').val(),
-					price : $('#goods-price').val() == "" ? 0 : $(
+					"goods.name" : $('#goods-name').val(),
+					"goods.colorId" : $('#goods-color').val(),
+					"goods.price" : $('#goods-price').val() == "" ? 0 : $(
 							'#goods-price').val(),
-					script : $('#goods-script').val()
+					"goods.script" : $('#goods-script').val()
 				},
 				success : function(data) {
 					console.log(data)

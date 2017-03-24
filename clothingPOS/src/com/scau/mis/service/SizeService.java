@@ -16,16 +16,15 @@ public class SizeService {
 		else
 			return false;
 	}
+
 	/**
-	 * 通过类别获得一个尺码
+	 * 通过尺码类型获得尺码
+	 * @param type 尺码类型
+	 * @return 
 	 */
-	public List<Size> getSizeByName(String name){
-		String sql = "select* from size where name='"+name+"'";
-		List<Size> size =(List<Size>) Size.dao.find(sql);
-		if(size.size()!=0)
-			return size;
-		else
-			return null;
+	public List<Size> getSizeByType(String type){
+		String sql = "select* from size where type='"+type+"'";
+		return Size.dao.find(sql);
 	}
 	/**
 	 * 通过id删除一个尺码
