@@ -9,7 +9,7 @@ import com.scau.mis.util.BarcodeUtil;
 
 public class GoodsService {
 	public static Log log = Log.getLog(GoodsService.class);
-	
+
 	/**
 	 * 新增商品
 	 * @param goods 商品对象
@@ -49,7 +49,7 @@ public class GoodsService {
 	}
 
 	/**
-	 * 删除商品
+	 * 根据商品id删除商品
 	 * @param id 商品id
 	 * @return 成功返回true，失败返回false
 	 */
@@ -58,6 +58,23 @@ public class GoodsService {
 			return true;
 		else
 			return false;
+	}
+
+	/**
+	 * 根据商品的尺码id删除商品
+	 * @param sizeId 商品sizeId
+	 * @return 成功返回true，失败返回false
+	 */
+	public static boolean deleteGoodsBySizeId(long sizeId){
+		try {
+			List<Goods> goodsList = Goods.dao.find("select `g`.`sizeId` from `goods` as `g` where `g`.`sizeId` = " + sizeId);
+			for (Goods goods : goodsList) {
+				goods.delete();
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	/**

@@ -307,21 +307,21 @@
 								<div class="form-group">
 
 									<div class="col-lg-3">
-										<label  for="name">类别名称：</label><input class="form-control input-lg" type="text" id="name" name="name" placeholder="请输入类别名称，不能为空"/>
+										<label  for="category-name">类别名称：</label><input class="form-control input-lg" type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空"/>
 									</div>
 
 									<div class="col-lg-4">
-										<div class="row">
+										<div class="row" style="margin-left: 0px;">
 											<label for="pId">父类别:</label>
 										</div>
 										<div class="row">
 											<div class="col-lg-6">
-												<select name="firstCategory" id="firstCategory" class="selectCombo form-control input-lg showparents firstCategory" onchange="getSecondCategory(this.value);">
+												<select name="category-firstCategory" id="category-firstCategory" class="selectCombo form-control input-lg showparents category-firstCategory" onchange="getSecondCategory(this.value);">
 													<option value="0">不选，默认无</option>
 												</select>
 											</div>	
 											<div class="col-lg-6">
-												<select name="secondCategory" id="secondCategory" class="selectCombo form-control input-lg showparents secondCategory">
+												<select name="category-secondCategory" id="category-secondCategory" class="selectCombo form-control input-lg showparents category-secondCategory">
 													<option value="0">不选，默认无</option>
 												</select>
 											</div>	
@@ -333,8 +333,8 @@
 								
 								<div class="form-group"	>
 									<div class="col-lg-7">
-										<label  for="script">备注：</label>
-										<textarea class="form-control" rows="3" id="script" name="script" placeholder="请输入描述信息，可以为空"></textarea>
+										<label  for="category-script">备注：</label>
+										<textarea class="form-control" rows="3" id="category-script" name="category-script" placeholder="请输入描述信息，可以为空"></textarea>
 									</div>
 								</div>
 
@@ -380,47 +380,67 @@
 											<div class="col-lg-3">
 												<label  for="goods-name">商品名称：</label><input class="form-control input-lg" type="text" id="goods-name" name="goods-name" placeholder="请输入商品名称，不能为空"/>
 											</div>
-										</div>
-										<div class="form-group">
 											<div class="col-lg-3">
-												<label for="goods-style">款式:</label>
-												<select id="goods-style" class="selectCombo form-control input-lg goods-style">
+												<label  for="goods-style">商品款式：</label><input class="form-control input-lg" type="text" id="goods-style" name="goods-style" placeholder="请输入商品款式，可以为空"/>
+											</div>
+											<div class="col-lg-3">
+												<label for="goods-category">商品类别:</label>
+												<select id="goods-category" class="selectCombo form-control input-lg goods-category">
 												</select>
 											</div>	
 										</div>
+										<div class="form-group">
+											<div class="col-lg-3">
+												<label for="goods-brand">品牌:</label>
+												<select id="goods-brand" class="selectCombo form-control input-lg goods-brand">
+												</select>
+											</div>	
+											<div class="col-lg-6">
+												<div class="row" style="margin-left: 0px;"><label for="goods-size-type">尺寸:</label></div>
+												<div class="row">
+													<div class="col-lg-6">
+														<select id="goods-size-type" class="selectCombo form-control goods-size-type" onchange ="getSizeByType(this.value);">
+														<option>请选择尺寸类型</option>
+														</select>
+													</div>	
+													<div class="col-lg-6">
+														<select id="goods-size" class="selectCombo form-control goods-size">
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-3" style="top:35px;">
+												<div><a data-toggle="modal" data-target="#sizeModel">自定义尺寸？</a></div>
+											</div>
+
+										</div>
+										
 										<div class="form-group">
 											<div class="col-lg-3">
 												<label for="goods-color">颜色:</label>
 												<select id="goods-color" class="selectCombo form-control input-lg goods-color">
 												</select>
 											</div>	
-										</div>
-										<div class="form-group">
 											<div class="col-lg-3">
-												<label  for="goods-originalPrice">原价：</label><input class="form-control input-lg" type="number" min="0" id="goods-originalPrice" name="goods-originalPrice" placeholder="请输入商品进货价，不输入默认为零"/>
+												<label  for="goods-price">售价：</label><input class="form-control input-lg" type="number" min="0" id="goods-price" name="goods-price" placeholder="商品售价价，默认为零"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<div class="col-lg-3">
-												<label  for="goods-price">售价：</label><input class="form-control input-lg" type="number" min="0" id="goods-price" name="goods-price" placeholder="请输入商品售价价，不输入默认为零"/>
+											<div class="col-lg-9">
+												<textarea class="form-control" rows="3" id="goods-script" name="goods-script" placeholder="请输入描述信息，可以为空"></textarea>
 											</div>
 										</div>
 										<div class="form-group">
-											<div class="col-lg-3">
-												<label  for="script">备注：</label><input class="form-control input-lg" type="text" id="goods-script" name="script" placeholder="请输入商品的描述，可不填"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-lg-3">
-												<button type="button" class="btn btn-default btn-lg" onclick="addgoods();">添加</button>
-											</div>
-										</div>
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-success btn-lg btn-block" onclick="addGoods();">新增</button>
+									</div>
+								</div>
 									</form>
 								</div>
 
 								<table id="goods-table" class="table" >
 									<thead>
-										<th>id</th><th>款式id</th><th>颜色id</th><th>条形码</th><th>名称</th><th>进货价</th><th>售价</th><th>描述</th><th>创建时间</th><th>操作</th>
+										<th>编号</th><th>名称</th><th>类别</th><th>品牌</th><th>款式</th><th>颜色</th><th>条形码</th><th>售价</th><th>描述</th><th>创建时间</th><th>操作</th>
 									</thead>
 									<tbody id="goods-table-content">
 
@@ -461,6 +481,24 @@
 
 		</div>
 		<!-- /#wrapper -->
+
+
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="sizeModel" tabindex="-1" role="dialog" aria-labelledby="sizeModel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content" style="width: 900px;">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" id="myModalLabel">自定义尺寸</h4>
+		            </div>
+		            <div class="modal-body">在这里添加一些文本</div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary">提交更改</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
 
 
 		<!-- jQuery -->

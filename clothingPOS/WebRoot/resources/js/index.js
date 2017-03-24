@@ -1,10 +1,15 @@
 $(function() {
+
+	/* 类别管理 */
 	selectAllCategory();
 	getFirstCategory();
 	category_zTree();
+	/* 商品管理 */
 	goods();
 	getAllColor();
-	getAllStyle();
+	getAllBrand();
+	getThirdCategory();
+	getSizeType();
 	$('.selectCombo').comboSelect();
 });
 
@@ -15,6 +20,7 @@ function categoryManage() {
 	getFirstCategory();
 	category_zTree();
 }
+
 // 生成树形菜单
 function category_zTree() {
 	$.ajax({
@@ -34,7 +40,7 @@ function getFirstCategory() {
 		data : {},// 数据，这里使用的是Json格式进行传输
 		success : function(data) {// 返回数据根据结果进行相应的处理
 			for (var i = 0; i < data.length; i++) {
-				$('.firstCategory').append(
+				$('.category-firstCategory').append(
 						'<option value="' + data[i].id + '" >' + data[i].name
 								+ '</option>');
 			}
@@ -68,19 +74,19 @@ function addCategory() {
 		url : contextPath + "/category/insert",
 		dataType : "json",
 		data : {
-			"category.name" : $('#name').val(),
-			"category.pId" : $('#secondCategory').val() != 0 ? $(
-					'#secondCategory').val() : $('#firstCategory').val(),
-			"category.script" : $('#script').val()
+			"category.name" : $('#category-name').val(),
+			"category.pId" : $('#category-secondCategory').val() != 0 ? $(
+					'#category-secondCategory').val() : $('#category-firstCategory').val(),
+			"category.script" : $('#category-script').val()
 		},
 		success : function(data) {
 			console.log(data)
 			if (data.status) {
-				alert(data.data);
+				alert(data.msg);
 				selectAllCategory();
 				/* window.location.href=contextPath+"/admin"; */
 			} else {
-				alert(data.data);
+				alert(data.msg);
 			}
 		},
 		error : function() {
@@ -104,7 +110,6 @@ function selectAllCategory() {
 	});
 
 }
-
 // 删除类别
 function deleteCategory(id) {
 	$.ajax({
@@ -168,10 +173,10 @@ function updateCategory(id, btnObject) {
 		success : function(data) {
 			console.log(data)
 			if (data.status) {
-				alert(data.data);
+				alert(data.msg);
 				selectAllCategory();
 			} else {
-				alert(data.data);
+				alert(data.msg);
 				selectAllCategory();
 			}
 		},
@@ -180,7 +185,6 @@ function updateCategory(id, btnObject) {
 		}
 	});
 }
-
 // 类别的dataTable
 function categorysDataTable(data) {
 	console.log(data)
@@ -269,6 +273,9 @@ function categorysDataTable(data) {
 					})
 }
 
+/*商品管理*/
+
+//获取颜色
 function getAllColor() {
 	$.ajax({
 		type : "post",
@@ -276,7 +283,7 @@ function getAllColor() {
 		dataType : "json",
 		data : {},
 		success : function(data) {
-			var result = data.data;
+			var result = data;
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-color').append(
 						'<option value="' + result[i].id + '" >'
@@ -289,16 +296,17 @@ function getAllColor() {
 		}
 	});
 }
-function getAllStyle() {
+//获取品牌
+function getAllBrand() {
 	$.ajax({
 		type : "post",
-		url : contextPath + "/style/getAllStyle",
+		url : contextPath + "/brand/getAllBrand",
 		dataType : "json",
 		data : {},
 		success : function(data) {
-			var result = data.data;
+			var result = data;
 			for (var i = 0; i < result.length; i++) {
-				$('.goods-style').append(
+				$('.goods-brand').append(
 						'<option value="' + result[i].id + '" >'
 								+ result[i].name + '</option>');
 			}
@@ -309,35 +317,105 @@ function getAllStyle() {
 		}
 	});
 }
-
-function addgoods() {
-	$
-			.ajax({
-				type : "post",
-				url : contextPath + "/goods/add",
-				dataType : "json",
-				data : {
-					"goods.name" : $('#goods-name').val(),
-					"goods.colorId" : $('#goods-color').val(),
-					"goods.price" : $('#goods-price').val() == "" ? 0 : $(
-							'#goods-price').val(),
-					"goods.script" : $('#goods-script').val()
-				},
-				success : function(data) {
-					console.log(data)
-					if (data.status) {
-						alert(data.data);
-						window.location.href = contextPath + "/test";
-					} else {
-						alert(data.data);
-					}
-				},
-				error : function() {
-					console.log("false")
-				}
-			});
+//获取第三级类别
+function getThirdCategory() {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/category/getThirdCategory",
+		dataType : "json",
+		data : {},
+		success : function(data) {
+			var result = data;
+			for (var i = 0; i < result.length; i++) {
+				$('.goods-category').append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+			}
+			$('.selectCombo').comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
 }
-
+//获取尺寸类型
+function getSizeType() {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/size/getSizeType",
+		dataType : "json",
+		data : {},
+		success : function(data) {
+			var result = data;
+			for (var i = 0; i < result.length; i++) {
+				$('.goods-size-type').append(
+						'<option value="' + result[i] + '" >'
+								+ result[i] + '</option>');
+			}
+			$('.selectCombo').comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//获取指定类型的尺寸
+function getSizeByType(type) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/size/getSizeByType",
+		dataType : "json",
+		data : {
+			"type" : type
+		},
+		success : function(data) {
+			var result = data;
+			$('.goods-size').html("");
+			for (var i = 0; i < result.length; i++) {
+				$('.goods-size').append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+			}
+			$('.selectCombo').comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//添加商品
+function addGoods() {
+	$.ajax({
+			type : "post",
+			url : contextPath + "/goods/add",
+			dataType : "json",
+			data : {
+				"goods.name" : $('#goods-name').val(),
+				"goods.style" : $('#goods-style').val(),
+				"goods.categoryId" : $('#goods-category').val(),
+				"goods.brandId" : $('#goods-brand').val(),
+				"goods.sizeId" : $('#goods-size').val(),
+				"goods.colorId" : $('#goods-color').val(),
+				"goods.price" : $('#goods-price').val() == "" ? 0 : $(
+						'#goods-price').val(),
+				"goods.script" : $('#goods-script').val()
+			},
+			success : function(data) {
+				console.log(data)
+				if (data.status) {
+					alert(data.data);
+					goods();
+				} else {
+					alert(data.data);
+					goods();
+				}
+			},
+			error : function() {
+				console.log("false")
+			}
+		});
+}
+//删除商品
 function deleteGoods(id) {
 	$.ajax({
 		type : "post",
@@ -350,7 +428,7 @@ function deleteGoods(id) {
 			console.log(data)
 			if (data.status) {
 				alert("商品删除成功！");
-				window.location.href = contextPath + "/test";
+				goods();
 			} else {
 				alert("删除失败，未知错误！");
 			}
@@ -360,24 +438,24 @@ function deleteGoods(id) {
 		}
 	});
 }
-
+//更新商品信息
 function updateGoods(id, btnObject) {
 	console.log(btnObject);
-	var name = $(btnObject).parents().eq(0).siblings().eq(4).children().val();
-	var originalPrice = $(btnObject).parents().eq(0).siblings().eq(5)
+	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
+	var style = $(btnObject).parents().eq(0).siblings().eq(4)
 			.children().val();
-	var price = $(btnObject).parents().eq(0).siblings().eq(6).children().val();
-	var script = $(btnObject).parents().eq(0).siblings().eq(7).children().val();
+	var price = $(btnObject).parents().eq(0).siblings().eq(7).children().val();
+	var script = $(btnObject).parents().eq(0).siblings().eq(8).children().val();
 	$.ajax({
 		type : "post",
 		url : contextPath + "/goods/update",
 		dataType : "json",
 		data : {
-			id : id,
-			name : name,
-			originalPrice : originalPrice == "" ? 0 : originalPrice,
-			price : price == "" ? 0 : price,
-			script : script
+			"goods.id" : id,
+			"goods.name" : name,
+			"goods.style" : style,
+			"goods.price" : price == "" ? 0 : price,
+			"goods.script" : script
 		},
 		success : function(data) {
 			console.log(data)
@@ -393,7 +471,7 @@ function updateGoods(id, btnObject) {
 		}
 	});
 }
-
+//列出所有的商品，dataTable展示
 function goods() {
 	$.ajax({
 		type : "POST",
@@ -407,7 +485,7 @@ function goods() {
 		}
 	});
 }
-
+//辅助goods()方法，dataTable
 function goodsDataTable(data) {
 	console.log(data)
 	$('#goods-table')
@@ -425,17 +503,19 @@ function goodsDataTable(data) {
 						columns : [ {
 							data : 'id'
 						}, {
-							data : 'styleId'
+							data : 'name'
+						}, {
+							data : 'categoryId'
+						}, {
+							data : 'brandId'
+						}, {
+							data : 'style'
 						}, {
 							data : 'colorId'
 						}, {
-							data : 'barcode'
-						}, {
-							data : 'name'
-						}, {
-							data : 'originalPrice'
-						}, {
 							data : 'price'
+						}, {
+							data : 'barcode'
 						}, {
 							data : 'script'
 						}, {
@@ -459,38 +539,26 @@ function goodsDataTable(data) {
 							}
 						},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
-							/*
-							 * var op = "<button class='btn btn-primary del'
-							 * onclick='deletePro(this)' >删除</button><button
-							 * class='btn btn-success' onclick='detailPro(this)'
-							 * >详情</button><button class='btn btn-danger'
-							 * onclick='savePro(this) ' >保存</button><button
-							 * class='btn btn-defalut' onclick='locate_id(this)'
-							 * >定位</button>" $('td:eq(4)',nRow).html(op); var
-							 * temp = $('td:eq(2)',nRow).html() var temp1 =
-							 * $('td:eq(3)',nRow).html()
-							 * $('td:eq(2)',nRow).html("<input
-							 * name='projectLocation' type='text'
-							 * value="+temp+">"); $('td:eq(3)',nRow).html("<input
-							 * name='remark' type='text' value="+temp1+">")
-							 */
-							$('td:eq(3)', nRow).html(
+							$('td:eq(1)', nRow).html(
+									"<input name='goodsStyle' type='text' value="
+											+ aData.name + ">")
+							$('td:eq(4)', nRow).html(
+									"<input name='goodsStyle' type='text' value="
+											+ aData.style + ">")
+							/*$('td:eq(5)', nRow).html(
+									"<input name='goodsOriginalPrice' type='number' min='0' value="
+											+ aData.originalPrice + ">")*/
+							$('td:eq(6)', nRow).html(
 									"<img style='width:120px;' src='"
 											+ contextPath + "/barcode/"
 											+ aData.barcode + ".png'>")
-							$('td:eq(4)', nRow).html(
-									"<input name='goodsName' type='text' value="
-											+ aData.name + ">")
-							$('td:eq(5)', nRow).html(
-									"<input name='goodsOriginalPrice' type='number' min='0' value="
-											+ aData.originalPrice + ">")
-							$('td:eq(6)', nRow).html(
+							$('td:eq(7)', nRow).html(
 									"<input name='goodsPrice' type='number' min='0' value="
 											+ aData.price + ">")
-							$('td:eq(7)', nRow).html(
+							$('td:eq(8)', nRow).html(
 									"<input name='goodsScript' type='text' value="
-											+ aData.script + ">")
-							$('td:eq(9)', nRow)
+											+ (aData.script==null?'': aData.script) + ">")
+							$('td:eq(10)', nRow)
 									.html(
 											'<button class="btn btn-default" onclick="updateGoods('
 													+ aData.id
@@ -500,7 +568,7 @@ function goodsDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-
+							$('td:eq(0)', nRow).html(iDisplayIndex+1);
 						},
 					})
 }

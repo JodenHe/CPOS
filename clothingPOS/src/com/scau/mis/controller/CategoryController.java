@@ -29,20 +29,27 @@ public class CategoryController extends Controller {
 	}
 
 	/**
-	 * 获取所有类别信息
+	 * 获取第一级类别信息
 	 */
 	public void getFirstCategory() {
 		renderJson(service.getFirstCategory());
 	}
 
 	/**
-	 * 获取所有类别信息
+	 * 获取第二级类别信息
 	 */
 	public void getSecondCategory() {
 		long pId = getParaToLong("pId");
 		renderJson(service.getSecondCategory(pId));
 	}
-
+	
+	/**
+	 * 获取第三级类别信息
+	 */
+	public void getThirdCategory() {
+		renderJson(service.getThirdCategory());
+	}
+	
 	/**
 	 * 获取指定id的所有父类别信息
 	 */
@@ -64,63 +71,17 @@ public class CategoryController extends Controller {
 	 * 添加一条类别信息
 	 */
 	public void insert() {
-		Map<String, Object> result = new HashMap<String, Object>();
 		Category category = getModel(Category.class);
-		String name = category.getName();
-		if (name != null && !"".equals(name)) {
-			if (!service.existCategory(name)) {
-				if (category.getPId() == 0) {
-					category.setPId(null);
-				}
-				category.setCreateTime(new Date());
-				boolean status = service.insertCategory(category);
-				if (status) {
-					result.put("data", "成功添加！");
-					result.put("status", true);
-				} else {
-					result.put("data", "未知错误，添加失败！");
-					result.put("status", false);
-				}
-			}
-			else{
-				result.put("data", "类别名称已存在！");
-				result.put("status", false);
-			}
-		} else {
-			result.put("data", "类别名称不能为空！");
-			result.put("status", false);
-		}
-		renderJson(result);
+		category.setCreateTime(new Date());
+		renderJson(service.addCategory(category));
 	}
 
 	/**
 	 * 修改类别信息
 	 */
 	public void update() {
-		Map<String, Object> result = new HashMap<String, Object>();
 		Category category = getModel(Category.class);
-		String name = category.getName();
-
-		if (name != null && !"".equals(name)) {
-			if (service.existCategory(name,category.getId())) {
-				result.put("data", "类别名称已存在！");
-				result.put("status", false);
-			}
-			else{
-				boolean status = service.updateCategory(category);
-				if (status) {
-					result.put("data", "成功修改！");
-					result.put("status", true);
-				} else {
-					result.put("data", "未知错误，修改失败！");
-					result.put("status", false);
-				}
-			}
-		} else {
-			result.put("data", "类别名称不能为空！");
-			result.put("status", false);
-		}
-		renderJson(result);
+		renderJson(service.updateCategory(category));
 	}
 
 	/**

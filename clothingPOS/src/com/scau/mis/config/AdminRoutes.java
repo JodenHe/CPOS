@@ -6,6 +6,7 @@ import com.scau.mis.controller.BrandController;
 import com.scau.mis.controller.CategoryController;
 import com.scau.mis.controller.ColorController;
 import com.scau.mis.controller.GoodsController;
+import com.scau.mis.controller.SizeController;
 
 /**
  * 后端路由配置
@@ -19,6 +20,7 @@ public class AdminRoutes extends Routes {
 		add("/category", CategoryController.class);
 		add("/color", ColorController.class);
 		add("/brand",BrandController.class);
+		add("/size",SizeController.class);
 		add("/goods",GoodsController.class);
 	}
 

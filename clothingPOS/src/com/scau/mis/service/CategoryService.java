@@ -1,7 +1,9 @@
 package com.scau.mis.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.Category;
@@ -17,35 +19,65 @@ public class CategoryService {
 	/**
 	 * 添加一个类别信息
 	 * @param category 类别实例
-	 * @return 成功添加返回true，失败返回false
+	 * @return map{"status" : true/false,"msg": 提示信息 }
 	 */
-	public boolean addCategory(Category category){
-		if(!category.save()){
-			return false;
+	public Map<String, Object> addCategory(Category category){
+		Map<String, Object> result = new HashMap<String, Object>();
+		String name = category.getName();
+		if (name != null && !"".equals(name)) {
+			if (existCategory(name)) {
+				if (category.getPId() == 0) {
+					category.setPId(null);
+				}
+				if (category.save()) {
+					result.put("msg", "成功添加！");
+					result.put("status", true);
+				} else {
+					result.put("msg", "未知错误，添加失败！");
+					result.put("status", false);
+				}
+			}
+			else{
+				result.put("msg", "类别名称已存在！");
+				result.put("status", false);
+			}
+		} else {
+			result.put("msg", "类别名称不能为空！");
+			result.put("status", false);
 		}
-		return true;
+		return result;
 	}
-	
+
 	/**
-	 * 判断类别名称是否存在
-	 * @param name 类别名称
-	 * @return 存在添加返回true，不存在返回false
+	 * 修改类别信息
+	 * @param category 要修改的类别对象
+	 * @return map{"status" : true/false,"msg": 提示信息 }
 	 */
-	public boolean existCategory(String name){
-		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"'");
-		return category.size()>0;
-	}
-	
-	/**
-	 * 判断类别名称是否存在
-	 * @param name 类别名称
-	 * @param id 类别id
-	 * @return 存在添加返回true，不存在返回false
-	 */
-	public boolean existCategory(String name,long id){
-		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"' and `c`.`id` != "+id);
-		return category.size()>0;
-	}
+	public Map<String, Object> updateCategory(Category category) {  
+		Map<String, Object> result = new HashMap<String, Object>();
+		String name = category.getName();
+
+		if (name != null && !"".equals(name)) {
+			if (existCategory(name,category.getId())) {
+				result.put("msg", "类别名称已存在！");
+				result.put("status", false);
+			}
+			else{
+				if (category.update()) {
+					result.put("msg", "成功修改！");
+					result.put("status", true);
+				} else {
+					result.put("msg", "未知错误，修改失败！");
+					result.put("status", false);
+				}
+			}
+		} else {
+			result.put("msg", "类别名称不能为空！");
+			result.put("status", false);
+		}
+		
+		return result;
+	}  
 
 	/**
 	 * 获取所有类别
@@ -73,6 +105,16 @@ public class CategoryService {
 	 */
 	public List<Category> getSecondCategory(long pId) {
 		String sql ="SELECT * FROM category WHERE pId = "+pId+" ORDER BY `name` ASC"; 
+		List<Category> categorys = Category.dao.find(sql);
+		return categorys;
+	}  
+	
+	/**
+	 * 获取三级类别目录
+	 * @return 封装在List中的所有Category数据
+	 */
+	public List<Category> getThirdCategory() {
+		String sql ="SELECT `c2`.* FROM `category` as `c1`,`category` as `c2` WHERE `c1`.`id`=`c2`.`pId` AND `c1`.`pId` IS NOT NULL ORDER BY `c2`.`name` ASC"; 
 		List<Category> categorys = Category.dao.find(sql);
 		return categorys;
 	}  
@@ -152,29 +194,6 @@ public class CategoryService {
 	}  
 
 	/**
-	 * 新增类别
-	 * @param category 新增的类别对象实例
-	 * @return 成功返回true，失败返回false
-	 */
-	public boolean insertCategory(Category category) {  
-		if(!category.save()){
-			return false;
-		}
-		return true;
-	}  
-
-	/**
-	 * 修改类别信息
-	 * @param category 要修改的类别对象
-	 * @return 成功返回true，失败返回false
-	 */
-	public boolean updateCategory(Category category) {  
-		if(!category.update()){
-			return false;
-		}
-		return true;
-	}  
-	/**
 	 * 删除商品类别
 	 */
 	public boolean deleteCategory(long id){
@@ -183,4 +202,27 @@ public class CategoryService {
 		else
 			return false;
 	}
+	
+	/**
+	 * 判断类别名称是否存在
+	 * @param name 类别名称
+	 * @return 存在添加返回true，不存在返回false
+	 */
+	private boolean existCategory(String name){
+		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"'");
+		return category.size()>0;
+	}
+	
+	/**
+	 * 判断类别名称是否存在
+	 * @param name 类别名称
+	 * @param id 类别id
+	 * @return 存在添加返回true，不存在返回false
+	 */
+	private boolean existCategory(String name,long id){
+		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"' and `c`.`id` != "+id);
+		return category.size()>0;
+	}
+
+
 }

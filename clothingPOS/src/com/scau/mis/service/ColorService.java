@@ -1,47 +1,97 @@
 package com.scau.mis.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.Color;
 
+/**
+ * 颜色信息的业务逻辑实现，废弃删除操作，颜色信息表只允许修改不能删除
+ * @author jodenhe
+ *
+ */
 public class ColorService {
 	public static Log log = Log.getLog(ColorService.class);
+
 	/**
-	 * 增加一个颜色
+	 * 新增颜色
+	 * @param color 颜色信息
+	 * @return map{"status" : true/false,"msg": 提示信息 }
 	 */
-	public boolean addColor(Color color){
-		if(color.save())
-			return true;
-		else
-			return false;
+	public Map<String,Object> addColor(Color color){
+		Map<String,Object> result = new HashMap<String,Object>();
+		String name = color.getName();
+		if (isExist(color.getName())) {
+			result.put("status", false);
+			result.put("msg", "颜色名称已存在！");
+		}
+		else{
+			if (null!=name&&"".equals(name)) {
+				if (color.save()) {
+					result.put("status", true);
+					result.put("msg", "新增颜色成功！");
+				}
+				else{
+					result.put("status", false);
+					result.put("msg", "新增颜色失败，数据库未知错误！");
+				}
+			}
+			else{
+				result.put("status", false);
+				result.put("msg", "颜色名称不能为空！");
+			}
+		}
+		return result;
 	}
+
+	/**
+	 * 更新颜色
+	 * @param color 颜色信息
+	 * @return map{"status" : true/false,"msg": 提示信息 }
+	 */
+	public Map<String,Object> updateColor(Color color){
+		Map<String,Object> result = new HashMap<String,Object>();
+		String name = color.getName();
+		if (isExist(color.getName())) {
+			result.put("status", false);
+			result.put("msg", "颜色名称已存在！");
+		}
+		else{
+			if (null!=name&&"".equals(name)) {
+				if (color.update()) {
+					result.put("status", true);
+					result.put("msg", "更新颜色成功！");
+				}
+				else{
+					result.put("status", false);
+					result.put("msg", "更新颜色失败，数据库未知错误！");
+				}
+			}
+			else{
+				result.put("status", false);
+				result.put("msg", "颜色名称不能为空！");
+			}
+		}
+		return result;
+	}
+
 	/**
 	 * 获得所有颜色类型
 	 */
 	public List<Color> getAllColor(){
 		String allColor = "select * from color";
-		List<Color>  color = Color.dao.find(allColor);
-		return color;
+		return Color.dao.find(allColor);
 	}
+
 	/**
-	 * 通过传入id 删除一个颜色
+	 * 判断颜色是否存在（内部方法）
+	 * @param name 颜色名称
+	 * @return 存在返回true，否则false
 	 */
-	public boolean deleteColor(long id){
-		if(Color.dao.deleteById(id))
-			return true;
-		else
-			return false;
-	}
-	/**
-	 * 通过指定name获得特定颜色
-	 */
-	public List<Color> getColorByName(String name){
-		String sql = "select * from color where name='"+name+"'";
-		List<Color> aimColor = (List<Color>) Color.dao.find(sql);
-		if(aimColor.size()!=0)
-			return aimColor;
-		else
-			return null;
+	private boolean isExist( String name){
+		String sql = "select `c`.`name` from `color` as `c`  where `c`.`name` = '"+name+"'";
+		return Color.dao.find(sql).size()>0;
 	}
 }
