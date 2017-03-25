@@ -57,13 +57,13 @@ function getSecondCategory(pId) {
 			"pId" : pId
 		},// 数据，这里使用的是Json格式进行传输
 		success : function(data) {// 返回数据根据结果进行相应的处理
-			$('.secondCategory').html('<option value="0">不选，默认无</option>');
+			$('.category-secondCategory').html('<option value="0">不选，默认无</option>');
 			for (var i = 0; i < data.length; i++) {
-				$('.secondCategory').append(
+				$('.category-secondCategory').append(
 						'<option value="' + data[i].id + '" >' + data[i].name
 								+ '</option>');
 			}
-			$('.secondCategory').comboSelect();
+			$('.category-secondCategory').comboSelect();
 		}
 	});
 }
@@ -517,7 +517,7 @@ function goodsDataTable(data) {
 						"bSort" : false,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
-							"aTargets" : [ 0, 1, 2, 5, 6, 7，10 ]
+							"aTargets" : [ 0, 1, 2, 5, 6, 7, 10 ]
 						}, ],
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
