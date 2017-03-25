@@ -1,48 +1,87 @@
 package com.scau.mis.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jfinal.kit.PathKit;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Goods;
 import com.scau.mis.util.BarcodeUtil;
 
+/**
+ * 商品信息的业务逻辑实现
+ * 
+ * @author jodenhe
+ * 
+ */
 public class GoodsService {
 	public static Log log = Log.getLog(GoodsService.class);
 
 	/**
 	 * 新增商品
-	 * @param goods 商品对象
+	 * 
+	 * @param goods
+	 *            商品对象
 	 * @return 成功返回true，失败返回false
 	 */
-	public boolean addGoods(Goods goods){
-		String pathUrl = PathKit.getWebRootPath()+"/barcode/" + goods.getBarcode()+".png";
+	public Map<String, Object> addGoods(Goods goods) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		String name = goods.getName();
+		String pathUrl = PathKit.getWebRootPath() + "/barcode/"
+				+ goods.getBarcode() + ".png";
 		BarcodeUtil.generateFile(goods.getBarcode(), pathUrl);
-		if(goods.save())
-			return true;
-		else
-			return false;
+
+		if (getGoodsByName(name) != null) {
+			result.put("status", false);
+			result.put("data", "商品名已存在");
+		} else if (!name.equals("") && name != null) {
+			if (goods.save()) {
+				result.put("status", true);
+				result.put("data", "商品新增成功！");
+			} else {
+				result.put("status", false);
+				result.put("data", "未知错误商品新增失败！");
+			}
+		} else {
+			result.put("status", false);
+			result.put("data", "商品名不能为空！");
+		}
+		return result;
 	}
 
 	/**
-	 * 根据name查找商品
-	 * @param name 商品名称
-	 * @return 商品List数组
+	 * 修改商品信息
+	 * 
+	 * @param goods
+	 *            要修改的商品对象
+	 * @return 成功返回true，失败返回false
 	 */
-	public List<Goods> getGoodsByName(String name){
-		String sql = "select * from goods where name='"+name+"'";
-		List<Goods> goods = Goods.dao.find(sql);
-		if(goods.size()!=0)
-			return goods;
-		else
-			return null;
+	public Map<String, Object> updateGoods(Goods goods) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		String name = goods.getName();
+
+		if (name != null && !"".equals(name)) {
+			if (goods.update()) {
+				result.put("msg", "成功修改！");
+				result.put("status", true);
+			} else {
+				result.put("msg", "未知错误，修改失败！");
+				result.put("status", false);
+			}
+		} else {
+			result.put("msg", "商品名称不能为空！");
+			result.put("status", true);
+		}
+		return result;
 	}
 
 	/**
 	 * 获得所有的商品
+	 * 
 	 * @return 商品List数组
 	 */
-	public List<Goods> getAllGoods(){
+	public List<Goods> getAllGoods() {
 		String sql = "select * from goods";
 		List<Goods> goods = Goods.dao.find(sql);
 		return goods;
@@ -50,11 +89,13 @@ public class GoodsService {
 
 	/**
 	 * 根据商品id删除商品
-	 * @param id 商品id
+	 * 
+	 * @param id
+	 *            商品id
 	 * @return 成功返回true，失败返回false
 	 */
-	public boolean deleteGoodsById(long id){
-		if(Goods.dao.deleteById(id))
+	public boolean deleteGoodsById(long id) {
+		if (Goods.dao.deleteById(id))
 			return true;
 		else
 			return false;
@@ -62,12 +103,16 @@ public class GoodsService {
 
 	/**
 	 * 根据商品的尺码id删除商品
-	 * @param sizeId 商品sizeId
+	 * 
+	 * @param sizeId
+	 *            商品sizeId
 	 * @return 成功返回true，失败返回false
 	 */
-	public static boolean deleteGoodsBySizeId(long sizeId){
+	public static boolean deleteGoodsBySizeId(long sizeId) {
 		try {
-			List<Goods> goodsList = Goods.dao.find("select `g`.`sizeId` from `goods` as `g` where `g`.`sizeId` = " + sizeId);
+			List<Goods> goodsList = Goods.dao
+					.find("select `g`.`sizeId` from `goods` as `g` where `g`.`sizeId` = "
+							+ sizeId);
 			for (Goods goods : goodsList) {
 				goods.delete();
 			}
@@ -78,25 +123,32 @@ public class GoodsService {
 	}
 
 	/**
-	 * 修改商品信息
-	 * @param goods 要修改的商品对象
-	 * @return 成功返回true，失败返回false
-	 */
-	public boolean updateGoods(Goods goods){
-		if(goods.update())
-			return true;
-		else
-			return false;
-	}
-	/**
 	 * 模糊搜索
 	 */
-	public List<Goods> getGoodsByKeyWord(String keyWord){
-		String sql = "select * from goods where concat('name','script','styleId','colorId','barcode','originalPrice','price') like %'"+keyWord+"'%";
+	public List<Goods> getGoodsByKeyWord(String keyWord) {
+		String sql = "select * from goods where concat('name','script','style','barcode','price') like %'"
+				+ keyWord + "'%";
 		List<Goods> goods = Goods.dao.find(sql);
-		if(goods.size()!=0)
+		if (goods.size() != 0)
 			return goods;
 		else
 			return null;
 	}
+
+	/**
+	 * 根据name查找商品(内部方法)
+	 * 
+	 * @param name
+	 *            商品名称
+	 * @return 商品List数组
+	 */
+	private List<Goods> getGoodsByName(String name) {
+		String sql = "select * from goods where name='" + name + "'";
+		List<Goods> goods = Goods.dao.find(sql);
+		if (goods.size() != 0)
+			return goods;
+		else
+			return null;
+	}
+
 }

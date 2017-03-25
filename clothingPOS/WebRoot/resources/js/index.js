@@ -5,11 +5,11 @@ $(function() {
 	getFirstCategory();
 	category_zTree();
 	/* 商品管理 */
-	goods();
-	getAllColor();
-	getAllBrand();
-	getThirdCategory();
-	getSizeType();
+	getAllGoods();
+	getAllGoodsColor();
+	getAllGoodsBrand();
+	getGoodsThirdCategory();
+	getGoodsSizeType();
 	$('.selectCombo').comboSelect();
 });
 
@@ -296,8 +296,29 @@ function getAllColor() {
 		}
 	});
 }
+//获取颜色
+function getAllGoodsColor() {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/color/getAllColor",
+		dataType : "json",
+		data : {},
+		success : function(data) {
+			var result = data;
+			for (var i = 0; i < result.length; i++) {
+				$('.goods-color').append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+			}
+			$('.selectCombo').comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
 //获取品牌
-function getAllBrand() {
+function getAllGoodsBrand() {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/brand/getAllBrand",
@@ -318,7 +339,7 @@ function getAllBrand() {
 	});
 }
 //获取第三级类别
-function getThirdCategory() {
+function getGoodsThirdCategory() {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/category/getThirdCategory",
@@ -339,7 +360,7 @@ function getThirdCategory() {
 	});
 }
 //获取尺寸类型
-function getSizeType() {
+function getGoodsSizeType() {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/size/getSizeType",
@@ -407,7 +428,7 @@ function addGoods() {
 					goods();
 				} else {
 					alert(data.data);
-					goods();
+					getAllGoods();
 				}
 			},
 			error : function() {
@@ -428,7 +449,7 @@ function deleteGoods(id) {
 			console.log(data)
 			if (data.status) {
 				alert("商品删除成功！");
-				goods();
+				getAllGoods();
 			} else {
 				alert("删除失败，未知错误！");
 			}
@@ -460,10 +481,10 @@ function updateGoods(id, btnObject) {
 		success : function(data) {
 			console.log(data)
 			if (data.status) {
-				alert(data.data);
-				window.location.href = contextPath + "/test";
+				alert(data.msg);
+				getAllGoods();
 			} else {
-				alert(data.data);
+				alert(data.msg);
 			}
 		},
 		error : function() {
@@ -472,7 +493,7 @@ function updateGoods(id, btnObject) {
 	});
 }
 //列出所有的商品，dataTable展示
-function goods() {
+function getAllGoods() {
 	$.ajax({
 		type : "POST",
 		url : contextPath + "/goods/getAllGoods",
@@ -545,9 +566,6 @@ function goodsDataTable(data) {
 							$('td:eq(4)', nRow).html(
 									"<input name='goodsStyle' type='text' value="
 											+ aData.style + ">")
-							/*$('td:eq(5)', nRow).html(
-									"<input name='goodsOriginalPrice' type='number' min='0' value="
-											+ aData.originalPrice + ">")*/
 							$('td:eq(6)', nRow).html(
 									"<img style='width:120px;' src='"
 											+ contextPath + "/barcode/"
