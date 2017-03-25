@@ -517,7 +517,7 @@ function goodsDataTable(data) {
 						"bSort" : false,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
-							"aTargets" : [ 0, 1, 2, 5, 6, 7, 8 ]
+							"aTargets" : [ 0, 1, 2, 5, 6, 7，10 ]
 						}, ],
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
