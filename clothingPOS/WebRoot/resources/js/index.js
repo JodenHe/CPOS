@@ -425,10 +425,9 @@ function addGoods() {
 				console.log(data)
 				if (data.status) {
 					alert(data.data);
-					goods();
+					getAllGoods();
 				} else {
 					alert(data.data);
-					getAllGoods();
 				}
 			},
 			error : function() {
