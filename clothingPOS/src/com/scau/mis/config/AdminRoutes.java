@@ -6,6 +6,7 @@ import com.scau.mis.controller.BrandController;
 import com.scau.mis.controller.CategoryController;
 import com.scau.mis.controller.ColorController;
 import com.scau.mis.controller.GoodsController;
+import com.scau.mis.controller.ShopController;
 import com.scau.mis.controller.SizeController;
 
 /**
@@ -22,6 +23,7 @@ public class AdminRoutes extends Routes {
 		add("/brand",BrandController.class);
 		add("/size",SizeController.class);
 		add("/goods",GoodsController.class);
+		add("/shop",ShopController.class);
 	}
 
 }

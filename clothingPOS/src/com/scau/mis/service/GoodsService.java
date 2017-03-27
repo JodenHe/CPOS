@@ -126,8 +126,8 @@ public class GoodsService {
 	 * 模糊搜索
 	 */
 	public List<Goods> getGoodsByKeyWord(String keyWord) {
-		String sql = "select * from goods where concat('name','script','style','barcode','price') like %'"
-				+ keyWord + "'%";
+		String sql = "select * from goods where CONCAT('name','script','style','barcode','price') like '%"
+				+ keyWord + "%'";
 		List<Goods> goods = Goods.dao.find(sql);
 		if (goods.size() != 0)
 			return goods;

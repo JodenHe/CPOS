@@ -75,13 +75,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<table>
   		<tbody>
   			<tr>
-  				<td>尺码名：</td><td><input type="text" id="sizeName"/></td>
+  				<td>地址：</td><td><input type="text" id="shopAddress"/></td>
   			</tr>
   			<tr>
-  				<td>描述：</td><td><input type="text" id="sizeScript"/></td>
+  				<td>描述：</td><td><input type="text" id="shopScript"/></td>
   			</tr>
   			<tr>
-  				<td></td><td><button onclick="addSize()">提交</button></td>
+  				<td>电话：</td><td><input type="text" id="shopPhone"/></td>
+  			</tr>
+  			<tr>
+  				<td>名字：</td><td><input type="text" id="shopName"/></td>
+  			</tr>
+  			<tr>
+  				<td>店主：</td><td><input type="text" id="shopManager"/></td>
+  			</tr>
+  			<tr>
+  				<td></td><td><button onclick="updataShop()">提交</button></td>
   			</tr>
   		</tbody>
   	</table>
@@ -90,10 +99,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<table>
   		<tbody>
   			<tr>
-  				<td><button onclick="getAllColor()">查询</button></td>
+  				<td><input type="text" id="keyWord"/></td><td><button onclick="getShopBykeyWord()">查询</button></td>
   			</tr>
   			<tr>
-  				<td><span id = "showAllColor"></span></td>
+  				<td><span id = "showAllShop"></span></td>
   			</tr>
   		</tbody>
   	</table>
