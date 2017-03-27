@@ -10,6 +10,11 @@ $(function() {
 	getAllGoodsBrand();
 	getGoodsThirdCategory();
 	getGoodsSizeType();
+	/*品牌管理*/
+	getAllBrand();
+	/*颜色管理*/
+	getAllColor();
+
 	$('.selectCombo').comboSelect();
 });
 
@@ -424,10 +429,10 @@ function addGoods() {
 			success : function(data) {
 				console.log(data)
 				if (data.status) {
-					alert(data.data);
+					alert(data.msg);
 					getAllGoods();
 				} else {
-					alert(data.data);
+					alert(data.msg);
 				}
 			},
 			error : function() {
@@ -484,6 +489,7 @@ function updateGoods(id, btnObject) {
 				getAllGoods();
 			} else {
 				alert(data.msg);
+				getAllGoods();
 			}
 		},
 		error : function() {
@@ -505,7 +511,7 @@ function getAllGoods() {
 		}
 	});
 }
-//辅助goods()方法，dataTable
+//辅助getAllGoods()方法，dataTable
 function goodsDataTable(data) {
 	console.log(data)
 	$('#goods-table')
@@ -588,4 +594,419 @@ function goodsDataTable(data) {
 							$('td:eq(0)', nRow).html(iDisplayIndex+1);
 						},
 					})
+}
+
+/*品牌管理*/
+
+//添加品牌信息
+function addBrand(){
+	$.ajax({
+			type : "post",
+			url : contextPath + "/brand/add",
+			dataType : "json",
+			data : {
+				"brand.name" : $('#brand-name').val(),
+				"brand.script" : $('#brand-script').val()
+			},
+			success : function(data) {
+				console.log(data)
+				if (data.status) {
+					alert(data.msg);
+					getAllBrand();
+				} else {
+					alert(data.msg);
+				}
+			},
+			error : function() {
+				console.log("false")
+			}
+		});
+}
+//更新品牌信息
+function updateBrand(id, btnObject) {
+	console.log(btnObject);
+	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
+	var script = $(btnObject).parents().eq(0).siblings().eq(2).children().val();
+	$.ajax({
+		type : "post",
+		url : contextPath + "/brand/update",
+		dataType : "json",
+		data : {
+			"brand.id" : id,
+			"brand.name" : name,
+			"brand.script" : script
+		},
+		success : function(data) {
+			console.log(data)
+			if (data.status) {
+				alert(data.msg);
+				getAllBrand();
+			} else {
+				alert(data.msg);
+				getAllBrand();
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//列出所有的品牌，dataTable展示
+function getAllBrand() {
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/brand/getAllBrand",
+		datatype : "json",
+		success : function(result) {
+			brandDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+//辅助getAllBrand()方法，dataTable
+function brandDataTable(data) {
+	console.log(data)
+	$('#brand-table')
+			.DataTable(
+					{
+						destroy : true,
+						"bAutoWidth" : false,
+						"bSort" : false,
+						"aoColumnDefs" : [ {
+							"bSearchable" : false,
+							"aTargets" : [ 0, 4]
+						}, ],
+						data : data,
+						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+						columns : [ {
+							data : 'id'
+						}, {
+							data : 'name'
+						}, {
+							data : 'script'
+						}, {
+							data : 'createTime'
+						}, {
+							data : 'id'
+						}, ],
+						"oLanguage" : {
+							"sProcessing" : "正在加载中......",
+							"sLengthMenu" : "每页显示 _MENU_ 条记录",
+							"sZeroRecords" : "对不起，查询不到相关数据！",
+							'sSearch' : '检索:',
+							"sEmptyTable" : "表中无数据存在！",
+							"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+							"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
+							"oPaginate" : {
+								"sFirst" : "首页",
+								"sPrevious" : "上一页",
+								"sNext" : "下一页",
+								"sLast" : "末页"
+							}
+						},
+						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
+							$('td:eq(1)', nRow).html(
+									"<input name='brandName' type='text' value="
+											+ aData.name + ">")
+							$('td:eq(2)', nRow).html(
+									"<input name='brandScript' type='text' value="
+											+ (aData.script==null?'': aData.script) + ">")
+							$('td:eq(4)', nRow)
+									.html(
+											'<button class="btn btn-default" onclick="updateBrand('
+													+ aData.id
+													+ ',this)">更新</button>&nbsp;&nbsp;<button class="btn btn-primary" onclick="deleteBrand('
+													+ aData.id
+													+ ')">删除</button>')
+						},
+						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
+								iDisplayIndexFull) {
+							$('td:eq(0)', nRow).html(iDisplayIndex+1);
+						},
+					})
+}
+
+/*颜色管理*/
+
+//添加颜色信息
+function addColor(){
+	$.ajax({
+			type : "post",
+			url : contextPath + "/color/add",
+			dataType : "json",
+			data : {
+				"color.name" : $('#color-name').val(),
+				"color.script" : $('#color-script').val()
+			},
+			success : function(data) {
+				console.log(data)
+				if (data.status) {
+					alert(data.msg);
+					getAllColor();
+				} else {
+					alert(data.msg);
+				}
+			},
+			error : function() {
+				console.log("false")
+			}
+		});
+}
+//更新颜色信息
+function updateColor(id, btnObject) {
+	console.log(btnObject);
+	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
+	var script = $(btnObject).parents().eq(0).siblings().eq(2).children().val();
+	$.ajax({
+		type : "post",
+		url : contextPath + "/color/update",
+		dataType : "json",
+		data : {
+			"color.id" : id,
+			"color.name" : name,
+			"color.script" : script
+		},
+		success : function(data) {
+			console.log(data)
+			if (data.status) {
+				alert(data.msg);
+				getAllColor();
+			} else {
+				alert(data.msg);
+				getAllColor();
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//列出所有的颜色，dataTable展示
+function getAllColor() {
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/color/getAllColor",
+		datatype : "json",
+		success : function(result) {
+			colorDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+//辅助getAllBrand()方法，dataTable
+function colorDataTable(data) {
+	console.log(data)
+	$('#color-table')
+			.DataTable(
+					{
+						destroy : true,
+						"bAutoWidth" : false,
+						"bSort" : false,
+						"aoColumnDefs" : [ {
+						"bSearchable" : false,
+						"aTargets" : [ 0, 4]
+					}, ],
+					data : data,
+					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+					columns : [ {
+						data : 'id'
+					}, {
+						data : 'name'
+					}, {
+						data : 'script'
+					}, {
+						data : 'createTime'
+					}, {
+						data : 'id'
+					}, ],
+					"oLanguage" : {
+						"sProcessing" : "正在加载中......",
+						"sLengthMenu" : "每页显示 _MENU_ 条记录",
+						"sZeroRecords" : "对不起，查询不到相关数据！",
+						'sSearch' : '检索:',
+						"sEmptyTable" : "表中无数据存在！",
+						"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+						"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
+						"oPaginate" : {
+							"sFirst" : "首页",
+							"sPrevious" : "上一页",
+							"sNext" : "下一页",
+							"sLast" : "末页"
+						}
+					},
+					"fnCreatedRow" : function(nRow, aData, iDataIndex) {
+						$('td:eq(1)', nRow).html(
+								"<input name='brandName' type='text' value="
+										+ aData.name + ">")
+						$('td:eq(2)', nRow).html(
+								"<input name='brandScript' type='text' value="
+										+ (aData.script==null?'': aData.script) + ">")
+						$('td:eq(4)', nRow)
+								.html(
+										'<button class="btn btn-default" onclick="updateColor('
+												+ aData.id
+												+ ',this)">更新</button>&nbsp;&nbsp;<button class="btn btn-primary" onclick="deleteColor('
+												+ aData.id
+												+ ')">删除</button>')
+					},
+					"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
+							iDisplayIndexFull) {
+						$('td:eq(0)', nRow).html(iDisplayIndex+1);
+					},
+				})
+}
+
+/*自定义尺寸模态库*/
+
+//初始化模态框内容
+function initSizeModel(){
+	getAllSize();
+	$("#custom-size-type").hide();
+	$("#size-type").parent().show();
+	$("#showCustomSizeTypeA").hide();
+	$("#initSizeModelA").show();
+}
+//显示尺寸类型输入框
+function showCustomSizeType(){
+	$("#size-type").parent().hide();
+	$("#custom-size-type").show();
+	$("#initSizeModelA").hide();
+	$("#showCustomSizeTypeA").show();
+}
+//添加尺寸信息
+function addSize(){
+	$.ajax({
+			type : "post",
+			url : contextPath + "/size/add",
+			dataType : "json",
+			data : {
+				"size.name" : $('#size-name').val(),
+				"size.type" : $('#custom-size-type').val()==""?$('#size-type').val():$('#custom-size-type').val(),
+				"size.script" : $('#size-script').val()
+			},
+			success : function(data) {
+				console.log(data)
+				if (data.status) {
+					alert(data.msg);
+					getAllSize();
+					getGoodsSizeType();
+				} else {
+					alert(data.msg);
+				}
+			},
+			error : function() {
+				console.log("false")
+			}
+		});
+}
+//更新尺寸信息
+function updateSize(id, btnObject) {
+	console.log(btnObject);
+	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
+	var script = $(btnObject).parents().eq(0).siblings().eq(3).children().val();
+	$.ajax({
+		type : "post",
+		url : contextPath + "/size/update",
+		dataType : "json",
+		data : {
+			"size.id" : id,
+			"size.name" : name,
+			"size.script" : script
+		},
+		success : function(data) {
+			console.log(data)
+			if (data.status) {
+				alert(data.msg);
+				getAllSize();
+			} else {
+				alert(data.msg);
+				getAllSize();
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//列出所有的尺寸，dataTable展示
+function getAllSize() {
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/size/getAllSize",
+		datatype : "json",
+		success : function(result) {
+			sizeDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+//辅助getAllSize()方法，dataTable
+function sizeDataTable(data) {
+	console.log(data)
+	$('#size-table')
+			.DataTable(
+					{
+						destroy : true,
+						"bAutoWidth" : false,
+						"bSort" : false,
+						"aoColumnDefs" : [ {
+						"bSearchable" : false,
+						"aTargets" : [ 0, 5]
+					}, ],
+					data : data,
+					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+					columns : [ {
+						data : 'id'
+					}, {
+						data : 'name'
+					}, {
+						data : 'type'
+					}, {
+						data : 'script'
+					}, {
+						data : 'createTime'
+					}, {
+						data : 'id'
+					}, ],
+					"oLanguage" : {
+						"sProcessing" : "正在加载中......",
+						"sLengthMenu" : "每页显示 _MENU_ 条记录",
+						"sZeroRecords" : "对不起，查询不到相关数据！",
+						'sSearch' : '检索:',
+						"sEmptyTable" : "表中无数据存在！",
+						"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+						"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
+						"oPaginate" : {
+							"sFirst" : "首页",
+							"sPrevious" : "上一页",
+							"sNext" : "下一页",
+							"sLast" : "末页"
+						}
+					},
+					"fnCreatedRow" : function(nRow, aData, iDataIndex) {
+						$('td:eq(1)', nRow).html(
+								"<input name='brandName' type='text' value="
+										+ aData.name + ">")
+						$('td:eq(3)', nRow).html(
+								"<input name='brandScript' type='text' value="
+										+ (aData.script==null?'': aData.script) + ">")
+						$('td:eq(5)', nRow)
+								.html(
+										'<button class="btn btn-default" onclick="updateSize('
+												+ aData.id
+												+ ',this)">更新</button>&nbsp;&nbsp;<button class="btn btn-primary" onclick="deleteSize('
+												+ aData.id
+												+ ')">删除</button>')
+					},
+					"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
+							iDisplayIndexFull) {
+						$('td:eq(0)', nRow).html(iDisplayIndex+1);
+					},
+				})
 }

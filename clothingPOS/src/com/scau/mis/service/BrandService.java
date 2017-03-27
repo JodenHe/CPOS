@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.Brand;
-import com.scau.mis.model.Size;
 
 /**
  * 品牌信息的业务逻辑实现，废弃删除操作，品牌信息表只允许修改不能删除
@@ -29,7 +28,7 @@ public class BrandService {
 			result.put("msg", "品牌名称已存在！");
 		}
 		else{
-			if (null!=name&&"".equals(name)) {
+			if (null != name && !"".equals(name)) {
 				if (brand.save()) {
 					result.put("status", true);
 					result.put("msg", "新增品牌成功！");
@@ -55,12 +54,12 @@ public class BrandService {
 	public Map<String,Object> updateBrand(Brand brand){
 		Map<String,Object> result = new HashMap<String,Object>();
 		String name = brand.getName();
-		if (isExist(brand.getName())) {
+		if (isExist(brand.getName(),brand.getId())) {
 			result.put("status", false);
 			result.put("msg", "品牌名称已存在！");
 		}
 		else{
-			if (null!=name&&"".equals(name)) {
+			if (null!=name && !"".equals(name)) {
 				if (brand.update()) {
 					result.put("status", true);
 					result.put("msg", "更新品牌成功！");
@@ -92,8 +91,19 @@ public class BrandService {
 	 * @param name 品牌名称
 	 * @return 存在返回true，否则false
 	 */
-	private boolean isExist( String name){
+	private boolean isExist(String name){
 		String sql = "select `b`.`name` from `brand` as `b`  where `b`.`name` = '"+name+"'";
-		return Size.dao.find(sql).size()>0;
+		return Brand.dao.find(sql).size()>0;
+	}
+	
+	/**
+	 * 判断品牌是否存在（内部方法）
+	 * @param name 品牌名称
+	 * @param id 品牌id
+	 * @return 存在返回true，否则false
+	 */
+	private boolean isExist(String name , long id){
+		String sql = "select `b`.`name` from `brand` as `b`  where `b`.`name` = '"+name+"' and `b`.`id` != " + id;
+		return Brand.dao.find(sql).size()>0;
 	}
 }

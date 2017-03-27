@@ -32,20 +32,20 @@ public class GoodsService {
 				+ goods.getBarcode() + ".png";
 		BarcodeUtil.generateFile(goods.getBarcode(), pathUrl);
 
-		if (getGoodsByName(name) != null) {
+		if (null != getGoodsByName(name)) {
 			result.put("status", false);
-			result.put("data", "商品名已存在");
-		} else if (!name.equals("") && name != null) {
+			result.put("msg", "商品名已存在");
+		} else if (null != name && !"".equals(name)) {
 			if (goods.save()) {
 				result.put("status", true);
-				result.put("data", "商品新增成功！");
+				result.put("msg", "商品新增成功！");
 			} else {
 				result.put("status", false);
-				result.put("data", "未知错误商品新增失败！");
+				result.put("msg", "未知错误商品新增失败！");
 			}
 		} else {
 			result.put("status", false);
-			result.put("data", "商品名不能为空！");
+			result.put("msg", "商品名不能为空！");
 		}
 		return result;
 	}

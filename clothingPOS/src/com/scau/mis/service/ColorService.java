@@ -30,7 +30,7 @@ public class ColorService {
 			result.put("status", false);
 			result.put("msg", "颜色名称已存在！");
 		} else {
-			if (null != name && "".equals(name)) {
+			if (null != name && !"".equals(name)) {
 				if (color.save()) {
 					result.put("status", true);
 					result.put("msg", "新增颜色成功！");
@@ -56,11 +56,11 @@ public class ColorService {
 	public Map<String, Object> updateColor(Color color) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		String name = color.getName();
-		if (isExist(color.getName())) {
+		if (isExist(color.getName(),color.getId())) {
 			result.put("status", false);
 			result.put("msg", "颜色名称已存在！");
 		} else {
-			if (null != name && "".equals(name)) {
+			if (null != name && !"".equals(name)) {
 				if (color.update()) {
 					result.put("status", true);
 					result.put("msg", "更新颜色成功！");
@@ -94,6 +94,19 @@ public class ColorService {
 	private boolean isExist(String name) {
 		String sql = "select `c`.`name` from `color` as `c`  where `c`.`name` = '"
 				+ name + "'";
+		return Color.dao.find(sql).size() > 0;
+	}
+	
+	/**
+	 * 判断颜色是否存在（内部方法）
+	 * 
+	 * @param name
+	 *            颜色名称
+	 * @return 存在返回true，否则false
+	 */
+	private boolean isExist(String name , long id) {
+		String sql = "select `c`.`name` from `color` as `c`  where `c`.`name` = '"
+				+ name + "' and `c`.`id` != " + id;
 		return Color.dao.find(sql).size() > 0;
 	}
 }

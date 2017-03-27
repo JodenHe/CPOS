@@ -29,7 +29,7 @@ public class SizeService {
 			result.put("msg", "尺码信息已存在！");
 		}
 		else{
-			if (null!=name&&"".equals(name)) {
+			if (null!=name && !"".equals(name)) {
 				if (size.save()) {
 					result.put("status", true);
 					result.put("msg", "新增尺码成功！");
@@ -60,7 +60,7 @@ public class SizeService {
 			result.put("msg", "尺码信息已存在！");
 		}
 		else{
-			if (null!=name&&"".equals(name)) {
+			if (null!=name && !"".equals(name)) {
 				if (size.update()) {
 					result.put("status", true);
 					result.put("msg", "更新尺码成功！");

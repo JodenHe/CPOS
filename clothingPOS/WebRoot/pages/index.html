@@ -410,7 +410,7 @@
 												</div>
 											</div>
 											<div class="col-lg-3" style="top:35px;">
-												<div><a data-toggle="modal" data-target="#sizeModel">自定义尺寸？</a></div>
+												<div><a data-toggle="modal" data-target="#sizeModel" onclick="initSizeModel()">自定义尺寸？</a></div>
 											</div>
 
 										</div>
@@ -460,7 +460,37 @@
 							</div>
 						</div>
 						<div id="goods-manager-brand">
-							
+							<form class="form-horizontal">
+								<div class="form-group">
+									<div class="col-lg-3">
+										<label  for="brand-name">品牌名称：</label><input class="form-control " type="text" id="brand-name" name="brand-name" placeholder="品牌名称，不能为空"/>
+									</div>
+								</div>
+								
+								<div class="form-group"	>
+									<div class="col-lg-7">
+										<label  for="brand-script">备注：</label>
+										<textarea class="form-control" rows="3" id="brand-script" name="brand-script" placeholder="请输入描述信息，可以为空"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-success btn-lg btn-block" onclick="addBrand();">新增</button>
+									</div>
+								</div>
+							</form>
+							<div class="form-group">
+								<h3>品牌信息维护：	</h3>
+								<table id="brand-table" class="table" style="width:80%;">
+									<thead>
+										<th>编号</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th>
+									</thead>
+									<tbody id="brand-table-content">
+
+									</tbody>
+								</table>
+							</div>
 						</div>
 						<!-- 品牌管理结束 -->
 
@@ -471,7 +501,37 @@
 							</div>
 						</div>
 						<div id="goods-manager-color">
-							
+							<form class="form-horizontal">
+								<div class="form-group">
+									<div class="col-lg-3">
+										<label  for="color-name">颜色名称：</label><input class="form-control " type="text" id="color-name" name="color-name" placeholder="颜色名称，不能为空"/>
+									</div>
+								</div>
+								
+								<div class="form-group"	>
+									<div class="col-lg-7">
+										<label  for="color-script">备注：</label>
+										<textarea class="form-control" rows="3" id="color-script" name="color-script" placeholder="请输入描述信息，可以为空"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-success btn-lg btn-block" onclick="addColor();">新增</button>
+									</div>
+								</div>
+							</form>
+							<div class="form-group">
+								<h3>颜色信息维护：	</h3>
+								<table id="color-table" class="table" style="width:80%;">
+									<thead>
+										<th>编号</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th>
+									</thead>
+									<tbody id="color-table-content">
+
+									</tbody>
+								</table>
+							</div>
 						</div>
 						<!-- 颜色管理结束 -->
 
@@ -494,7 +554,52 @@
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		                <h4 class="modal-title" id="myModalLabel">自定义尺寸</h4>
 		            </div>
-		            <div class="modal-body">在这里添加一些文本</div>
+		            <div class="modal-body">
+						<div id="sizeModel-size">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<div class="col-lg-3">
+										<label  for="size-name">尺寸：</label><input class="form-control " type="text" id="size-name" name="size-name" placeholder="尺寸信息，不能为空"/>
+									</div>
+									<div class="col-lg-3">
+										<label for="size-type">类型:</label>
+										<select id="size-type" class="selectCombo form-control goods-size-type">
+										</select>
+										<input class="form-control" type="text" id="custom-size-type" name="custom-size-type" placeholder="尺寸类型" />
+									</div>	
+									<div class="col-lg-3" style="top:35px;">
+										<div id="initSizeModelA"><a onclick="showCustomSizeType()">类型不存在？</a></div>
+										<div id="showCustomSizeTypeA"><a onclick="initSizeModel()">返回？</a></div>
+									</div>
+									
+								</div>
+								
+								<div class="form-group"	>
+									<div class="col-lg-7">
+										<label  for="size-script">备注：</label>
+										<textarea class="form-control" rows="3" id="size-script" name="size-script" placeholder="请输入描述信息，可以为空"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-success btn-lg btn-block" onclick="addSize();">新增</button>
+									</div>
+								</div>
+							</form>
+							<div class="form-group">
+								<h3>尺寸信息维护：	</h3>
+								<table id="size-table" class="table">
+									<thead>
+										<th>编号</th><th>名称</th><th>类型</th><th>描述</th><th>创建时间</th><th>操作</th>
+									</thead>
+									<tbody id="size-table-content">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+		            </div>
 		            <div class="modal-footer">
 		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 		                <button type="button" class="btn btn-primary">提交更改</button>
