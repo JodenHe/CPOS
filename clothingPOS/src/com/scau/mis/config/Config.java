@@ -50,6 +50,16 @@ public class Config extends JFinalConfig {
 	public void configPlugin(Plugins me) {
 		// 配置C3p0数据库连接池插件
 		C3p0Plugin C3p0Plugin = createC3p0Plugin();
+		//当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
+		C3p0Plugin.setAcquireIncrement(5);
+		//初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。Default: 3
+		C3p0Plugin.setInitialPoolSize(3);
+		//最大空闲时间,2秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0
+		C3p0Plugin.setMaxIdleTime(5);
+		//连接池中保留的最大连接数。Default: 15
+		C3p0Plugin.setMaxPoolSize(50);
+		//连接池中保留的最小连接数
+		C3p0Plugin.setMinPoolSize(3);
 		me.add(C3p0Plugin);
 		
 		// 配置ActiveRecord插件
