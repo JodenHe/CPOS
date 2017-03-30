@@ -198,6 +198,8 @@ function categorysDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
+						"sScrollX": "100%",
+				        "bScrollCollapse": true,
 						"bSort" : true,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
@@ -519,6 +521,8 @@ function goodsDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
+						"sScrollX": "100%",
+				        "bScrollCollapse": true,
 						"bSort" : false,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
@@ -566,7 +570,7 @@ function goodsDataTable(data) {
 						},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$('td:eq(1)', nRow).html(
-									"<input name='goodsStyle' type='text' value="
+									"<input name='goodsName' type='text' value="
 											+ aData.name + ">")
 							$('td:eq(4)', nRow).html(
 									"<input name='goodsStyle' type='text' value="
@@ -585,7 +589,7 @@ function goodsDataTable(data) {
 									.html(
 											'<button class="btn btn-default" onclick="updateGoods('
 													+ aData.id
-													+ ',this)">更新</button>&nbsp;&nbsp;<button class="btn btn-primary" onclick="deleteGoods('
+													+ ',this)">更新</button><button class="btn btn-primary" onclick="deleteGoods('
 													+ aData.id
 													+ ')">删除</button>')
 						},
@@ -805,6 +809,8 @@ function colorDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
+						"sScrollX": "100%",
+				        "bScrollCollapse": true,
 						"bSort" : false,
 						"aoColumnDefs" : [ {
 						"bSearchable" : false,
@@ -954,6 +960,8 @@ function sizeDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
+						"sScrollX": "100%",
+				        "bScrollCollapse": true,
 						"bSort" : false,
 						"aoColumnDefs" : [ {
 						"bSearchable" : false,

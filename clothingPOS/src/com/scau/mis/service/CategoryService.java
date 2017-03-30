@@ -25,7 +25,7 @@ public class CategoryService {
 		Map<String, Object> result = new HashMap<String, Object>();
 		String name = category.getName();
 		if (name != null && !"".equals(name)) {
-			if (existCategory(name)) {
+			if (!existCategory(name)) {
 				if (category.getPId() == 0) {
 					category.setPId(null);
 				}
