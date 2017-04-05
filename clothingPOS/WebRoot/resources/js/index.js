@@ -1,26 +1,19 @@
 $(function() {
 
 	/* 类别管理 */
-	selectAllCategory();
-	getFirstCategory();
-	category_zTree();
+	categoryManage();
 	/* 商品管理 */
-	getAllGoods();
-	getAllGoodsColor();
-	getAllGoodsBrand();
-	getGoodsThirdCategory();
-	getGoodsSizeType();
+	goodsManage();
 	/*品牌管理*/
-	getAllBrand();
+	brandManage();
 	/*颜色管理*/
-	getAllColor();
+	colorManage();
 
 	$('.selectCombo').comboSelect();
 });
 
 /* 类别管理 */
 function categoryManage() {
-	$("#goods-manager-category").show(200);
 	selectAllCategory();
 	getFirstCategory();
 	category_zTree();
@@ -193,21 +186,20 @@ function updateCategory(id, btnObject) {
 // 类别的dataTable
 function categorysDataTable(data) {
 	console.log(data)
-	$('#categorys-table')
+	var categorysTable = $('#categorys-table')
 			.DataTable(
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : true,
+				        "sDom": "<>lfrtip<>",
+						/*"bSort" : true,*/
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
 							"aTargets" : [ 0, 2, 3, 4, 5 ]
 						}, 
 						 {
 							"bSortable" : false,
-							"aTargets" : [ 5 ]
+							"aTargets" : [0, 5 ]
 						},
 						],
 						data : data,
@@ -277,11 +269,19 @@ function categorysDataTable(data) {
 								iDisplayIndexFull) {
 							$('td:eq(0)', nRow).html(iDisplayIndex + 1);
 						},
-					})
+					});
+	//categorysTable.buttons().enable();
+	console.log(categorysTable)
 }
 
 /*商品管理*/
-
+function goodsManage() {
+	getAllGoods();
+	getAllGoodsColor();
+	getAllGoodsBrand();
+	getGoodsThirdCategory();
+	getGoodsSizeType();
+}
 //获取颜色
 function getAllColor() {
 	$.ajax({
@@ -521,13 +521,16 @@ function goodsDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
 							"aTargets" : [ 0, 1, 2, 5, 6, 7, 10 ]
-						}, ],
+						},
+						{
+							"bSortable" : false,
+							"aTargets" : [ 6,0 ]
+						},
+						 ],
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -601,7 +604,9 @@ function goodsDataTable(data) {
 }
 
 /*品牌管理*/
-
+function brandManage() {
+	getAllBrand();
+}
 //添加品牌信息
 function addBrand(){
 	$.ajax({
@@ -647,7 +652,6 @@ function updateBrand(id, btnObject) {
 				getAllBrand();
 			} else {
 				alert(data.msg);
-				getAllBrand();
 			}
 		},
 		error : function() {
@@ -677,11 +681,16 @@ function brandDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
 							"aTargets" : [ 0, 4]
-						}, ],
+						},  
+						 {
+							"bSortable" : false,
+							"aTargets" : [0, 4 ]
+						},
+						],
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -733,7 +742,9 @@ function brandDataTable(data) {
 }
 
 /*颜色管理*/
-
+function colorManage() {
+	getAllColor();
+}
 //添加颜色信息
 function addColor(){
 	$.ajax({
@@ -779,7 +790,6 @@ function updateColor(id, btnObject) {
 				getAllColor();
 			} else {
 				alert(data.msg);
-				getAllColor();
 			}
 		},
 		error : function() {
@@ -809,13 +819,16 @@ function colorDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 						"bSearchable" : false,
 						"aTargets" : [ 0, 4]
-					}, ],
+					}, 
+					{
+						"bSortable" : false,
+						"aTargets" : [0, 4 ]
+					},
+					],
 					data : data,
 					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 					columns : [ {
@@ -960,13 +973,16 @@ function sizeDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 						"bSearchable" : false,
 						"aTargets" : [ 0, 5]
-					}, ],
+					}, 
+					{
+						"bSortable" : false,
+						"aTargets" : [ 0,5 ]
+					},
+					],
 					data : data,
 					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 					columns : [ {
