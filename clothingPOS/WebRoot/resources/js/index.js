@@ -18,7 +18,6 @@ function categoryManage() {
 	getFirstCategory();
 	category_zTree();
 }
-
 // 生成树形菜单
 function category_zTree() {
 	$.ajax({
@@ -191,17 +190,17 @@ function categorysDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-				        "sDom": "<>lfrtip<>",
-						/*"bSort" : true,*/
-						"aoColumnDefs" : [ {
-							"bSearchable" : false,
-							"aTargets" : [ 0, 2, 3, 4, 5 ]
-						}, 
-						 {
-							"bSortable" : false,
-							"aTargets" : [0, 5 ]
-						},
-						],
+						"bSort" : true,
+						"aoColumnDefs" : [ 
+											{
+											"bSearchable" : false,
+											"aTargets" : [ 0, 2, 3, 4, 5 ]
+											}, 
+											 {
+												"bSortable" : false,
+												"aTargets" : [0, 5 ]
+											},
+										 ],
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -217,13 +216,32 @@ function categorysDataTable(data) {
 						}, {
 							data : 'id'
 						}, ],
+						dom: 'Bfrtip',
+					    buttons: [
+									{
+									 'extend': 'copy',
+									 'text': '复制',//定义导出excel按钮的文字
+									
+									},
+									{
+									 'extend': 'excel',
+									 'text': '导出excel',//定义导出excel按钮的文字
+									
+									},
+									{
+										'extend' : 'print',
+										'text' : '打印',
+										/*'exportOptions' : {
+															modifier: {
+																selected: true
+															}
+														},
+										'autoPrint' : true*/
+									}
+									],
 						"language": {
 	                		"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"
 	            		},
-	            		dom: 'Bfrtip',
-	            		 buttons: [
-					        'print'
-					    ],
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$.ajax({
 								type : "post",
