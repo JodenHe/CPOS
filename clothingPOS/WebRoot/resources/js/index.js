@@ -10,6 +10,29 @@ $(function() {
 	colorManage();
 
 	$('.selectCombo').comboSelect();
+	/*dataTable所有列的详情的展开或者收起*/
+	$('th.details-control').click(function () {
+		var th = $(this).parents().eq(0);
+		var tr = $(this).parents().eq(0).parents().eq(0).siblings().children("tr");
+
+		if(th.hasClass("shown")){
+			th.removeClass("shown");
+			for (var i = 0; i <tr.length; i++) {
+				if (tr.eq(i).hasClass("shown")) {
+					tr.eq(i).children("td.details-control").trigger("click");
+				}
+			}
+		}
+		else{
+			th.addClass("shown");
+			for (var i = 0; i <tr.length; i++) {
+				if (!tr.eq(i).hasClass("shown")) {
+					tr.eq(i).children("td.details-control").trigger("click")
+				}
+			}
+		}
+	});
+
 });
 
 /* 类别管理 */
@@ -190,22 +213,27 @@ function categorysDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"bSort" : true,
+						/*"bSort" : false,*/
 						"aoColumnDefs" : [ 
 											{
 											"bSearchable" : false,
-											"aTargets" : [ 0, 2, 3, 4, 5 ]
+											"aTargets" : [0,5]
 											}, 
 											 {
 												"bSortable" : false,
-												"aTargets" : [0, 5 ]
+												"aTargets" : [5 ]
 											},
 										 ],
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
+			                "className": 'details-control',
+			                "orderable":  false,
+			                "data":       null,
+			                "defaultContent": ''
+			            }/*,{
 							data : 'id'
-						}, {
+						}*/, {
 							data : 'name'
 						}, {
 							data : 'pId'
@@ -216,7 +244,7 @@ function categorysDataTable(data) {
 						}, {
 							data : 'id'
 						}, ],
-						dom: 'Bfrtip',
+						dom: 'lBfrtip',
 					    buttons: [
 									{
 									 'extend': 'copy',
@@ -240,7 +268,7 @@ function categorysDataTable(data) {
 									}
 									],
 						"language": {
-	                		"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"
+	                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
 	            		},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$.ajax({
@@ -261,12 +289,12 @@ function categorysDataTable(data) {
 								}
 							});
 							
-							$('td:eq(1)', nRow).html(
+							/*$('td:eq(1)', nRow).html(
 									"<input name='categoryName' type='text' value="
 											+ aData.name + ">")
 							$('td:eq(3)', nRow).html(
 									"<input name='categoryScript' type='text' value="
-											+ aData.script + ">")
+											+ aData.script + ">")*/
 							$('td:eq(5)', nRow)
 									.html(
 											'<button class="btn btn-default" onclick="updateCategory('
@@ -277,11 +305,44 @@ function categorysDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							$('td:eq(0)', nRow).html(iDisplayIndex + 1);
+							/*$('td:eq(1)', nRow).html(iDisplayIndex + 1);*/
 						},
 					});
 	//categorysTable.buttons().enable();
-	console.log(categorysTable)
+	// Add event listener for opening and closing details
+    $('#categorys-table tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = categorysTable.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( categorysTableDetail(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
+}
+/* Formatting function for row details - modify as you need */
+function categorysTableDetail ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Full name:</td>'+
+            '<td>'+d.name+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Extension number:</td>'+
+            '<td>'+d.script+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Extra info:</td>'+
+            '<td>And any further details here (images etc)...</td>'+
+        '</tr>'+
+    '</table>';
 }
 
 /*商品管理*/
@@ -567,7 +628,7 @@ function goodsDataTable(data) {
 							data : 'id'
 						}, ],
 						"language": {
-                			"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"
+                			"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
             			},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$('td:eq(1)', nRow).html(
@@ -703,7 +764,7 @@ function brandDataTable(data) {
 							data : 'id'
 						}, ],
 						"language": {
-	                		"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"
+	                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
 	            		},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$('td:eq(1)', nRow).html(
@@ -829,7 +890,7 @@ function colorDataTable(data) {
 						data : 'id'
 					}, ],
 					"language": {
-                		"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"
+                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
             		},
 					"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 						$('td:eq(1)', nRow).html(
@@ -973,7 +1034,7 @@ function sizeDataTable(data) {
 						data : 'id'
 					}, ],
 					"language": {
-                		"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Chinese.json"
+                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
             		},
 					"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 						$('td:eq(1)', nRow).html(
