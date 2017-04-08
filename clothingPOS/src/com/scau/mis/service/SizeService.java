@@ -110,6 +110,15 @@ public class SizeService {
 		String sql = "select * from size";
 		return Size.dao.find(sql);
 	}
+	
+	/**
+	 * 根据id获取尺码
+	 * @return 
+	 */
+	public List<Size> getSize(long id){
+		String sql = "select * from `size` as `s`where `s`.`id`="+id;
+		return Size.dao.find(sql);
+	}
 
 	/**
 	 * 判断尺码是否存在（内部方法）

@@ -41,6 +41,13 @@ public class SizeController extends Controller {
 	}
 	
 	/**
+	 * 根据id获取尺寸信息
+	 */
+	public void getSize(){
+		renderJson(service.getSize(getParaToLong("id")));
+	}
+	
+	/**
 	 * 获取尺码信息表中的类型
 	 */
 	public void getSizeType(){
