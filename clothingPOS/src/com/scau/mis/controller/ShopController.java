@@ -14,7 +14,7 @@ import com.scau.mis.service.ShopService;
  *
  */
 public class ShopController extends Controller{
-	public static Log log = Log.getLog(GoodsController.class);
+	public static Log log = Log.getLog(ShopController.class);
 	private ShopService shopService = new ShopService();
 	/**
 	 * 新增店铺

@@ -35,6 +35,10 @@ $(function() {
 
 });
 
+function initForm(){
+	$('.selectCombo').comboSelect();
+} 
+
 /* 类别管理 */
 function categoryManage() {
 	selectAllCategory();
@@ -59,6 +63,7 @@ function getFirstCategory() {
 		url : contextPath + '/category/getFirstCategory',// 路径
 		data : {},// 数据，这里使用的是Json格式进行传输
 		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('.category-secondCategory').html('<option value="0">不选，默认无</option>');
 			for (var i = 0; i < data.length; i++) {
 				$('.category-firstCategory').append(
 						'<option value="' + data[i].id + '" >' + data[i].name
@@ -100,7 +105,6 @@ function addCategory() {
 			"category.script" : $('#category-script').val()
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				selectAllCategory();
@@ -140,7 +144,6 @@ function deleteCategory(id) {
 			id : id
 		},
 		success : function(data) {
-			console.log(data)
 			if (!data.status) {
 				deleteCategory2(id)
 			} else {
@@ -162,7 +165,6 @@ function deleteCategory2(id) {
 			id : id
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert("成功删除！");
 				selectAllCategory();
@@ -191,7 +193,6 @@ function updateCategory(id, btnObject) {
 			"category.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				selectAllCategory();
@@ -207,7 +208,6 @@ function updateCategory(id, btnObject) {
 }
 // 类别的dataTable
 function categorysDataTable(data) {
-	console.log(data)
 	var categorysTable = $('#categorys-table')
 			.DataTable(
 					{
@@ -362,6 +362,7 @@ function getAllColor() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-color').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-color').append(
 						'<option value="' + result[i].id + '" >'
@@ -383,6 +384,7 @@ function getAllGoodsColor() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-color').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-color').append(
 						'<option value="' + result[i].id + '" >'
@@ -404,6 +406,7 @@ function getAllGoodsBrand() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-brand').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-brand').append(
 						'<option value="' + result[i].id + '" >'
@@ -446,12 +449,14 @@ function getGoodsSizeType() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-size-type').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-size-type').append(
 						'<option value="' + result[i] + '" >'
 								+ result[i] + '</option>');
 			}
 			$('.selectCombo').comboSelect();
+			getSizeByType($("#goods-size-type").val());
 		},
 		error : function() {
 			console.log("false")
@@ -500,7 +505,6 @@ function addGoods() {
 				"goods.script" : $('#goods-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllGoods();
@@ -523,7 +527,6 @@ function deleteGoods(id) {
 			id : id
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert("商品删除成功！");
 				getAllGoods();
@@ -556,7 +559,6 @@ function updateGoods(id, btnObject) {
 			"goods.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllGoods();
@@ -586,7 +588,6 @@ function getAllGoods() {
 }
 //辅助getAllGoods()方法，dataTable
 function goodsDataTable(data) {
-	console.log(data)
 	$('#goods-table')
 			.DataTable(
 					{
@@ -677,7 +678,6 @@ function addBrand(){
 				"brand.script" : $('#brand-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllBrand();
@@ -705,7 +705,6 @@ function updateBrand(id, btnObject) {
 			"brand.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllBrand();
@@ -734,7 +733,6 @@ function getAllBrand() {
 }
 //辅助getAllBrand()方法，dataTable
 function brandDataTable(data) {
-	console.log(data)
 	$('#brand-table')
 			.DataTable(
 					{
@@ -803,7 +801,6 @@ function addColor(){
 				"color.script" : $('#color-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllColor();
@@ -831,7 +828,6 @@ function updateColor(id, btnObject) {
 			"color.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllColor();
@@ -860,7 +856,6 @@ function getAllColor() {
 }
 //辅助getAllBrand()方法，dataTable
 function colorDataTable(data) {
-	console.log(data)
 	$('#color-table')
 			.DataTable(
 					{
@@ -943,7 +938,6 @@ function addSize(){
 				"size.script" : $('#size-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllSize();
@@ -972,7 +966,6 @@ function updateSize(id, btnObject) {
 			"size.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllSize();
@@ -1002,7 +995,6 @@ function getAllSize() {
 }
 //辅助getAllSize()方法，dataTable
 function sizeDataTable(data) {
-	console.log(data)
 	$('#size-table')
 			.DataTable(
 					{

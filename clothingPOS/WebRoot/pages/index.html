@@ -15,6 +15,10 @@
 	rel="stylesheet">
 	<!-- MetisMenu CSS -->
 	<link href="..${contextPath}/resources/sbAdmin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+	<!-- DataTables CSS -->
+    <link href="..${contextPath}/resources/sbAdmin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="..${contextPath}/resources/sbAdmin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="..${contextPath}/resources/sbAdmin/dist/css/sb-admin-2.css" rel="stylesheet">
 	<!-- Morris Charts CSS -->
@@ -26,7 +30,7 @@
 	<!-- zTree -->
 	<link rel="stylesheet" href="..${contextPath}/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
 	<!-- dataTable -->
-	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/media/css/dataTables.bootstrap.css">
+	<!-- <link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/media/css/dataTables.bootstrap.css"> -->
 	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.min.css">
 
 	<!-- 加载自定义的css -->
@@ -370,7 +374,7 @@
 
 										<div class="form-group">
 											<h3>类别信息维护：	</h3>
-											<table id="categorys-table" class="table table-striped table-bordered">
+											<table id="categorys-table" class="table table-striped table-bordered table-hover">
 												<thead>
 													<tr><th class="details-control"></th><!-- <th>编号</th> --><th>名称</th><th>父类别</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
 												</thead>
@@ -409,7 +413,7 @@
 															<div class="row">
 																<div class="col-lg-6">
 																	<select id="goods-size-type" class="selectCombo form-control goods-size-type" onchange ="getSizeByType(this.value);">
-																	<option>请选择尺寸类型</option>
+																	<!-- <option>请选择尺寸类型</option> -->
 																	</select>
 																</div>	
 																<div class="col-lg-6">
@@ -418,8 +422,8 @@
 																</div>
 															</div>
 														</div>
-														<div class="col-lg-3" style="top:35px;">
-															<div><a data-toggle="modal" data-target="#sizeModel" onclick="initSizeModel()">自定义尺寸？</a></div>
+														<div class="col-lg-3">
+															<div  style="margin-top:35px;"><a data-toggle="modal" data-target="#sizeModel" onclick="initSizeModel()">自定义尺寸？</a></div>
 														</div>
 
 													</div>
@@ -448,7 +452,7 @@
 											</div>
 											<div class="form-group">
 												<h3>商品信息维护：	</h3>
-												<table id="goods-table" class="table table-striped table-bordered" >
+												<table id="goods-table" class="table table-striped table-bordered table-hover" >
 													<thead>
 														<tr><th>编号</th><th>名称</th><th>类别</th><th>品牌</th><th>款式</th><th>颜色</th><th>条形码</th><th>售价</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
 													</thead>
@@ -484,7 +488,7 @@
 										</form>
 										<div class="form-group">
 											<h3>品牌信息维护：	</h3>
-											<table id="brand-table" class="table table-striped table-bordered">
+											<table id="brand-table" class="table table-striped table-bordered table-hover">
 												<thead>
 													<tr><th>编号</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
 												</thead>
@@ -518,7 +522,7 @@
 										</form>
 										<div class="form-group">
 											<h3>颜色信息维护：	</h3>
-											<table id="color-table" class="table table-striped table-bordered">
+											<table id="color-table" class="table table-striped table-bordered table-hover">
 												<thead>
 													<tr><th>编号</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
 												</thead>
@@ -566,9 +570,9 @@
 										</select>
 										<input class="form-control" type="text" id="custom-size-type" name="custom-size-type" placeholder="尺寸类型" />
 									</div>	
-									<div class="col-lg-3" style="top:35px;">
-										<div id="initSizeModelA"><a onclick="showCustomSizeType()">类型不存在？</a></div>
-										<div id="showCustomSizeTypeA"><a onclick="initSizeModel()">返回？</a></div>
+									<div class="col-lg-3">
+										<div id="initSizeModelA"  style="margin-top:35px;"><a onclick="showCustomSizeType()">类型不存在？</a></div>
+										<div id="showCustomSizeTypeA" style="margin-top:35px;"><a onclick="initSizeModel()">返回？</a></div>
 									</div>
 									
 								</div>
@@ -584,11 +588,14 @@
 									<div class="col-lg-3">
 										<button type="button" class="btn btn-success btn-lg btn-block" onclick="addSize();">新增</button>
 									</div>
+									<div class="col-lg-3">
+										<button type="reset" class="btn btn-danger btn-lg btn-block" onclick="initForm();">重置</button>
+									</div>
 								</div>
 							</form>
 							<div class="form-group">
 								<h3>尺寸信息维护：	</h3>
-								<table id="size-table" class="table table-striped table-bordered">
+								<table id="size-table" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr><th>编号</th><th>名称</th><th>类型</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
 									</thead>
