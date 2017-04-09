@@ -70,13 +70,13 @@ function getFirstCategory() {
 		url : contextPath + '/category/getFirstCategory',// 路径
 		data : {},// 数据，这里使用的是Json格式进行传输
 		success : function(data) {// 返回数据根据结果进行相应的处理
-			$('.category-secondCategory').html('<option value="0">不选，默认无</option>');
+			$('.category-firstCategory').html('<option value="0">不选，默认无</option>');
 			for (var i = 0; i < data.length; i++) {
 				$('.category-firstCategory').append(
 						'<option value="' + data[i].id + '" >' + data[i].name
 								+ '</option>');
 			}
-			$('.firstCategory').comboSelect();
+			$('.category-firstCategory').comboSelect();
 		}
 	});
 }
@@ -96,6 +96,136 @@ function getSecondCategory(pId) {
 								+ '</option>');
 			}
 			$('.category-secondCategory').comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第一级目录,id——类别id，id2——用于select的id查找
+function getFirstCategoryById(id,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getFirstCategory',// 路径
+		data : {},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-firstCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (id == data[i].id) {
+					$('#update-category-firstCategory'+id2).append(
+						'<option value="' + data[i].id + '"selected >' + data[i].name
+								+ '</option>');
+				} else {
+					$('#update-category-firstCategory'+id2).append(
+						'<option value="' + data[i].id + '" >' + data[i].name
+								+ '</option>');
+				}
+			}
+			$('#update-category-firstCategory'+id2).comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第二级目录，pId——第一级目录的id值，id——类别id，id2——用于select的id查找
+function getSecondCategoryById(pId,id,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getSecondCategory',// 路径
+		data : {
+			"pId" : pId
+		},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-secondCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (id == data[i].id) {
+					$('#update-category-secondCategory'+id2).append(
+						'<option value="' + data[i].id + '" selected>' + data[i].name
+								+ '</option>');
+				} else {
+					$('#update-category-secondCategory'+id2).append(
+						'<option value="' + data[i].id + '" >' + data[i].name
+								+ '</option>');
+				}
+			}
+			$('#update-category-secondCategory'+id2).comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第一级目录，id——类别id，dId——不能选的选项，id2——用于select的id查找
+function getFirstCategoryById2(id,dId,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getFirstCategory',// 路径
+		data : {},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-firstCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (dId == data[i].id) {
+					$('#update-category-firstCategory'+id2).append(
+							'<option value="' + data[i].id + '" disabled>' + data[i].name
+									+ '</option>');
+				} else {
+					if (id == data[i].id) {
+						$('#update-category-firstCategory'+id2).append(
+							'<option value="' + data[i].id + '"selected >' + data[i].name
+									+ '</option>');
+					} else {
+						$('#update-category-firstCategory'+id2).append(
+							'<option value="' + data[i].id + '" >' + data[i].name
+									+ '</option>');
+					}
+				}
+			}
+			$('#update-category-firstCategory'+id2).comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第二级目录，pId——第一级目录的id值，id——类别id，dId——不能选的选项，id2——用于select的id查找
+function getSecondCategoryById2(pId,id,dId,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getSecondCategory',// 路径
+		data : {
+			"pId" : pId
+		},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-secondCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (dId == data[i].id) {
+					$('#update-category-secondCategory'+id2).append(
+							'<option value="' + data[i].id + '" disabled>' + data[i].name
+									+ '</option>');
+				} else {
+					if (id == data[i].id) {
+						$('#update-category-secondCategory'+id2).append(
+							'<option value="' + data[i].id + '" selected>' + data[i].name
+									+ '</option>');
+					} else {
+						$('#update-category-secondCategory'+id2).append(
+							'<option value="' + data[i].id + '" >' + data[i].name
+									+ '</option>');
+					}
+				}
+			}
+			$('#update-category-secondCategory'+id2).comboSelect();
+		}
+	});
+}
+//详情页面的父类别下拉框初始化
+function getCategoryParents(id) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/selectParents',// 路径
+		data : {
+			"id" : id
+		},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			if (data.length == 3) {
+				getFirstCategoryById(data[0].id,id);
+				getSecondCategoryById(data[0].id,data[1].id,id);
+			} else if(data.length == 2){
+				getFirstCategoryById(data[0].id,id);
+				getSecondCategoryById2(data[0].id,null,data[1].id,id);
+			} else if(data.length == 1){
+				getFirstCategoryById2(null,data[0].id,id);
+				getSecondCategoryById(0,null,id);
+			}
 		}
 	});
 }
@@ -317,7 +447,6 @@ function categorysDataTable(data) {
     $('#categorys-table tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
         var row = categorysTable.row( tr );
- 
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -327,6 +456,7 @@ function categorysDataTable(data) {
             // Open this row
             row.child( categorysTableDetail(row.data()) ).show();
             tr.addClass('shown');
+            getCategoryParents(row.data().id);
         }
     } );
 }
@@ -335,16 +465,29 @@ function categorysTableDetail ( d ) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
-            '<td>Full name:</td>'+
-            '<td>'+d.name+'</td>'+
+            '<td>类别名称：</td>'+
+            '<td><input class="form-control" id="update-category-name" type="text" placeholder="类别名称，不能为空" autofocus="autofocus" value="'+d.name+'" /></td>'+
         '</tr>'+
         '<tr>'+
-            '<td>Extension number:</td>'+
-            '<td>'+d.script+'</td>'+
+            '<td>父类别：</td>'+
+            '<td>'+
+            	'<div class="row">'+
+					'<div class="col-lg-6">'+
+						'<select name="update-category-firstCategory" id="update-category-firstCategory'+d.id+'" class="selectCombo form-control  showparents update-category-firstCategory" onchange="getSecondCategoryById(this.value,'+d.pId+','+d.id+');">'+
+							'<option value="0">不选，默认无</option>'+
+						'</select>'+
+					'</div>'+
+					'<div class="col-lg-6">'+
+						'<select name="update-category-secondCategory" id="update-category-secondCategory'+d.id+'" class="selectCombo form-control  showparents update-category-secondCategory">'+
+							'<option value="0">不选，默认无</option>'+
+						'</select>'+
+					'</div>'+
+				'</div>'+
+            '</td>'+
         '</tr>'+
         '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
+            '<td>类别描述：</td>'+
+            '<td><textarea class="form-control" rows="3" id="update-category-script" name="update-category-script" placeholder="请输入描述信息，可以为空">'+(d.script==null?'':d.script)+'</textarea></td>'+
         '</tr>'+
     '</table>';
 }
@@ -857,32 +1000,32 @@ function goodsTableDetail ( d ) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
-            '<td>商品代码:</td>'+
+            '<td>商品代码：</td>'+
             '<td><input class="form-control" type="text" disabled value="'+d.barcode+'"></td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品名称:</td>'+
-            '<td><input class="form-control" id="update-goods-name" type="text" placeholder="商品名称，不能为空" autofocus="autofocus" value="'+d.name+'"></td>'+
+            '<td>商品名称：</td>'+
+            '<td><input class="form-control" id="update-goods-name" type="text" placeholder="商品名称，不能为空" autofocus="autofocus" value="'+d.name+'" /></td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品条形码:</td>'+
+            '<td>商品条形码：</td>'+
             '<td><img style="width:120px;" src="'+ contextPath +'/barcode/'+ d.barcode + '.png" /></td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品款式:</td>'+
+            '<td>商品款式：</td>'+
             '<td><input class="form-control" id="update-goods-style" type="text" placeholder="商品款式" value="'+d.style+'"></td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品类别:</td>'+
+            '<td>商品类别：</td>'+
             '<td><select id="update-goods-category" class="selectCombo form-control  update-goods-category"></td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品品牌:</td>'+
+            '<td>商品品牌：</td>'+
             '<td><select id="update-goods-brand" class="selectCombo form-control  update-goods-brand"></select>'+
             '</td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品尺寸:</td>'+
+            '<td>商品尺寸：</td>'+
             '<td>'+
 	            '<div class="row">'+
 					'<div class="col-lg-6">'+
@@ -897,7 +1040,7 @@ function goodsTableDetail ( d ) {
             '</td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品颜色:</td>'+
+            '<td>商品颜色：</td>'+
             '<td><select id="update-goods-color" class="selectCombo form-control  update-goods-color"></select></td>'+
         '</tr>'+
         '<tr>'+
@@ -911,7 +1054,7 @@ function goodsTableDetail ( d ) {
            '</td>'+
         '</tr>'+
         '<tr>'+
-            '<td>商品描述:</td>'+
+            '<td>商品描述：</td>'+
             '<td><textarea class="form-control" rows="3" id="update-goods-script" name="update-goods-script" placeholder="请输入描述信息，可以为空">'+(d.script==null?'':d.script)+'</textarea></td>'+
         '</tr>'+
     '</table>';
