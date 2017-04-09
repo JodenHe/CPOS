@@ -317,30 +317,40 @@ function deleteCategory2(id) {
 }
 // 更新类别信息
 function updateCategory(id, btnObject) {
-	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
-	var script = $(btnObject).parents().eq(0).siblings().eq(3).children().val();
-	$.ajax({
-		type : "post",
-		url : contextPath + "/category/update",
-		dataType : "json",
-		data : {
-			"category.id" : id,
-			"category.name" : name,
-			"category.script" : script
-		},
-		success : function(data) {
-			if (data.status) {
-				alert(data.msg);
-				selectAllCategory();
-			} else {
-				alert(data.msg);
-				selectAllCategory();
+	//判断详情页有无展开
+	var f = $(btnObject).parent().siblings().eq(0).parent().hasClass("shown");
+	if(!f){
+		$(btnObject).parent().siblings().eq(0).trigger("click");
+	}else{
+		var table = $(btnObject).parents().eq(0).parents().eq(0).next().find("table");
+		var name = table.find("td #update-category-name").val();
+		var pId = table.find("td #update-category-secondCategory"+id).val()!= 0 ? table.find("td #update-category-secondCategory"+id).val() :table.find("td #update-category-firstCategory"+id).val();
+		var script = table.find("td #update-category-script").val();
+		
+		$.ajax({
+			type : "post",
+			url : contextPath + "/category/update",
+			dataType : "json",
+			data : {
+				"category.id" : id,
+				"category.pId" : pId,
+				"category.name" : name,
+				"category.script" : script
+			},
+			success : function(data) {
+				if (data.status) {
+					alert(data.msg);
+					selectAllCategory();
+				} else {
+					alert(data.msg);
+					selectAllCategory();
+				}
+			},
+			error : function() {
+				console.log("false")
 			}
-		},
-		error : function() {
-			console.log("false")
-		}
-	});
+		});
+	}
 }
 // 类别的dataTable
 function categorysDataTable(data) {
