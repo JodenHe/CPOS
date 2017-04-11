@@ -245,7 +245,6 @@ function addCategory() {
 			if (data.status) {
 				alert(data.msg);
 				selectAllCategory();
-				/* window.location.href=contextPath+"/admin"; */
 			} else {
 				alert(data.msg);
 			}
@@ -369,6 +368,7 @@ function categorysDataTable(data) {
 												"aTargets" : [5 ]
 											},
 										 ],
+						"order": [[ 4, "desc" ]],//默认第5列降序排列
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -450,7 +450,6 @@ function categorysDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							/*$('td:eq(1)', nRow).html(iDisplayIndex + 1);*/
 						},
 					});
 	// Add event listener for opening and closing details
@@ -624,7 +623,7 @@ function getSizeByType(type) {
 	});
 }
 //根据颜色id获取颜色
-function getAllGoodsColorById(colorId) {
+function getAllGoodsColorById(colorId,id) {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/color/getAllColor",
@@ -632,20 +631,20 @@ function getAllGoodsColorById(colorId) {
 		data : {},
 		success : function(data) {
 			var result = data;
-			$('.update-goods-color').html('');
+			$('#update-goods-color'+id).html('');
 			for (var i = 0; i < result.length; i++) {
 				if (result[i].id == colorId) {
-					$('.update-goods-color').append(
+					$('#update-goods-color'+id).append(
 						'<option value="' + result[i].id + '" selected>'
 								+ result[i].name + '</option>');
 				}else{
-					$('.update-goods-color').append(
+					$('#update-goods-color'+id).append(
 						'<option value="' + result[i].id + '" >'
 								+ result[i].name + '</option>');
 				}
 				
 			}
-			$('.update-goods-color').comboSelect();
+			$('#update-goods-color'+id).comboSelect();
 		},
 		error : function() {
 			console.log("false")
@@ -653,7 +652,7 @@ function getAllGoodsColorById(colorId) {
 	});
 }
 //根据品牌id获取品牌
-function getAllGoodsBrandById(brandId) {
+function getAllGoodsBrandById(brandId,id) {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/brand/getAllBrand",
@@ -661,19 +660,19 @@ function getAllGoodsBrandById(brandId) {
 		data : {},
 		success : function(data) {
 			var result = data;
-			$('.update-goods-brand').html('');
+			$('#update-goods-brand'+id).html('');
 			for (var i = 0; i < result.length; i++) {
 				if (result[i].id == brandId) {
-					$('.update-goods-brand').append(
+					$('#update-goods-brand'+id).append(
 						'<option value="' + result[i].id + '" selected>'
 								+ result[i].name + '</option>');
 				} else {
-					$('.update-goods-brand').append(
+					$('#update-goods-brand'+id).append(
 						'<option value="' + result[i].id + '" >'
 								+ result[i].name + '</option>');
 				}
 			}
-			$('.update-goods-brand').comboSelect();
+			$('#update-goods-brand'+id).comboSelect();
 		},
 		error : function() {
 			console.log("false")
@@ -681,7 +680,7 @@ function getAllGoodsBrandById(brandId) {
 	});
 }
 //根据类别id获取第三级类别
-function getGoodsThirdCategoryById(categoryId) {
+function getGoodsThirdCategoryById(categoryId,id) {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/category/getThirdCategory",
@@ -689,19 +688,19 @@ function getGoodsThirdCategoryById(categoryId) {
 		data : {},
 		success : function(data) {
 			var result = data;
-			$('.update-goods-category').html('');
+			$('#update-goods-category'+id).html('');
 			for (var i = 0; i < result.length; i++) {
 				if (result[i].id == categoryId) {
-					$('.update-goods-category').append(
+					$('#update-goods-category'+id).append(
 						'<option value="' + result[i].id + '" selected>'
 								+ result[i].name + '</option>');
 				} else {
-					$('.update-goods-category').append(
+					$('#update-goods-category'+id).append(
 						'<option value="' + result[i].id + '" >'
 								+ result[i].name + '</option>');
 				}
 			}
-			$('.update-goods-category').comboSelect();
+			$('#update-goods-category'+id).comboSelect();
 		},
 		error : function() {
 			console.log("false")
@@ -709,7 +708,7 @@ function getGoodsThirdCategoryById(categoryId) {
 	});
 }
 //根据尺寸id获取尺寸类型
-function getGoodsSizeTypeById(sizeId) {
+function getGoodsSizeTypeById(sizeId,id) {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/size/getSizeType",
@@ -726,18 +725,18 @@ function getGoodsSizeTypeById(sizeId) {
 				},
 				success : function(data) {
 					var sizeType = data[0].type;
-					$('.update-goods-size-type').html('');
+					$('#update-goods-size-type'+id).html('');
 					for (var i = 0; i < result.length; i++) {
 						if (sizeType == result[i]) {							
-							$('.update-goods-size-type').append('<option value="' + result[i] + '" selected>'
+							$('#update-goods-size-type'+id).append('<option value="' + result[i] + '" selected>'
 										+ result[i] + '</option>');
 						} else {
-							$('.update-goods-size-type').append('<option value="' + result[i] + '" >'
+							$('#update-goods-size-type'+id).append('<option value="' + result[i] + '" >'
 										+ result[i] + '</option>');
 					}
 						}
-					$('.update-goods-size-type').comboSelect();
-					getSizeByTypeAndId($("#update-goods-size-type").val(),sizeId);
+					$('#update-goods-size-type'+id).comboSelect();
+					getSizeByTypeAndId($("#update-goods-size-type"+id).val(),sizeId,id);
 				},
 				error : function(){
 					console.log("false");
@@ -752,7 +751,7 @@ function getGoodsSizeTypeById(sizeId) {
 	});
 }
 //获取指定类型的尺寸
-function getSizeByTypeAndId(type,id) {
+function getSizeByTypeAndId(type,sizeId,id) {
 	$.ajax({
 		type : "post",
 		url : contextPath + "/size/getSizeByType",
@@ -762,19 +761,19 @@ function getSizeByTypeAndId(type,id) {
 		},
 		success : function(data) {
 			var result = data;
-			$('.update-goods-size').html("");
+			$('#update-goods-size'+id).html("");
 			for (var i = 0; i < result.length; i++) {
-				if (id == result[i].id) {
-					$('.update-goods-size').append(
+				if (sizeId == result[i].id) {
+					$('#update-goods-size'+id).append(
 						'<option value="' + result[i].id + '" selected>'
 								+ result[i].name + '</option>');
 				} else {
-					$('.update-goods-size').append(
+					$('#update-goods-size'+id).append(
 						'<option value="' + result[i].id + '" >'
 								+ result[i].name + '</option>');
 				}
 			}
-			$('.update-goods-size').comboSelect();
+			$('#update-goods-size'+id).comboSelect();
 		},
 		error : function() {
 			console.log("false")
@@ -845,10 +844,10 @@ function updateGoods(id, btnObject) {
 		var style = table.find("td #update-goods-style").val();
 		var price = table.find("td #update-goods-price").val();
 		var script = table.find("td #update-goods-script").val();
-		var colorId = table.find("td #update-goods-color").val();
-		var sizeId = table.find("td #update-goods-size").val();
-		var brandId = table.find("td #update-goods-brand").val();
-		var categoryId = table.find("td #update-goods-category").val();
+		var colorId = table.find("td #update-goods-color"+id).val();
+		var sizeId = table.find("td #update-goods-size"+id).val();
+		var brandId = table.find("td #update-goods-brand"+id).val();
+		var categoryId = table.find("td #update-goods-category"+id).val();
 		$.ajax({
 			type : "post",
 			url : contextPath + "/goods/update",
@@ -901,16 +900,16 @@ function goodsDataTable(data) {
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"bSort" : true,
 						"aoColumnDefs" : [ {
-							"bSearchable" : false,
-							"aTargets" : [ 0]
-						},
-						{
-							"bSortable" : false,
-							"aTargets" : [ 0,6 ]
-						},
-						 ],
+												"bSearchable" : false,
+												"aTargets" : [ 0]
+											},
+											{
+												"bSortable" : false,
+												"aTargets" : [ 0,6 ]
+											},
+										 ],
+						"order": [[ 5, "desc" ]],//默认第6列降序排列
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -929,7 +928,7 @@ function goodsDataTable(data) {
 						}, {
 							data : 'createTime'
 						}, {
-							data : null
+							data : 'id'
 						}, ],
 						dom: 'lBfrtip',
 					    buttons: [
@@ -984,7 +983,6 @@ function goodsDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							/*$('td:eq(0)', nRow).html(iDisplayIndex+1);*/
 						},
 					});
 // Add event listener for opening and closing details
@@ -1001,7 +999,10 @@ function goodsDataTable(data) {
             // Open this row
             row.child( goodsTableDetail(row.data()) ).show();
             tr.addClass('shown');
-            getAllGoodsColorById(row.data().colorId);getAllGoodsBrandById(row.data().brandId);getGoodsThirdCategoryById(row.data().categoryId);getGoodsSizeTypeById(row.data().sizeId);
+            getAllGoodsColorById(row.data().colorId,row.data().id);
+            getAllGoodsBrandById(row.data().brandId,row.data().id);
+            getGoodsThirdCategoryById(row.data().categoryId,row.data().id);
+            getGoodsSizeTypeById(row.data().sizeId,row.data().id);
         }
     } );
 }
@@ -1027,11 +1028,11 @@ function goodsTableDetail ( d ) {
         '</tr>'+
         '<tr>'+
             '<td>商品类别：</td>'+
-            '<td><select id="update-goods-category" class="selectCombo form-control  update-goods-category"></td>'+
+            '<td><select id="update-goods-category'+d.id+'" class="selectCombo form-control  update-goods-category"></td>'+
         '</tr>'+
         '<tr>'+
             '<td>商品品牌：</td>'+
-            '<td><select id="update-goods-brand" class="selectCombo form-control  update-goods-brand"></select>'+
+            '<td><select id="update-goods-brand'+d.id+'" class="selectCombo form-control  update-goods-brand"></select>'+
             '</td>'+
         '</tr>'+
         '<tr>'+
@@ -1039,11 +1040,11 @@ function goodsTableDetail ( d ) {
             '<td>'+
 	            '<div class="row">'+
 					'<div class="col-lg-6">'+
-						'<select id="update-goods-size-type" class="selectCombo form-control update-goods-size-type" onchange ="getSizeByTypeAndId(this.value,'+d.sizeId+');">'+
+						'<select id="update-goods-size-type'+d.id+'" class="selectCombo form-control update-goods-size-type" onchange ="getSizeByTypeAndId(this.value,'+d.sizeId+','+d.id+');">'+
 						'</select>'+
 					'</div>'+
 					'<div class="col-lg-6">'+
-						'<select id="update-goods-size" class="selectCombo form-control update-goods-size">'+
+						'<select id="update-goods-size'+d.id+'" class="selectCombo form-control update-goods-size">'+
 						'</select>'+
 					'</div>'+
 				'</div>'+
@@ -1051,13 +1052,13 @@ function goodsTableDetail ( d ) {
         '</tr>'+
         '<tr>'+
             '<td>商品颜色：</td>'+
-            '<td><select id="update-goods-color" class="selectCombo form-control  update-goods-color"></select></td>'+
+            '<td><select id="update-goods-color'+d.id+'" class="selectCombo form-control  update-goods-color"></select></td>'+
         '</tr>'+
         '<tr>'+
             '<td>商品售价:</td>'+
             '<td>'+
             	'<div class="input-group">'+
-                   /* '<span class="input-group-addon">$</span>'+*/
+                   /* '<span class="input-group-addon">￥</span>'+*/
                     '<input class="form-control " type="number" min="0" id="goods-price" name="goods-price" placeholder="商品售价价，默认为零" value="'+ d.price +'" />'+
                     /*'<span class="input-group-addon">.00</span>'+*/
                ' </div>'+
@@ -1156,6 +1157,7 @@ function brandDataTable(data) {
 							"aTargets" : [0, 4 ]
 						},
 						],
+						"order": [[ 3, "desc" ]],//默认第4列降序排列
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -1278,6 +1280,7 @@ function colorDataTable(data) {
 						"aTargets" : [0, 4 ]
 					},
 					],
+					"order": [[ 3, "desc" ]],//默认第4列降序排列
 					data : data,
 					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 					columns : [ {
@@ -1416,6 +1419,7 @@ function sizeDataTable(data) {
 						"aTargets" : [ 0,5 ]
 					},
 					],
+					"order": [[ 4, "desc" ]],//默认第5列降序排列
 					data : data,
 					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 					columns : [ {
