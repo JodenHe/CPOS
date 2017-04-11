@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.jfinal.log.Log;
-import com.mchange.v2.resourcepool.ResourcePool.Manager;
 import com.scau.mis.model.Member;
 import com.scau.mis.model.Sales;
 import com.scau.mis.model.Shop;
@@ -17,7 +16,7 @@ import com.scau.mis.model.Shop;
  * 
  */
 public class ShopService {
-	public static Log log = Log.getLog(ColorService.class);
+	public static Log log = Log.getLog(ShopService.class);
 	/**
 	 * 
 	 * @param shop

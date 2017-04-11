@@ -1,0 +1,11 @@
+.tab-pane {
+	margin-top:50px;
+}
+/* dataTable detail图标 */
+th.details-control,td.details-control {
+    background: url('../DataTables-1.10.13/media/images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control, tr.shown th.details-control{
+    background: url('../DataTables-1.10.13/media/images/details_close.png') no-repeat center center;
+}

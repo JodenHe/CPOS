@@ -32,20 +32,25 @@ public class GoodsService {
 				+ goods.getBarcode() + ".png";
 		BarcodeUtil.generateFile(goods.getBarcode(), pathUrl);
 
-		if (null != getGoodsByName(name)) {
+		if (isExist(goods.getName())) {
 			result.put("status", false);
-			result.put("msg", "商品名已存在");
-		} else if (null != name && !"".equals(name)) {
-			if (goods.save()) {
-				result.put("status", true);
-				result.put("msg", "商品新增成功！");
-			} else {
-				result.put("status", false);
-				result.put("msg", "未知错误商品新增失败！");
+			result.put("msg", "商品名称已存在！");
+		}
+		else{
+			if (null != name && !"".equals(name)) {
+				if (goods.save()) {
+					result.put("status", true);
+					result.put("msg", "新增商品成功！");
+				}
+				else{
+					result.put("status", false);
+					result.put("msg", "新增商品失败，数据库未知错误！");
+				}
 			}
-		} else {
-			result.put("status", false);
-			result.put("msg", "商品名不能为空！");
+			else{
+				result.put("status", false);
+				result.put("msg", "商品名称不能为空！");
+			}
 		}
 		return result;
 	}
@@ -60,18 +65,25 @@ public class GoodsService {
 	public Map<String, Object> updateGoods(Goods goods) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		String name = goods.getName();
-
-		if (name != null && !"".equals(name)) {
-			if (goods.update()) {
-				result.put("msg", "成功修改！");
-				result.put("status", true);
-			} else {
-				result.put("msg", "未知错误，修改失败！");
-				result.put("status", false);
+		if (isExist(goods.getName(),goods.getId())) {
+			result.put("status", false);
+			result.put("msg", "商品名称已存在！");
+		}
+		else{
+			if (null!=name && !"".equals(name)) {
+				if (goods.update()) {
+					result.put("status", true);
+					result.put("msg", "更新成功！");
+				}
+				else{
+					result.put("status", false);
+					result.put("msg", "更新失败，数据库未知错误！");
+				}
 			}
-		} else {
-			result.put("msg", "商品名称不能为空！");
-			result.put("status", true);
+			else{
+				result.put("status", false);
+				result.put("msg", "品牌名称不能为空！");
+			}
 		}
 		return result;
 	}
@@ -136,19 +148,24 @@ public class GoodsService {
 	}
 
 	/**
-	 * 根据name查找商品(内部方法)
-	 * 
-	 * @param name
-	 *            商品名称
-	 * @return 商品List数组
+	 * 判断商品是否存在（内部方法）
+	 * @param name 商品名称
+	 * @return 存在返回true，否则false
 	 */
-	private List<Goods> getGoodsByName(String name) {
-		String sql = "select * from goods where name='" + name + "'";
-		List<Goods> goods = Goods.dao.find(sql);
-		if (goods.size() != 0)
-			return goods;
-		else
-			return null;
+	private boolean isExist(String name){
+		String sql = "select `g`.`name` from `goods` as `g`  where `g`.`name` = '"+name+"'";
+		return Goods.dao.find(sql).size()>0;
+	}
+	
+	/**
+	 * 判断商品是否存在（内部方法）
+	 * @param name 商品名称
+	 * @param id 商品id
+	 * @return 存在返回true，否则false
+	 */
+	private boolean isExist(String name , long id){
+		String sql = "select `g`.`name` from `goods` as `g`  where `g`.`name` = '"+name+"' and `g`.`id` != " + id;
+		return Goods.dao.find(sql).size()>0;
 	}
 
 }

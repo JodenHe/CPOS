@@ -1,31 +1,57 @@
 $(function() {
-
-	/* 类别管理 */
-	selectAllCategory();
-	getFirstCategory();
-	category_zTree();
-	/* 商品管理 */
-	getAllGoods();
-	getAllGoodsColor();
-	getAllGoodsBrand();
-	getGoodsThirdCategory();
-	getGoodsSizeType();
-	/*品牌管理*/
-	getAllBrand();
-	/*颜色管理*/
-	getAllColor();
-
-	$('.selectCombo').comboSelect();
+	init();
 });
+
+/*页面初始化*/
+function init(){
+	/* 类别管理 */
+	categoryManage();
+	/* 商品管理 */
+	goodsManage();
+	/*品牌管理*/
+	brandManage();
+	/*颜色管理*/
+	colorManage();
+	/*初始化下拉框*/
+	$('.selectCombo').comboSelect();
+	/*dataTable所有列的详情的展开或者收起*/
+	$('th.details-control').click(function () {
+		var th = $(this).parents().eq(0);
+		var tr = $(this).parents().eq(0).parents().eq(0).siblings().children("tr");
+
+		if(th.hasClass("shown")){
+			th.removeClass("shown");
+			for (var i = 0; i <tr.length; i++) {
+				if (tr.eq(i).hasClass("shown")) {
+					tr.eq(i).children("td.details-control").trigger("click");
+				}
+			}
+		}
+		else{
+			th.addClass("shown");
+			for (var i = 0; i <tr.length; i++) {
+				if (!tr.eq(i).hasClass("shown")) {
+					tr.eq(i).children("td.details-control").trigger("click")
+				}
+			}
+		}
+	});
+} 
+
+/*页面重置*/
+function initForm(b){
+	//重置form表单
+	$(b).parents("form").eq(0).trigger('reset');
+	/*初始化下拉框*/
+	$('.selectCombo').comboSelect();
+} 
 
 /* 类别管理 */
 function categoryManage() {
-	$("#goods-manager-category").show(200);
 	selectAllCategory();
 	getFirstCategory();
 	category_zTree();
 }
-
 // 生成树形菜单
 function category_zTree() {
 	$.ajax({
@@ -44,12 +70,13 @@ function getFirstCategory() {
 		url : contextPath + '/category/getFirstCategory',// 路径
 		data : {},// 数据，这里使用的是Json格式进行传输
 		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('.category-firstCategory').html('<option value="0">不选，默认无</option>');
 			for (var i = 0; i < data.length; i++) {
 				$('.category-firstCategory').append(
 						'<option value="' + data[i].id + '" >' + data[i].name
 								+ '</option>');
 			}
-			$('.firstCategory').comboSelect();
+			$('.category-firstCategory').comboSelect();
 		}
 	});
 }
@@ -72,6 +99,136 @@ function getSecondCategory(pId) {
 		}
 	});
 }
+// 更据id获取类别的第一级目录,id——类别id，id2——用于select的id查找
+function getFirstCategoryById(id,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getFirstCategory',// 路径
+		data : {},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-firstCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (id == data[i].id) {
+					$('#update-category-firstCategory'+id2).append(
+						'<option value="' + data[i].id + '"selected >' + data[i].name
+								+ '</option>');
+				} else {
+					$('#update-category-firstCategory'+id2).append(
+						'<option value="' + data[i].id + '" >' + data[i].name
+								+ '</option>');
+				}
+			}
+			$('#update-category-firstCategory'+id2).comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第二级目录，pId——第一级目录的id值，id——类别id，id2——用于select的id查找
+function getSecondCategoryById(pId,id,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getSecondCategory',// 路径
+		data : {
+			"pId" : pId
+		},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-secondCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (id == data[i].id) {
+					$('#update-category-secondCategory'+id2).append(
+						'<option value="' + data[i].id + '" selected>' + data[i].name
+								+ '</option>');
+				} else {
+					$('#update-category-secondCategory'+id2).append(
+						'<option value="' + data[i].id + '" >' + data[i].name
+								+ '</option>');
+				}
+			}
+			$('#update-category-secondCategory'+id2).comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第一级目录，id——类别id，dId——不能选的选项，id2——用于select的id查找
+function getFirstCategoryById2(id,dId,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getFirstCategory',// 路径
+		data : {},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-firstCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (dId == data[i].id) {
+					$('#update-category-firstCategory'+id2).append(
+							'<option value="' + data[i].id + '" disabled>' + data[i].name
+									+ '</option>');
+				} else {
+					if (id == data[i].id) {
+						$('#update-category-firstCategory'+id2).append(
+							'<option value="' + data[i].id + '"selected >' + data[i].name
+									+ '</option>');
+					} else {
+						$('#update-category-firstCategory'+id2).append(
+							'<option value="' + data[i].id + '" >' + data[i].name
+									+ '</option>');
+					}
+				}
+			}
+			$('#update-category-firstCategory'+id2).comboSelect();
+		}
+	});
+}
+// 更据id获取类别的第二级目录，pId——第一级目录的id值，id——类别id，dId——不能选的选项，id2——用于select的id查找
+function getSecondCategoryById2(pId,id,dId,id2) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/getSecondCategory',// 路径
+		data : {
+			"pId" : pId
+		},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			$('#update-category-secondCategory'+id2).html('<option value="0">不选，默认无</option>');
+			for (var i = 0; i < data.length; i++) {
+				if (dId == data[i].id) {
+					$('#update-category-secondCategory'+id2).append(
+							'<option value="' + data[i].id + '" disabled>' + data[i].name
+									+ '</option>');
+				} else {
+					if (id == data[i].id) {
+						$('#update-category-secondCategory'+id2).append(
+							'<option value="' + data[i].id + '" selected>' + data[i].name
+									+ '</option>');
+					} else {
+						$('#update-category-secondCategory'+id2).append(
+							'<option value="' + data[i].id + '" >' + data[i].name
+									+ '</option>');
+					}
+				}
+			}
+			$('#update-category-secondCategory'+id2).comboSelect();
+		}
+	});
+}
+//详情页面的父类别下拉框初始化
+function getCategoryParents(id) {
+	$.ajax({
+		type : "POST", // 提交方式
+		url : contextPath + '/category/selectParents',// 路径
+		data : {
+			"id" : id
+		},// 数据，这里使用的是Json格式进行传输
+		success : function(data) {// 返回数据根据结果进行相应的处理
+			if (data.length == 3) {
+				getFirstCategoryById(data[0].id,id);
+				getSecondCategoryById(data[0].id,data[1].id,id);
+			} else if(data.length == 2){
+				getFirstCategoryById(data[0].id,id);
+				getSecondCategoryById2(data[0].id,null,data[1].id,id);
+			} else if(data.length == 1){
+				getFirstCategoryById2(null,data[0].id,id);
+				getSecondCategoryById(0,null,id);
+			}
+		}
+	});
+}
 // 新增类别
 function addCategory() {
 	$.ajax({
@@ -85,11 +242,9 @@ function addCategory() {
 			"category.script" : $('#category-script').val()
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				selectAllCategory();
-				/* window.location.href=contextPath+"/admin"; */
 			} else {
 				alert(data.msg);
 			}
@@ -125,7 +280,6 @@ function deleteCategory(id) {
 			id : id
 		},
 		success : function(data) {
-			console.log(data)
 			if (!data.status) {
 				deleteCategory2(id)
 			} else {
@@ -147,7 +301,6 @@ function deleteCategory2(id) {
 			id : id
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert("成功删除！");
 				selectAllCategory();
@@ -163,58 +316,69 @@ function deleteCategory2(id) {
 }
 // 更新类别信息
 function updateCategory(id, btnObject) {
-	console.log(btnObject);
-	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
-	var script = $(btnObject).parents().eq(0).siblings().eq(3).children().val();
-	$.ajax({
-		type : "post",
-		url : contextPath + "/category/update",
-		dataType : "json",
-		data : {
-			"category.id" : id,
-			"category.name" : name,
-			"category.script" : script
-		},
-		success : function(data) {
-			console.log(data)
-			if (data.status) {
-				alert(data.msg);
-				selectAllCategory();
-			} else {
-				alert(data.msg);
-				selectAllCategory();
+	//判断详情页有无展开
+	var f = $(btnObject).parent().siblings().eq(0).parent().hasClass("shown");
+	if(!f){
+		$(btnObject).parent().siblings().eq(0).trigger("click");
+	}else{
+		var table = $(btnObject).parents().eq(0).parents().eq(0).next().find("table");
+		var name = table.find("td #update-category-name").val();
+		var pId = table.find("td #update-category-secondCategory"+id).val()!= 0 ? table.find("td #update-category-secondCategory"+id).val() :table.find("td #update-category-firstCategory"+id).val();
+		var script = table.find("td #update-category-script").val();
+		
+		$.ajax({
+			type : "post",
+			url : contextPath + "/category/update",
+			dataType : "json",
+			data : {
+				"category.id" : id,
+				"category.pId" : pId,
+				"category.name" : name,
+				"category.script" : script
+			},
+			success : function(data) {
+				if (data.status) {
+					alert(data.msg);
+					selectAllCategory();
+				} else {
+					alert(data.msg);
+					selectAllCategory();
+				}
+			},
+			error : function() {
+				console.log("false")
 			}
-		},
-		error : function() {
-			console.log("false")
-		}
-	});
+		});
+	}
 }
 // 类别的dataTable
 function categorysDataTable(data) {
-	console.log(data)
-	$('#categorys-table')
+	var categorysTable = $('#categorys-table')
 			.DataTable(
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : true,
-						"aoColumnDefs" : [ {
-							"bSearchable" : false,
-							"aTargets" : [ 0, 2, 3, 4, 5 ]
-						}, 
-						 {
-							"bSortable" : false,
-							"aTargets" : [ 5 ]
-						},
-						],
+						"aoColumnDefs" : [ 
+											{
+											"bSearchable" : false,
+											"aTargets" : [0,5]
+											}, 
+											 {
+												"bSortable" : false,
+												"aTargets" : [5 ]
+											},
+										 ],
+						"order": [[ 4, "desc" ]],//默认第5列降序排列
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
+			                "className": 'details-control',
+			                "orderable":  false,
+			                "data":       null,
+			                "defaultContent": ''
+			            }/*,{
 							data : 'id'
-						}, {
+						}*/, {
 							data : 'name'
 						}, {
 							data : 'pId'
@@ -225,21 +389,32 @@ function categorysDataTable(data) {
 						}, {
 							data : 'id'
 						}, ],
-						"oLanguage" : {
-							"sProcessing" : "正在加载中......",
-							"sLengthMenu" : "每页显示 _MENU_ 条记录",
-							"sZeroRecords" : "对不起，查询不到相关数据！",
-							'sSearch' : '检索:',
-							"sEmptyTable" : "表中无数据存在！",
-							"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-							"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
-							"oPaginate" : {
-								"sFirst" : "首页",
-								"sPrevious" : "上一页",
-								"sNext" : "下一页",
-								"sLast" : "末页"
-							}
-						},
+						dom: 'lBfrtip',
+					    buttons: [
+									{
+									 'extend': 'copy',
+									 'text': '复制',//定义导出excel按钮的文字
+									
+									},
+									{
+									 'extend': 'excel',
+									 'text': '导出excel',//定义导出excel按钮的文字
+									
+									},
+									{
+										'extend' : 'print',
+										'text' : '打印',
+										/*'exportOptions' : {
+															modifier: {
+																selected: true
+															}
+														},
+										'autoPrint' : true*/
+									}
+									],
+						"language": {
+	                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+	            		},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$.ajax({
 								type : "post",
@@ -259,12 +434,12 @@ function categorysDataTable(data) {
 								}
 							});
 							
-							$('td:eq(1)', nRow).html(
+							/*$('td:eq(1)', nRow).html(
 									"<input name='categoryName' type='text' value="
 											+ aData.name + ">")
 							$('td:eq(3)', nRow).html(
 									"<input name='categoryScript' type='text' value="
-											+ aData.script + ">")
+											+ aData.script + ">")*/
 							$('td:eq(5)', nRow)
 									.html(
 											'<button class="btn btn-default" onclick="updateCategory('
@@ -275,33 +450,64 @@ function categorysDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							$('td:eq(0)', nRow).html(iDisplayIndex + 1);
 						},
-					})
+					});
+	// Add event listener for opening and closing details
+    $('#categorys-table tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = categorysTable.row( tr );
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( categorysTableDetail(row.data()) ).show();
+            tr.addClass('shown');
+            getCategoryParents(row.data().id);
+        }
+    } );
+}
+/* Formatting function for row details - modify as you need */
+function categorysTableDetail ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>类别名称：</td>'+
+            '<td><input class="form-control" id="update-category-name" type="text" placeholder="类别名称，不能为空" autofocus="autofocus" value="'+d.name+'" /></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>父类别：</td>'+
+            '<td>'+
+            	'<div class="row">'+
+					'<div class="col-lg-6">'+
+						'<select name="update-category-firstCategory" id="update-category-firstCategory'+d.id+'" class="selectCombo form-control  showparents update-category-firstCategory" onchange="getSecondCategoryById(this.value,'+d.pId+','+d.id+');">'+
+							'<option value="0">不选，默认无</option>'+
+						'</select>'+
+					'</div>'+
+					'<div class="col-lg-6">'+
+						'<select name="update-category-secondCategory" id="update-category-secondCategory'+d.id+'" class="selectCombo form-control  showparents update-category-secondCategory">'+
+							'<option value="0">不选，默认无</option>'+
+						'</select>'+
+					'</div>'+
+				'</div>'+
+            '</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>类别描述：</td>'+
+            '<td><textarea class="form-control" rows="3" id="update-category-script" name="update-category-script" placeholder="请输入描述信息，可以为空">'+(d.script==null?'':d.script)+'</textarea></td>'+
+        '</tr>'+
+    '</table>';
 }
 
 /*商品管理*/
-
-//获取颜色
-function getAllColor() {
-	$.ajax({
-		type : "post",
-		url : contextPath + "/color/getAllColor",
-		dataType : "json",
-		data : {},
-		success : function(data) {
-			var result = data;
-			for (var i = 0; i < result.length; i++) {
-				$('.goods-color').append(
-						'<option value="' + result[i].id + '" >'
-								+ result[i].name + '</option>');
-			}
-			$('.selectCombo').comboSelect();
-		},
-		error : function() {
-			console.log("false")
-		}
-	});
+function goodsManage() {
+	getAllGoods();
+	getAllGoodsColor();
+	getAllGoodsBrand();
+	getGoodsThirdCategory();
+	getGoodsSizeType();
 }
 //获取颜色
 function getAllGoodsColor() {
@@ -312,6 +518,7 @@ function getAllGoodsColor() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-color').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-color').append(
 						'<option value="' + result[i].id + '" >'
@@ -333,6 +540,7 @@ function getAllGoodsBrand() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-brand').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-brand').append(
 						'<option value="' + result[i].id + '" >'
@@ -354,6 +562,7 @@ function getGoodsThirdCategory() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-category').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-category').append(
 						'<option value="' + result[i].id + '" >'
@@ -375,12 +584,14 @@ function getGoodsSizeType() {
 		data : {},
 		success : function(data) {
 			var result = data;
+			$('.goods-size-type').html('');
 			for (var i = 0; i < result.length; i++) {
 				$('.goods-size-type').append(
 						'<option value="' + result[i] + '" >'
 								+ result[i] + '</option>');
 			}
 			$('.selectCombo').comboSelect();
+			getSizeByType($("#goods-size-type").val());
 		},
 		error : function() {
 			console.log("false")
@@ -411,6 +622,164 @@ function getSizeByType(type) {
 		}
 	});
 }
+//根据颜色id获取颜色
+function getAllGoodsColorById(colorId,id) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/color/getAllColor",
+		dataType : "json",
+		data : {},
+		success : function(data) {
+			var result = data;
+			$('#update-goods-color'+id).html('');
+			for (var i = 0; i < result.length; i++) {
+				if (result[i].id == colorId) {
+					$('#update-goods-color'+id).append(
+						'<option value="' + result[i].id + '" selected>'
+								+ result[i].name + '</option>');
+				}else{
+					$('#update-goods-color'+id).append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+				}
+				
+			}
+			$('#update-goods-color'+id).comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//根据品牌id获取品牌
+function getAllGoodsBrandById(brandId,id) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/brand/getAllBrand",
+		dataType : "json",
+		data : {},
+		success : function(data) {
+			var result = data;
+			$('#update-goods-brand'+id).html('');
+			for (var i = 0; i < result.length; i++) {
+				if (result[i].id == brandId) {
+					$('#update-goods-brand'+id).append(
+						'<option value="' + result[i].id + '" selected>'
+								+ result[i].name + '</option>');
+				} else {
+					$('#update-goods-brand'+id).append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+				}
+			}
+			$('#update-goods-brand'+id).comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//根据类别id获取第三级类别
+function getGoodsThirdCategoryById(categoryId,id) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/category/getThirdCategory",
+		dataType : "json",
+		data : {},
+		success : function(data) {
+			var result = data;
+			$('#update-goods-category'+id).html('');
+			for (var i = 0; i < result.length; i++) {
+				if (result[i].id == categoryId) {
+					$('#update-goods-category'+id).append(
+						'<option value="' + result[i].id + '" selected>'
+								+ result[i].name + '</option>');
+				} else {
+					$('#update-goods-category'+id).append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+				}
+			}
+			$('#update-goods-category'+id).comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//根据尺寸id获取尺寸类型
+function getGoodsSizeTypeById(sizeId,id) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/size/getSizeType",
+		dataType : "json",
+		data : {},
+		success : function(result) {
+			var sizeType;
+			$.ajax({
+				type : "post",
+				url : contextPath + "/size/getSize",
+				dataType : "json",
+				data : {
+					"id" : sizeId
+				},
+				success : function(data) {
+					var sizeType = data[0].type;
+					$('#update-goods-size-type'+id).html('');
+					for (var i = 0; i < result.length; i++) {
+						if (sizeType == result[i]) {							
+							$('#update-goods-size-type'+id).append('<option value="' + result[i] + '" selected>'
+										+ result[i] + '</option>');
+						} else {
+							$('#update-goods-size-type'+id).append('<option value="' + result[i] + '" >'
+										+ result[i] + '</option>');
+					}
+						}
+					$('#update-goods-size-type'+id).comboSelect();
+					getSizeByTypeAndId($("#update-goods-size-type"+id).val(),sizeId,id);
+				},
+				error : function(){
+					console.log("false");
+				}
+			});
+
+			
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+//获取指定类型的尺寸
+function getSizeByTypeAndId(type,sizeId,id) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/size/getSizeByType",
+		dataType : "json",
+		data : {
+			"type" : type
+		},
+		success : function(data) {
+			var result = data;
+			$('#update-goods-size'+id).html("");
+			for (var i = 0; i < result.length; i++) {
+				if (sizeId == result[i].id) {
+					$('#update-goods-size'+id).append(
+						'<option value="' + result[i].id + '" selected>'
+								+ result[i].name + '</option>');
+				} else {
+					$('#update-goods-size'+id).append(
+						'<option value="' + result[i].id + '" >'
+								+ result[i].name + '</option>');
+				}
+			}
+			$('#update-goods-size'+id).comboSelect();
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
 //添加商品
 function addGoods() {
 	$.ajax({
@@ -429,7 +798,6 @@ function addGoods() {
 				"goods.script" : $('#goods-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllGoods();
@@ -452,7 +820,6 @@ function deleteGoods(id) {
 			id : id
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert("商品删除成功！");
 				getAllGoods();
@@ -467,37 +834,50 @@ function deleteGoods(id) {
 }
 //更新商品信息
 function updateGoods(id, btnObject) {
-	console.log(btnObject);
-	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
-	var style = $(btnObject).parents().eq(0).siblings().eq(4)
-			.children().val();
-	var price = $(btnObject).parents().eq(0).siblings().eq(7).children().val();
-	var script = $(btnObject).parents().eq(0).siblings().eq(8).children().val();
-	$.ajax({
-		type : "post",
-		url : contextPath + "/goods/update",
-		dataType : "json",
-		data : {
-			"goods.id" : id,
-			"goods.name" : name,
-			"goods.style" : style,
-			"goods.price" : price == "" ? 0 : price,
-			"goods.script" : script
-		},
-		success : function(data) {
-			console.log(data)
-			if (data.status) {
-				alert(data.msg);
-				getAllGoods();
-			} else {
-				alert(data.msg);
-				getAllGoods();
+	//判断详情页有无展开
+	var f = $(btnObject).parent().siblings().eq(0).parent().hasClass("shown");
+	if(!f){
+		$(btnObject).parent().siblings().eq(0).trigger("click");
+	}else{
+		var table = $(btnObject).parents().eq(0).parents().eq(0).next().find("table");
+		var name = table.find("td #update-goods-name").val();
+		var style = table.find("td #update-goods-style").val();
+		var price = table.find("td #update-goods-price").val();
+		var script = table.find("td #update-goods-script").val();
+		var colorId = table.find("td #update-goods-color"+id).val();
+		var sizeId = table.find("td #update-goods-size"+id).val();
+		var brandId = table.find("td #update-goods-brand"+id).val();
+		var categoryId = table.find("td #update-goods-category"+id).val();
+		$.ajax({
+			type : "post",
+			url : contextPath + "/goods/update",
+			dataType : "json",
+			data : {
+				"goods.id" : id,
+				"goods.name" : name,
+				"goods.style" : style,
+				"goods.categoryId" : categoryId,
+				"goods.brandId" : brandId,
+				"goods.sizeId" : sizeId,
+				"goods.colorId" : colorId,
+				"goods.price" : price == "" ? 0 : price,
+				"goods.script" : script
+			},
+			success : function(data) {
+				if (data.status) {
+					alert(data.msg);
+					getAllGoods();
+				} else {
+					alert(data.msg);
+					getAllGoods();
+				}
+			},
+			error : function() {
+				console.log("false")
 			}
-		},
-		error : function() {
-			console.log("false")
-		}
-	});
+		});
+	}
+	
 }
 //列出所有的商品，dataTable展示
 function getAllGoods() {
@@ -515,37 +895,34 @@ function getAllGoods() {
 }
 //辅助getAllGoods()方法，dataTable
 function goodsDataTable(data) {
-	console.log(data)
-	$('#goods-table')
+	var goodsTable = $('#goods-table')
 			.DataTable(
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : false,
 						"aoColumnDefs" : [ {
-							"bSearchable" : false,
-							"aTargets" : [ 0, 1, 2, 5, 6, 7, 10 ]
-						}, ],
+												"bSearchable" : false,
+												"aTargets" : [ 0]
+											},
+											{
+												"bSortable" : false,
+												"aTargets" : [ 0,6 ]
+											},
+										 ],
+						"order": [[ 5, "desc" ]],//默认第6列降序排列
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
-							data : 'id'
+							"className": 'details-control',
+			                "orderable":  false,
+			                "data":       null,
+			                "defaultContent": ''
+						}, {
+							data : 'barcode'
 						}, {
 							data : 'name'
 						}, {
-							data : 'categoryId'
-						}, {
-							data : 'brandId'
-						}, {
-							data : 'style'
-						}, {
-							data : 'colorId'
-						}, {
 							data : 'price'
-						}, {
-							data : 'barcode'
 						}, {
 							data : 'script'
 						}, {
@@ -553,23 +930,34 @@ function goodsDataTable(data) {
 						}, {
 							data : 'id'
 						}, ],
-						"oLanguage" : {
-							"sProcessing" : "正在加载中......",
-							"sLengthMenu" : "每页显示 _MENU_ 条记录",
-							"sZeroRecords" : "对不起，查询不到相关数据！",
-							'sSearch' : '检索:',
-							"sEmptyTable" : "表中无数据存在！",
-							"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-							"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
-							"oPaginate" : {
-								"sFirst" : "首页",
-								"sPrevious" : "上一页",
-								"sNext" : "下一页",
-								"sLast" : "末页"
-							}
-						},
+						dom: 'lBfrtip',
+					    buttons: [
+									{
+									 'extend': 'copy',
+									 'text': '复制',//定义导出excel按钮的文字
+									
+									},
+									{
+									 'extend': 'excel',
+									 'text': '导出excel',//定义导出excel按钮的文字
+									
+									},
+									{
+										'extend' : 'print',
+										'text' : '打印',
+										'exportOptions' : {
+															modifier: {
+																selected: true
+															}
+														},
+										'autoPrint' : false
+									}
+									],
+						"language": {
+                			"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+            			},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
-							$('td:eq(1)', nRow).html(
+							/*$('td:eq(1)', nRow).html(
 									"<input name='goodsName' type='text' value="
 											+ aData.name + ">")
 							$('td:eq(4)', nRow).html(
@@ -584,8 +972,8 @@ function goodsDataTable(data) {
 											+ aData.price + ">")
 							$('td:eq(8)', nRow).html(
 									"<input name='goodsScript' type='text' value="
-											+ (aData.script==null?'': aData.script) + ">")
-							$('td:eq(10)', nRow)
+											+ (aData.script==null?'': aData.script) + ">")*/
+							$('td:eq(6)', nRow)
 									.html(
 											'<button class="btn btn-default" onclick="updateGoods('
 													+ aData.id
@@ -595,13 +983,100 @@ function goodsDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							$('td:eq(0)', nRow).html(iDisplayIndex+1);
 						},
-					})
+					});
+// Add event listener for opening and closing details
+    $('#goods-table tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = goodsTable.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( goodsTableDetail(row.data()) ).show();
+            tr.addClass('shown');
+            getAllGoodsColorById(row.data().colorId,row.data().id);
+            getAllGoodsBrandById(row.data().brandId,row.data().id);
+            getGoodsThirdCategoryById(row.data().categoryId,row.data().id);
+            getGoodsSizeTypeById(row.data().sizeId,row.data().id);
+        }
+    } );
+}
+/* Formatting function for row details - modify as you need */
+function goodsTableDetail ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>商品代码：</td>'+
+            '<td><input class="form-control" type="text" disabled value="'+d.barcode+'"></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品名称：</td>'+
+            '<td><input class="form-control" id="update-goods-name" type="text" placeholder="商品名称，不能为空" autofocus="autofocus" value="'+d.name+'" /></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品条形码：</td>'+
+            '<td><img style="width:120px;" src="'+ contextPath +'/barcode/'+ d.barcode + '.png" /></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品款式：</td>'+
+            '<td><input class="form-control" id="update-goods-style" type="text" placeholder="商品款式" value="'+d.style+'"></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品类别：</td>'+
+            '<td><select id="update-goods-category'+d.id+'" class="selectCombo form-control  update-goods-category"></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品品牌：</td>'+
+            '<td><select id="update-goods-brand'+d.id+'" class="selectCombo form-control  update-goods-brand"></select>'+
+            '</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品尺寸：</td>'+
+            '<td>'+
+	            '<div class="row">'+
+					'<div class="col-lg-6">'+
+						'<select id="update-goods-size-type'+d.id+'" class="selectCombo form-control update-goods-size-type" onchange ="getSizeByTypeAndId(this.value,'+d.sizeId+','+d.id+');">'+
+						'</select>'+
+					'</div>'+
+					'<div class="col-lg-6">'+
+						'<select id="update-goods-size'+d.id+'" class="selectCombo form-control update-goods-size">'+
+						'</select>'+
+					'</div>'+
+				'</div>'+
+            '</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品颜色：</td>'+
+            '<td><select id="update-goods-color'+d.id+'" class="selectCombo form-control  update-goods-color"></select></td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品售价:</td>'+
+            '<td>'+
+            	'<div class="input-group">'+
+                   /* '<span class="input-group-addon">￥</span>'+*/
+                    '<input class="form-control " type="number" min="0" id="goods-price" name="goods-price" placeholder="商品售价价，默认为零" value="'+ d.price +'" />'+
+                    /*'<span class="input-group-addon">.00</span>'+*/
+               ' </div>'+
+           '</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>商品描述：</td>'+
+            '<td><textarea class="form-control" rows="3" id="update-goods-script" name="update-goods-script" placeholder="请输入描述信息，可以为空">'+(d.script==null?'':d.script)+'</textarea></td>'+
+        '</tr>'+
+    '</table>';
 }
 
-/*品牌管理*/
 
+
+/*品牌管理*/
+function brandManage() {
+	getAllBrand();
+}
 //添加品牌信息
 function addBrand(){
 	$.ajax({
@@ -613,7 +1088,6 @@ function addBrand(){
 				"brand.script" : $('#brand-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllBrand();
@@ -628,7 +1102,6 @@ function addBrand(){
 }
 //更新品牌信息
 function updateBrand(id, btnObject) {
-	console.log(btnObject);
 	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
 	var script = $(btnObject).parents().eq(0).siblings().eq(2).children().val();
 	$.ajax({
@@ -641,13 +1114,11 @@ function updateBrand(id, btnObject) {
 			"brand.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllBrand();
 			} else {
 				alert(data.msg);
-				getAllBrand();
 			}
 		},
 		error : function() {
@@ -671,17 +1142,22 @@ function getAllBrand() {
 }
 //辅助getAllBrand()方法，dataTable
 function brandDataTable(data) {
-	console.log(data)
 	$('#brand-table')
 			.DataTable(
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
 							"aTargets" : [ 0, 4]
-						}, ],
+						},  
+						 {
+							"bSortable" : false,
+							"aTargets" : [0, 4 ]
+						},
+						],
+						"order": [[ 3, "desc" ]],//默认第4列降序排列
 						data : data,
 						// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 						columns : [ {
@@ -695,21 +1171,9 @@ function brandDataTable(data) {
 						}, {
 							data : 'id'
 						}, ],
-						"oLanguage" : {
-							"sProcessing" : "正在加载中......",
-							"sLengthMenu" : "每页显示 _MENU_ 条记录",
-							"sZeroRecords" : "对不起，查询不到相关数据！",
-							'sSearch' : '检索:',
-							"sEmptyTable" : "表中无数据存在！",
-							"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-							"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
-							"oPaginate" : {
-								"sFirst" : "首页",
-								"sPrevious" : "上一页",
-								"sNext" : "下一页",
-								"sLast" : "末页"
-							}
-						},
+						"language": {
+	                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+	            		},
 						"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 							$('td:eq(1)', nRow).html(
 									"<input name='brandName' type='text' value="
@@ -733,7 +1197,9 @@ function brandDataTable(data) {
 }
 
 /*颜色管理*/
-
+function colorManage() {
+	getAllColor();
+}
 //添加颜色信息
 function addColor(){
 	$.ajax({
@@ -745,7 +1211,6 @@ function addColor(){
 				"color.script" : $('#color-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllColor();
@@ -760,7 +1225,6 @@ function addColor(){
 }
 //更新颜色信息
 function updateColor(id, btnObject) {
-	console.log(btnObject);
 	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
 	var script = $(btnObject).parents().eq(0).siblings().eq(2).children().val();
 	$.ajax({
@@ -773,13 +1237,11 @@ function updateColor(id, btnObject) {
 			"color.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllColor();
 			} else {
 				alert(data.msg);
-				getAllColor();
 			}
 		},
 		error : function() {
@@ -803,19 +1265,22 @@ function getAllColor() {
 }
 //辅助getAllBrand()方法，dataTable
 function colorDataTable(data) {
-	console.log(data)
 	$('#color-table')
 			.DataTable(
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 						"bSearchable" : false,
 						"aTargets" : [ 0, 4]
-					}, ],
+					}, 
+					{
+						"bSortable" : false,
+						"aTargets" : [0, 4 ]
+					},
+					],
+					"order": [[ 3, "desc" ]],//默认第4列降序排列
 					data : data,
 					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 					columns : [ {
@@ -829,21 +1294,9 @@ function colorDataTable(data) {
 					}, {
 						data : 'id'
 					}, ],
-					"oLanguage" : {
-						"sProcessing" : "正在加载中......",
-						"sLengthMenu" : "每页显示 _MENU_ 条记录",
-						"sZeroRecords" : "对不起，查询不到相关数据！",
-						'sSearch' : '检索:',
-						"sEmptyTable" : "表中无数据存在！",
-						"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-						"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
-						"oPaginate" : {
-							"sFirst" : "首页",
-							"sPrevious" : "上一页",
-							"sNext" : "下一页",
-							"sLast" : "末页"
-						}
-					},
+					"language": {
+                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+            		},
 					"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 						$('td:eq(1)', nRow).html(
 								"<input name='brandName' type='text' value="
@@ -895,7 +1348,6 @@ function addSize(){
 				"size.script" : $('#size-script').val()
 			},
 			success : function(data) {
-				console.log(data)
 				if (data.status) {
 					alert(data.msg);
 					getAllSize();
@@ -911,7 +1363,6 @@ function addSize(){
 }
 //更新尺寸信息
 function updateSize(id, btnObject) {
-	console.log(btnObject);
 	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
 	var script = $(btnObject).parents().eq(0).siblings().eq(3).children().val();
 	$.ajax({
@@ -924,7 +1375,6 @@ function updateSize(id, btnObject) {
 			"size.script" : script
 		},
 		success : function(data) {
-			console.log(data)
 			if (data.status) {
 				alert(data.msg);
 				getAllSize();
@@ -954,19 +1404,22 @@ function getAllSize() {
 }
 //辅助getAllSize()方法，dataTable
 function sizeDataTable(data) {
-	console.log(data)
 	$('#size-table')
 			.DataTable(
 					{
 						destroy : true,
 						"bAutoWidth" : false,
-						"sScrollX": "100%",
-				        "bScrollCollapse": true,
-						"bSort" : false,
+						"bSort" : true,
 						"aoColumnDefs" : [ {
 						"bSearchable" : false,
 						"aTargets" : [ 0, 5]
-					}, ],
+					}, 
+					{
+						"bSortable" : false,
+						"aTargets" : [ 0,5 ]
+					},
+					],
+					"order": [[ 4, "desc" ]],//默认第5列降序排列
 					data : data,
 					// 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
 					columns : [ {
@@ -982,21 +1435,9 @@ function sizeDataTable(data) {
 					}, {
 						data : 'id'
 					}, ],
-					"oLanguage" : {
-						"sProcessing" : "正在加载中......",
-						"sLengthMenu" : "每页显示 _MENU_ 条记录",
-						"sZeroRecords" : "对不起，查询不到相关数据！",
-						'sSearch' : '检索:',
-						"sEmptyTable" : "表中无数据存在！",
-						"sInfo" : "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
-						"sInfoFiltered" : "数据表中共为 _MAX_ 条记录",
-						"oPaginate" : {
-							"sFirst" : "首页",
-							"sPrevious" : "上一页",
-							"sNext" : "下一页",
-							"sLast" : "末页"
-						}
-					},
+					"language": {
+                		"url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+            		},
 					"fnCreatedRow" : function(nRow, aData, iDataIndex) {
 						$('td:eq(1)', nRow).html(
 								"<input name='brandName' type='text' value="
