@@ -1,0 +1,24 @@
+label {
+	font-weight: normal;
+}
+#sale-bottom{
+	position: absolute;
+	bottom: 10px;
+	padding-top: 30px;
+	border-top: 2px solid #e7e7e7;
+}
+.border-left{	
+	border-left: 2px solid #e7e7e7;
+}
+.now {
+	color: #0bec0b;
+    font-size: 25px;
+}
+.green-span {
+	color: #0bec0b;
+    font-size: 35px;
+}
+.blue-span {
+	color: #739ECE;
+    font-size: 25px;
+}
