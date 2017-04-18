@@ -57,4 +57,12 @@ public abstract class BaseWarehouse<M extends BaseWarehouse<M>> extends Model<M>
 		return get("script");
 	}
 
+	public void setShopId(java.lang.Long shopId) {
+		set("shopId", shopId);
+	}
+
+	public java.lang.Long getShopId() {
+		return get("shopId");
+	}
+
 }

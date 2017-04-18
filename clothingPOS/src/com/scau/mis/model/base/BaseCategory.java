@@ -49,4 +49,12 @@ public abstract class BaseCategory<M extends BaseCategory<M>> extends Model<M> i
 		return get("createTime");
 	}
 
+	public void setState(java.lang.Integer state) {
+		set("state", state);
+	}
+
+	public java.lang.Integer getState() {
+		return get("state");
+	}
+
 }

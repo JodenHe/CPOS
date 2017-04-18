@@ -22,10 +22,14 @@ public class _MappingKit {
 		arp.addMapping("goods", "id", Goods.class);
 		arp.addMapping("inventory", "id", Inventory.class);
 		arp.addMapping("member", "id", Member.class);
+		arp.addMapping("payment", "id", Payment.class);
 		arp.addMapping("permission", "id", Permission.class);
 		arp.addMapping("role", "id", Role.class);
 		arp.addMapping("role_permission", "id", RolePermission.class);
-		arp.addMapping("sales", "id", Sales.class);
+		arp.addMapping("sale_order", "id", SaleOrder.class);
+		arp.addMapping("sale_order_item", "id", SaleOrderItem.class);
+		arp.addMapping("sale_reject_order", "id", SaleRejectOrder.class);
+		arp.addMapping("sale_reject_order_item", "id", SaleRejectOrderItem.class);
 		arp.addMapping("shop", "id", Shop.class);
 		arp.addMapping("size", "id", Size.class);
 		arp.addMapping("user", "id", User.class);

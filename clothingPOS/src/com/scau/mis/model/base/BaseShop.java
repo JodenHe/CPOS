@@ -65,4 +65,12 @@ public abstract class BaseShop<M extends BaseShop<M>> extends Model<M> implement
 		return get("createTime");
 	}
 
+	public void setState(java.lang.Integer state) {
+		set("state", state);
+	}
+
+	public java.lang.Integer getState() {
+		return get("state");
+	}
+
 }
