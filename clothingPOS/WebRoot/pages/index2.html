@@ -276,26 +276,26 @@
 						<div class="col-md-5 border-left">
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
-									<label for="member" class="col-sm-2 control-label">会员编号:</label>
-									<div class="col-sm-6">
+									<label for="member" class="col-lg-2 control-label">会员编号:</label>
+									<div class="col-lg-6">
 										<input type="text" class="form-control" name="member" id="member" placeholder="会员手机号/会员编号">
 
 									</div>
-									<div class="col-sm-4 checkbox">
+									<div class="col-lg-4 checkbox">
 										<label>
 											<input type="checkbox" name="">普通客户（F10）
 										</label>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="member" class="col-sm-2 control-label">会员姓名:	</label>
-									<div class="col-sm-6">
+									<label for="memberName" class="col-lg-2 control-label">会员姓名:	</label>
+									<div class="col-lg-6">
 										<input type="text" class="form-control" name="memberName" placeholder="会员姓名" disabled>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="member" class="col-sm-2 control-label">会员电话:	</label>
-									<div class="col-sm-6">
+									<label for="memberPhone" class="col-lg-2 control-label">会员电话:	</label>
+									<div class="col-lg-6">
 										<input type="text" class="form-control" name="memberPhone" placeholder="会员电话" disabled>
 									</div>
 								</div>
@@ -324,7 +324,7 @@
 						<div class="form-group">
 							<div class="col-lg-8 input-group-lg">
 								<div class="input-group input-group-lg">
-									<input type="text" class="form-control input-group-lg" placeholder="搜索商品">
+									<input type="text" class="form-control input-group-lg" placeholder="搜索商品" autofocus="autofocus">
 									<span class="input-group-btn">
 										<button class="btn btn-default" type="button">
 											<i class="fa fa-search"></i>选择
@@ -375,16 +375,19 @@
 						</div>
 					</div>
 					<div class="form-horizontal col-lg-4 border-left">
-						<div class="form-group">
+						<div class="form-group" style="border-bottom: 2px solid #e7e7e7;">
 							<div class="col-lg-7 input-group-lg">
 								<div class="input-group input-group-lg">
-									<span class="green-span">售：</span><span class="green-span" id="saleAmount"></span>
+									<span class="green-span">售：</span><span class="green-span" id="saleAmount">0.00</span>
 								</div>
 							</div>							
 						</div>
 						<div class="form-group">
-							<div class="input-group input-group-lg">
-								<span class="green-span">数量：</span><span class="green-span" id="saleAmount"></span>
+							<div class="col-lg-6">
+								<span class="blue-span">数量：</span><span class="blue-span" id="saleAmount">0.00个</span>
+							</div>
+							<div class="col-lg-6">
+								<span class="blue-span">原价：</span><span class="blue-span" id="originalAmount">0.00</span>
 							</div>
 						</div>
 					</div>
