@@ -1,5 +1,5 @@
 $(function() {
-	showTime();
+	setInterval("showTime()",1000);
 	$('.selectCombo').comboSelect();
 });
 
@@ -32,10 +32,12 @@ function showTime(){
         	default: dayString = "星期六";
         }
         $('#saleDate').text(dateString);
-        setInterval("function() {$(".now").text(dateString +"   "+ timeString +"   "+ dayString);}",1000);
+        $(".now").text(dateString +"   "+ timeString +"   "+ dayString);
+        
         $('#timeString').text(timeString);
         $('#dayString').text(dayString);
     }
+    
     function checkNum(num){
         if(num < 10){
             return "0" + num; 
