@@ -351,7 +351,7 @@
 							
 							<div class="col-lg-4 input-group-lg">
 								<span class="input-group-btn">
-									<button class="btn btn-success" type="button">
+									<button class="btn btn-success" data-toggle="modal" data-target="#saleModal">
 										<i class="fa fa-check"></i>F5&nbsp;&nbsp;结算
 									</button>
 								</span>
@@ -378,7 +378,7 @@
 							
 							<div class="col-lg-5 input-group-lg">
 								<span class="input-group-btn">
-									<button class="btn btn-success" type="button">
+									<button class="btn btn-success" data-toggle="modal" data-target="#saleModal">
 										<i class="fa fa-check"></i>F5&nbsp;&nbsp;结算
 									</button>
 								</span>
@@ -408,10 +408,7 @@
 						</div>
 					</div>
 
-				</div>
-					
-
-					
+				</div>	
 			</div>
 			<!-- /#sale -->
 
@@ -422,6 +419,88 @@
 
 	</div>
 	<!-- /#wrapper -->
+
+
+	<!-- 模态框（Modal） -->
+	<!-- 销售结帐模态框 -->
+	<div class="modal" id="saleModal" tabindex="-1" role="dialog" aria-labelledby="saleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width: 150%;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" 
+							aria-hidden="true">×
+					</button>
+					<div class="row">
+						<div class="col-md-5"><span>收银员：</span><span class="cashier"></span></div>
+						<div class="col-md-3"></div>
+						<div class="col-md-3"><label style="font-weight: bold;"><input type="checkbox" checked>结算时自动打印票据</label></div>
+					</div>
+					
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-horizontal col-md-6">
+							<div class="form-group">
+								<label style="font-size: 35px;" class="col-md-12">应付款Total:	</label>
+								<div class="input-group-lg col-md-8">
+									<input type="text" id="totalAmount" class="form-control" placeholder="应付款/total" disabled>
+								</div>
+								
+							</div>
+							<br><br>
+							<div class="form-group">
+								<label style="font-size: 35px;" class="col-md-12" for="cashPay">收款现金Cash:	</label>
+								<div class="col-md-8 input-group-lg">
+									<input type="number" min="0" id="cashPay" class="form-control" placeholder="收款/cash" autofocus="autofocus">
+	
+								</div>
+								<div class="col-md-4">
+									<button type="button" class="btn btn-lg btn-primary">
+										结账
+									</button>
+								</div>
+							</div>
+							
+						</div>
+						<div class="form-horizontal col-md-6 border-left" style="padding-left: 35px;">
+							<div class="input-group-lg">
+								<label style="font-size: 35px;">找零Change:	</label>
+								<input type="text" id="change" class="form-control" placeholder="找零/change" disabled>
+							</div>
+							<br>
+							<div class="form-group">
+								<label style="font-size: 20px;" class="col-md-4">收款方式:	</label>
+								<div class="col-md-8">
+									<select class="selectCombo"><option>111</option></select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label style="font-size: 20px;" class="col-md-4">原价合计:	</label>
+								<div class="col-md-8">
+									<input type="text" id="totalPrice" class="form-control" placeholder="原价合计" disabled>
+								</div>
+							</div>
+							<div class="form-group">
+								<label style="font-size: 20px;" class="col-md-4">优惠合计:	</label>
+								<div class="col-md-8">
+									<input type="text" id="totalDiscount" class="form-control" placeholder="优惠合计" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" 
+							data-dismiss="modal">关闭
+					</button>
+					<!-- <button type="button" class="btn btn-primary">
+						结账
+					</button> -->
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 
 	<!-- jQuery -->
