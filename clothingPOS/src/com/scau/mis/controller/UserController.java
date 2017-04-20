@@ -12,7 +12,7 @@ import com.scau.mis.service.UserService;
  * 用户信息基础操作
  */
 public class UserController extends Controller {
-	public static Log log = Log.getLog(SizeController.class);
+	public static Log log = Log.getLog(UserController.class);
 	private UserService userService  = new UserService();
 	/**
 	 * 添加一个用户

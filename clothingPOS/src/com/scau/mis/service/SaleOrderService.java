@@ -12,7 +12,7 @@ import com.scau.mis.model.SaleOrder;
  * 销售记录的业务逻辑实现
  */
 public class SaleOrderService {
-	public static Log log = Log.getLog(GoodsService.class);
+	public static Log log = Log.getLog(SaleOrderService.class);
 	/**
 	 * 
 	 * @param saleOrder

@@ -13,7 +13,7 @@ import com.scau.mis.service.SaleOrderService;
  *
  */
 public class SaleOrderController extends Controller {
-	public static Log log = Log.getLog(GoodsController.class);
+	public static Log log = Log.getLog(SaleOrderController.class);
 	private SaleOrderService service = new SaleOrderService();
 	/**
 	 * 添加一条销售记录

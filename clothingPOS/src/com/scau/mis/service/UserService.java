@@ -12,7 +12,7 @@ import com.scau.mis.model.User;
  * 用户信息基础操作
  */
 public class UserService {
-	public static Log log = Log.getLog(SizeService.class);
+	public static Log log = Log.getLog(UserService.class);
 	/**
 	 * 
 	 * @param user
