@@ -1,9 +1,14 @@
 label {
 	font-weight: normal;
 }
+/* 销售下单 */
+#sale-content{
+	height: 400px;
+	overflow-y: scroll;
+}
 #sale-bottom{
-	position: absolute;
-	bottom: 10px;
+	/* position: absolute;
+	bottom: 10px; */
 	padding-top: 30px;
 	border-top: 2px solid #e7e7e7;
 }
