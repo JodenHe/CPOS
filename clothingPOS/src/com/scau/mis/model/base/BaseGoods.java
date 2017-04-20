@@ -97,4 +97,12 @@ public abstract class BaseGoods<M extends BaseGoods<M>> extends Model<M> impleme
 		return get("createTime");
 	}
 
+	public void setState(java.lang.Integer state) {
+		set("state", state);
+	}
+
+	public java.lang.Integer getState() {
+		return get("state");
+	}
+
 }

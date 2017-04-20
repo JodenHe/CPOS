@@ -41,4 +41,12 @@ public abstract class BaseColor<M extends BaseColor<M>> extends Model<M> impleme
 		return get("createTime");
 	}
 
+	public void setState(java.lang.Integer state) {
+		set("state", state);
+	}
+
+	public java.lang.Integer getState() {
+		return get("state");
+	}
+
 }

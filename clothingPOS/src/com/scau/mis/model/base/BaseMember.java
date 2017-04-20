@@ -33,6 +33,14 @@ public abstract class BaseMember<M extends BaseMember<M>> extends Model<M> imple
 		return get("operatorId");
 	}
 
+	public void setCustomerNo(java.lang.String customerNo) {
+		set("customerNo", customerNo);
+	}
+
+	public java.lang.String getCustomerNo() {
+		return get("customerNo");
+	}
+
 	public void setName(java.lang.String name) {
 		set("name", name);
 	}
