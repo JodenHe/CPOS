@@ -3,10 +3,111 @@
 <head>
 	<meta charset="UTF-8">
 	<title>打印消费结账单</title>
+
+	<!-- jQuery -->
+	<script src="../resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
+	<!-- jQuery.print -->
+	<script src="../resources/js/jQuery.print.js"></script>
+
+	<!-- 加载自定义的js -->
+	<script type="text/javascript">
+		// var contextPath = '${contextPath}';
+		
+		$(function () {
+			var content = '<table width="200" border="0" align="center" cellpadding="0" cellspacing="0">'+
+			  '<tbody>'+
+				  '<tr>'+
+				    '<td valign="middle">'+
+				    	'<div align="center"><font style="font-size:18px;line-height: 25px;">${#data.shop}</font> <br>消费结帐单<br></div>'+
+				    '</td>'+
+				  '</tr>'+
+				  '<tr>'+
+				    '<td width="200" valign="middle" bgcolor="#FFFFFF"><div align="left">交易流水号：${#data.paymentNo}<br>消费单号：${#data.soNo}</div></td>'+
+				  '</tr>'+
+				  '<tr>'+
+				    '<td valign="middle" bgcolor="#FFFFFF"><div style="border-bottom:1px dashed #000;margin: 12px 0;"></div></td>'+
+				  '</tr>'+
+				  '<tr>'+
+				    '<td valign="middle" bgcolor="#FFFFFF">'+
+					    '<div align="left">'+
+					        '<table width="100%" border="0" cellpadding="0" cellspacing="0">'+
+					          '<tbody>'+
+						          '<tr>'+
+						            '<td><div align="center" style="font-size: 12">单价</div></td>'+
+						            '<td><div align="center" style="font-size: 12">数量</div></td>'+
+									'<td><div align="center" style="font-size: 12">合计</div></td>'+
+						          '</tr>'+
+						          /*'<#list iList as item>  '+*/
+									  '<tr>'+
+							            '<td colspan="5" align="center" valign="bottom"><div align="left">[${item.barcode}]&nbsp;${item.name}</div></td>'+
+							          '</tr>'+
+							          '<tr>'+
+							            '<td align="center" valign="bottom">${item.price}</td>'+
+							            '<td align="center" valign="bottom">${item.quantity}</td>'+
+										'<td align="center" valign="bottom">${item.subTotal}</td>'+
+							          '</tr>'+
+								  /*'</#list> '+*/
+			                  '</tbody>'+
+		                  '</table>'+
+					    '</div>'+
+				    '</td>'+
+				  '</tr>'+
+				  '<tr>'+
+				    '<td valign="middle" bgcolor="#FFFFFF"><div style="border-bottom:1px dashed #000;margin: 12px 0;"></div></td>'+
+			  	  '</tr>'+
+				  '<tr>'+
+				    '<td valign="middle" bgcolor="#FFFFFF">'+
+					    '<table width="100%" border="0" cellpadding="0" cellspacing="0">'+
+					        '<tbody>'+
+					        	'<tr>'+
+						          '<td>'+
+								  '应付：${#data.shouldPaid} 元<br>'+
+								  '现付：${#data.realdPaid} 元  <br>'+
+								  '找零：${#data.change} 元<br>	'+	  
+								  '操作员：${#data.operator}'+
+								  '</td>'+
+					        	'</tr>'+
+					    	'</tbody>'+
+					    '</table>'+
+				    '</td>'+
+				  '</tr>'+
+				  '<tr>'+
+				    '<td valign="middle" bgcolor="#FFFFFF">时间：2017-04-20 23:31:48</td>'+
+				  '</tr>'+
+			      '<tr>'+
+				    '<td align="left" bgcolor="#FFFFFF">电话：02584407055<br>地址：万源万达广场凤凰里88号</td>'+
+				  '</tr>'+
+			      '<tr>'+
+				    '<td align="center" bgcolor="#FFFFFF"></td>'+
+				  '</tr>'+
+			  	  '<tr>'+
+				   	'<td align="center" bgcolor="#FFFFFF" height="50">*服装POS系统* 信管35组<br></td>'+
+				  '</tr>'+
+			  '</tbody>'+
+		'</table>';
+			jQuery().print({
+				//Use Global styles
+                /*globalStyles : false,*/
+                //Add link with attrbute media=print
+                mediaPrint : false,
+                //Custom stylesheet
+                /*stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",*/
+                //Print in a hidden iframe
+                iframe : false,
+                //Don't print this
+                noPrintSelector : ".avoid-this",
+                //Add this at top
+                prepend : content,
+                //Add this on bottom
+                append : "<br/>Buh Bye!",
+				deferred: $.Deferred().done(function() { })
+			});
+		});
+	</script>
 </head>
 <body>
 	
-	<div>
+	<div id="salePrint1">
 		<table width="200" border="0" align="center" cellpadding="0" cellspacing="0">
 			  <tbody>
 				  <tr>
@@ -81,6 +182,8 @@
 		</table>
 
 	</div>
-	
+	<button id="testPrint" class="print-link no-print" onclick="jQuery('#salePrint').print()">
+        	打印这个元素的内容 (jQuery('#ele1').print())
+    </button>
 </body>
 </html>
