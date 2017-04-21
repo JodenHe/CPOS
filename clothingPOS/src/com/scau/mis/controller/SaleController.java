@@ -12,7 +12,7 @@ import com.scau.mis.service.GoodsService;
  *
  */
 public class SaleController extends Controller {
-	public static Log log = Log.getLog(GoodsController.class);
+	public static Log log = Log.getLog(SaleController.class);
 	private GoodsService goodsService = new GoodsService();
 	/**
 	 * 通过条形码获得符合条件的商品 参数：Goods.barcode;
