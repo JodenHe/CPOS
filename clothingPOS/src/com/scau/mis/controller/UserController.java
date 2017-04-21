@@ -3,7 +3,6 @@ package com.scau.mis.controller;
 
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
-import com.scau.mis.model.Size;
 import com.scau.mis.model.User;
 import com.scau.mis.service.UserService;
 /**

@@ -6,6 +6,10 @@ import com.scau.mis.controller.BrandController;
 import com.scau.mis.controller.CategoryController;
 import com.scau.mis.controller.ColorController;
 import com.scau.mis.controller.GoodsController;
+import com.scau.mis.controller.SaleOrderController;
+import com.scau.mis.controller.SaleOrderItemController;
+import com.scau.mis.controller.SaleRejectOrderController;
+import com.scau.mis.controller.SaleRejectOrderItemController;
 import com.scau.mis.controller.ShopController;
 import com.scau.mis.controller.SizeController;
 
@@ -24,6 +28,10 @@ public class AdminRoutes extends Routes {
 		add("/size",SizeController.class);
 		add("/goods",GoodsController.class);
 		add("/shop",ShopController.class);
+		add("/so",SaleOrderController.class);
+		add("/soi",SaleOrderItemController.class);
+		add("/sro",SaleRejectOrderController.class);
+		add("/sroi",SaleRejectOrderItemController.class);
 	}
 
 }
