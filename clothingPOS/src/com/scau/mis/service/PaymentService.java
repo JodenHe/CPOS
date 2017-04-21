@@ -48,7 +48,7 @@ public class PaymentService {
 	}
 	/**
 	 * 
-	 * @return 获得所有的支付记录
+	 * @return 获得所有的支付信息
 	 */
 	public Map<String,Object> getAllPayment(){
 		Map<String,Object> result = new HashMap<String,Object>();
