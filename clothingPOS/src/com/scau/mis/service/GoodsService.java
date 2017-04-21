@@ -1,5 +1,6 @@
 package com.scau.mis.service;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +146,19 @@ public class GoodsService {
 			return goods;
 		else
 			return null;
+	}
+	public Map<String,Object> getGoodsByBarcode(String barcode){
+		Map<String,Object> result =new HashMap<String,Object>();
+		String sql = "select * from goods as g where g.barcode like'%"+barcode+"%'";
+		List<Goods> goods = Goods.dao.find(sql);
+		if(goods.size()!=0){
+			result.put("status", true);
+			result.put("data", goods);
+		}else{
+			result.put("status", true);
+			result.put("data", "没有符合条件的商品");
+		}
+		return result;
 	}
 
 	/**
