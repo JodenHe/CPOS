@@ -1,20 +1,34 @@
 $(function() {
 	setInterval("showTime()",1000);
 	$('.selectCombo').comboSelect();
-	/* center modal */ 
-	function centerModals() { 
-		$('#saleModal').each(function(i) { 
-		var $clone = $(this).clone().css('display', 'block').appendTo('body'); var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2); 
-		top = top > 0 ? top : 0; 
-		$clone.remove(); 
-		$(this).find('.modal-content').css("margin-top", top); 
-	}); 
-	} 
-	$('#saleModal').on('show.bs.modal', centerModals); 
-	$(window).on('resize', centerModals); 
+    modelCenter();//模态库居中
 });
 
+/* center modal */ 
+function modelCenter(){
 
+    function centerModals() { 
+        $('#saleModal').each(function(i) { 
+        var $clone = $(this).clone().css('display', 'block').appendTo('body'); var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2); 
+        top = top > 0 ? top : 0; 
+        $clone.remove(); 
+        $(this).find('.modal-content').css("margin-top", top); 
+    });
+    $('#goodsModal').each(function(i) { 
+        var $clone = $(this).clone().css('display', 'block').appendTo('body'); 
+        var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2); 
+        top = top > 0 ? top : 0; 
+        $clone.remove(); 
+        $(this).find('.modal-content').css("margin-top", top); 
+    });  
+    } 
+    $('#saleModal').on('show.bs.modal', centerModals); 
+    $('#goodsModal').on('show.bs.modal', centerModals); 
+    $(window).on('resize', centerModals);
+    
+}
+
+/*显示当前时间*/
 function showTime(){
         var date     = new Date();
         var year     = date.getFullYear();    //获取完整的年份(4位,1970-????)
@@ -49,9 +63,72 @@ function showTime(){
         $('#dayString').text(dayString);
     }
     
-    function checkNum(num){
-        if(num < 10){
-            return "0" + num; 
-        }
-        return num;
+function checkNum(num){
+    if(num < 10){
+        return "0" + num; 
     }
+    return num;
+}
+
+//列出所有的商品，dataTable展示
+function searchGoods() {
+    var barcode = $("#search-goods-barcode").val();
+    $.ajax({
+        type : "POST",
+        url : contextPath + "/sale/getGoodsByBarcode",
+        data : {
+            "Goods.barcode" : barcode
+        },
+        datatype : "json",
+        success : function(result) {
+            goodsDataTable(result);
+            
+        },
+        error : function(result) {
+            console.log("未知错误！");
+        }
+    });
+}
+//辅助getAllGoods()方法，dataTable
+function goodsDataTable(data) {
+    var goodsTable = $('#goods-table')
+            .DataTable(
+                    {
+                        destroy : true,
+                        "bAutoWidth" : false,
+                        "aoColumnDefs" : [ {
+                                                "bSearchable" : false,
+                                                "aTargets" : [ 0]
+                                            },
+                                            {
+                                                "bSortable" : false,
+                                                "aTargets" : [  ]
+                                            },
+                                         ],
+                        "order": [[ 5, "desc" ]],//默认第6列降序排列
+                        data : data,
+                        // 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+                        columns : [ {
+                            data : 'barcode'
+                        }, {
+                            data : 'name'
+                        }, {
+                            data : 'price'
+                        }, {
+                            data : 'id'
+                        },{
+                            data : 'script'
+                        }, {
+                            data : 'createTime'
+                        }, ],                        
+                        "language": {
+                            "url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+                        },
+                        "fnCreatedRow" : function(nRow, aData, iDataIndex) {                            
+                            
+                        },
+                        "fnRowCallback" : function(nRow, aaData, iDisplayIndex,
+                                iDisplayIndexFull) {
+                        },
+                    });
+}

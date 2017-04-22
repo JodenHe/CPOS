@@ -6,6 +6,7 @@ import com.scau.mis.controller.BrandController;
 import com.scau.mis.controller.CategoryController;
 import com.scau.mis.controller.ColorController;
 import com.scau.mis.controller.GoodsController;
+import com.scau.mis.controller.SaleController;
 import com.scau.mis.controller.SaleOrderController;
 import com.scau.mis.controller.SaleOrderItemController;
 import com.scau.mis.controller.SaleRejectOrderController;
@@ -32,6 +33,7 @@ public class AdminRoutes extends Routes {
 		add("/soi",SaleOrderItemController.class);
 		add("/sro",SaleRejectOrderController.class);
 		add("/sroi",SaleRejectOrderItemController.class);
+		add("/sale",SaleController.class);
 	}
 
 }

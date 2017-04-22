@@ -1,6 +1,5 @@
 package com.scau.mis.service;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,24 +146,18 @@ public class GoodsService {
 		else
 			return null;
 	}
-	public Map<String,Object> getGoodsByBarcode(String barcode){
-		
-		Map<String,Object> result =new HashMap<String,Object>();
-		if(barcode.equals("")||barcode==null){
-			result.put("status", false);
-			result.put("data", "条形码不能为空");
+	/**
+	 * 按条形码搜索商品，条形码为空，返回所有商品
+	 * @param barcode 条形码
+	 * @return List<Goods>
+	 */
+	public List<Goods> getGoodsByBarcode(String barcode){
+		if(barcode.equals("")||null==barcode){//如果条形码为空，则返回所有商品
+			return getAllGoods();
 		}else{
 			String sql = "select * from goods as g where g.barcode like'%"+barcode+"%'";
-			List<Goods> goods = Goods.dao.find(sql);
-			if(goods.size()!=0){
-				result.put("status", true);
-				result.put("data", goods);
-			}else{
-				result.put("status", true);
-				result.put("data", "没有符合条件的商品");
-			}
+			return Goods.dao.find(sql);
 		}
-		return result;
 	}
 
 	/**
