@@ -1,11 +1,14 @@
 package com.scau.mis.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.Payment;
+import com.scau.mis.util.TimeUtils;
 
 /**
  * 支付业务逻辑实现
@@ -21,9 +24,16 @@ public class PaymentService {
 	 */
 	public Map<String,Object> addPayment(Payment payment){
 		Map<String,Object> result = new HashMap<String,Object>();
+		////P-2017-04-22-1974409033,订单编号编码规则，P-2017-04-22加上UUID的hashCOde
+		String paymentNo = "P-"+TimeUtils.getCurrentDate()+"-"+UUID.randomUUID().toString().hashCode();
+		payment.setOperatorId(2l);//完成登录功能后，此处应改为从session中获取用户编号
+		payment.setShopId(1l);//完成登录功能后，此处应改为从session中获取店铺id
+		payment.setPayDateTime(new Date());
+		payment.setPaymentNo(paymentNo);
 		if(payment.save()){
 			result.put("status", true);
 			result.put("data", "支付成功");
+			result.put("paymentNo", paymentNo);
 		}else{
 			result.put("status", false);
 			result.put("data", "支付出现了意外");

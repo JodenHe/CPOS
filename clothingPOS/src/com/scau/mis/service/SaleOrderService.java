@@ -1,11 +1,14 @@
 package com.scau.mis.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.SaleOrder;
+import com.scau.mis.util.TimeUtils;
 /**
  * 
  * @author 建棠
@@ -19,18 +22,25 @@ public class SaleOrderService {
 	 * @return 添加销售记录
 	 */
 	public Map<String,Object> addSaleOrder(SaleOrder saleOrder){
+
 		Map<String,Object> result = new HashMap<String,Object>();
-		if(!isExist(saleOrder.getSaleOrderNo())){
-			result.put("status", false);
-			result.put("data", "订单号已存在");
+		//SO-2017-04-22-1974409033,订单编号编码规则，SO-2017-04-22加上UUID的hashCOde
+		String saleOrderNo = "SO-"+TimeUtils.getCurrentDate()+"-"+UUID.randomUUID().toString().hashCode();
+		saleOrder.setSaleDateTime(new Date());
+		saleOrder.setSaleOrderNo(saleOrderNo);
+		if (null == saleOrder.getCustomerNo()|| saleOrder.getCustomerNo().equals("")) {//判断是不是散客
+			saleOrder.setCustomerNo("0001");//完成登录功能你后，此处应改为从session中获取客户编号
+		}
+		saleOrder.setOperatorId(2l);//完成登录功能你后，此处应改为从session中获取用户编号
+		saleOrder.setShopId(1l);//完成登录功能你后，此处应改为从session中获取用户编号
+
+		if(saleOrder.save()){
+			result.put("status", true);
+			result.put("data", "订单已提交");
+			result.put("saleOrderNo", saleOrderNo);
 		}else{
-			if(saleOrder.save()){
-				result.put("status", true);
-				result.put("data", "订单已提交");
-			}else{
-				result.put("status", false);
-				result.put("data", "提交失败");
-			}
+			result.put("status", false);
+			result.put("data", "提交失败");
 		}
 		return result;
 	}
@@ -74,6 +84,6 @@ public class SaleOrderService {
 		}else{
 			return false;
 		}
-		
+
 	}
 }

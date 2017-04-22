@@ -1,7 +1,5 @@
 package com.scau.mis.controller;
 
-import java.util.Date;
-
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.SaleOrder;
@@ -20,7 +18,6 @@ public class SaleOrderController extends Controller {
 	 */
 	public void add(){
 		SaleOrder saleOrder = getModel(SaleOrder.class);
-		saleOrder.setSaleDateTime(new Date());
 		renderJson(service.addSaleOrder(saleOrder));
 	}
 	/**

@@ -3,7 +3,7 @@ $(function() {
 	$('.selectCombo').comboSelect();
 
     modelCenter();//模态库居中
-    inintSaleItemTable();//初始化销售明细表
+    inintSale();//初始化销售明细表
     
 });
 
@@ -76,13 +76,20 @@ function checkNum(num){
     }
     return num;
 }
-
-//初始化明细表
-function inintSaleItemTable(){
+//进行销售前先初始化
+function inintSale() {
+    //初始化明细表
     $("#sale-item-table tbody").html("");
     for (var i = 0;i<100;i++){
         $("#sale-item-table tbody").append("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
     }
+    //初始化页面的数据，售，数量，原价，会员编号，会员姓名
+    $("#member").val("");
+    $("#memberName").val("");
+    $("#memberPhone").val("");
+    $("#saleAmount").html("0.00");
+    $("#saleQuantity").html("0");
+    $("#originalAmount").html("0.00");
 }
 //添加销售明细
 function addSaleItem(barcode,name,price){
@@ -122,7 +129,14 @@ function calSale(){
 function bill(){
     $("#totalAmount").val( $("#saleAmount").text() );
     $("#totalPrice").val( $("#originalAmount").text() );
-    $("#totalDiscount").val( ($("#originalAmount").text() - $("#saleAmount").text()).toFixed(2) )  
+    $("#totalDiscount").val( ($("#originalAmount").text() - $("#saleAmount").text()).toFixed(2) );
+    var len = $("#sale-item-table tbody tr").length-100;//获取表格中有值的长度
+    if (len>0) {
+        $("#saleModal").modal('show');//打开模态库  
+    } else {
+        alert("没添加任何商品！");
+    }
+    
 }
 //找零
 function calChange(num){
@@ -206,6 +220,199 @@ function goodsDataTable(data) {
         addSaleItem(barcode,name,price);
         $("#goodsModal").modal('hide');//关闭模态库    
     } );
+}
+//销售下单
+function makesale(){
+    var total = $("#saleAmount").text()-0;
+    var cashPay = $("#cashPay").val()-0;
+    if (cashPay>=total) {
+            $.ajax({
+                type : "POST",
+                url : contextPath + "/so/add",
+                data : {
+                    "saleOrder.total" : total
+                },
+                datatype : "json",
+                success : function(result) {
+                    if (result.status) {
+                        makesaleitem(result.saleOrderNo);
+                    } else {
+                        alert(result.data);
+                    }
+                    
+                },
+                error : function(result) {
+                    console.log("未知错误！");
+                }
+            });
+    } else {
+        alert("收款现金不能少于应付款！");
+    }
 
-    
+}
+//销售下单
+function makesaleitem(saleOrderNo){
+    var item="";
+    var trs = $("#sale-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    for(var i = 0; i < len; i++){
+        var itemId = trs.eq(i).find("td").eq(0).text();//商品编号
+        var itemName = trs.eq(i).find("td").eq(1).text();//商品编号
+        var salePrice = trs.eq(i).find("td").eq(3).text();//商品单价
+        var quantity = trs.eq(i).find("td").eq(2).find("input").val()-0;//某个商品的购买数量
+        var subTotal = trs.eq(i).find("td").eq(4).text()-0;//某个商品的购买小计
+
+        item +='<tr>'+
+                    '<td colspan="5" align="center" valign="bottom"><div align="left">['+itemId+']&nbsp;'+itemName+'</div></td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td align="center" valign="bottom">'+salePrice+'</td>'+
+                    '<td align="center" valign="bottom">'+quantity+'</td>'+
+                    '<td align="center" valign="bottom">'+subTotal+'</td>'+
+                  '</tr>';
+
+            $.ajax({
+                type : "POST",
+                url : contextPath + "/soi/add",
+                data : {
+                    'saleOrderItem.saleOrderNo' : saleOrderNo,
+                    'saleOrderItem.itemId' : itemId,
+                    'saleOrderItem.salePrice' : salePrice,
+                    'saleOrderItem.quantity' : quantity,
+                    'saleOrderItem.subTotal' : subTotal,
+                },
+                datatype : "json",
+                success : function(result) {
+                    if (result.status) {
+                        
+                    } else {
+                        alert(result.data);
+                    }
+                    
+                },
+                error : function(result) {
+                    console.log("未知错误！");
+                }
+            });
+    }
+    pay(saleOrderNo,item);//支付
+}
+//支付
+function pay(saleOrderNo,item){
+    var payType = $("#payType").val();
+    var totalAmount = $("#totalAmount").val();
+    var payTransactionNo =null;
+
+    $.ajax({
+        type : "POST",
+        url : contextPath + "/pay/add",
+        data : {
+            'payment.saleOrderNo' : saleOrderNo,
+            'payment.amount' : totalAmount,
+            'payment.payType' : payType,
+            'payment.payTransactionNo' : payTransactionNo,
+        },
+        datatype : "json",
+        success : function(result) {
+            if (result.status) {
+                 alert(result.data);
+                 $("#saleModal").modal('hide');//关闭模态库  
+                 printSale(saleOrderNo,result.paymentNo,item);//打印凭条
+                 inintSale();//初始化页面
+            } else {
+                alert(result.data);
+            }
+            
+        },
+        error : function(result) {
+            console.log("未知错误！");
+        }
+    });
+}
+//打印凭条
+function printSale(soNo,paymentNo,item) {
+    var shouldPaid=$("#totalAmount").val();
+    var realdPaid=$("#cashPay").val();
+    var change=$("#change").val();
+    var time = new Date().toLocaleString( ) ;//当前时间
+    var content = '<table width="200" border="0" align="center" cellpadding="0" cellspacing="0">'+
+              '<tbody>'+
+                  '<tr>'+
+                    '<td valign="middle">'+
+                        '<div align="center"><font style="font-size:18px;line-height: 25px;">35组服装POS公司</font> <br>消费结帐单<br></div>'+
+                    '</td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td width="200" valign="middle" bgcolor="#FFFFFF"><div align="left">交易流水号：'+paymentNo+'<br>消费单号：'+soNo+'</div></td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td valign="middle" bgcolor="#FFFFFF"><div style="border-bottom:1px dashed #000;margin: 12px 0;"></div></td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td valign="middle" bgcolor="#FFFFFF">'+
+                        '<div align="left">'+
+                            '<table width="100%" border="0" cellpadding="0" cellspacing="0">'+
+                              '<tbody>'+
+                                  '<tr>'+
+                                    '<td><div align="center" style="font-size: 12">单价</div></td>'+
+                                    '<td><div align="center" style="font-size: 12">数量</div></td>'+
+                                    '<td><div align="center" style="font-size: 12">合计</div></td>'+
+                                  '</tr>'+
+                                  item+
+                              '</tbody>'+
+                          '</table>'+
+                        '</div>'+
+                    '</td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td valign="middle" bgcolor="#FFFFFF"><div style="border-bottom:1px dashed #000;margin: 12px 0;"></div></td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td valign="middle" bgcolor="#FFFFFF">'+
+                        '<table width="100%" border="0" cellpadding="0" cellspacing="0">'+
+                            '<tbody>'+
+                                '<tr>'+
+                                  '<td>'+
+                                  '应付：'+shouldPaid+' 元<br>'+
+                                  '现付：'+realdPaid+' 元  <br>'+
+                                  '找零：'+change+' 元<br> '+    
+                                  '操作员：cashier'+
+                                  '</td>'+
+                                '</tr>'+
+                            '</tbody>'+
+                        '</table>'+
+                    '</td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td valign="middle" bgcolor="#FFFFFF">时间：'+time+'</td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td align="left" bgcolor="#FFFFFF">电话：02584407055<br>地址：华南农业大学</td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td align="center" bgcolor="#FFFFFF"></td>'+
+                  '</tr>'+
+                  '<tr>'+
+                    '<td align="center" bgcolor="#FFFFFF" height="50">*服装POS系统* 信管35组<br></td>'+
+                  '</tr>'+
+              '</tbody>'+
+        '</table>';
+        console.log(content)
+    jQuery("#salePrint").print({
+            //Use Global styles
+            /*globalStyles : false,*/
+            //Add link with attrbute media=print
+            mediaPrint : false,
+            //Custom stylesheet
+            /*stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",*/
+            //Print in a hidden iframe
+            iframe : false,
+            //Don't print this
+            noPrintSelector : ".avoid-this",
+            //Add this at top
+            prepend : content,
+            //Add this on bottom
+            append : "<br/>Buh Bye!",
+            deferred: $.Deferred().done(function() { })
+        });
 }
