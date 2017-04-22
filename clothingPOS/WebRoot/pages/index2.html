@@ -331,6 +331,7 @@
 							<th>数量</th>
 							<th>单价</th>
 							<th>小计</th>
+							<th></th>
 						</thead>
 						<tbody></tbody>
 					</table>
@@ -352,7 +353,7 @@
 							
 							<div class="col-lg-4 input-group-lg">
 								<span class="input-group-btn">
-									<button class="btn btn-success" data-toggle="modal" data-target="#saleModal">
+									<button class="btn btn-success" data-toggle="modal" data-target="#saleModal" onclick="bill();">
 										<i class="fa fa-check"></i>F5&nbsp;&nbsp;结算
 									</button>
 								</span>
@@ -401,7 +402,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-lg-6">
-								<span class="blue-span">数量：</span><span class="blue-span" id="saleAmount">0.00个</span>
+								<span class="blue-span">数量：</span><span class="blue-span" id="saleQuantity">0个</span>
 							</div>
 							<div class="col-lg-6">
 								<span class="blue-span">原价：</span><span class="blue-span" id="originalAmount">0.00</span>
@@ -452,7 +453,7 @@
 							<div class="form-group">
 								<label style="font-size: 35px;" class="col-md-12" for="cashPay">收款现金Cash:	</label>
 								<div class="col-md-8 input-group-lg">
-									<input type="number" min="0" id="cashPay" class="form-control" placeholder="收款/cash" autofocus="autofocus">
+									<input type="number" min="0" id="cashPay" class="form-control" placeholder="收款/cash" autofocus="autofocus" onchange="calChange(this.value);">
 	
 								</div>
 								<div class="col-md-4">
@@ -503,7 +504,7 @@
 		</div><!-- /.modal-dialog -->
 	</div>
 	<!-- 输入商品条形码显示商品的模态框 -->
-	<div class="modal" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="goodsModalLabel" aria-hidden="true">
+	<div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="goodsModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content" style="width: 150%;">
 				<div class="modal-header">

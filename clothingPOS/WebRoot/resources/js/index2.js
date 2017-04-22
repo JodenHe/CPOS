@@ -4,6 +4,7 @@ $(function() {
 
     modelCenter();//模态库居中
     inintSaleItemTable();//初始化销售明细表
+    
 });
 
 /* center modal */ 
@@ -27,6 +28,11 @@ function modelCenter(){
     // $('#goodsModal').on('show.bs.modal', centerModals); 
     $(window).on('resize', centerModals);
     
+}
+//backdrop 为 static 时，点击模态对话框的外部区域不会将其关闭。keyboard 为 false 时，按下 Esc 键不会关闭 Modal。
+function modelStatic(){
+    console.log("bbbb")
+    $('#goodsModal').modal({backdrop: 'static', keyboard: false});
 }
 
 /*显示当前时间*/
@@ -75,22 +81,57 @@ function checkNum(num){
 function inintSaleItemTable(){
     $("#sale-item-table tbody").html("");
     for (var i = 0;i<100;i++){
-        $("#sale-item-table tbody").append("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
+        $("#sale-item-table tbody").append("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
     }
 }
 //添加销售明细
 function addSaleItem(barcode,name,price){
-    var str = "<tr><td>"+barcode+"</td><td>"+name+"</td><td><input type='number' min='0' value='1' onchange='subTotal(this,this.value)'></td><td>"+(price-0).toFixed(2)+"</td><td>"+(price-0).toFixed(2)+"</td></tr>"
+    var str = "<tr><td>"+barcode+"</td><td>"+name+"</td><td><input type='number' min='0' value='1' onchange='subTotal(this,this.value);calSale();'></td><td>"+(price-0).toFixed(2)+"</td><td>"+(price-0).toFixed(2)+"</td><td onclick='deleteSaleItem(this);'><i class='fa fa-trash-o'></i></td>></tr>"
     $("#sale-item-table tbody").prepend(str);
+    calSale();
+}
+//删除销售明细
+function deleteSaleItem(btn){
+   var c = btn.parentNode;
+    c.parentNode.removeChild(c);
+    calSale();
 }
 //改变数量，小计变化
 function subTotal(eventObj,quantity){
-   var price = $(eventObj).parent().siblings().eq(3).text() - 0;
+   var price = $(eventObj).parent().siblings().eq(2).text() - 0;
    var subTotal = quantity * price;
    $(eventObj).parent().siblings().eq(3).html(subTotal.toFixed(2))//.toFixed(2)保留小数点两位
 }
-function calSaleAmount(){
-    
+//售，原价，数量
+function calSale(){
+    var quantity = 0;
+    var totalAmount = 0.00;
+    var trs = $("#sale-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    for(var i = 0; i < len; i++){
+        var num1 = trs.eq(i).find("td").eq(2).find("input").val()-0;//某个商品的购买数量
+        var num2 = trs.eq(i).find("td").eq(4).text()-0;//某个商品的购买小计
+        quantity +=  num1;
+        totalAmount += num2
+    }
+    $("#saleAmount").html(totalAmount.toFixed(2));
+    $("#originalAmount").html(totalAmount.toFixed(2));
+    $("#saleQuantity").html(quantity);
+}
+//结算按钮
+function bill(){
+    $("#totalAmount").val( $("#saleAmount").text() );
+    $("#totalPrice").val( $("#originalAmount").text() );
+    $("#totalDiscount").val( ($("#originalAmount").text() - $("#saleAmount").text()).toFixed(2) )  
+}
+//找零
+function calChange(num){
+    var result = num-$("#totalAmount").val();
+    if (result < 0) {
+        alert("收款现金不能小于应付款！");
+    } else {
+      $("#change").val(result.toFixed(2));
+    }
 }
 //列出所有的商品，dataTable展示
 function searchGoods() {
@@ -149,23 +190,22 @@ function goodsDataTable(data) {
                         "language": {
                             "url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
                         },
-                        "fnCreatedRow" : function(nRow, aData, iDataIndex) {                            
-                            
+                        "fnCreatedRow" : function(nRow, aData, iDataIndex) {    
+
                         },
                         "fnRowCallback" : function(nRow, aaData, iDisplayIndex,
                                 iDisplayIndexFull) {
                         },
      });    
-    var flag = 0;
     //添加双击事件
-    $('#goods-table tbody').on('dblclick.dt', 'tr' , function () {
+    $('#goods-table tbody').off('dblclick.dt');//在进行事件绑定前先关闭先前绑定的事件
+    $('#goods-table tbody').one('dblclick.dt', 'tr' , function (event) {
         var barcode = $(this).find(".goods-barcode").text();
         var name = $(this).find(".goods-name").text();
         var price = $(this).find(".goods-price").text();
-        if(flag==0){
-            addSaleItem(barcode,name,price);
-        }
-        $("#goodsModal").modal('hide');//关闭模态库
-        flag++;
+        addSaleItem(barcode,name,price);
+        $("#goodsModal").modal('hide');//关闭模态库    
     } );
+
+    
 }
