@@ -18,30 +18,6 @@ public class IndexController  extends Controller {
 		log.info("进入首页登录界面");
 		render("pages/login.html");
 	}
-
-	/**
-	 * 系统管理员界面
-	 */
-	public void admin() {
-		log.info("进入系统管理员界面");
-		render("pages/index.html");
-	}
-
-	/**
-	 * 收银员界面
-	 */
-	public void cashier() {
-		log.info("进入收银员界面");
-		render("pages/index2.html");
-	}
-
-	/**
-	 * 仓库管理员界面
-	 */
-	public void warehouse() {
-		log.info("仓库管理员界面");
-		render("pages/index3.html");
-	}
 	
 	/**
 	 * 测试页面
