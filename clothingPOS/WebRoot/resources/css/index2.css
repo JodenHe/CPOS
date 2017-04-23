@@ -3,27 +3,30 @@ label {
 }
 /* 销售下单 */
 #sale-content{
-	height: 400px;
+	height: 300px;
 	overflow-y: scroll;
 }
 #sale-bottom{
 	/* position: absolute;
 	bottom: 10px; */
-	padding-top: 30px;
+	padding-top: 10px;
 	border-top: 2px solid #e7e7e7;
 }
 .border-left{	
 	border-left: 2px solid #e7e7e7;
 }
+.border-right{	
+	border-right: 2px solid #e7e7e7;
+}
 .now {
 	color: #0bec0b;
-    font-size: 25px;
+    font-size: large;
 }
 .green-span {
 	color: #0bec0b;
-    font-size: 35px;
+    font-size: xx-large;
 }
 .blue-span {
 	color: #739ECE;
-    font-size: 25px;
+    font-size: large;
 }

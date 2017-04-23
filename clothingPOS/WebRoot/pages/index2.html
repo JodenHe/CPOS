@@ -266,7 +266,7 @@
 				<!-- 销售头部 -->
 				<div class="row sale-header">
 					<div class="col-lg-12 page-header">
-						<div class="col-md-3">
+						<div class="col-sm-4">
 							<!-- <div class="input-group">
 								<label>销售日期：<span id="saleDate"></span></label>
 							</div>
@@ -290,11 +290,11 @@
 							  </div>
 							</form>
 						</div>
-						<div class="col-md-5 border-left">
+						<div class="col-sm-6 border-left">
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
-									<label for="member" class="col-lg-2 control-label">会员编号:</label>
-									<div class="col-lg-6">
+									<label for="member" class="col-lg-3 control-label">会员编号:</label>
+									<div class="col-lg-5">
 										<input type="text" class="form-control" name="member" id="member" placeholder="会员手机号/会员编号">
 
 									</div>
@@ -305,14 +305,14 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="memberName" class="col-lg-2 control-label">会员姓名:	</label>
-									<div class="col-lg-6">
+									<label for="memberName" class="col-lg-3 control-label">会员姓名:	</label>
+									<div class="col-lg-5">
 										<input type="text" class="form-control" name="memberName" placeholder="会员姓名" disabled>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="memberPhone" class="col-lg-2 control-label">会员电话:	</label>
-									<div class="col-lg-6">
+									<label for="memberPhone" class="col-lg-3 control-label">会员电话:	</label>
+									<div class="col-lg-5">
 										<input type="text" class="form-control" name="memberPhone" placeholder="会员电话" disabled>
 									</div>
 								</div>
@@ -338,9 +338,9 @@
 				</div>
 				<!-- 销售尾部 -->
 				<div id="sale-bottom">
-					<div class="form-horizontal col-lg-4">
+					<div class="form-horizontal col-md-5  border-right">
 						<div class="form-group">
-							<div class="col-lg-8 input-group-lg">
+							<div class="col-md-8 input-group-lg">
 								<div class="input-group input-group-lg">
 									<input type="text" id="search-goods-barcode" class="form-control input-group-lg" placeholder="搜索商品" autofocus="autofocus">
 									<span class="input-group-btn">
@@ -351,7 +351,7 @@
 								</div>
 							</div>
 							
-							<div class="col-lg-4 input-group-lg">
+							<div class="col-md-4 input-group-lg">
 								<span class="input-group-btn">
 									<button class="btn btn-success" onclick="bill();">
 										<i class="fa fa-check"></i>F5&nbsp;&nbsp;结算
@@ -360,51 +360,27 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-lg-12">
+							<div class="col-md-12">
 								<span class="now"></span>
 							</div>
 						</div>
 					</div>
-					<div class="form-horizontal col-lg-4 border-left">
-						<div class="form-group">
-							<div class="col-lg-7 input-group-lg">
-								<div class="input-group input-group-lg">
-									<input type="text" class="form-control input-group-lg" placeholder="搜索商品">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">
-											<i class="fa fa-search"></i>选择
-										</button>
-									</span>
-								</div>
-							</div>
-							
-							<div class="col-lg-5 input-group-lg">
-								<span class="input-group-btn">
-									<button class="btn btn-success" data-toggle="modal" data-target="#saleModal">
-										<i class="fa fa-check"></i>F5&nbsp;&nbsp;结算
-									</button>
-								</span>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-lg-12">
-								<span class="now"></span>
-							</div>
-						</div>
+					<div class="form-horizontal col-md-3">
+												
 					</div>
-					<div class="form-horizontal col-lg-4 border-left">
+					<div class="form-horizontal col-md-4 border-left">
 						<div class="form-group" style="border-bottom: 2px solid #e7e7e7;">
-							<div class="col-lg-7 input-group-lg">
+							<div class="col-md-7 input-group-lg">
 								<div class="input-group input-group-lg">
 									<span class="green-span">售：</span><span class="green-span" id="saleAmount">0.00</span>
 								</div>
 							</div>							
 						</div>
 						<div class="form-group">
-							<div class="col-lg-6">
+							<div class="col-md-6">
 								<span class="blue-span">数量：</span><span class="blue-span" id="saleQuantity">0个</span>
 							</div>
-							<div class="col-lg-6">
+							<div class="col-md-6">
 								<span class="blue-span">原价：</span><span class="blue-span" id="originalAmount">0.00</span>
 							</div>
 						</div>
