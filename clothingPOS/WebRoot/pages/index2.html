@@ -246,7 +246,7 @@
 						</li>
 						<li><a href="#"><i class="fa fa-dashboard fa-fw"></i>
 								会员查询</a></li>
-						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+						<li><a href="#"><i class="fa fa-shopping-cart fa-fw"></i>
 								销售管理<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="#">销售</a></li>
@@ -300,7 +300,7 @@
 									</div>
 									<div class="col-lg-4 checkbox">
 										<label>
-											<input type="checkbox" name="">普通客户（F10）
+											<input type="checkbox" id="memberCheckbox">普通客户（F10）
 										</label>
 									</div>
 								</div>
@@ -331,7 +331,7 @@
 							<th>数量</th>
 							<th>单价</th>
 							<th>小计</th>
-							<th></th>
+							<th onclick="deleteAllSaleItem();"><i class="fa fa-trash-o"></i></th>
 						</thead>
 						<tbody></tbody>
 					</table>
@@ -411,7 +411,7 @@
 					<div class="row">
 						<div class="col-md-5"><span>收银员：</span><span class="cashier"></span></div>
 						<div class="col-md-3"></div>
-						<div class="col-md-3"><label style="font-weight: bold;"><input type="checkbox" checked>结算时自动打印票据</label></div>
+						<div class="col-md-3"><label style="font-weight: bold;"><input id="isPrint" type="checkbox" checked>结算时自动打印票据</label></div>
 					</div>
 					
 				</div>

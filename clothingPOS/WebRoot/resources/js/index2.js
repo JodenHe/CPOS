@@ -4,8 +4,35 @@ $(function() {
 
     modelCenter();//模态库居中
     inintSale();//初始化销售明细表
+    keyEvent();//按钮触发事件
     
 });
+
+/*按钮触发事件*/
+function keyEvent() {
+    $(document).keydown(function(event){ 
+
+        switch (event.keyCode){
+           case 116://F5按钮
+               bill();
+               return false;
+               break;
+            case 121://F10按钮
+               $("#memberCheckbox").trigger("click")
+               return false;
+               break;
+            case 13://回车
+                if ( $("#search-goods-barcode").is(':focus') ) {//如果搜索框右脚点就触发
+                    searchGoods();
+                    $("#goodsModal").modal('show');//打开模态库    
+                    return false;
+                } 
+                break;
+           default :console.log(event.keyCode); break;
+           }
+                   
+      });
+}
 
 /* center modal */ 
 function modelCenter(){
@@ -83,13 +110,17 @@ function inintSale() {
     for (var i = 0;i<100;i++){
         $("#sale-item-table tbody").append("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
     }
-    //初始化页面的数据，售，数量，原价，会员编号，会员姓名
+    //初始化页面的数据，售，数量，原价，会员编号，会员姓名,收款现金，找零，支付方式
     $("#member").val("");
     $("#memberName").val("");
     $("#memberPhone").val("");
     $("#saleAmount").html("0.00");
     $("#saleQuantity").html("0");
     $("#originalAmount").html("0.00");
+    $("#cashPay").val("");
+    $("#change").val("");
+    $("#payType").val("0");
+
 }
 //添加销售明细
 function addSaleItem(barcode,name,price){
@@ -101,6 +132,15 @@ function addSaleItem(barcode,name,price){
 function deleteSaleItem(btn){
    var c = btn.parentNode;
     c.parentNode.removeChild(c);
+    calSale();
+}
+//删除所有销售明细
+function deleteAllSaleItem(btn){
+    var trs = $("#sale-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    for(var i=0;i<len;i++){
+        trs.eq(i).remove();
+    }
     calSale();
 }
 //改变数量，小计变化
@@ -317,7 +357,9 @@ function pay(saleOrderNo,item){
             if (result.status) {
                  alert(result.data);
                  $("#saleModal").modal('hide');//关闭模态库  
-                 printSale(saleOrderNo,result.paymentNo,item);//打印凭条
+                 if ($( "#isPrint" ).is( ":checked" ) ) {//判断用户有没选择打印
+                    printSale(saleOrderNo,result.paymentNo,item);//打印凭条
+                 }
                  inintSale();//初始化页面
             } else {
                 alert(result.data);
