@@ -22,7 +22,7 @@ public class CashierController  extends Controller {
 	/**
 	 * 销售界面
 	 */
-	public void admin() {
+	public void sale() {
 		log.info("进入收银员销售界面");
 		render("sale.html");
 	}
