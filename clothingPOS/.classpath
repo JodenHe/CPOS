@@ -30,8 +30,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json-lib-2.2.3-jdk15.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfinal-shiro-2.0.0.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/barcode4j-light-2.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-core-1.2.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-web-1.2.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

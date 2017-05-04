@@ -20,6 +20,14 @@ public class IndexController  extends Controller {
 	}
 	
 	/**
+	 * 首页默认登录界面
+	 */
+	public void login() {
+		log.info("进入首页登录界面");
+		render("pages/login.html");
+	}
+	
+	/**
 	 * 测试页面
 	 */
 	public void test() {
