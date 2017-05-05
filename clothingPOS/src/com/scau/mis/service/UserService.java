@@ -57,6 +57,7 @@ public class UserService {
 	}
 	public boolean isExist(long id,String name){
 		String userName="";
+		@SuppressWarnings("unchecked")
 		List<User> user = (List<User>) User.dao.findById(id);
 		if(user.size()!=0)
 			userName = user.get(0).getUserName();
