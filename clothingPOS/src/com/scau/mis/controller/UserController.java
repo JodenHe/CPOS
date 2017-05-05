@@ -49,7 +49,6 @@ public class UserController extends Controller {
 		if (null == user.getUserName() || null == user.getPassword()) {
 			errorInfo = "用户名或者密码错误";
 			setAttr("errorInfo", errorInfo);
-			System.out.println(errorInfo);
 			forwardAction("/login");
 		}else{
 			UsernamePasswordToken token=new UsernamePasswordToken(user.getUserName(), CryptographyUtil.md5(user.getPassword(), salt));

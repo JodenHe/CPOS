@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>服装POS系统</title>
+
+	<link href="..${contextPath}/resources/img/favicon.ico" rel="icon" type="image/x-icon" />
+
+	<!-- Bootstrap Core CSS -->
+	<link href="..${contextPath}/resources/sbAdmin/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+	<!-- MetisMenu CSS -->
+	<link href="..${contextPath}/resources/sbAdmin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+	<!-- DataTables CSS -->
+    <link href="..${contextPath}/resources/sbAdmin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- DataTables Responsive CSS -->
+    <link href="..${contextPath}/resources/sbAdmin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="..${contextPath}/resources/sbAdmin/dist/css/sb-admin-2.css" rel="stylesheet">
+	<!-- Morris Charts CSS -->
+	<link href="..${contextPath}/resources/sbAdmin/vendor/morrisjs/morris.css" rel="stylesheet">
+	<!-- Custom Fonts -->
+	<link href="..${contextPath}/resources/sbAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- comboSelect -->
+	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/css/combo.select.css">
+	<!-- zTree -->
+	<link rel="stylesheet" href="..${contextPath}/zTree_v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<!-- dataTable -->
+	<!-- <link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/media/css/dataTables.bootstrap.css"> -->
+	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.min.css">
+
+	<!-- 加载自定义的css -->
+	<link href="..${contextPath}/resources/css/zTree-index.css" rel="stylesheet" type="text/css">
+	<link href="..${contextPath}/resources/css/index.css" rel="stylesheet" type="text/css">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+	    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+
+	</head>
+	<body>
+
+		<div id="wrapper">
+
+			<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+				class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="${contextPath}/">服装POS系统</a>
+		</div>
+		<!-- /.navbar-header -->
+
+		<ul class="nav navbar-top-links navbar-right">
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i
+				class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+			</a>
+			<ul class="dropdown-menu dropdown-messages">
+				<li><a href="#">
+					<div>
+						<strong>John Smith</strong> <span class="pull-right text-muted">
+						<em>Yesterday</em>
+					</span>
+				</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+					elit. Pellentesque eleifend...</div>
+				</a></li>
+				<li class="divider"></li>
+				<li><a href="#">
+					<div>
+						<strong>John Smith</strong> <span class="pull-right text-muted">
+						<em>Yesterday</em>
+					</span>
+				</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+					elit. Pellentesque eleifend...</div>
+				</a></li>
+				<li class="divider"></li>
+				<li><a href="#">
+					<div>
+						<strong>John Smith</strong> <span class="pull-right text-muted">
+						<em>Yesterday</em>
+					</span>
+				</div>
+				<div>Lorem ipsum dolor sit amet, consectetur adipiscing
+					elit. Pellentesque eleifend...</div>
+				</a></li>
+				<li class="divider"></li>
+				<li><a class="text-center" href="#"> <strong>Read
+					All Messages</strong> <i class="fa fa-angle-right"></i>
+				</a></li>
+			</ul> <!-- /.dropdown-messages --></li>
+			<!-- 任务 -->
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"> <i class="fa fa-tasks fa-fw"></i>
+				<i class="fa fa-caret-down"></i>
+			</a>
+			<ul class="dropdown-menu dropdown-tasks">
+				<li><a href="#">
+					<div>
+						<p>
+							<strong>Task 1</strong> <span class="pull-right text-muted">40%
+							Complete</span>
+						</p>
+						<div class="progress progress-striped active">
+							<div class="progress-bar progress-bar-success"
+							role="progressbar" aria-valuenow="40" aria-valuemin="0"
+							aria-valuemax="100" style="width: 40%">
+							<span class="sr-only">40% Complete (success)</span>
+						</div>
+					</div>
+				</div>
+			</a></li>
+			<li class="divider"></li>
+			<li><a href="#">
+				<div>
+					<p>
+						<strong>Task 2</strong> <span class="pull-right text-muted">20%
+						Complete</span>
+					</p>
+					<div class="progress progress-striped active">
+						<div class="progress-bar progress-bar-info" role="progressbar"
+						aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"
+						style="width: 20%">
+						<span class="sr-only">20% Complete</span>
+					</div>
+				</div>
+			</div>
+		</a></li>
+		<li class="divider"></li>
+		<li><a href="#">
+			<div>
+				<p>
+					<strong>Task 3</strong> <span class="pull-right text-muted">60%
+					Complete</span>
+				</p>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-warning"
+					role="progressbar" aria-valuenow="60" aria-valuemin="0"
+					aria-valuemax="100" style="width: 60%">
+					<span class="sr-only">60% Complete (warning)</span>
+				</div>
+			</div>
+		</div>
+	</a></li>
+	<li class="divider"></li>
+	<li><a href="#">
+		<div>
+			<p>
+				<strong>Task 4</strong> <span class="pull-right text-muted">80%
+				Complete</span>
+			</p>
+			<div class="progress progress-striped active">
+				<div class="progress-bar progress-bar-danger"
+				role="progressbar" aria-valuenow="80" aria-valuemin="0"
+				aria-valuemax="100" style="width: 80%">
+				<span class="sr-only">80% Complete (danger)</span>
+			</div>
+		</div>
+	</div>
+</a></li>
+<li class="divider"></li>
+<li><a class="text-center" href="#"> <strong>See
+	All Tasks</strong> <i class="fa fa-angle-right"></i>
+</a></li>
+</ul> <!-- /.dropdown-tasks --></li>
+<!-- 通知 -->
+<li class="dropdown"><a class="dropdown-toggle"
+	data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+	<i class="fa fa-caret-down"></i>
+</a>
+<ul class="dropdown-menu dropdown-alerts">
+	<li><a href="#">
+		<div>
+			<i class="fa fa-comment fa-fw"></i> New Comment <span
+			class="pull-right text-muted small">4 minutes ago</span>
+		</div>
+	</a></li>
+	<li class="divider"></li>
+	<li><a href="#">
+		<div>
+			<i class="fa fa-twitter fa-fw"></i> 3 New Followers <span
+			class="pull-right text-muted small">12 minutes ago</span>
+		</div>
+	</a></li>
+	<li class="divider"></li>
+	<li><a href="#">
+		<div>
+			<i class="fa fa-envelope fa-fw"></i> Message Sent <span
+			class="pull-right text-muted small">4 minutes ago</span>
+		</div>
+	</a></li>
+	<li class="divider"></li>
+	<li><a href="#">
+		<div>
+			<i class="fa fa-tasks fa-fw"></i> New Task <span
+			class="pull-right text-muted small">4 minutes ago</span>
+		</div>
+	</a></li>
+	<li class="divider"></li>
+	<li><a href="#">
+		<div>
+			<i class="fa fa-upload fa-fw"></i> Server Rebooted <span
+			class="pull-right text-muted small">4 minutes ago</span>
+		</div>
+	</a></li>
+	<li class="divider"></li>
+	<li><a class="text-center" href="#"> <strong>See
+		All Alerts</strong> <i class="fa fa-angle-right"></i>
+	</a></li>
+</ul> <!-- /.dropdown-alerts --></li>
+<!-- 个人信息 -->
+<li class="dropdown"><a class="dropdown-toggle"
+	data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+	<i class="fa fa-caret-down"></i>
+</a>
+<ul class="dropdown-menu dropdown-user">
+	<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人信息</a></li>
+	<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a></li>
+	<li class="divider"></li>
+	<li><a href="${contextPath}/login"><i
+		class="fa fa-sign-out fa-fw"></i> 退出</a></li>
+	</ul> <!-- /.dropdown-user --></li>
+	<!-- /.dropdown -->
+</ul>
+<!-- /.navbar-top-links -->
+
+<div class="navbar-default sidebar" role="navigation">
+	<div class="sidebar-nav navbar-collapse">
+		<ul class="nav" id="side-menu">
+			<!-- 搜索框 -->
+			<li class="sidebar-search">
+				<div class="input-group custom-search-form">
+					<input type="text" class="form-control" placeholder="搜索...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">
+							<i class="fa fa-search"></i>
+						</button>
+					</span>
+				</div> <!-- /input-group -->
+			</li>
+			<li><a href="${contextPath}/admin"><i class="fa fa-dashboard fa-fw"></i>
+				统计分析</a></li>
+				<li><a href="#"><i class="fa fa-users fa-fw"></i>
+					用户管理<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="#">权限管理</a></li>
+						<li><a href="#">用户信息</a></li>
+						<li><a href="#">账号管理</a></li>
+					</ul> <!-- /.nav-second-level --></li>
+					<li>
+						<a href="#"><i class="fa fa-group fa-fw"></i> 会员管理</a>
+					</li>
+					<li><a href="#"><i class="fa fa-shopping-cart fa-fw"></i>
+								销售管理<span class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="${contextPath}/admin/sale#sale">销售</a></li>
+								<li><a href="#">退货</a></li>
+							</ul> <!-- /.nav-second-level --></li>
+					<li>
+						<a href="${contextPath}/admin/goods#goods"><i class="glyphicon glyphicon-barcode"></i> 商品管理</a>
+					</li>
+					
+						<li><a href="#"><i class="fa fa-truck fa-fw"></i> 库存管理<span
+							class="fa arrow"></span></a>
+							<ul class="nav nav-second-level">
+								<li><a href="#">查库存</a></li>
+								<li><a href="#">退货</a></li>
+								<li><a href="#">订货</a></li>
+							</ul> <!-- /.nav-second-level --></li>
+							<!-- <li><a href="#"><i class="fa fa-edit fa-fw"></i> 交易记录</a></li> -->
+						</ul>
+					</div>
+					<!-- /.sidebar-collapse -->
+				</div>
+				<!-- /.navbar-static-side -->
+			</nav>
+
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header" style="padding-top: 52.5px;">系统管理员</h1>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div> 
+
+				<div id="container">
+
+					<!-- 商品管理 -->
+					<div id="goods-manager">
+
+	                    <div class="panel panel-default">
+	                        
+	                        <div class="panel-heading">
+	                            商品管理
+	                        </div>
+	                        <!-- /.panel-heading -->
+
+	                        <div class="panel-body">
+	                            <!-- Nav tabs -->
+	                            <ul class="nav nav-tabs">
+	                                <li class="active"><a href="#goods-goodsManage" data-toggle="tab" aria-expanded="true">商品管理</a>
+	                                <li class=""><a href="#goods-categoryManage" data-toggle="tab" aria-expanded="false">类别管理</a>
+	                                </li>
+	                                </li>
+	                                <li class=""><a href="#goods-brandManage" data-toggle="tab" aria-expanded="false">品牌管理</a>
+	                                </li>
+	                                <li class=""><a href="#goods-colorManage" data-toggle="tab" aria-expanded="false">颜色管理</a>
+	                                </li>
+	                            </ul>
+
+	                            <!-- Tab panes -->
+	                            <div class="tab-content">
+
+	                               <div id="goods-categoryManage" class="tab-pane fade">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<div class="col-lg-3">
+													<label  for="category-name">类别名称：</label><input class="form-control " type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空"/>
+												</div>
+												<div class="col-lg-4">
+													<div class="row" style="margin-left: 0px;">
+														<label for="pId">父类别:</label>
+													</div>
+													<div class="row">
+														<div class="col-lg-6">
+															<select name="category-firstCategory" id="category-firstCategory" class="selectCombo form-control  showparents category-firstCategory" onchange="getSecondCategory(this.value);">
+																<option value="0">不选，默认无</option>
+															</select>
+														</div>	
+														<div class="col-lg-6">
+															<select name="category-secondCategory" id="category-secondCategory" class="selectCombo form-control  showparents category-secondCategory">
+																<option value="0">不选，默认无</option>
+															</select>
+														</div>	
+													</div>
+												</div>
+											</div>
+											<div class="form-group"	>
+												<div class="col-lg-7">
+													<label  for="category-script">备注：</label>
+													<textarea class="form-control" rows="3" id="category-script" name="category-script" placeholder="请输入描述信息，可以为空"></textarea>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-lg-3">
+													<button type="button" class="btn btn-success btn-lg btn-block" onclick="addCategory();">新增</button>
+												</div>
+												<div class="col-lg-3">
+													<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
+												</div>
+											</div>
+										</form>
+
+										<div class="form-group" style="display: none;">
+											<h3>类别树型菜单：</h3>
+											<div class="zTreeDemoBackground left">
+												<ul id="treeDemo" class="ztree"></ul>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<h3>类别信息维护：	</h3>
+											<table id="categorys-table" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr><th class="details-control"></th><!-- <th>编号</th> --><th>名称</th><th>父类别</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+												</thead>
+												<tbody id="categorys-table-content">
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+	                                <div id="goods-goodsManage" class="tab-pane fade  active in">
+										<div class="form-group">
+											<div>
+												<form class="form-horizontal">
+													<div class="form-group">
+														<div class="col-lg-3">
+															<label  for="goods-name">商品名称：</label><input class="form-control " type="text" id="goods-name" name="goods-name" placeholder="请输入商品名称，不能为空"/>
+														</div>
+														<div class="col-lg-3">
+															<label  for="goods-style">商品款式：</label><input class="form-control " type="text" id="goods-style" name="goods-style" placeholder="请输入商品款式，可以为空"/>
+														</div>
+														<div class="col-lg-3">
+															<label for="goods-category">商品类别:</label>
+															<select id="goods-category" class="selectCombo form-control  goods-category">
+															</select>
+														</div>	
+													</div>
+													<div class="form-group">
+														<div class="col-lg-3">
+															<label for="goods-brand">品牌:</label>
+															<select id="goods-brand" class="selectCombo form-control  goods-brand">
+															</select>
+														</div>	
+														<div class="col-lg-6">
+															<div class="row" style="margin-left: 0px;"><label for="goods-size-type">尺寸:</label></div>
+															<div class="row">
+																<div class="col-lg-6">
+																	<select id="goods-size-type" class="selectCombo form-control goods-size-type" onchange ="getSizeByType(this.value);">
+																	<!-- <option>请选择尺寸类型</option> -->
+																	</select>
+																</div>	
+																<div class="col-lg-6">
+																	<select id="goods-size" class="selectCombo form-control goods-size">
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-3">
+															<div  style="margin-top:35px;"><a data-toggle="modal" data-target="#sizeModel" onclick="initSizeModel()">自定义尺寸？</a></div>
+														</div>
+
+													</div>
+													
+													<div class="form-group">
+														<div class="col-lg-3">
+															<label for="goods-color">颜色:</label>
+															<select id="goods-color" class="selectCombo form-control  goods-color">
+															</select>
+														</div>	
+														<div class="col-lg-3">
+															<label  for="goods-price">售价：</label>
+															<div class="input-group">
+					                                            <span class="input-group-addon">￥</span>
+					                                            <input class="form-control " type="number" min="0" id="goods-price" name="goods-price" placeholder="售价，默认为零" />
+					                                            <span class="input-group-addon">.00</span>
+					                                        </div> 
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-lg-9">
+															<textarea class="form-control" rows="3" id="goods-script" name="goods-script" placeholder="请输入描述信息，可以为空"></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-lg-3">
+															<button type="button" class="btn btn-success btn-lg btn-block" onclick="addGoods();">新增</button>
+														</div>
+														<div class="col-lg-3">
+															<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
+														</div>
+													</div>
+												</form>
+											</div>
+											<div class="form-group">
+												<h3>商品信息维护：	</h3>
+												<table id="goods-table" class="table table-striped table-bordered table-hover" >
+													<thead>
+														<tr><th class="details-control"></th><th>商品代码</th><th>名称</th><th>售价</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+													</thead>
+													<tbody id="goods-table-content">
+
+													</tbody>
+												</table>
+											</div>
+											
+										</div>
+									</div>
+
+	                                <div id="goods-brandManage" class="tab-pane fade">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<div class="col-lg-3">
+													<label  for="brand-name">品牌名称：</label><input class="form-control " type="text" id="brand-name" name="brand-name" placeholder="品牌名称，不能为空"/>
+												</div>
+											</div>
+											
+											<div class="form-group"	>
+												<div class="col-lg-7">
+													<label  for="brand-script">备注：</label>
+													<textarea class="form-control" rows="3" id="brand-script" name="brand-script" placeholder="请输入描述信息，可以为空"></textarea>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-lg-3">
+													<button type="button" class="btn btn-success btn-lg btn-block" onclick="addBrand();">新增</button>
+												</div>
+												<div class="col-lg-3">
+													<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
+												</div>
+											</div>
+										</form>
+										<div class="form-group">
+											<h3>品牌信息维护：	</h3>
+											<table id="brand-table" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr><th>编号</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+												</thead>
+												<tbody id="brand-table-content">
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+									
+									<div id="goods-colorManage" class="tab-pane fade">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<div class="col-lg-3">
+													<label  for="color-name">颜色名称：</label><input class="form-control " type="text" id="color-name" name="color-name" placeholder="颜色名称，不能为空"/>
+												</div>
+											</div>
+											
+											<div class="form-group"	>
+												<div class="col-lg-7">
+													<label  for="color-script">备注：</label>
+													<textarea class="form-control" rows="3" id="color-script" name="color-script" placeholder="请输入描述信息，可以为空"></textarea>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-lg-3">
+													<button type="button" class="btn btn-success btn-lg btn-block" onclick="addColor();">新增</button>
+												</div>
+												<div class="col-lg-3">
+													<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
+												</div>
+											</div>
+										</form>
+										<div class="form-group">
+											<h3>颜色信息维护：	</h3>
+											<table id="color-table" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr><th>编号</th><th>名称</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+												</thead>
+												<tbody id="color-table-content">
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+	                            </div>
+	                        </div>
+	                        <!-- /.panel-body -->
+	                    </div>
+	                    <!-- /.panel -->
+
+					</div>
+				</div>
+
+			</div>
+			<!-- /#page-wrapper -->
+
+		</div>
+		<!-- /#wrapper -->
+
+
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="sizeModel" tabindex="-1" role="dialog" aria-labelledby="sizeModel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content" style="width: 900px;">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" id="myModalLabel">自定义尺寸</h4>
+		            </div>
+		            <div class="modal-body">
+						<div id="sizeModel-size">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<div class="col-lg-3">
+										<label for="size-name">尺寸：</label><input class="form-control " type="text" id="size-name" name="size-name" placeholder="尺寸信息，不能为空"/>
+									</div>
+									<div class="col-lg-3">
+										<label for="size-type">类型:</label>
+										<select id="size-type" class="selectCombo form-control goods-size-type">
+										</select>
+										<input class="form-control" type="text" id="custom-size-type" name="custom-size-type" placeholder="尺寸类型" />
+									</div>	
+									<div class="col-lg-3">
+										<div id="initSizeModelA"  style="margin-top:35px;"><a onclick="showCustomSizeType()">类型不存在？</a></div>
+										<div id="showCustomSizeTypeA" style="margin-top:35px;"><a onclick="initSizeModel()">返回？</a></div>
+									</div>
+									
+								</div>
+								
+								<div class="form-group"	>
+									<div class="col-lg-7">
+										<label  for="size-script">备注：</label>
+										<textarea class="form-control" rows="3" id="size-script" name="size-script" placeholder="请输入描述信息，可以为空"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-success btn-lg btn-block" onclick="addSize();">新增</button>
+									</div>
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
+									</div>
+								</div>
+							</form>
+							<div class="form-group">
+								<h3>尺寸信息维护：	</h3>
+								<table id="size-table" class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr><th>编号</th><th>名称</th><th>类型</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+									</thead>
+									<tbody id="size-table-content">
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary">提交更改</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+
+
+		<!-- jQuery -->
+		<script src="..${contextPath}/resources/sbAdmin/vendor/jquery/jquery.min.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="..${contextPath}/resources/sbAdmin/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="..${contextPath}/resources/sbAdmin/vendor/metisMenu/metisMenu.min.js"></script>
+		<!-- Morris Charts JavaScript -->
+		<script src="..${contextPath}/resources/sbAdmin/vendor/raphael/raphael.min.js"></script>
+		<script src="..${contextPath}/resources/sbAdmin/vendor/morrisjs/morris.min.js"></script>
+		<!-- Custom Theme JavaScript -->
+		<script src="..${contextPath}/resources/sbAdmin/dist/js/sb-admin-2.js"></script>
+		<!-- combo -->
+		<script src="..${contextPath}/resources/js/jquery.combo.select.js"></script>
+		<!-- dataTable -->
+		<script src="..${contextPath}/resources/DataTables-1.10.13/media/js/jquery.dataTables.min.js"></script>
+		<script src="..${contextPath}/resources/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
+		<script src="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/js/buttons.print.min.js"></script>
+		<script src="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+		<script src="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/js/buttons.html5.min.js"></script>
+		<script src="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/js/buttons.print.min.js"></script>
+
+
+		<!-- zTree -->
+		<script type="text/javascript" src="..${contextPath}/zTree_v3/js/jquery.ztree.core.js"></script>
+		<script type="text/javascript" src="..${contextPath}/resources/js/zTree_custom.js"></script>
+
+		<!-- 加载自定义的js -->
+		<script src="..${contextPath}/resources/js/index.js"></script>
+		<script type="text/javascript">
+			var contextPath = '${contextPath}';
+		</script>
+	</body>
+	
+	</html>
