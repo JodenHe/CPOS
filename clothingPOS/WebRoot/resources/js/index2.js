@@ -293,8 +293,8 @@ function ordersDataTable(data1,data2,data3){
                 	"className": 'goods-quantity',
                     data : 'quantity'
                 }, {
-                	"className": 'goods-subTotal',
-                    data : 'subTotal'
+                	"className": 'goods-salePrice',
+                    data : 'salePrice'
                 },{
                     data : 'id'
                 }, {
@@ -324,7 +324,7 @@ function ordersDataTable(data1,data2,data3){
 	$('#orders-table tbody').one('dblclick.dt', 'tr' , function (event) {
 		var itemId = $(this).find(".goods-itemId").text();
 		var quantity = $(this).find(".goods-quantity").text();
-		var subTotals = $(this).find(".goods-subTotal").text();
+		var subTotals = $(this).find(".goods-salePrice").text();
 		addRejectItem(itemId,quantity,subTotals);
 		$("#ordersModal").modal('hide');//关闭模态库    
 	} );
