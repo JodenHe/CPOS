@@ -16,8 +16,13 @@ public class SaleRejectOrderItemController extends Controller {
 	 * 增加一条退单详情
 	 */
 	public void add(){
-		SaleRejectOrderItem rejectItem = getModel(SaleRejectOrderItem.class);
-		renderJson(rejectService.addRejectItem(rejectItem));
+		
+		String rejectNo = getPara("SaleRejectOrderItem.rejectNo");
+		String itemId = getPara("SaleRejectOrderItem.itemId");
+		String rejectPrice = getPara("SaleRejectOrderItem.rejectPrice");
+		String subTotal = getPara("SaleRejectOrderItem.subTotal");
+		String rejectReason = getPara("SaleRejectOrderItem.rejectReason");
+		renderJson(rejectService.addRejectItem(rejectNo,itemId,rejectPrice,subTotal,rejectReason));
 	}
 	/**
 	 * 更新一条退单详情

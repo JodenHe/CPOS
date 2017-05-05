@@ -9,6 +9,8 @@ import com.jfinal.log.Log;
 import com.scau.mis.model.Goods;
 import com.scau.mis.model.SaleOrder;
 import com.scau.mis.model.SaleOrderItem;
+import com.scau.mis.model.SaleRejectOrder;
+import com.scau.mis.model.SaleRejectOrderItem;
 /**
  * 销售记录详情表的业务逻辑实现
  * @author 建棠
@@ -51,8 +53,30 @@ public class SaleOrderItemService {
 		}else{
 			
 			for(int i=0;i<saleItems.size();i++){
+				
 				String itemId = saleItems.get(i).getItemId();
+				//通过订单获得所够商品
 				String sql1 = "select * from goods as g where g.barcode ='"+itemId+"'";
+				//获得退货单
+				String SRO ="select * from sale_reject_order as sr where sr.rejectOrderNo='"+saleOrderNo+"'";
+				List<SaleRejectOrder> saleRejectOrders = SaleRejectOrder.dao.find(SRO);
+				//获得退货详情
+				String SROI = "select * from sale_reject_order_item as si where si.itemId='"+itemId+"'";
+				List<SaleRejectOrderItem> saleRejectOrderItems = SaleRejectOrderItem.dao.find(SROI);
+				//很复杂的逻辑，看不懂的你
+				int values = 0;
+				if(saleRejectOrderItems.size()!=0){
+					for(int j=0;j<saleRejectOrderItems.size();j++){
+						for(int k=0;k<saleRejectOrders.size();k++){
+							if(saleRejectOrderItems.get(j).getRejectNo().equals(saleRejectOrders.get(k).getRejectNo()))
+								if(saleRejectOrders.get(k).getRejectOrderNo().equals(saleOrderNo))
+								values++;
+						}
+					}
+				}
+				int quantity = saleItems.get(i).getQuantity();
+				int resultNo = quantity - values;
+				saleItems.get(i).setQuantity(Integer.valueOf(resultNo));
 				List<Goods> good = Goods.dao.find(sql1);
 				goods.add(good);
 			}

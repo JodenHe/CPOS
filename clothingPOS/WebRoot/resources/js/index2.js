@@ -250,7 +250,6 @@ function calChange(num){
 //列出所有的订单，dataTable展示
 function searchOrders(){
 	var saleOrderNo = $("#search-order-rejectOrderNo").val();
-	alert(saleOrderNo);
 	$.ajax({
 		type:"post",
 		url:contextPath + "/soi/getItemByNo",
@@ -332,7 +331,6 @@ function ordersDataTable(data1,data2,data3){
 }
 //列出所有的商品，dataTable展示
 function searchGoods() {
-	console.log("1111");
     var barcode = $("#search-goods-barcode").val();
     $.ajax({
         type : "POST",
@@ -421,7 +419,7 @@ function makeReject(){
 			},
 			success:function(result){
 				if(result.status){
-					makeRejectItem();
+					makeRejectItem(result.data);
 				}else{
 					console.log(result.status);
 				}
@@ -433,6 +431,35 @@ function makeReject(){
 	}else{
 		alert("出错了");
 	};
+}
+//退货纤细记录
+function makeRejectItem(data){
+    var trs = $("#reject-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    var rejectReason = $("#resultOfReject").val();
+    for(var i=0;i<len;i++){
+    	var itemId = trs.eq(i).find("td").eq(0).text();
+    	var rejectPrice = trs.eq(i).find("td").eq(2).text();
+    	var subTotal = trs.eq(i).find("td").eq(3).text();
+    	$.ajax({
+    		type:"post",
+    		url:contextPath + "/sroi/add",
+    		dataType:"json",
+    		data:{
+    			"SaleRejectOrderItem.rejectNo":data[0].rejectNo,
+    			"SaleRejectOrderItem.itemId":itemId,
+    			"SaleRejectOrderItem.rejectPrice":rejectPrice,
+    			"SaleRejectOrderItem.subTotal":subTotal,
+    			"SaleRejectOrderItem.rejectReason":rejectReason
+    		},
+    		success:function(result){
+    			alert("退货成功");
+    		},
+    		error:function(result){
+    			console.log("未知错误");
+    		}
+    	});
+    }
 }
 //销售下单
 function makesale(){
@@ -497,7 +524,6 @@ function makesaleitem(saleOrderNo){
                 datatype : "json",
                 success : function(result) {
                     if (result.status) {
-                        
                     } else {
                         alert(result.data);
                     }
