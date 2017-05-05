@@ -9,27 +9,27 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseRolePermission<M extends BaseRolePermission<M>> extends Model<M> implements IBean {
 
-	public void setId(java.math.BigInteger id) {
+	public void setId(java.lang.Long id) {
 		set("id", id);
 	}
 
-	public java.math.BigInteger getId() {
+	public java.lang.Long getId() {
 		return get("id");
 	}
 
-	public void setRoleId(java.math.BigInteger roleId) {
+	public void setRoleId(java.lang.Long roleId) {
 		set("roleId", roleId);
 	}
 
-	public java.math.BigInteger getRoleId() {
+	public java.lang.Long getRoleId() {
 		return get("roleId");
 	}
 
-	public void setPermissionId(java.math.BigInteger permissionId) {
+	public void setPermissionId(java.lang.Long permissionId) {
 		set("permissionId", permissionId);
 	}
 
-	public java.math.BigInteger getPermissionId() {
+	public java.lang.Long getPermissionId() {
 		return get("permissionId");
 	}
 

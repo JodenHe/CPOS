@@ -17,12 +17,12 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return get("id");
 	}
 
-	public void setUsername(java.lang.String username) {
-		set("username", username);
+	public void setUserName(java.lang.String userName) {
+		set("userName", userName);
 	}
 
-	public java.lang.String getUsername() {
-		return get("username");
+	public java.lang.String getUserName() {
+		return get("userName");
 	}
 
 	public void setPassword(java.lang.String password) {

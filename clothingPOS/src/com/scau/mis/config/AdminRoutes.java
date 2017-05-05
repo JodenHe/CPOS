@@ -14,6 +14,7 @@ import com.scau.mis.controller.SaleRejectOrderItemController;
 import com.scau.mis.controller.ShopController;
 import com.scau.mis.controller.SizeController;
 import com.scau.mis.controller.PaymentController;
+import com.scau.mis.controller.UserController;
 
 /**
  * 后端路由配置
@@ -36,6 +37,7 @@ public class AdminRoutes extends Routes {
 		add("/sroi",SaleRejectOrderItemController.class);
 		add("/sale",SaleController.class);
 		add("/pay",PaymentController.class);
+		add("/user",UserController.class);
 	}
 
 }
