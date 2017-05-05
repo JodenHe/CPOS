@@ -106,6 +106,10 @@ function checkNum(num){
 }
 //进行退货前先初始化
 function inintReject(){
+	if($("#search-order-rejectOrderNo").attr("disabled")=="disabled"){
+		$("#search-order-rejectOrderNo").removeAttr("disabled");
+		$("#search-order-rejectOrderNo").val("");
+	}
 	//初始化明细表
 	$("#reject-item-table tbody").html("");
 	for(var i=0;i<100;i++){
@@ -158,7 +162,7 @@ function deleteAllSaleItem(btn){
 }
 //添加退货明细
 function addRejectItem(itemId,quantity,subTotals){
-    var str = "<tr><td>"+itemId+"</td><td><input type='number' min='0' value='"+1+"' onchange='subTotal(this,this.value);calReject();'></td><td>"+(subTotals-0).toFixed(2)+"</td><td>"+(subTotals-0).toFixed(2)+"</td><td onclick='deleteRejectItem(this);'><i class='fa fa-trash-o'></i></td>></tr>"
+    var str = "<tr><td>"+itemId+"</td><td><input type='number' min='1' max='"+quantity+"' value='"+1+"' onkeyup='value=value>"+quantity+"?"+quantity+":value' onchange='subRejectTotal(this,this.value);calReject();'></td><td>"+(subTotals-0).toFixed(2)+"</td><td>"+(subTotals-0).toFixed(2)+"</td><td onclick='deleteRejectItem(this);'><i class='fa fa-trash-o'></i></td>></tr>"
     $("#reject-item-table tbody").prepend(str);
     calReject();
 }
@@ -167,6 +171,16 @@ function deleteRejectItem(btn){
    var c = btn.parentNode;
     c.parentNode.removeChild(c);
     calReject();
+    
+    var trs = $("#reject-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+	if(len>0){//禁止搜索框输入
+		$("#search-order-rejectOrderNo").attr("disabled","disabled");
+	}else{
+		if($("#search-order-rejectOrderNo").attr("disabled")=="disabled"){
+			$("#search-order-rejectOrderNo").removeAttr("disabled");
+		}
+	}
 }
 //删除所有退货明细
 function deleteAllRejectItem(btn){
@@ -182,6 +196,12 @@ function subTotal(eventObj,quantity){
    var price = $(eventObj).parent().siblings().eq(2).text() - 0;
    var subTotal = quantity * price;
    $(eventObj).parent().siblings().eq(3).html(subTotal.toFixed(2))//.toFixed(2)保留小数点两位
+}
+//改变退货数量，小计变化
+function subRejectTotal(eventObj,quantity){
+   var price = $(eventObj).parent().siblings().eq(1).text() - 0;
+   var subTotal = quantity * price;
+   $(eventObj).parent().siblings().eq(2).html(subTotal.toFixed(2))//.toFixed(2)保留小数点两位
 }
 //售，原价，数量
 function calSale(){
@@ -233,7 +253,7 @@ function rejectBill(){
 	$("#totalRejectAmount").val( $("#rejectAmount").text() );
 	var len = $("#reject-item-table tbody tr").length-100;//获取表格中有值的长度
 	if(len>0){
-		$("#rejectModal").modal('show');
+		$("#rejectModal").modal('show');////打开模态库 
 	}else{
 		alert("没添加任何商品");
 	}
@@ -250,23 +270,68 @@ function calChange(num){
 //列出所有的订单，dataTable展示
 function searchOrders(){
 	var saleOrderNo = $("#search-order-rejectOrderNo").val();
-	$.ajax({
-		type:"post",
-		url:contextPath + "/soi/getItemByNo",
-		datatype:"json",
-		data:{
-			"SaleOrder.saleOrderNo":saleOrderNo
-		},
-		success:function(result){
-			ordersDataTable(result.data1,result.data2,result.data3);
-		},
-		error:function(result){
-			 console.log("未知错误！");
+	if($("#search-order-rejectOrderNo").attr("disabled")!="disabled"){//如果输入框被禁止输入，不对后台进行查询
+		$.ajax({
+			type:"post",
+			url:contextPath + "/soi/getItemByNo",
+			datatype:"json",
+			data:{
+				"SaleOrder.saleOrderNo":saleOrderNo
+			},
+			success:function(result){
+					ordersDataTable(result.data1,result.data2,result.data3);
+			},
+			error:function(result){
+				 console.log("未知错误！");
+			}
+		});
+	}
+	recalOrdersTable();//重新计算orders-table的商品数量
+}
+//重新计算orders-table的商品数量
+function recalOrdersTable(){
+	//对reject-item-table进行处理
+	var trs = $("#reject-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    var list = [];
+    for(var i=0;i<len;i++){
+	    var obj = {"barcode":trs.eq(i).find("td").eq(0).text(),"quantity":trs.eq(i).find("td").eq(1).find("input").val()-0};
+	    list.push(obj)
+    }
+	//对orders-table进行处理
+	trs = $("#orders-table tbody tr");
+	len = trs.length;
+	for(var i = 0; i<list.length; i++){
+		for(var j=0; j<len; j++){
+			if(trs.eq(j).find("td").eq(1).text() == list[i].barcode){
+				var num = trs.eq(j).find("td").eq(2).text()-list[i].quantity;
+				if(num == 0){
+					trs.eq(j).remove();
+				}else{
+					trs.eq(j).find("td").eq(2).html(num);
+				}
+			}
 		}
-	});
+	}
 }
 //辅助searchOrder()方法，dataTable
 function ordersDataTable(data1,data2,data3){
+	var trs = $("#reject-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+	if(len>0){//禁止搜索框输入
+		$("#search-order-rejectOrderNo").attr("disabled","disabled");
+	}else{
+		if($("#search-order-rejectOrderNo").attr("disabled")=="disabled"){
+			$("#search-order-rejectOrderNo").removeAttr("disabled");
+		}
+	}
+	if(data3 == null){
+		trs = $("#orders-table tbody tr");//所有行
+	    len = trs.length;//获取表格中有值的长度
+		for(var i=0;i<len;i++){
+			trs.eq(i).remove();
+		}
+	}
 	var goodsTable = $('#orders-table')
     .DataTable(
             {
@@ -304,7 +369,7 @@ function ordersDataTable(data1,data2,data3){
                     "url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
                 },
                 "fnCreatedRow" : function(nRow, aData, iDataIndex) {  
-                	console.log(data1);
+                
                 	$('td:eq(0)', nRow).html(
                 			data1[0].customerNo
                 	);
@@ -317,15 +382,20 @@ function ordersDataTable(data1,data2,data3){
                 },
                 "fnRowCallback" : function(nRow, aaData, iDisplayIndex,
                         iDisplayIndexFull) {
+                	if( $('td:eq(2)', nRow).text()-0 == 0 ){
+                		$(nRow).eq(0).hide();
+                		console.log($(nRow)[0]);
+                	}
                 },
 });    
 //添加双击事件
 	$('#orders-table tbody').off('dblclick.dt');//在进行事件绑定前先关闭先前绑定的事件
-	$('#orders-table tbody').one('dblclick.dt', 'tr' , function (event) {
+	$('#orders-table tbody').on('dblclick.dt', 'tr' , function (event) {
 		var itemId = $(this).find(".goods-itemId").text();
 		var quantity = $(this).find(".goods-quantity").text();
 		var subTotals = $(this).find(".goods-salePrice").text();
 		addRejectItem(itemId,quantity,subTotals);
+		$("#search-order-rejectOrderNo").attr("disabled","disabled");//屏蔽搜索输入框
 		$("#ordersModal").modal('hide');//关闭模态库    
 	} );
 }
@@ -441,6 +511,7 @@ function makeRejectItem(data){
     	var itemId = trs.eq(i).find("td").eq(0).text();
     	var rejectPrice = trs.eq(i).find("td").eq(2).text();
     	var subTotal = trs.eq(i).find("td").eq(3).text();
+    	var quantity = trs.eq(i).find("td").eq(1).find("input").val()-0;
     	$.ajax({
     		type:"post",
     		url:contextPath + "/sroi/add",
@@ -450,10 +521,13 @@ function makeRejectItem(data){
     			"SaleRejectOrderItem.itemId":itemId,
     			"SaleRejectOrderItem.rejectPrice":rejectPrice,
     			"SaleRejectOrderItem.subTotal":subTotal,
+    			"SaleRejectOrderItem.quantity":quantity,
     			"SaleRejectOrderItem.rejectReason":rejectReason
     		},
     		success:function(result){
     			alert("退货成功");
+    			 $("#rejectModal").modal('hide');//关闭模态库  
+    			 inintReject();//初始化界面
     		},
     		error:function(result){
     			console.log("未知错误");

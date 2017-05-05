@@ -22,7 +22,7 @@ public class SaleRejectOrderItemService {
 	 * @param rejectItem
 	 * @return 添加退单详情
 	 */
-	public Map<String,Object> addRejectItem(String rejectNo,String itemId,String rejectPrice,String subTotal,String rejectReason){
+	public Map<String,Object> addRejectItem(String rejectNo,String itemId,String rejectPrice,String subTotal,String rejectReason,int quantity){
 		Map<String,Object> result = new HashMap<String,Object>();
 		SaleRejectOrderItem rejectItem = new SaleRejectOrderItem();
 		System.out.println(rejectNo+"  "+itemId+"  "+rejectPrice+"  "+subTotal+"  "+rejectReason);
@@ -32,7 +32,7 @@ public class SaleRejectOrderItemService {
 		rejectItem.setRejectPrice(price);
 		rejectItem.setSubTotal(subtotals);
 		rejectItem.setItemId(itemId);
-		rejectItem.setQuantity(1);
+		rejectItem.setQuantity(quantity);
 		rejectItem.setRejectReason(rejectReason);
 		if(rejectItem.save()){
 			result.put("status", true);
