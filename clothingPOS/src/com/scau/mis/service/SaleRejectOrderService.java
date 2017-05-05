@@ -1,11 +1,14 @@
 package com.scau.mis.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.SaleRejectOrder;
+import com.scau.mis.util.TimeUtils;
 /**
  * 退单业务逻辑实现
  * @author 建棠
@@ -20,6 +23,11 @@ public class SaleRejectOrderService {
 	 */
 	public Map<String,Object> addSaleReject(SaleRejectOrder saleReject){
 		Map<String,Object> result = new HashMap<String,Object>();
+		String rejecNo = "R-"+TimeUtils.getCurrentDate()+"-"+UUID.randomUUID().toString().hashCode();
+		saleReject.setRejectDateTime(new Date());
+		saleReject.setOperatorId(2l);
+		saleReject.setShopId(1l);
+		saleReject.setRejectNo(rejecNo);
 		if(saleReject.save()){
 			result.put("status", true);
 			result.put("data", "退单成功");

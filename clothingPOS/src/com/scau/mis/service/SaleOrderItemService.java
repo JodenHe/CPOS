@@ -1,10 +1,13 @@
 package com.scau.mis.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.jfinal.log.Log;
+import com.scau.mis.model.Goods;
+import com.scau.mis.model.SaleOrder;
 import com.scau.mis.model.SaleOrderItem;
 /**
  * 销售记录详情表的业务逻辑实现
@@ -37,13 +40,26 @@ public class SaleOrderItemService {
 	public Map<String,Object> getAimItem(String saleOrderNo){
 		Map<String,Object> result = new HashMap<String, Object>();
 		String sql = "select * from sale_order_item as s where s.saleOrderNo='"+saleOrderNo+"'";
-		List<SaleOrderItem> saleItem = SaleOrderItem.dao.find(sql);
-		if(saleItem.size()==0){
+		String saleOrderSql = "select * from sale_order as s where s.saleOrderNo='"+saleOrderNo+"'";
+		List<SaleOrder> saleOrder = SaleOrder.dao.find(saleOrderSql);
+		List<SaleOrderItem> saleItems = SaleOrderItem.dao.find(sql);
+		List<List<Goods>> goods = new ArrayList<List<Goods>>();
+		if(saleItems.size()==0){
 			result.put("status", false);
-			result.put("data", "获取失败");
+			result.put("data1", "找不到订单");
+			result.put("data2", "找不到订单");
 		}else{
+			
+			for(int i=0;i<saleItems.size();i++){
+				String itemId = saleItems.get(i).getItemId();
+				String sql1 = "select * from goods as g where g.barcode ='"+itemId+"'";
+				List<Goods> good = Goods.dao.find(sql1);
+				goods.add(good);
+			}
 			result.put("status", true);
-			result.put("data", saleItem);
+			result.put("data1", saleOrder);
+			result.put("data2", goods);
+			result.put("data3", saleItems);
 		}
 		return result;
 	}

@@ -4,6 +4,7 @@ $(function() {
 
     modelCenter();//模态库居中
     inintSale();//初始化销售明细表
+    inintReject();//初始化退货明细表
     keyEvent();//按钮触发事件
     
 });
@@ -103,6 +104,18 @@ function checkNum(num){
     }
     return num;
 }
+//进行退货前先初始化
+function inintReject(){
+	//初始化明细表
+	$("#reject-item-table tbody").html("");
+	for(var i=0;i<100;i++){
+		$("#reject-item-table tbody").append("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
+	}
+	 //初始化页面的数据，售，数量，原价，会员编号，会员姓名,收款现金，找零，支付方式
+    $("#rejectAmount").html("0.00");
+    $("#rejectQuantity").html("0");
+    $("#originalAmount").html("0.00");
+}
 //进行销售前先初始化
 function inintSale() {
     //初始化明细表
@@ -143,6 +156,27 @@ function deleteAllSaleItem(btn){
     }
     calSale();
 }
+//添加退货明细
+function addRejectItem(itemId,quantity,subTotals){
+    var str = "<tr><td>"+itemId+"</td><td><input type='number' min='0' value='"+1+"' onchange='subTotal(this,this.value);calReject();'></td><td>"+(subTotals-0).toFixed(2)+"</td><td>"+(subTotals-0).toFixed(2)+"</td><td onclick='deleteRejectItem(this);'><i class='fa fa-trash-o'></i></td>></tr>"
+    $("#reject-item-table tbody").prepend(str);
+    calReject();
+}
+//删除退货明细
+function deleteRejectItem(btn){
+   var c = btn.parentNode;
+    c.parentNode.removeChild(c);
+    calReject();
+}
+//删除所有退货明细
+function deleteAllRejectItem(btn){
+    var trs = $("#reject-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    for(var i=0;i<len;i++){
+        trs.eq(i).remove();
+    }
+    calReject();
+}
 //改变数量，小计变化
 function subTotal(eventObj,quantity){
    var price = $(eventObj).parent().siblings().eq(2).text() - 0;
@@ -165,6 +199,22 @@ function calSale(){
     $("#originalAmount").html(totalAmount.toFixed(2));
     $("#saleQuantity").html(quantity);
 }
+//售，原价，数量
+function calReject(){
+    var quantity = 0;
+    var totalAmount = 0.00;
+    var trs = $("#reject-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    for(var i = 0; i < len; i++){
+        var num1 = trs.eq(i).find("td").eq(1).find("input").val()-0;//某个商品的数量
+        var num2 = trs.eq(i).find("td").eq(3).text()-0;//某个商品的小计
+        quantity +=  num1;
+        totalAmount += num2
+    }
+    $("#rejectAmount").html(totalAmount.toFixed(2));
+    $("#rejectQuantity").html(quantity);
+}
+
 //结算按钮
 function bill(){
     $("#totalAmount").val( $("#saleAmount").text() );
@@ -178,6 +228,16 @@ function bill(){
     }
     
 }
+//退货结算按钮
+function rejectBill(){
+	$("#totalRejectAmount").val( $("#rejectAmount").text() );
+	var len = $("#reject-item-table tbody tr").length-100;//获取表格中有值的长度
+	if(len>0){
+		$("#rejectModal").modal('show');
+	}else{
+		alert("没添加任何商品");
+	}
+}
 //找零
 function calChange(num){
     var result = num-$("#totalAmount").val();
@@ -187,8 +247,92 @@ function calChange(num){
       $("#change").val(result.toFixed(2));
     }
 }
+//列出所有的订单，dataTable展示
+function searchOrders(){
+	var saleOrderNo = $("#search-order-rejectOrderNo").val();
+	alert(saleOrderNo);
+	$.ajax({
+		type:"post",
+		url:contextPath + "/soi/getItemByNo",
+		datatype:"json",
+		data:{
+			"SaleOrder.saleOrderNo":saleOrderNo
+		},
+		success:function(result){
+			ordersDataTable(result.data1,result.data2,result.data3);
+		},
+		error:function(result){
+			 console.log("未知错误！");
+		}
+	});
+}
+//辅助searchOrder()方法，dataTable
+function ordersDataTable(data1,data2,data3){
+	var goodsTable = $('#orders-table')
+    .DataTable(
+            {
+                "destroy" : true,
+                "bAutoWidth" : false,
+                "aoColumnDefs" : [ {
+                                        "bSearchable" : false,
+                                        "aTargets" : [ 0]
+                                    },
+                                    {
+                                        "bSortable" : false,
+                                        "aTargets" : [  ]
+                                    },
+                                 ],
+                "order": [[ 5, "desc" ]],//默认第6列降序排列
+                data : data3,
+                // 使用对象数组，一定要配置columns，告诉 DataTables 每列对应的属性
+                columns : [ {
+                    data : 'id'
+                }, {
+                	"className": 'goods-itemId',
+                    data : 'itemId'
+                }, {
+                	"className": 'goods-quantity',
+                    data : 'quantity'
+                }, {
+                	"className": 'goods-subTotal',
+                    data : 'subTotal'
+                },{
+                    data : 'id'
+                }, {
+                    data : 'id'
+                }, ],                        
+                "language": {
+                    "url": contextPath +"/resources/DataTables-1.10.13/i18n/Chinese.json"
+                },
+                "fnCreatedRow" : function(nRow, aData, iDataIndex) {  
+                	console.log(data1);
+                	$('td:eq(0)', nRow).html(
+                			data1[0].customerNo
+                	);
+                	$('td:eq(4)', nRow).html(
+                			data1[0].operatorId
+                	);
+                	$('td:eq(5)', nRow).html(
+                			data1[0].saleDateTime
+                	);
+                },
+                "fnRowCallback" : function(nRow, aaData, iDisplayIndex,
+                        iDisplayIndexFull) {
+                },
+});    
+//添加双击事件
+	$('#orders-table tbody').off('dblclick.dt');//在进行事件绑定前先关闭先前绑定的事件
+	$('#orders-table tbody').one('dblclick.dt', 'tr' , function (event) {
+		var itemId = $(this).find(".goods-itemId").text();
+		var quantity = $(this).find(".goods-quantity").text();
+		var subTotals = $(this).find(".goods-subTotal").text();
+		addRejectItem(itemId,quantity,subTotals);
+		$("#ordersModal").modal('hide');//关闭模态库    
+	} );
+}
 //列出所有的商品，dataTable展示
 function searchGoods() {
+	console.log("1111");
     var barcode = $("#search-goods-barcode").val();
     $.ajax({
         type : "POST",
@@ -260,6 +404,35 @@ function goodsDataTable(data) {
         addSaleItem(barcode,name,price);
         $("#goodsModal").modal('hide');//关闭模态库    
     } );
+}
+//退货记录
+function makeReject(){
+	
+	var amount = $("#rejectAmount").text()-0;
+	var orderId = $("#search-order-rejectOrderNo").val();
+	if(amount!=0){
+		$.ajax({
+			type:"post",
+			url:contextPath + "/sro/add",
+			dataType:"json",
+			data:{
+				"saleOrderNo":orderId,
+				"SaleRejectOrder.total":amount
+			},
+			success:function(result){
+				if(result.status){
+					makeRejectItem();
+				}else{
+					console.log(result.status);
+				}
+			},
+			error:function(result){
+				console.log("未知错误！");
+			}
+		});
+	}else{
+		alert("出错了");
+	};
 }
 //销售下单
 function makesale(){

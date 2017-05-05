@@ -1,5 +1,7 @@
 package com.scau.mis.controller;
 
+import java.math.BigDecimal;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.SaleRejectOrder;
@@ -17,6 +19,11 @@ public class SaleRejectOrderController extends Controller {
 	 */
 	public void add(){
 		SaleRejectOrder saleReject = getModel(SaleRejectOrder.class);
+		String total = getPara("SaleRejectOrder.total");
+		String saleOrderNo = getPara("saleOrderNo");
+		BigDecimal decimal = new BigDecimal(total);
+		saleReject.setTotal(decimal);
+		saleReject.setRejectOrderNo(saleOrderNo);
 		renderJson(rejectService.addSaleReject(saleReject));
 	}
 	/**

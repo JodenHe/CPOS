@@ -1,6 +1,17 @@
 label {
 	font-weight: normal;
 }
+/*退货*/
+#reject-content{
+	height: 300px;
+	overflow-y: scroll;
+}
+#reject-bottom{
+	/* position: absolute;
+	bottom: 10px; */
+	padding-top: 10px;
+	border-top: 2px solid #e7e7e7;
+}
 /* 销售下单 */
 #sale-content{
 	height: 300px;
