@@ -11,6 +11,7 @@ import com.scau.mis.model.SaleOrder;
 import com.scau.mis.model.SaleOrderItem;
 import com.scau.mis.model.SaleRejectOrder;
 import com.scau.mis.model.SaleRejectOrderItem;
+import com.scau.mis.model.User;
 /**
  * 销售记录详情表的业务逻辑实现
  * @author 建棠
@@ -53,7 +54,6 @@ public class SaleOrderItemService {
 		}else{
 			
 			for(int i=0;i<saleItems.size();i++){
-				
 				String itemId = saleItems.get(i).getItemId();
 				//通过订单获得所够商品
 				String sql1 = "select * from goods as g where g.barcode ='"+itemId+"'";
@@ -80,6 +80,7 @@ public class SaleOrderItemService {
 				List<Goods> good = Goods.dao.find(sql1);
 				goods.add(good);
 			}
+			
 			result.put("status", true);
 			result.put("data1", saleOrder);
 			result.put("data2", goods);

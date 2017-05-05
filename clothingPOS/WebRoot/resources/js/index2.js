@@ -309,7 +309,7 @@ function ordersDataTable(data1,data2,data3){
                 			data1[0].customerNo
                 	);
                 	$('td:eq(4)', nRow).html(
-                			data1[0].operatorId
+                			data1[0].operatorId == 2 ? "cashier":"admin"
                 	);
                 	$('td:eq(5)', nRow).html(
                 			data1[0].saleDateTime
