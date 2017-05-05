@@ -29,8 +29,9 @@ public class SaleRejectOrderService {
 		saleReject.setShopId(1l);
 		saleReject.setRejectNo(rejecNo);
 		if(saleReject.save()){
+			List<SaleRejectOrder> saleRejects = SaleRejectOrder.dao.find("select * from sale_reject_order as s where s.rejectNo='"+rejecNo+"'");
 			result.put("status", true);
-			result.put("data", "退单成功");
+			result.put("data", saleRejects);
 		}else{
 			result.put("status", false);
 			result.put("data", "退单失败");
