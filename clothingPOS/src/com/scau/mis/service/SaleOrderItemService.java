@@ -69,8 +69,11 @@ public class SaleOrderItemService {
 					for(int j=0;j<saleRejectOrderItems.size();j++){
 						for(int k=0;k<saleRejectOrders.size();k++){
 							if(saleRejectOrderItems.get(j).getRejectNo().equals(saleRejectOrders.get(k).getRejectNo()))
-								if(saleRejectOrders.get(k).getRejectOrderNo().equals(saleOrderNo))
-								values++;
+								if(saleRejectOrders.get(k).getRejectOrderNo().equals(saleOrderNo)){
+									int RejectQuantity = saleRejectOrderItems.get(j).getQuantity();
+									values+=RejectQuantity;
+								}
+								
 						}
 					}
 				}
