@@ -3,7 +3,7 @@ label {
 }
 /*退货*/
 #reject-content{
-	height: 300px;
+	height: 270px;
 	overflow-y: scroll;
 }
 #reject-bottom{
@@ -14,7 +14,7 @@ label {
 }
 /* 销售下单 */
 #sale-content{
-	height: 300px;
+	height: 270px;
 	overflow-y: scroll;
 }
 #sale-bottom{
