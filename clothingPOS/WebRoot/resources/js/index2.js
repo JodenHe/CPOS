@@ -325,13 +325,6 @@ function ordersDataTable(data1,data2,data3){
 			$("#search-order-rejectOrderNo").removeAttr("disabled");
 		}
 	}
-	if(data3 == null){
-		trs = $("#orders-table tbody tr");//所有行
-	    len = trs.length;//获取表格中有值的长度
-		for(var i=0;i<len;i++){
-			trs.eq(i).remove();
-		}
-	}
 	var goodsTable = $('#orders-table')
     .DataTable(
             {
@@ -382,12 +375,23 @@ function ordersDataTable(data1,data2,data3){
                 },
                 "fnRowCallback" : function(nRow, aaData, iDisplayIndex,
                         iDisplayIndexFull) {
-                	if( $('td:eq(2)', nRow).text()-0 == 0 ){
+                	if( $('td:eq(2)', nRow).text()-0 <= 0 ){
                 		$(nRow).eq(0).hide();
                 		console.log($(nRow)[0]);
                 	}
                 },
 });    
+	if(data3 == null){
+		console.log("aaa")
+		trs = $("#orders-table tbody tr");//所有行
+	    len = trs.length;//获取表格中有值的长度
+	    console.log(len)
+		for(var i=0;i<len;i++){
+			trs.eq(i).hide();
+			console.log(trs)
+		}
+	    goodsTable.draw();
+	}
 //添加双击事件
 	$('#orders-table tbody').off('dblclick.dt');//在进行事件绑定前先关闭先前绑定的事件
 	$('#orders-table tbody').on('dblclick.dt', 'tr' , function (event) {

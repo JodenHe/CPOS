@@ -487,17 +487,20 @@
 					</button>
 					<div class="row">
 						<div class="col-md-5"><span>收银员：</span><span class="cashier"></span></div>
-						<div class="col-md-6"><label style="font-weight: bold;"><input id="isPrint" type="checkbox" checked>结算时自动打印票据</label></div>
+						<!-- <div class="col-md-6"><label style="font-weight: bold;"><input id="isPrint" type="checkbox" checked>结算时自动打印票据</label></div> -->
 					</div>
 				</div>
 				<div class="modal-body">
+					<div class="row">
 					<div class="form-horizontal col-md-11">
 							<div class="form-group">
 								<label style="font-size: 20px;" class="col-md-12">应退款:	</label>
 								<div class="input-group-lg col-md-8">
 									<input type="text" id="totalRejectAmount" class="form-control" placeholder="应退款" disabled>
 								</div>
-								<br/><br/>
+							</div>
+							<br/>
+							<div class="form-group">
 								<div class="input-group-lg col-md-8">
 									<input type="text" id="resultOfReject" class="form-control" placeholder="理由（可不填）">
 								</div>
@@ -507,6 +510,7 @@
 									</button>
 								</div>
 							</div>
+						</div>
 						</div>
 				</div>
 				<div class="modal-footer">
