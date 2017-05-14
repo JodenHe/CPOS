@@ -77,7 +77,7 @@ public class UserService {
 		String sql="select r.* from user u,role r,user_role ur where ur.roleId = r.id and ur.userId = u.id and u.userName='"+userName+"'";
 		List<Role> list = Role.dao.find(sql);
 		for (int i = 0; i < list.size(); i++) {
-			roles.add(list.get(i).getRoleName());
+			roles.add(list.get(i).getRoleSign());
 		}
 		return roles;
 	}
@@ -92,7 +92,7 @@ public class UserService {
 		String sql="select p.* from user u,role r,permission p,user_role ur,role_permission rp where ur.roleId=r.id and ur.userId = u.id and rp.roleId=r.id and rp.permissionId=p.id and u.userName='"+userName+"'";
 		List<Permission> list = Permission.dao.find(sql);
 		for (int i = 0; i < list.size(); i++) {
-			permissions.add(list.get(i).getPermissionName());
+			permissions.add(list.get(i).getPermissionSign());
 		}
 		return permissions;
 	}

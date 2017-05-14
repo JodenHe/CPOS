@@ -10,6 +10,8 @@ import com.jfinal.config.Routes;
 import com.jfinal.core.Const;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.ext.plugin.shiro.ShiroInterceptor;
+import com.jfinal.ext.plugin.shiro.ShiroPlugin;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
@@ -20,6 +22,11 @@ import com.scau.mis.model._MappingKit;
  * API引导式配置
  */
 public class Config extends JFinalConfig {
+	
+	/**
+	 * 供Shiro插件使用。
+	 */
+	Routes routes;
 
 	/**
 	 * 配置常量
@@ -36,6 +43,7 @@ public class Config extends JFinalConfig {
 	 * 配置路由
 	 */
 	public void configRoute(Routes me) {
+		this.routes = me;
 		me.add(new FrontRoutes());// 前端路由
 		me.add(new AdminRoutes());// 后端路由
 	}
@@ -48,6 +56,12 @@ public class Config extends JFinalConfig {
 	 * 配置插件
 	 */
 	public void configPlugin(Plugins me) {
+		//加载Shiro插件
+		ShiroPlugin shiroPlugin = new ShiroPlugin(this.routes);
+		shiroPlugin.setLoginUrl("/login");
+		shiroPlugin.setUnauthorizedUrl("/unauthorized");
+		me.add(shiroPlugin);
+		
 		// 配置C3p0数据库连接池插件
 		C3p0Plugin C3p0Plugin = createC3p0Plugin();
 		//当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
@@ -76,6 +90,7 @@ public class Config extends JFinalConfig {
 	 */
 	public void configInterceptor(Interceptors me) {
 		me.add(new AuthInterceptor());
+		me.add(new ShiroInterceptor());//shiro插件的拦截器
 	}
 
 	/**

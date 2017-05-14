@@ -34,4 +34,11 @@ public class IndexController  extends Controller {
 		log.info("测试页面");
 		render("test.html");
 	}
+	
+	/**
+	 * 认证未通过，或者权限不足
+	 */
+	public void unauthorized() {
+		renderText("认证未通过，或者权限不足");
+	}
 }
