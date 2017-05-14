@@ -1,3 +1,50 @@
 1、2017-3-15
 实现商品类别的增删查，其中类别的树型结构暂未实现，思路使用zTree实现！！
 考虑到界面的操作友好性以及系统需求，定死系统类别菜单最多三层结构
+
+2、2017-5-14
+2.1 角色管理的js代码：暂时寄存这里
+//列出所有的角色，dataTable展示
+function getAllRole(){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/role/getAllRoles",
+		datatype : "json",
+		success : function(result) {
+			roleDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+2.2 freemarker的shiro标签使用
+已经登陆判断
+
+<@shiro.authenticated>
+  <li><a href="/user/center"><@shiro.principal name="full_name"/></a></li>
+      |
+  <li><a href="/signout">退出</a></li>
+</@shiro.authenticated>
+没有登陆判断
+
+<@shiro.notAuthenticated>
+  <li><a href="/">登陆</a></li>
+</@shiro.notAuthenticated>
+显示登陆异常
+
+<@shiro.isLoginFailure name="shiroLoginFailure">
+  <@shiro.loginException name="shiroLoginFailure"/>
+</@shiro.isLoginFailure>
+判断角色
+
+<@shiro.hasRole name="ROLE_ADMIN">
+我是admin
+</@shiro.hasRole>
+判断权限
+
+<@shiro.hasPermission name="P_ORDER_CONTROL">
+  <li><a href="/order/branch" class="<#if activebar=='branch'>nav-active</#if>">全部订单</a></li>
+</@shiro.hasPermission>
+

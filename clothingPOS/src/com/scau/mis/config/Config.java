@@ -1,6 +1,8 @@
 package com.scau.mis.config;
 
 
+import cn.dreampie.shiro.freemarker.ShiroTags;
+
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -15,6 +17,7 @@ import com.jfinal.ext.plugin.shiro.ShiroPlugin;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.render.FreeMarkerRender;
 import com.scau.mis.interceptor.AuthInterceptor;
 import com.scau.mis.model._MappingKit;
 
@@ -22,7 +25,7 @@ import com.scau.mis.model._MappingKit;
  * API引导式配置
  */
 public class Config extends JFinalConfig {
-	
+
 	/**
 	 * 供Shiro插件使用。
 	 */
@@ -61,7 +64,7 @@ public class Config extends JFinalConfig {
 		shiroPlugin.setLoginUrl("/login");
 		shiroPlugin.setUnauthorizedUrl("/unauthorized");
 		me.add(shiroPlugin);
-		
+
 		// 配置C3p0数据库连接池插件
 		C3p0Plugin C3p0Plugin = createC3p0Plugin();
 		//当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
@@ -98,6 +101,15 @@ public class Config extends JFinalConfig {
 	 */
 	public void configHandler(Handlers me) {
 		me.add(new ContextPathHandler("contextPath")) ;
+	}
+
+	/**
+	 * 配置Freemarker-Jfinal-shiro
+	 */
+	@Override
+	public void afterJFinalStart() {
+		super.afterJFinalStart();
+		FreeMarkerRender.getConfiguration().setSharedVariable("shiro", new ShiroTags());
 	}
 
 	/**

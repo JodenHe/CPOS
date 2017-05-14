@@ -1459,3 +1459,19 @@ function sizeDataTable(data) {
 					},
 				})
 }
+
+
+//列出所有的角色，dataTable展示
+function getAllRole(){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/role/getAllRoles",
+		datatype : "json",
+		success : function(result) {
+			roleDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
