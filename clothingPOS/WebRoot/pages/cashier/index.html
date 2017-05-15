@@ -502,7 +502,14 @@
 							<br/>
 							<div class="form-group">
 								<div class="input-group-lg col-md-8">
-									<input type="text" id="resultOfReject" class="form-control" placeholder="理由（可不填）">
+									<!-- <input type="text" id="resultOfReject" class="form-control" > -->
+									<select class="form-control" id ="resultOfReject">
+										<option>尺码不符</option>
+										<option>颜色不符</option>
+										<option>商品损坏</option>
+										<option>无条件</option>
+										<option>其他</option>
+									</select>
 								</div>
 								<div class="input-group-lg col-md-3">
 									<button type="button" class="btn btn-lg btn-primary" onclick="makeReject();">
