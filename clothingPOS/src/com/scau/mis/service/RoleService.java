@@ -17,7 +17,7 @@ import com.scau.mis.model.UserRole;
  *
  */
 public class RoleService {
-	public static Log log = Log.getLog(RoleService.class);
+	public final static Log log = Log.getLog(RoleService.class);
 
 	/**
 	 * 获取所有角色
