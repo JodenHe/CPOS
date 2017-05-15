@@ -5,6 +5,11 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>35组服装POS系统</display-name>
 
+	<!-- 将Session失效时间设置为30分钟 -->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
 	<!-- shiro过滤器配置 -->
 	<listener>
 		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
@@ -16,8 +21,7 @@
 	<filter-mapping>
 		<filter-name>shiro</filter-name>
 		<url-pattern>/*</url-pattern>
-		<!-- <dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher> -->
+		<!-- <dispatcher>REQUEST</dispatcher> <dispatcher>FORWARD</dispatcher> -->
 	</filter-mapping>
 	<!-- 配置jfinal -->
 	<filter>

@@ -14,6 +14,7 @@ import org.krysalis.barcode4j.output.bitmap.BitmapCanvasProvider;
 import org.krysalis.barcode4j.tools.UnitConv;
 
 import com.jfinal.kit.PathKit;
+import com.jfinal.log.Log;
  
 /**
  * 条形码工具类
@@ -21,6 +22,7 @@ import com.jfinal.kit.PathKit;
  *
  */
 public class BarcodeUtil {
+	public final static Log log = Log.getLog("BarcodeUtil.class");
  
 	/**
 	 * 生成条形码
@@ -30,10 +32,20 @@ public class BarcodeUtil {
 	 */
     public static File generateFile(String msg, String path) {
         File file = new File(path);
+        FileOutputStream fos = null;
         try {
-            generate(msg, new FileOutputStream(file));
+        	fos = new FileOutputStream(file);
+            generate(msg, fos);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
+        } finally{
+        	if (fos!=null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					log.error(e+":"+e.getMessage());
+				}
+			}
         }
         return file;
     }

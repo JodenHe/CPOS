@@ -48,3 +48,6 @@ function getAllRole(){
   <li><a href="/order/branch" class="<#if activebar=='branch'>nav-active</#if>">全部订单</a></li>
 </@shiro.hasPermission>
 
+
+3、2017-05-15
+    程序中使用equals方法来判断字符串是否为空，这样会降低系统性能。

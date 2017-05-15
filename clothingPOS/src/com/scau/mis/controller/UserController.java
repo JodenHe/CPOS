@@ -59,7 +59,7 @@ public class UserController extends Controller {
 				session.setAttribute("info", "session的数据");
 				redirect("/admin");
 			}catch(Exception e){
-				e.printStackTrace();
+				log.error(e+":"+e.getMessage());
 				setAttr("errorInfo", "用户名或者密码错误");
 				forwardAction("/login");
 			}
