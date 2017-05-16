@@ -2,8 +2,8 @@ $(function() {
 	init();//初始化
 	
 	//十年视图的datetimepicker
-	$('.form_date').datetimepicker({
-        language:  'fr',
+	$('.form_year').datetimepicker({
+        language:  'zh-CN',
         weekStart: 1,
         todayBtn:  1,
 		autoclose: 1,
@@ -12,6 +12,16 @@ $(function() {
 		minView: 4,//十年视图
 		forceParse: 0
     });
+	$('.form_date').datetimepicker({
+		language:  'zh-CN',
+		weekStart: 1,
+		todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+	});
 });
 
 

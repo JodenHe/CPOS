@@ -29,4 +29,14 @@ public class SaleController extends Controller {
 		String month = getPara("year");
 		renderJson(saleService.monthlySales(month));
 	}
+	
+	/**
+	 * 产品分类销售汇总报表。（选择起止时间，按产品类别进行分类统计销售额）
+	 * @author jodenhe
+	 */
+	public void getCategorySales(){
+		String start = getPara("start");
+		String end = getPara("end");
+		renderJson(saleService.categorySales(start, end));
+	}
 }

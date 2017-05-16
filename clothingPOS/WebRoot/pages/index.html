@@ -708,8 +708,8 @@
 					
 					<!-- 仪表盘 -->
 					<div id="dashboard">
-						<!-- 月销售额柱状图 -->
 						<div class="col-lg-8">
+							<!-- 月销售额柱状图 -->
 							<div class="panel panel-default">
 		                        <div class="panel-heading">
 		                            <i class="fa fa-bar-chart-o fa-fw"></i> 月销售额
@@ -721,7 +721,7 @@
 		                        <div class="panel-body">
 		                        	<div class="form-group">
 						               <!--  <label for="dtp_input2" class="col-md-2 control-label">请选择年份：</label> -->
-						                <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
+						                <div class="input-group date form_year col-md-3" data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
 						                    <input class="form-control" size="16" type="text" value="" readonly="" onchange="monthlySales(this.value);">
 						                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -733,6 +733,45 @@
 		                        </div>
 		                        <!-- /.panel-body -->
 		                    </div>
+							
+							<!-- 产品分类销售汇总报表。（选择起止时间，按产品类别进行分类统计销售额） -->
+							<div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bar-chart-o fa-fw"></i> 产品分类销售汇总报表
+		                            <div class="pull-right">
+		                                
+		                            </div>
+		                        </div>
+		                        <!-- /.panel-heading -->
+		                        <div class="panel-body">
+		                        	<div class="form-group">
+						                <label for="dtp_input2" class="col-md-1 control-label">起：</label>
+						                <div class="input-group date form_date col-md-4" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+						                    <input class="form-control" size="16" id="category-sales-start" type="text" value="" readonly="">
+						                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						                </div>
+										<input type="hidden" id="dtp_input3" value="2017"><br>
+						            </div>
+						            <div class="form-group">
+						                <label for="dtp_input2" class="col-md-1 control-label">止：</label>
+						                <div class="input-group date form_date col-md-4" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
+						                    <input class="form-control" size="16" id="category-sales-end" type="text" value="" readonly="">
+						                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						                </div>
+										<input type="hidden" id="dtp_input4" value="2017"><br>
+						            </div>
+						            <div class="form-group">
+						            	<button class="btn btn-success" onclick="categorySales();">确定</button>
+						            </div>
+		                            <!-- 显示月销售额的柱状图 -->
+									<div id="category-sales-container"></div>
+		                        </div>
+		                        <!-- /.panel-body -->
+		                    </div>
+						
+						
 						</div>
 						<div class="col-lg-4">
 		                    <div class="panel panel-default">
@@ -1034,7 +1073,8 @@
 		<script type="text/javascript" src="..${contextPath}/resources/highcharts/exporting.js"></script>
 		<script type="text/javascript" src="..${contextPath}/resources/highcharts/highcharts-zh_CN.js"></script>
 		<!-- bootstrap-datetimepicker -->
-		<script type="text/javascript" src="..${contextPath}/resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="..${contextPath}/resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="..${contextPath}/resources/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
 		<!-- 加载自定义的js -->
 		<script src="..${contextPath}/resources/js/index.js"></script>
