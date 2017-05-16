@@ -26,7 +26,7 @@ public class SaleController extends Controller {
 	 * @author jodenhe
 	 */
 	public void getMonthlySales(){
-		String month = getPara("month");
+		String month = getPara("year");
 		renderJson(saleService.monthlySales(month));
 	}
 }

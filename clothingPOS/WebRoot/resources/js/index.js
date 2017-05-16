@@ -1,6 +1,19 @@
 $(function() {
-	init();
+	init();//初始化
+	
+	//十年视图的datetimepicker
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 4,//十年视图
+		minView: 4,//十年视图
+		forceParse: 0
+    });
 });
+
 
 /*页面初始化*/
 function init(){

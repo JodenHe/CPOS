@@ -32,6 +32,8 @@
 	<!-- dataTable -->
 	<!-- <link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/media/css/dataTables.bootstrap.css"> -->
 	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/DataTables-1.10.13/extensions/Buttons/css/buttons.dataTables.min.css">
+	<!-- bootstrap-datetimepicker -->
+	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
 
 	<!-- 加载自定义的css -->
 	<link href="..${contextPath}/resources/css/zTree-index.css" rel="stylesheet" type="text/css">
@@ -704,6 +706,228 @@
 
 					</div>
 					
+					<!-- 仪表盘 -->
+					<div id="dashboard">
+						<!-- 月销售额柱状图 -->
+						<div class="col-lg-8">
+							<div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bar-chart-o fa-fw"></i> 月销售额
+		                            <div class="pull-right">
+		                                
+		                            </div>
+		                        </div>
+		                        <!-- /.panel-heading -->
+		                        <div class="panel-body">
+		                        	<div class="form-group">
+						               <!--  <label for="dtp_input2" class="col-md-2 control-label">请选择年份：</label> -->
+						                <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy" data-link-field="dtp_input2" data-link-format="yyyy">
+						                    <input class="form-control" size="16" type="text" value="" readonly="" onchange="monthlySales(this.value);">
+						                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+											<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+						                </div>
+										<input type="hidden" id="dtp_input2" value="2017"><br>
+						            </div>
+		                            <!-- 显示月销售额的柱状图 -->
+									<div id="monthly-sales-container"></div>
+		                        </div>
+		                        <!-- /.panel-body -->
+		                    </div>
+						</div>
+						<div class="col-lg-4">
+		                    <div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
+		                        </div>
+		                        <!-- /.panel-heading -->
+		                        <div class="panel-body">
+		                            <div class="list-group">
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-comment fa-fw"></i> New Comment
+		                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+		                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
+		                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-tasks fa-fw"></i> New Task
+		                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+		                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+		                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
+		                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
+		                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
+		                                    </span>
+		                                </a>
+		                                <a href="#" class="list-group-item">
+		                                    <i class="fa fa-money fa-fw"></i> Payment Received
+		                                    <span class="pull-right text-muted small"><em>Yesterday</em>
+		                                    </span>
+		                                </a>
+		                            </div>
+		                            <!-- /.list-group -->
+		                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+		                        </div>
+		                        <!-- /.panel-body -->
+		                    </div>
+		                    <!-- /.panel -->
+		                    <div class="panel panel-default">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
+		                        </div>
+		                        <div class="panel-body">
+		                            <div id="morris-donut-chart"><svg height="357" version="1.1" width="294.65625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.328125px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><path fill="none" stroke="#0b62a4" d="M147.328125,272.5520833333333A91.55208333333333,91.55208333333333,0,0,0,233.88511477112942,210.827361338781" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#0b62a4" stroke="#ffffff" d="M147.328125,275.5520833333333A94.55208333333333,94.55208333333333,0,0,0,236.72143438133367,211.80475126545855L272.4364103063537,224.11205879704227A132.328125,132.328125,0,0,1,147.328125,313.328125Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#3980b5" d="M233.88511477112942,210.827361338781A91.55208333333333,91.55208333333333,0,0,0,65.2120210657608,140.51877673124446" stroke-width="2" opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path><path fill="#3980b5" stroke="#ffffff" d="M236.72143438133367,211.80475126545855A94.55208333333333,94.55208333333333,0,0,0,62.52122143746851,139.1922785742981L24.1539690986412,120.2781650968667A137.328125,137.328125,0,0,1,277.1636096566941,225.7410420081715Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#679dc6" d="M65.2120210657608,140.51877673124446A91.55208333333333,91.55208333333333,0,0,0,147.29936306523103,272.5520788154191" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#679dc6" stroke="#ffffff" d="M62.52122143746851,139.1922785742981A94.55208333333333,94.55208333333333,0,0,0,147.29842058745047,275.5520786673751L147.28655289414752,313.32811846986885A132.328125,132.328125,0,0,1,28.638635145794993,122.48899535844396Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="147.328125" y="171" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="15px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 15px; font-weight: 800;" font-weight="800" transform="matrix(1.6367,0,0,1.6367,-94.0006,-114.285)" stroke-width="0.6109910114916373"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5.5">In-Store Sales</tspan></text><text x="147.328125" y="191" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 14px;" transform="matrix(1.9073,0,0,1.9073,-133.761,-166.0423)" stroke-width="0.5242917282967345"><tspan style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" dy="5">30</tspan></text></svg></div>
+		                            <a href="#" class="btn btn-default btn-block">View Details</a>
+		                        </div>
+		                        <!-- /.panel-body -->
+		                    </div>
+		                    <!-- /.panel -->
+		                    <div class="chat-panel panel panel-default">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-comments fa-fw"></i> Chat
+		                            <div class="btn-group pull-right">
+		                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+		                                    <i class="fa fa-chevron-down"></i>
+		                                </button>
+		                                <ul class="dropdown-menu slidedown">
+		                                    <li>
+		                                        <a href="#">
+		                                            <i class="fa fa-refresh fa-fw"></i> Refresh
+		                                        </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="#">
+		                                            <i class="fa fa-check-circle fa-fw"></i> Available
+		                                        </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="#">
+		                                            <i class="fa fa-times fa-fw"></i> Busy
+		                                        </a>
+		                                    </li>
+		                                    <li>
+		                                        <a href="#">
+		                                            <i class="fa fa-clock-o fa-fw"></i> Away
+		                                        </a>
+		                                    </li>
+		                                    <li class="divider"></li>
+		                                    <li>
+		                                        <a href="#">
+		                                            <i class="fa fa-sign-out fa-fw"></i> Sign Out
+		                                        </a>
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                        <!-- /.panel-heading -->
+		                        <div class="panel-body">
+		                            <ul class="chat">
+		                                <li class="left clearfix">
+		                                    <span class="chat-img pull-left">
+		                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
+		                                    </span>
+		                                    <div class="chat-body clearfix">
+		                                        <div class="header">
+		                                            <strong class="primary-font">Jack Sparrow</strong>
+		                                            <small class="pull-right text-muted">
+		                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+		                                            </small>
+		                                        </div>
+		                                        <p>
+		                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+		                                        </p>
+		                                    </div>
+		                                </li>
+		                                <li class="right clearfix">
+		                                    <span class="chat-img pull-right">
+		                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">
+		                                    </span>
+		                                    <div class="chat-body clearfix">
+		                                        <div class="header">
+		                                            <small class=" text-muted">
+		                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
+		                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+		                                        </div>
+		                                        <p>
+		                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+		                                        </p>
+		                                    </div>
+		                                </li>
+		                                <li class="left clearfix">
+		                                    <span class="chat-img pull-left">
+		                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
+		                                    </span>
+		                                    <div class="chat-body clearfix">
+		                                        <div class="header">
+		                                            <strong class="primary-font">Jack Sparrow</strong>
+		                                            <small class="pull-right text-muted">
+		                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+		                                        </div>
+		                                        <p>
+		                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+		                                        </p>
+		                                    </div>
+		                                </li>
+		                                <li class="right clearfix">
+		                                    <span class="chat-img pull-right">
+		                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">
+		                                    </span>
+		                                    <div class="chat-body clearfix">
+		                                        <div class="header">
+		                                            <small class=" text-muted">
+		                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
+		                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+		                                        </div>
+		                                        <p>
+		                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+		                                        </p>
+		                                    </div>
+		                                </li>
+		                            </ul>
+		                        </div>
+		                        <!-- /.panel-body -->
+		                        <div class="panel-footer">
+		                            <div class="input-group">
+		                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
+		                                <span class="input-group-btn">
+		                                    <button class="btn btn-warning btn-sm" id="btn-chat">
+		                                        Send
+		                                    </button>
+		                                </span>
+		                            </div>
+		                        </div>
+		                        <!-- /.panel-footer -->
+		                    </div>
+		                    <!-- /.panel .chat-panel -->
+		                </div>
+					</div>
+					
+					
+					
+					
 				</div>
 
 			</div>
@@ -805,9 +1029,16 @@
 		<!-- zTree -->
 		<script type="text/javascript" src="..${contextPath}/zTree_v3/js/jquery.ztree.core.js"></script>
 		<script type="text/javascript" src="..${contextPath}/resources/js/zTree_custom.js"></script>
+		<!-- highchart -->
+		<script type="text/javascript" src="..${contextPath}/resources/highcharts/highcharts.js"></script>
+		<script type="text/javascript" src="..${contextPath}/resources/highcharts/exporting.js"></script>
+		<script type="text/javascript" src="..${contextPath}/resources/highcharts/highcharts-zh_CN.js"></script>
+		<!-- bootstrap-datetimepicker -->
+		<script type="text/javascript" src="..${contextPath}/resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 		<!-- 加载自定义的js -->
 		<script src="..${contextPath}/resources/js/index.js"></script>
+		<script src="..${contextPath}/resources/js/myHighCharts.js"></script>
 		<script type="text/javascript">
 			var contextPath = '${contextPath}';
 		</script>
