@@ -1,7 +1,6 @@
 $(function() {
 	init();//初始化
-	console.log(contextPath)
-	
+
 	//十年视图的datetimepicker
 	$('.form_year').datetimepicker({
         language:  'zh-CN',
@@ -36,6 +35,9 @@ function init(){
 	brandManage();
 	/*颜色管理*/
 	colorManage();
+	/*角色列表*/
+	getAllRole();
+
 	/*初始化下拉框*/
 	$('.selectCombo').comboSelect();
 	/*dataTable所有列的详情的展开或者收起*/
@@ -1501,13 +1503,13 @@ function getAllRole(){
 }
 
 //列出所有的权限，checkbox_zTree展示
-function getAllPers(){
+function getAllPers(roleId){
 	$.ajax({
 		type : "POST",
 		url : contextPath + "/per/getAllPers",
 		datatype : "json",
 		success : function(result) {
-			make_checkbox_zTree(result);
+			make_checkbox_zTree(result,roleId);
 		},
 		error : function(result) {
 			console.log("未知错误！");

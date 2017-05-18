@@ -4,6 +4,11 @@ import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.service.PermissionService;
 
+/**
+ * 权限controller
+ * @author jodenhe
+ *
+ */
 public class PermissionController  extends Controller{
 	public static Log log = Log.getLog(PermissionController.class);
 	private PermissionService service = new PermissionService();
