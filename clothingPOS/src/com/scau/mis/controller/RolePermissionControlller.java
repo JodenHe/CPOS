@@ -22,23 +22,20 @@ public class RolePermissionControlller extends Controller{
 	public void add(){
 		String str = getPara("listPerId");
 		long roleId = getParaToLong("roleId");
-		//将前端的字符串如1,2,3转换为[1,2,3]的long型list
-		List<Long> listPerId = CommonUtil.stringToLongList(str);
-		List<RolePermission> rps = new ArrayList<RolePermission>();
 
-		if (listPerId.size()>1) {
+		//将前端的字符串如1,2,3转换为[1,2,3]的long型list
+
+		List<RolePermission> rps = new ArrayList<RolePermission>();
+		if (str.length()!=0) {
+			List<Long> listPerId = CommonUtil.stringToLongList(str);
 			for (Long perId : listPerId) {
 				RolePermission rp = new RolePermission();
 				rp.setPermissionId(perId);
 				rp.setRoleId(roleId);
 				rps.add(rp);
 			}
-			renderJson(service.setPerToRole(rps));
-		}else{
-			RolePermission rp = new RolePermission();
-			rp.setPermissionId(listPerId.get(0));
-			rp.setRoleId(roleId);
-			renderJson(service.setPerToRole(rp));
 		}
+
+		renderJson(service.setPerToRole(rps,roleId));
 	}
 }

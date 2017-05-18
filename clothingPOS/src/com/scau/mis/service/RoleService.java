@@ -28,6 +28,24 @@ public class RoleService {
 		List<Role> role = Role.dao.find(sql);
 		return role;
 	}
+	
+	/**
+	 * 添加角色
+	 * @param role 角色对象
+	 * @return
+	 */
+	public boolean addRole(Role role){
+		return role.save();
+	}
+	
+	/**
+	 * 删除角色
+	 * @param id 角色id
+	 * @return 成功返回true，失败返回false
+	 */
+	public boolean deleteRole(long id) throws Exception{
+		return Role.dao.deleteById(id);
+	}
 
 	/**
 	 * 分配角色给用户

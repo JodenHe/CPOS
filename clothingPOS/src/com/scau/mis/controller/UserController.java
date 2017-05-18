@@ -22,11 +22,23 @@ import com.scau.mis.util.CryptographyUtil;
 public class UserController extends Controller {
 	public static Log log = Log.getLog(UserController.class);
 	private UserService userService  = new UserService();
+	private String salt = PropKit.use("common.properties").get("md5_salt");//读取配置文件中的md5加密佐料
+
+	
+	/**
+	 * 获取所有用户信息
+	 */
+	public void getAllUser(){
+		renderJson(userService.getAllUser());
+	}
+	
 	/**
 	 * 添加一个用户
 	 */
-	public void addd(){
+	public void add(){
 		User user = getModel(User.class);
+		user.setPassword(CryptographyUtil.md5(user.getPassword(), salt));
+		System.out.println(user);
 		renderJson(userService.addUser(user));
 	}
 	/**
@@ -43,7 +55,6 @@ public class UserController extends Controller {
 	public void login(){
 		User user = getModel(User.class);
 		Subject subject=SecurityUtils.getSubject();
-		String salt = PropKit.use("common.properties").get("md5_salt");//读取配置文件中的md5加密佐料
 		String errorInfo = "";
 
 		if (null == user.getUserName() || null == user.getPassword()) {

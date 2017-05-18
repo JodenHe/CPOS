@@ -124,7 +124,6 @@ function addRolePermission(){
 	var listPerId = "";
 	var list = CHECKED_PERS_ID;
 	var roleId = ROLE_ID;
-	alert(roleId)
 	
 	for(var i=0;i<list.length;i++){
 		listPerId = listPerId + list[i]+","

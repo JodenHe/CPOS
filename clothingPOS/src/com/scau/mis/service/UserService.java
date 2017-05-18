@@ -17,6 +17,15 @@ import com.scau.mis.model.User;
  */
 public class UserService {
 	public static Log log = Log.getLog(UserService.class);
+	
+	/**
+	 * 获取所有的用户信息
+	 * @return
+	 */
+	public List<User> getAllUser(){
+		String sql = "select * from user";
+		return User.dao.find(sql);
+	}
 	/**
 	 * 
 	 * @param user
@@ -24,7 +33,7 @@ public class UserService {
 	 */
 	public Map<String,Object> addUser(User user){
 		Map<String,Object> result = new HashMap<String,Object>();
-		if(!isExist(user.getId(), user.getUserName())){
+		if(!isExist(user.getUserName())){
 			if(user.save()){
 				result.put("status", true);
 				result.put("data", "新增用户成功！");
@@ -65,6 +74,17 @@ public class UserService {
 			return false;
 		else
 			return true;
+	}
+	
+	/**
+	 * 判断用户名是否存在
+	 * @param name 用户名
+	 * @return
+	 */
+	private boolean isExist(String name){
+		String sql = "select * from user where userName = '"+name+"'";
+		List<User> user =  User.dao.find(sql);
+		return user.size()>0;
 	}
 	
 	/**

@@ -19,5 +19,13 @@ public class PermissionController  extends Controller{
 	public void getAllPers(){
 		renderJson(service.getAllPers());
 	}
+	
+	/**
+	 * 获取角色所拥有有权限信息
+	 */
+	public void getAllPersByRoleId(){
+		long roleId = getParaToLong("roleId");
+		renderJson(service.getAllPersByRoleId(roleId));
+	}
 
 }

@@ -37,6 +37,8 @@ function init(){
 	colorManage();
 	/*角色列表*/
 	getAllRole();
+	/*用户列表*/
+	getAllUser();
 
 	/*初始化下拉框*/
 	$('.selectCombo').comboSelect();
@@ -1509,10 +1511,150 @@ function getAllPers(roleId){
 		url : contextPath + "/per/getAllPers",
 		datatype : "json",
 		success : function(result) {
-			make_checkbox_zTree(result,roleId);
+			getAllPersByRoleId(result,roleId);
 		},
 		error : function(result) {
 			console.log("未知错误！");
 		}
 	});
+}
+
+//列出所有的权限，checkbox_zTree展示
+function getAllPersByRoleId(data,roleId){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/per/getAllPersByRoleId",
+		data :{
+			"roleId" : roleId
+		},
+		datatype : "json",
+		success : function(result) {
+			for(var i = 0;i<data.length;i++){//选中角色拥有的权限
+				for (var j = 0;j<result.length;j++) {
+					if(result[j].id==data[i].id){
+						data[i].checked=true;
+					}
+				}
+				if(data[i].pId==null){//设置菜单展开
+					data[i].open=true;
+				}
+			}
+			make_checkbox_zTree(data,roleId);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+//删除角色
+function deleteRole(id){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/role/delete",
+		data : {
+			"id" : id
+		},
+		datatype : "json",
+		success : function(result) {
+			alert(result.msg);
+			if(result.status){
+				getAllRole();
+			}
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+//获取所有账户信息
+function getAllUser(){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/user/getAllUser",
+		datatype : "json",
+		success : function(result) {
+			userDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+//添加用户
+function addUser(){
+	var userName = $("#user-manager #user-name").val();
+	var password = $("#user-manager #user-password").val();
+	var repassword = $("#user-manager #user-repassword").val();
+	
+	if(userName==""){
+		alert("用户名不能为空！");
+	}
+	else if(password==""){
+		alert("密码不能为空！");
+	}
+	else if (password!=repassword) {
+		alert("两次输入密码不相同！")
+	}
+	else {
+			$.ajax({
+			type : "POST",
+			url : contextPath + "/user/add",
+			datatype : "json",
+			data  : {
+				"user.userName" : userName,
+				"user.password" : password
+			},
+			success : function(result) {
+				alert(result.data);
+				if (result.status) {
+					getAllUser();
+					$("#user-accountTable-tab").trigger("click");
+				} 
+				
+			},
+			error : function(result) {
+				console.log("未知错误！");
+			}
+		});
+	}
+}
+
+//添加角色
+function addRole (){
+	var roleName = $("#pers-manager #role-name").val();
+	var roleSign = $("#pers-manager #role-sign").val();
+	var description = $("#pers-manager #role-description").val();
+	
+	if(roleName==""){
+		alert("角色名称不能为空！");
+	}
+	else if(roleSign==""){
+		alert("英文名称不能为空！");
+	}
+	else {
+			$.ajax({
+			type : "POST",
+			url : contextPath + "/role/add",
+			datatype : "json",
+			data  : {
+				"role.roleName" : roleName,
+				"role.roleSign" : roleSign,
+				"role.description" : description,
+			},
+			success : function(result) {
+				alert(result.msg);
+				if (result.status) {
+					getAllRole();
+					$("#pers-roleTable-tab").trigger("click");
+				} 
+				
+			},
+			error : function(result) {
+				console.log("未知错误！");
+			}
+		});
+	}
 }
