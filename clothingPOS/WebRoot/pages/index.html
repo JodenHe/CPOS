@@ -36,7 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="..${contextPath}/resources/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
 
 	<!-- 加载自定义的css -->
-	<link href="..${contextPath}/resources/css/zTree-index.css" rel="stylesheet" type="text/css">
+	<!-- <link href="..${contextPath}/resources/css/zTree-index.css" rel="stylesheet" type="text/css"> -->
 	<link href="..${contextPath}/resources/css/index.css" rel="stylesheet" type="text/css">
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -768,6 +768,7 @@
 		                            <!-- 显示月销售额的柱状图 -->
 									<div id="category-sales-container"></div>
 		                        </div>
+		                       	
 		                        <!-- /.panel-body -->
 		                    </div>
 						
@@ -977,6 +978,7 @@
 
 
 		<!-- 模态框（Modal） -->
+		<!-- 尺寸弹框 -->
 		<div class="modal fade" id="sizeModel" tabindex="-1" role="dialog" aria-labelledby="sizeModel" aria-hidden="true">
 		    <div class="modal-dialog">
 		        <div class="modal-content" style="width: 900px;">
@@ -1040,6 +1042,29 @@
 		        </div><!-- /.modal-content -->
 		    </div><!-- /.modal -->
 		</div>
+		<!-- 分配权限弹框 -->
+		<div class="modal fade" id="perModel" tabindex="-1" role="dialog" aria-labelledby="perModel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h4 class="modal-title" id="myModalLabel">授权</h4>
+		            </div>
+		            <div class="modal-body">
+						<div>
+							<h4>系统资源</h4>							
+						</div>
+						<div class="zTreeDemoBackground left">
+							<ul id="per-checkbox-zTree" class="ztree"></ul>
+						</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary">确定</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
 
 
 		<!-- jQuery -->
@@ -1067,7 +1092,7 @@
 
 		<!-- zTree -->
 		<script type="text/javascript" src="..${contextPath}/zTree_v3/js/jquery.ztree.core.js"></script>
-		<script type="text/javascript" src="..${contextPath}/resources/js/zTree_custom.js"></script>
+		<script type="text/javascript" src="..${contextPath}/zTree_v3/js/jquery.ztree.excheck.js"></script>
 		<!-- highchart -->
 		<script type="text/javascript" src="..${contextPath}/resources/highcharts/highcharts.js"></script>
 		<script type="text/javascript" src="..${contextPath}/resources/highcharts/exporting.js"></script>
@@ -1079,6 +1104,8 @@
 		<!-- 加载自定义的js -->
 		<script src="..${contextPath}/resources/js/index.js"></script>
 		<script src="..${contextPath}/resources/js/myHighCharts.js"></script>
+		<script src="..${contextPath}/resources/js/myDataTable.js"></script>
+		<script src="..${contextPath}/resources/js/zTree_custom.js"></script>
 		<script type="text/javascript">
 			var contextPath = '${contextPath}';
 		</script>

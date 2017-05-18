@@ -468,11 +468,11 @@ function sizeDataTable(data) {
 }
 
 //角色的dataTable
-function getAllRole(data) {
+function roleDataTable(data) {
 	$('#pers-roleTable-dataTable')
 			.DataTable(
 					{
-						destroy : true,
+						"destroy" : true,
 						"bAutoWidth" : false,
 						"bSort" : true,
 						"aoColumnDefs" : [ {
@@ -506,7 +506,7 @@ function getAllRole(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							
+							$('td:eq(4)', nRow).html('<a data-toggle="modal" data-target="#perModel" href="#perModel"><i class="fa fa-user-md"></i>&nbsp;分配权限</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i class="fa fa-trash-o"></i>&nbsp;删除</a>');
 						},
 					});
 }

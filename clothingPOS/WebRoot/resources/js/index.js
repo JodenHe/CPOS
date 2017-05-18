@@ -1,5 +1,6 @@
 $(function() {
 	init();//初始化
+	console.log(contextPath)
 	
 	//十年视图的datetimepicker
 	$('.form_year').datetimepicker({
@@ -1492,6 +1493,21 @@ function getAllRole(){
 		datatype : "json",
 		success : function(result) {
 			roleDataTable(result);
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+//列出所有的权限，checkbox_zTree展示
+function getAllPers(){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/per/getAllPers",
+		datatype : "json",
+		success : function(result) {
+			make_checkbox_zTree(result);
 		},
 		error : function(result) {
 			console.log("未知错误！");
