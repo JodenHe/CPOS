@@ -1518,7 +1518,7 @@ function getAllPers(roleId){
 		}
 	});
 }
-
+var CHECKED_PERS_ID = [];//用于记录分配的权限id
 //列出所有的权限，checkbox_zTree展示
 function getAllPersByRoleId(data,roleId){
 	$.ajax({
@@ -1529,10 +1529,12 @@ function getAllPersByRoleId(data,roleId){
 		},
 		datatype : "json",
 		success : function(result) {
+			CHECKED_PERS_ID = [];//初始化用于记录权限的节点
 			for(var i = 0;i<data.length;i++){//选中角色拥有的权限
 				for (var j = 0;j<result.length;j++) {
 					if(result[j].id==data[i].id){
 						data[i].checked=true;
+						CHECKED_PERS_ID.push(data[i].id);
 					}
 				}
 				if(data[i].pId==null){//设置菜单展开

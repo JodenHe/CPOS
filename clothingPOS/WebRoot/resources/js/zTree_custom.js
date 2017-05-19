@@ -1,4 +1,4 @@
-var CHECKED_PERS_ID = [];//用于记录分配的权限id
+
 var ROLE_ID = 0;
 
 /**
@@ -85,7 +85,7 @@ function make_checkbox_zTree(data,roleId){
 	var zNodes =data;
 	$.fn.zTree.init($("#per-checkbox-zTree"), setting, zNodes);
 
-	CHECKED_PERS_ID = [];//初始化用于记录选中的字节点
+	
 	ROLE_ID = roleId;//传递角色id给添加映射函数
 	function onCheck(e, treeId, treeNode){//选择复选框时操作
 		//选择子节点时，往CHECKED_PERS_ID添加数据
