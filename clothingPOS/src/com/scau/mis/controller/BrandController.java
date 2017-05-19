@@ -2,6 +2,8 @@ package com.scau.mis.controller;
 
 import java.util.Date;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Brand;
@@ -19,6 +21,7 @@ public class BrandController extends Controller {
 	/**
 	 * 增加一个品牌
 	 */
+	@RequiresPermissions("goods:brand:manage")
 	public void add(){
 		Brand brand = getModel(Brand.class);
 		brand.setCreateTime(new Date());
@@ -28,6 +31,7 @@ public class BrandController extends Controller {
 	/**
 	 * 更新品牌信息
 	 */
+	@RequiresPermissions("goods:brand:manage")
 	public void update(){
 		Brand brand = getModel(Brand.class);
 		renderJson(service.updateBrand(brand));

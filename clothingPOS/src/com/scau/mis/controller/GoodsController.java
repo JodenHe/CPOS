@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Goods;
@@ -17,6 +19,7 @@ import com.scau.mis.util.TimeUtils;
  * @author jodenhe
  * 
  */
+@RequiresPermissions("goods:manage")
 public class GoodsController extends Controller {
 	public static Log log = Log.getLog(GoodsController.class);
 	private GoodsService service = new GoodsService();

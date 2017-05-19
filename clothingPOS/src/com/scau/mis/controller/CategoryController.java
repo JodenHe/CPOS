@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import net.sf.json.JSONObject;
 
 import com.jfinal.core.Controller;
@@ -70,6 +72,7 @@ public class CategoryController extends Controller {
 	/**
 	 * 添加一条类别信息
 	 */
+	@RequiresPermissions("goods:category:manage")
 	public void insert() {
 		Category category = getModel(Category.class);
 		category.setCreateTime(new Date());
@@ -79,6 +82,7 @@ public class CategoryController extends Controller {
 	/**
 	 * 修改类别信息
 	 */
+	@RequiresPermissions("goods:category:manage")
 	public void update() {
 		Category category = getModel(Category.class);
 		renderJson(service.updateCategory(category));
@@ -101,6 +105,7 @@ public class CategoryController extends Controller {
 	/**
 	 * 删除商品类别
 	 */
+	@RequiresPermissions("goods:category:manage")
 	public void delete() {
 		Map<String, Object> result = new HashMap<String, Object>();
 		long id = getParaToLong("id");

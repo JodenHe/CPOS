@@ -51,3 +51,12 @@ function getAllRole(){
 
 3、2017-05-15
     程序中使用equals方法来判断字符串是否为空，这样会降低系统性能。
+    
+4、2017-05-20
+多权限显示问题
+<#list ["per:role:create","per:role:delete","per:permission:divide","per:role:divide"] as permission>
+	<@shiro.hasPermission name=permission>
+		<li><a href="#">权限管理</a></li>
+		<#break> 
+	</@shiro.hasPermission>
+</#list>	

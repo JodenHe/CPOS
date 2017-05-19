@@ -1,5 +1,7 @@
 package com.scau.mis.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Payment;
@@ -15,6 +17,7 @@ public class PaymentController extends Controller {
 	/**
 	 * 增加一条支付记录
 	 */
+	@RequiresPermissions("goods:sale")
 	public void add(){
 		Payment payment = getModel(Payment.class);
 		renderJson(paymentService.addPayment(payment));
@@ -22,6 +25,7 @@ public class PaymentController extends Controller {
 	/**
 	 * 更新一条支付记录
 	 */
+	@RequiresPermissions("goods:sale")
 	public void updata(){
 		Payment payment = getModel(Payment.class);
 		renderJson(paymentService.updataPayment(payment));

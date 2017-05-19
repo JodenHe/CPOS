@@ -2,6 +2,8 @@ package com.scau.mis.controller;
 
 import java.util.Date;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Size;
@@ -19,6 +21,7 @@ public class SizeController extends Controller {
 	/**
 	 * 添加一个尺码
 	 */
+	@RequiresPermissions("goods:manage")
 	public void add(){
 		Size size = getModel(Size.class);
 		size.setCreateTime(new Date());
@@ -28,6 +31,7 @@ public class SizeController extends Controller {
 	/**
 	 * 添更新尺码信息
 	 */
+	@RequiresPermissions("goods:manage")
 	public void update(){
 		Size size = getModel(Size.class);
 		renderJson(service.updateSize(size));

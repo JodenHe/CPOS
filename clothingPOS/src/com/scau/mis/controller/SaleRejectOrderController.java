@@ -2,6 +2,8 @@ package com.scau.mis.controller;
 
 import java.math.BigDecimal;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.SaleRejectOrder;
@@ -17,6 +19,7 @@ public class SaleRejectOrderController extends Controller {
 	/**
 	 * 添加一条新的退单记录
 	 */
+	@RequiresPermissions("goods:reject")
 	public void add(){
 		SaleRejectOrder saleReject = getModel(SaleRejectOrder.class);
 		String total = getPara("SaleRejectOrder.total");
@@ -29,6 +32,7 @@ public class SaleRejectOrderController extends Controller {
 	/**
 	 * 更新一条已有的退单记录
 	 */
+	@RequiresPermissions("goods:reject")
 	public void updata(){
 		SaleRejectOrder saleReject = getModel(SaleRejectOrder.class);
 		renderJson(rejectService.updataSaleReject(saleReject));

@@ -1671,11 +1671,14 @@ function deleteUser(id){
 			"id" : id
 		},
 		success : function(result) {
-			alert(result.msg);
-			if (result.status) {
-				getAllUser();
-			} 
-			
+			if(result.status==null){
+				alert(result);
+			}else{
+				alert(result.msg);
+				if (result.status) {
+					getAllUser();
+				} 
+			}
 		},
 		error : function(result) {
 			console.log("未知错误！");
@@ -1752,11 +1755,15 @@ function updateUser(){
 				"roleId":roleId
 			},
 			success : function(result) {
-				alert(result.msg);
-				if (result.status) {
-					getAllUser();
-					$("#userModel button.close").trigger("click");
-				} 
+				if(result.status==null){
+					alert(result);
+				}else{
+					alert(result.msg);
+					if (result.status) {
+						getAllUser();
+						$("#userModel button.close").trigger("click");
+					} 
+				}
 				
 			},
 			error : function(result) {

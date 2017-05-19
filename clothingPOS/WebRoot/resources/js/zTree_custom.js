@@ -99,13 +99,16 @@ function make_checkbox_zTree(data,roleId){
 		//选择父节点时，默认选中所有子节点
 		if(treeNode.checked&&treeNode.isParent){
 			for(var i=0;i<treeNode.children.length;i++){
-				CHECKED_PERS_ID.push(treeNode.children[i].id)	
+				if( CHECKED_PERS_ID.includes(treeNode.children[i].id) ){
+				 CHECKED_PERS_ID=del(CHECKED_PERS_ID,treeNode.children[i].id);	
+				}
+				CHECKED_PERS_ID.push(treeNode.children[i].id);
 			}
 		}
 		//去除父节点时，默认移除所有子节点
 		if(!treeNode.checked&&treeNode.isParent){
 			for(var i=0;i<treeNode.children.length;i++){
-				CHECKED_PERS_ID=del(CHECKED_PERS_ID,treeNode.id)	
+				CHECKED_PERS_ID=del(CHECKED_PERS_ID,treeNode.children[i].id)	
 			}
 		}
 	}

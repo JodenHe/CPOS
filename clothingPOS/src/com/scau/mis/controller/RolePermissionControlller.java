@@ -3,6 +3,8 @@ package com.scau.mis.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.scau.mis.model.RolePermission;
 import com.scau.mis.service.PermissionService;
@@ -19,6 +21,7 @@ public class RolePermissionControlller extends Controller{
 	/**
 	 * 添加角色权限映射
 	 */
+	//@RequiresPermissions("per:permission:divide")
 	public void add(){
 		String str = getPara("listPerId");
 		long roleId = getParaToLong("roleId");

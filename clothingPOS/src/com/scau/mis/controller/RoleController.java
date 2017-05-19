@@ -1,5 +1,7 @@
 package com.scau.mis.controller;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Role;
@@ -20,6 +22,7 @@ public class RoleController  extends Controller{
 	 * 
 	 * 添加角色
 	 */
+	@RequiresPermissions("per:role:create")
 	public void add(){
 		Role role = getModel(Role.class);
 		if (service.addRole(role)) {
@@ -30,6 +33,10 @@ public class RoleController  extends Controller{
 		}
 	}
 	
+	/**
+	 * 删除角色
+	 */
+	@RequiresPermissions("per:role:delete")
 	public void delete(){
 		long id = getParaToLong("id");
 		try {

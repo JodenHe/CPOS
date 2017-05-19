@@ -3,6 +3,8 @@ package com.scau.mis.controller;
 
 import java.util.Date;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 import com.scau.mis.model.Color;
@@ -20,6 +22,7 @@ public class ColorController extends Controller {
 	/**
 	 * 添加一个颜色
 	 */
+	@RequiresPermissions("goods:color:manage")
 	public void add(){
 		Color color = getModel(Color.class);
 		color.setCreateTime(new Date());
@@ -29,6 +32,7 @@ public class ColorController extends Controller {
 	/**
 	 * 新增一个颜色
 	 */
+	@RequiresPermissions("goods:color:manage")
 	public void update(){
 		Color color = getModel(Color.class);
 		renderJson(service.updateColor(color));
