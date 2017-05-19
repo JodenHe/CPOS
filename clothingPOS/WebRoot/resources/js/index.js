@@ -1658,3 +1658,104 @@ function addRole (){
 		});
 	}
 }
+
+//删除用户
+function deleteUser(id){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/user/delete",
+		datatype : "json",
+		data  : {
+			"id" : id
+		},
+		success : function(result) {
+			alert(result.msg);
+			if (result.status) {
+				getAllUser();
+			} 
+			
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+//根据id获取用户信息
+function getUserById(id){
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/user/getUserById",
+		datatype : "json",
+		data  : {
+			"id" : id
+		},
+		success : function(result) {
+			if(result.length>0){
+				$("#userModel-user-name").val(result[0].userName);
+				$("#userModel-user-password").val(result[0].password);
+				$("#userModel-user-id").val(id);
+				allRoles(result[0].roleName);
+				function allRoles(role){
+					$.ajax({
+						type : "POST",
+						url : contextPath + "/role/getAllRoles",
+						datatype : "json",
+						success : function(result) {
+							console.log(result)
+							$("#userModel-user-role").html("");
+							$("#userModel-user-role").append('<option selected value>无</option>');
+							for (var i =0;i< result.length;i++) {
+								if (role == result[i].roleName) {
+									$("#userModel-user-role").append('<option selected value="'+result[i].id+'">'+result[i].roleName)+'</option>';
+								} else {
+									$("#userModel-user-role").append('<option value="'+result[i].id+'">'+result[i].roleName)+'</option>';
+								}
+							}
+							$(".role-select").comboSelect();
+						},
+						error : function(result) {
+							console.log("未知错误！");
+						}
+					});
+				}
+				
+			}
+			
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}
+
+//更新用户信息
+function updateUser(){
+	var id =$("#userModel-user-id").val();
+	var userName = $("#userModel-user-name").val();
+	var password = $("#userModel-user-password").val();
+	var roleId = $("#userModel-user-role").val();
+
+	$.ajax({
+		type : "POST",
+		url : contextPath + "/user/update",
+		datatype : "json",
+		data  : {
+			"user.id" : id,
+			"user.userName":userName,
+			"user.password":password,
+			"roleId":roleId
+		},
+		success : function(result) {
+			alert(result.msg);
+			if (result.status) {
+				getAllUser();
+				$("#userModel button.close").trigger("click");
+			} 
+			
+		},
+		error : function(result) {
+			console.log("未知错误！");
+		}
+	});
+}

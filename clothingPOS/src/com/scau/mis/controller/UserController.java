@@ -23,13 +23,20 @@ public class UserController extends Controller {
 	public static Log log = Log.getLog(UserController.class);
 	private UserService userService  = new UserService();
 	private String salt = PropKit.use("common.properties").get("md5_salt");//读取配置文件中的md5加密佐料
-
 	
 	/**
 	 * 获取所有用户信息
 	 */
 	public void getAllUser(){
 		renderJson(userService.getAllUser());
+	}
+	
+	/**
+	 * 根据id获取用户信息
+	 */
+	public void getUserById(){
+		long id = getParaToLong("id");
+		renderJson(userService.getUserById(id));
 	}
 	
 	/**
@@ -46,9 +53,37 @@ public class UserController extends Controller {
 	 */
 	public void delete(){
 		long id = getParaToLong("id");
-		renderJson(userService.deleteUser(id));
+		try {
+			if (userService.deleteUser(id)) {
+				renderJson(" {\"status\":true,\"msg\":\"成功删除用户！\"} ");
+			}else{
+				renderJson(" {\"status\":false,\"msg\":\"删除用户失败！\"} ");
+			}
+			
+		} catch (Exception e) {
+			log.warn(e+e.getMessage());
+			renderJson(" {\"status\":false,\"msg\":\"无法删除用户请先移除用户分配的角色！\"} ");
+		}
 	}
 
+	/**
+	 * 更新用户信息，包括角色的映射
+	 */
+	public void update(){
+		User user = getModel(User.class);
+		long roleId = null==getParaToLong("roleId")?-1L:getParaToLong("roleId");
+		
+		User oldUser = User.dao.findById(user.getId());
+		if(!oldUser.getPassword().equals(user.getPassword())){
+			user.setPassword(CryptographyUtil.md5(user.getPassword(), salt));
+		}
+		if(userService.updateUser(user, roleId)){
+			renderJson(" {\"status\":true,\"msg\":\"更新成功！\"} ");
+		}else{
+			renderJson(" {\"status\":false,\"msg\":\"更新失败！\"} ");
+		}
+	}
+	
 	/**
 	 * 用户登录验证
 	 */

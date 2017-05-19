@@ -521,11 +521,11 @@ function userDataTable(data) {
 						"bSort" : true,
 						"aoColumnDefs" : [ {
 							"bSearchable" : false,
-							"aTargets" : [4]
+							"aTargets" : [5]
 						},  
 						 {
 							"bSortable" : false,
-							"aTargets" : [4 ]
+							"aTargets" : [5 ]
 						},
 						],
 						"order": [[ 0, "asc" ]],//默认第1列降序排列
@@ -538,6 +538,8 @@ function userDataTable(data) {
 						}, {
 							data : 'password'
 						}, {
+							data : 'roleName'
+						},  {
 							data : 'createTime'
 						}, {
 							data : 'id'
@@ -550,7 +552,7 @@ function userDataTable(data) {
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
-							$('td:eq(4)', nRow).html('<a data-toggle="modal" data-target="#perModel" href="#perModel" onclick="getAllPers('+aaData.id+');"><i class="fa fa-user-md"></i>&nbsp;分配权限</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#per-delete" onclick="deleteRole('+aaData.id+');"><i class="fa fa-trash-o"></i>&nbsp;删除</a>');
+							$('td:eq(5)', nRow).html('<a data-toggle="modal" data-target="#userModel" href="#userModel" onclick="getUserById('+aaData.id+');"><i class="fa fa-pencil"></i>&nbsp;修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#per-delete" onclick="deleteUser('+aaData.id+');"><i class="fa fa-trash-o"></i>&nbsp;删除</a>');
 						},
 					});
 }

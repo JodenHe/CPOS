@@ -9,3 +9,6 @@ th.details-control,td.details-control {
 tr.shown td.details-control, tr.shown th.details-control{
     background: url('../DataTables-1.10.13/media/images/details_close.png') no-repeat center center;
 }
+.divstyle{
+	margin : 10px 0px;
+}
