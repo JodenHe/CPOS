@@ -33,11 +33,19 @@ public abstract class BaseInventory<M extends BaseInventory<M>> extends Model<M>
 		return get("warehouseId");
 	}
 
-	public void setAmount(java.lang.Integer amount) {
+	public void setQuantity(java.lang.Integer quantity) {
+		set("quantity", quantity);
+	}
+
+	public java.lang.Integer getQuantity() {
+		return get("quantity");
+	}
+
+	public void setAmount(java.math.BigDecimal amount) {
 		set("amount", amount);
 	}
 
-	public java.lang.Integer getAmount() {
+	public java.math.BigDecimal getAmount() {
 		return get("amount");
 	}
 
