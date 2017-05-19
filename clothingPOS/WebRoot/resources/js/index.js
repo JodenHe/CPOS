@@ -1736,26 +1736,30 @@ function updateUser(){
 	var password = $("#userModel-user-password").val();
 	var roleId = $("#userModel-user-role").val();
 
-	$.ajax({
-		type : "POST",
-		url : contextPath + "/user/update",
-		datatype : "json",
-		data  : {
-			"user.id" : id,
-			"user.userName":userName,
-			"user.password":password,
-			"roleId":roleId
-		},
-		success : function(result) {
-			alert(result.msg);
-			if (result.status) {
-				getAllUser();
-				$("#userModel button.close").trigger("click");
-			} 
-			
-		},
-		error : function(result) {
-			console.log("未知错误！");
-		}
-	});
+	if(password==""){
+		alert("密码不能为空!");
+	}else{
+		$.ajax({
+			type : "POST",
+			url : contextPath + "/user/update",
+			datatype : "json",
+			data  : {
+				"user.id" : id,
+				"user.userName":userName,
+				"user.password":password,
+				"roleId":roleId
+			},
+			success : function(result) {
+				alert(result.msg);
+				if (result.status) {
+					getAllUser();
+					$("#userModel button.close").trigger("click");
+				} 
+				
+			},
+			error : function(result) {
+				console.log("未知错误！");
+			}
+		});
+	}
 }
