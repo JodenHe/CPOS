@@ -19,7 +19,6 @@ import com.scau.mis.util.TimeUtils;
  * @author jodenhe
  * 
  */
-@RequiresPermissions("goods:manage")
 public class GoodsController extends Controller {
 	public static Log log = Log.getLog(GoodsController.class);
 	private GoodsService service = new GoodsService();
@@ -27,6 +26,7 @@ public class GoodsController extends Controller {
 	/**
 	 * 增加一个商品
 	 */
+	@RequiresPermissions("goods:manage")
 	public void add() {
 		Goods goods = getModel(Goods.class);
 		goods.setCreateTime(new Date());
@@ -37,6 +37,7 @@ public class GoodsController extends Controller {
 	/**
 	 * 修改商品信息
 	 */
+	@RequiresPermissions("goods:manage")
 	public void update() {
 		Goods goods = getModel(Goods.class);
 		renderJson(service.updateGoods(goods));
@@ -45,6 +46,7 @@ public class GoodsController extends Controller {
 	/**
 	 * 删除一个商品
 	 */
+	@RequiresPermissions("goods:manage")
 	public void delete() {
 		Map<String, Object> result = new HashMap<String, Object>();
 		long id = getParaToLong("id");

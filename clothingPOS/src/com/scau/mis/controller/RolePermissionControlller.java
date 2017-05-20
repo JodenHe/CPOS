@@ -21,7 +21,7 @@ public class RolePermissionControlller extends Controller{
 	/**
 	 * 添加角色权限映射
 	 */
-	//@RequiresPermissions("per:permission:divide")
+	@RequiresPermissions("per:permission:divide")
 	public void add(){
 		String str = getPara("listPerId");
 		long roleId = getParaToLong("roleId");
