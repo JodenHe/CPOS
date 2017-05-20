@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
+Source Server         : mysql
 Source Server Version : 50718
 Source Host           : localhost:3306
 Source Database       : db_pos
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-05-19 18:58:26
+Date: 2017-05-20 23:01:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -225,7 +225,7 @@ CREATE TABLE `permission` (
   PRIMARY KEY (`id`),
   KEY `FK_per_pId` (`pId`),
   CONSTRAINT `FK_per_pId` FOREIGN KEY (`pId`) REFERENCES `permission` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 -- ----------------------------
 -- Records of permission
@@ -245,6 +245,12 @@ INSERT INTO `permission` VALUES ('12', '15', '库存出库', 'inventory:out', nu
 INSERT INTO `permission` VALUES ('13', null, '用户管理', 'user', null);
 INSERT INTO `permission` VALUES ('14', null, '商品管理', 'goods', null);
 INSERT INTO `permission` VALUES ('15', null, '库存管理', 'inventory', null);
+INSERT INTO `permission` VALUES ('16', null, '报表分析', 'dashboard:manager', null);
+INSERT INTO `permission` VALUES ('17', null, '权限管理', 'per', null);
+INSERT INTO `permission` VALUES ('18', '17', '添加角色', 'per:role:create', null);
+INSERT INTO `permission` VALUES ('19', '17', '删除角色', 'per:role:delete', null);
+INSERT INTO `permission` VALUES ('20', '17', '分配权限', 'per:permission:divide', null);
+INSERT INTO `permission` VALUES ('21', '17', '分配角色', 'per:role:divide', null);
 
 -- ----------------------------
 -- Table structure for role
@@ -277,27 +283,32 @@ CREATE TABLE `role_permission` (
   KEY `FK_rp_roleId` (`roleId`),
   CONSTRAINT `FK_rp_permissionId` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`),
   CONSTRAINT `FK_rp_roleId` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 COMMENT='角色与权限关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=366 DEFAULT CHARSET=utf8 COMMENT='角色与权限关联表';
 
 -- ----------------------------
 -- Records of role_permission
 -- ----------------------------
-INSERT INTO `role_permission` VALUES ('57', '1', '1');
-INSERT INTO `role_permission` VALUES ('58', '1', '2');
-INSERT INTO `role_permission` VALUES ('59', '1', '3');
-INSERT INTO `role_permission` VALUES ('60', '1', '4');
-INSERT INTO `role_permission` VALUES ('61', '1', '5');
-INSERT INTO `role_permission` VALUES ('62', '1', '6');
-INSERT INTO `role_permission` VALUES ('63', '1', '7');
-INSERT INTO `role_permission` VALUES ('64', '1', '8');
-INSERT INTO `role_permission` VALUES ('65', '1', '9');
-INSERT INTO `role_permission` VALUES ('66', '1', '10');
-INSERT INTO `role_permission` VALUES ('67', '1', '11');
-INSERT INTO `role_permission` VALUES ('68', '1', '12');
-INSERT INTO `role_permission` VALUES ('69', '2', '1');
-INSERT INTO `role_permission` VALUES ('70', '2', '2');
-INSERT INTO `role_permission` VALUES ('71', '2', '3');
-INSERT INTO `role_permission` VALUES ('72', '2', '1');
+INSERT INTO `role_permission` VALUES ('333', '1', '1');
+INSERT INTO `role_permission` VALUES ('334', '1', '2');
+INSERT INTO `role_permission` VALUES ('335', '1', '3');
+INSERT INTO `role_permission` VALUES ('336', '1', '4');
+INSERT INTO `role_permission` VALUES ('337', '1', '5');
+INSERT INTO `role_permission` VALUES ('338', '1', '6');
+INSERT INTO `role_permission` VALUES ('339', '1', '7');
+INSERT INTO `role_permission` VALUES ('340', '1', '8');
+INSERT INTO `role_permission` VALUES ('341', '1', '9');
+INSERT INTO `role_permission` VALUES ('342', '1', '10');
+INSERT INTO `role_permission` VALUES ('343', '1', '11');
+INSERT INTO `role_permission` VALUES ('344', '1', '12');
+INSERT INTO `role_permission` VALUES ('345', '1', '16');
+INSERT INTO `role_permission` VALUES ('346', '1', '18');
+INSERT INTO `role_permission` VALUES ('347', '1', '19');
+INSERT INTO `role_permission` VALUES ('348', '1', '20');
+INSERT INTO `role_permission` VALUES ('349', '1', '21');
+INSERT INTO `role_permission` VALUES ('362', '2', '3');
+INSERT INTO `role_permission` VALUES ('363', '2', '4');
+INSERT INTO `role_permission` VALUES ('364', '2', '7');
+INSERT INTO `role_permission` VALUES ('365', '2', '9');
 
 -- ----------------------------
 -- Table structure for sale_order
@@ -497,7 +508,7 @@ CREATE TABLE `user` (
   `state` varchar(32) DEFAULT NULL COMMENT '状态',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
