@@ -1,5 +1,8 @@
 package com.scau.mis.controller;
 
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log;
 
@@ -14,6 +17,7 @@ public class CashierController  extends Controller {
 	/**
 	 * 首页默认界面
 	 */
+	@RequiresPermissions(value={"goods:sale","goods:reject"},logical=Logical.OR)
 	public void index() {
 		log.info("进入收银员首页界面");
 		render("index.html");

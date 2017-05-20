@@ -12,3 +12,6 @@ tr.shown td.details-control, tr.shown th.details-control{
 .divstyle{
 	margin : 10px 0px;
 }
+a{
+	cursor:pointer;
+}

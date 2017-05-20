@@ -48,6 +48,34 @@
 
 	</head>
 	<body>
+		<script type="text/javascript">
+			var goodsManageFlag = false;//商品管理
+			var goodsCategoryFlag =false;//类别管理
+			var goodsBrandFlag = false;//品牌管理
+			var goodsColorFlag = false;//颜色管理
+		</script>
+		<!-- 判断是否拥有某个权限 -->
+		<@shiro.hasPermission name="goods:manage">
+			<script type="text/javascript">
+				goodsManageFlag = true;
+			</script>
+		</@shiro.hasPermission>
+		<@shiro.hasPermission name="goods:color:manage">
+			<script type="text/javascript">
+				goodsColorFlag = true;
+			</script>
+		</@shiro.hasPermission>
+		<@shiro.hasPermission name="goods:category:manage">
+			<script type="text/javascript">
+				goodsCategoryFlag = true;
+			</script>
+		</@shiro.hasPermission>
+		<@shiro.hasPermission name="goods:btand:manage">
+			<script type="text/javascript">
+				goodsBrandFlag = true;
+			</script>
+		</@shiro.hasPermission>
+		
 
 		<div id="wrapper">
 
@@ -280,23 +308,23 @@
 								</div> <!-- /input-group -->
 							</li>
 							<@shiro.hasPermission name="dashboard:manager">
-								<li><a href="#"><i class="fa fa-dashboard fa-fw"></i>报表分析</a></li>
+								<li><a onclick="dashboardFun();"><i class="fa fa-dashboard fa-fw"></i>报表分析</a></li>
 							</@shiro.hasPermission>
 							<#list ["per:role:create","per:role:delete","per:permission:divide","per:role:divide","user:create","user:delete","user:update"] as permission>
 								<@shiro.hasPermission name=permission>
-									<li><a href="#"><i class="fa fa-users fa-fw"></i>
+									<li><a><i class="fa fa-users fa-fw"></i>
 										用户管理<span class="fa arrow"></span></a>
 										<ul class="nav nav-second-level">
 											<#list ["per:role:create","per:role:delete","per:permission:divide","per:role:divide"] as permission>
 												<@shiro.hasPermission name=permission>
-													<li><a href="#">权限管理</a></li>
+													<li><a onclick="perFun();">权限管理</a></li>
 													<#break> 
 												</@shiro.hasPermission>
 											</#list>						
 											<!-- <li><a href="#">用户信息</a></li> -->
 											<#list ["user:create","user:delete","user:update"] as permission>
 												<@shiro.hasPermission name=permission>
-													<li><a href="#">账号管理</a></li>
+													<li><a onclick="accountFun();" ">账号管理</a></li>
 													<#break> 
 												</@shiro.hasPermission>
 											</#list>
@@ -314,10 +342,10 @@
 												销售管理<span class="fa arrow"></span></a>
 											<ul class="nav nav-second-level">
 												<@shiro.hasPermission name="goods:sale">
-													<li><a href="#">销售</a></li>
+													<li><a href="${contextPath}/cashier">销售</a></li>
 												</@shiro.hasPermission>
 												<@shiro.hasPermission name="goods:reject">
-													<li><a href="#">退货</a></li>
+													<li><a href="${contextPath}/cashier">退货</a></li>
 												</@shiro.hasPermission>								
 											</ul> <!-- /.nav-second-level --></li>
 									<#break> 
@@ -325,8 +353,8 @@
 							</#list>
 							<#list ["goods:manage","goods:category:manage","goods:brand:manage","goods:color:manage"] as permission>
 								<@shiro.hasPermission name=permission>
-									<li>
-										<a href="#goods"><i class="glyphicon glyphicon-barcode"></i> 商品管理</a>
+									<li onclick="goodsFun();">
+										<a><i class="glyphicon glyphicon-barcode"></i> 商品管理</a>
 									</li>
 									<#break> 
 								</@shiro.hasPermission>
@@ -367,7 +395,7 @@
 				<div id="container">
 
 					<!-- 商品管理 -->
-					<div id="goods-manager">
+					<div id="goods-manager" style="display: none;">
 
 	                    <div class="panel panel-default">
 	                        
@@ -379,7 +407,7 @@
 	                        <div class="panel-body">
 	                            <!-- Nav tabs -->
 	                            <ul class="nav nav-tabs">
-	                            	<#assign tabExpanded="true",tabActive="active">
+	                            	<#assign tabExpanded="true",tabActive="active",inActive="in active">
 	                            	<@shiro.hasPermission name="goods:manage">
 										<li class=${tabActive}><a href="#goods-goodsManage" data-toggle="tab" aria-expanded=${tabExpanded}>商品管理</a>
 	                                	</li>
@@ -404,71 +432,9 @@
 
 	                            <!-- Tab panes -->
 	                            <div class="tab-content">
-									<@shiro.hasPermission name="goods:category:manage">
-									   <div id="goods-categoryManage" class="tab-pane fade active in">
-											<form class="form-horizontal">
-												<div class="form-group">
-													<div class="col-lg-3">
-														<label  for="category-name">类别名称：</label><input class="form-control " type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空"/>
-													</div>
-													<div class="col-lg-4">
-														<div class="row" style="margin-left: 0px;">
-															<label for="pId">父类别:</label>
-														</div>
-														<div class="row">
-															<div class="col-lg-6">
-																<select name="category-firstCategory" id="category-firstCategory" class="selectCombo form-control  showparents category-firstCategory" onchange="getSecondCategory(this.value);">
-																	<option value="0">不选，默认无</option>
-																</select>
-															</div>	
-															<div class="col-lg-6">
-																<select name="category-secondCategory" id="category-secondCategory" class="selectCombo form-control  showparents category-secondCategory">
-																	<option value="0">不选，默认无</option>
-																</select>
-															</div>	
-														</div>
-													</div>
-												</div>
-												<div class="form-group"	>
-													<div class="col-lg-7">
-														<label  for="category-script">备注：</label>
-														<textarea class="form-control" rows="3" id="category-script" name="category-script" placeholder="请输入描述信息，可以为空"></textarea>
-													</div>
-												</div>
-
-												<div class="form-group">
-													<div class="col-lg-3">
-														<button type="button" class="btn btn-success btn-lg btn-block" onclick="addCategory();">新增</button>
-													</div>
-													<div class="col-lg-3">
-														<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
-													</div>
-												</div>
-											</form>
-
-											<div class="form-group" style="display: none;">
-												<h3>类别树型菜单：</h3>
-												<div class="zTreeDemoBackground left">
-													<ul id="treeDemo" class="ztree"></ul>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<h3>类别信息维护：	</h3>
-												<table id="categorys-table" class="table table-striped table-bordered table-hover">
-													<thead>
-														<tr><th class="details-control"></th><!-- <th>编号</th> --><th>名称</th><th>父类别</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
-													</thead>
-													<tbody id="categorys-table-content">
-
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</@shiro.hasPermission>  
 		                        	
 		                        	<@shiro.hasPermission name="goods:manage">	
-										<div id="goods-goodsManage" class="tab-pane fade  active in">
+										<div id="goods-goodsManage" class="tab-pane fade  ${inActive}">
 											<div class="form-group">
 												<div>
 													<form class="form-horizontal">
@@ -555,10 +521,75 @@
 												
 											</div>
 										</div>
+										<#assign inActive="">
 									</@shiro.hasPermission>  
+
+									<@shiro.hasPermission name="goods:category:manage">
+									   <div id="goods-categoryManage" class="tab-pane fade ${inActive}"}>
+											<form class="form-horizontal">
+												<div class="form-group">
+													<div class="col-lg-3">
+														<label  for="category-name">类别名称：</label><input class="form-control " type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空"/>
+													</div>
+													<div class="col-lg-4">
+														<div class="row" style="margin-left: 0px;">
+															<label for="pId">父类别:</label>
+														</div>
+														<div class="row">
+															<div class="col-lg-6">
+																<select name="category-firstCategory" id="category-firstCategory" class="selectCombo form-control  showparents category-firstCategory" onchange="getSecondCategory(this.value);">
+																	<option value="0">不选，默认无</option>
+																</select>
+															</div>	
+															<div class="col-lg-6">
+																<select name="category-secondCategory" id="category-secondCategory" class="selectCombo form-control  showparents category-secondCategory">
+																	<option value="0">不选，默认无</option>
+																</select>
+															</div>	
+														</div>
+													</div>
+												</div>
+												<div class="form-group"	>
+													<div class="col-lg-7">
+														<label  for="category-script">备注：</label>
+														<textarea class="form-control" rows="3" id="category-script" name="category-script" placeholder="请输入描述信息，可以为空"></textarea>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-lg-3">
+														<button type="button" class="btn btn-success btn-lg btn-block" onclick="addCategory();">新增</button>
+													</div>
+													<div class="col-lg-3">
+														<button type="button" class="btn btn-danger btn-lg btn-block" onclick="initForm(this);">重置</button>
+													</div>
+												</div>
+											</form>
+
+											<div class="form-group" style="display: none;">
+												<h3>类别树型菜单：</h3>
+												<div class="zTreeDemoBackground left">
+													<ul id="treeDemo" class="ztree"></ul>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<h3>类别信息维护：	</h3>
+												<table id="categorys-table" class="table table-striped table-bordered table-hover">
+													<thead>
+														<tr><th class="details-control"></th><!-- <th>编号</th> --><th>名称</th><th>父类别</th><th>描述</th><th>创建时间</th><th>操作</th></tr>
+													</thead>
+													<tbody id="categorys-table-content">
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<#assign inActive="">
+									</@shiro.hasPermission>
 		                                
 									<@shiro.hasPermission name="goods:brand:manage">	
-										<div id="goods-brandManage" class="tab-pane fade active in">
+										<div id="goods-brandManage" class="tab-pane fade ${inActive}">
 											<form class="form-horizontal">
 												<div class="form-group">
 													<div class="col-lg-3">
@@ -594,10 +625,11 @@
 												</table>
 											</div>
 										</div>
+										<#assign inActive="">
 									</@shiro.hasPermission>  
 		                                
 		                            <@shiro.hasPermission name="goods:color:manage">	
-										<div id="goods-colorManage" class="tab-pane fade active in">
+										<div id="goods-colorManage" class="tab-pane fade ${inActive}">
 											<form class="form-horizontal">
 												<div class="form-group">
 													<div class="col-lg-3">
@@ -633,6 +665,7 @@
 												</table>
 											</div>
 										</div>
+										<#assign inActive="">
 									</@shiro.hasPermission> 	
 	                            </div>
 	                        </div>
@@ -645,7 +678,7 @@
 					
 					
 					<!-- 权限管理 -->
-					<div id="pers-manager">
+					<div id="pers-manager" style="display: none;">
 
 	                    <div class="panel panel-default">
 	                        
@@ -711,7 +744,7 @@
 					</div>
 					
 					<!-- 帐号管理 -->
-					<div id="user-manager">
+					<div id="user-manager" style="display: none;">
 
 	                    <div class="panel panel-default">
 	                        
@@ -778,7 +811,7 @@
 					</div>
 					
 					<!-- 仪表盘 -->
-					<div id="dashboard">
+					<div id="dashboard" style="display: none;">
 						<div class="col-lg-8">
 							<!-- 月销售额柱状图 -->
 							<div class="panel panel-default">

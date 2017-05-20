@@ -12,11 +12,10 @@ public class IndexController  extends Controller {
 	public static Log log = Log.getLog(IndexController.class);
 
 	/**
-	 * 首页默认登录界面
+	 * 首页
 	 */
 	public void index() {
-		log.info("进入首页登录界面");
-		render("pages/login.html");
+		render("pages/index.html");
 	}
 	
 	/**

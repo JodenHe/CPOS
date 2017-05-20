@@ -107,7 +107,7 @@ public class UserController extends Controller {
 				Session session=subject.getSession();
 				log.info("\n"+new Date()+"\n用户："+user.getUserName()+"登入系统;\nip地址:"+session.getHost());
 				session.setAttribute("user", userService.getByUserName(user.getUserName()));
-				redirect("/admin");
+				redirect("/");
 			}catch(Exception e){
 				log.error(e+":"+e.getMessage());
 				setAttr("errorInfo", "用户名或者密码错误");

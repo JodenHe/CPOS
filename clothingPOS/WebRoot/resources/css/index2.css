@@ -41,3 +41,6 @@ label {
 	color: #739ECE;
     font-size: large;
 }
+a{
+	cursor:pointer;
+}

@@ -1,7 +1,56 @@
 $(function() {
 	init();//初始化
+});
 
-	//十年视图的datetimepicker
+/*权限管理设置界面出现效果*/
+//商品管理的初始化（对应导航栏的商品管理）
+function goodsFun(){
+	$("#goods-manager").show();
+	$("#pers-manager").hide();
+	$("#user-manager").hide();
+	$("#dashboard").hide();
+	/* 类别管理 */
+	if(goodsCategoryFlag){
+		categoryManage();
+	}
+	/*品牌管理*/
+	if(goodsBrandFlag){
+		brandManage();
+	}
+	/* 商品管理 */
+	if(goodsManageFlag){
+		goodsManage();
+	}
+	/*颜色管理*/
+	if(goodsColorFlag){
+		colorManage();
+	}
+	
+}
+//权限管理的初始化（对应导航栏的权限管理）
+function perFun(){
+	$("#goods-manager").hide();
+	$("#pers-manager").show();
+	$("#user-manager").hide();
+	$("#dashboard").hide();
+	getAllRole();
+}
+//帐号管理的初始化（对应导航栏的帐号管理）
+function accountFun(){
+	$("#goods-manager").hide();
+	$("#pers-manager").hide();
+	$("#user-manager").show();
+	$("#dashboard").hide();
+	getAllUser();
+}
+//仪表盘的初始化（对应导航栏的报表分析）
+function dashboardFun(){
+	$("#goods-manager").hide();
+	$("#pers-manager").hide();
+	$("#user-manager").hide();
+	$("#dashboard").show();
+
+		//十年视图的datetimepicker
 	$('.form_year').datetimepicker({
         language:  'zh-CN',
         weekStart: 1,
@@ -22,23 +71,9 @@ $(function() {
 		minView: 2,
 		forceParse: 0
 	});
-});
-
-
+}
 /*页面初始化*/
 function init(){
-	/* 类别管理 */
-	categoryManage();
-	/* 商品管理 */
-	goodsManage();
-	/*品牌管理*/
-	brandManage();
-	/*颜色管理*/
-	colorManage();
-	/*角色列表*/
-	getAllRole();
-	/*用户列表*/
-	getAllUser();
 
 	/*初始化下拉框*/
 	$('.selectCombo').comboSelect();

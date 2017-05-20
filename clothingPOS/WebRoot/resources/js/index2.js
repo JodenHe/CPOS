@@ -8,6 +8,14 @@ $(function() {
     keyEvent();//按钮触发事件
     
 });
+//点击导航栏的销售
+function saleFun(){
+    $("#my-sale").trigger("click");
+}
+//点击导航栏的退货
+function rejectFun(){
+    $("#my-reject").trigger("click");
+}
 
 /*按钮触发事件*/
 function keyEvent() {
