@@ -23,19 +23,11 @@ public class InventoryService {
 	public Map<String,Object> addInventory(Inventory inventory){
 		Map<String,Object> result = new HashMap<String,Object>();
 		inventory.setCreateTime(new Date());
-		if(!isExist(inventory.getId())){
-			inventory.setWarehouseId(1l);
-			
-		}else{
-			Inventory inventorys = Inventory.dao.findById(inventory.getId());
-			inventorys.setAmount(inventory.getAmount());
-			inventorys.setQuantity(inventorys.getQuantity()+inventory.getQuantity());
-			inventorys.save();
-		}
+		inventory.setWarehouseId(1l);
 		if(inventory.save()){
 			result.put("status", true);
 			result.put("data", "入库成功");
-			
+				
 		}else{
 			result.put("status", false);
 			result.put("data", "入库失败");
