@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.jfinal.log.Log;
 import com.scau.mis.model.Member;
-import com.scau.mis.model.Sales;
 import com.scau.mis.model.Shop;
 
 /**
@@ -116,13 +115,8 @@ public class ShopService {
 		Map<String,Object> result = new HashMap<String,Object>();
 		
 		String findShopIdFromMember = "select * from member as m where m.shopId ='"+id+"'";
-		String findShopIdFromSales = "select * from sales as s where s.shopId ='"+id+"'";
-		
 		if(Member.dao.find(findShopIdFromMember)!=null){
 			result.put("msg","Member表中仍然存在数据，删除失败");
-			result.put("status", false);
-		}else if(Sales.dao.find(findShopIdFromSales)!=null){
-			result.put("msg","Sales表中仍然存在数据，删除失败");
 			result.put("status", false);
 		}
 		else{
