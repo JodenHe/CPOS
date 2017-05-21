@@ -7,8 +7,10 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
+import org.apache.shiro.session.SessionException;
 import org.apache.shiro.subject.Subject;
 
+import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.PropKit;
 import com.jfinal.log.Log;
@@ -93,6 +95,7 @@ public class UserController extends Controller {
 	 */
 	public void login(){
 		User user = getModel(User.class);
+		boolean rememberMe = (null!=getPara("remember"));
 		Subject subject=SecurityUtils.getSubject();
 		String errorInfo = "";
 
@@ -103,16 +106,44 @@ public class UserController extends Controller {
 		}else{
 			UsernamePasswordToken token=new UsernamePasswordToken(user.getUserName(), CryptographyUtil.md5(user.getPassword(), salt));
 			try{
-				subject.login(token);
+				if (token.isRememberMe()) {
+					
+				}else{
+					if (rememberMe) {
+						token.setRememberMe(true);
+					}
+					subject.login(token);
+				}
+				
 				Session session=subject.getSession();
+				setSessionAttr("user", userService.getByUserName(user.getUserName()));
 				log.info("\n"+new Date()+"\n用户："+user.getUserName()+"登入系统;\nip地址:"+session.getHost());
-				session.setAttribute("user", userService.getByUserName(user.getUserName()));
-				redirect("/");
+				this.redirect("/");
 			}catch(Exception e){
 				log.error(e+":"+e.getMessage());
 				setAttr("errorInfo", "用户名或者密码错误");
 				forwardAction("/login");
 			}
 		}
+	}
+
+	/**
+	 * 退出登录
+	 */
+	@ActionKey("/logout")
+	public void logout(){
+		Subject currentUser = SecurityUtils.getSubject();
+		String userName = (String) currentUser.getPrincipal();
+		currentUser.logout();	
+		 try {
+	            currentUser.logout();
+	            this.removeSessionAttr("user");
+	    		log.info("\n"+new Date()+"\n用户："+userName+"退出了系统;\nip地址："+currentUser.getSession().getHost());
+	            this.redirect("/login");
+	        } catch (SessionException ise) {
+	            log.debug("Encountered session exception during logout.  This can generally safely be ignored.", ise);
+	        } catch (Exception e) {
+	            log.warn("登出发生错误", e);
+	        }
 	}
 }
