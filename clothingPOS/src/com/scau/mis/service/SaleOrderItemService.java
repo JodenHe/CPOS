@@ -11,7 +11,7 @@ import com.scau.mis.model.SaleOrder;
 import com.scau.mis.model.SaleOrderItem;
 import com.scau.mis.model.SaleRejectOrder;
 import com.scau.mis.model.SaleRejectOrderItem;
-import com.scau.mis.model.User;
+
 /**
  * 销售记录详情表的业务逻辑实现
  * @author 建棠
