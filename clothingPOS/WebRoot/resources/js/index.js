@@ -5,6 +5,7 @@ $(function() {
 /*权限管理设置界面出现效果*/
 //商品管理的初始化（对应导航栏的商品管理）
 function goodsFun(){
+	$("#init_img").hide();
 	$("#goods-manager").show();
 	$("#pers-manager").hide();
 	$("#user-manager").hide();
@@ -29,6 +30,7 @@ function goodsFun(){
 }
 //权限管理的初始化（对应导航栏的权限管理）
 function perFun(){
+	$("#init_img").hide();
 	$("#goods-manager").hide();
 	$("#pers-manager").show();
 	$("#user-manager").hide();
@@ -37,6 +39,7 @@ function perFun(){
 }
 //帐号管理的初始化（对应导航栏的帐号管理）
 function accountFun(){
+	$("#init_img").hide();
 	$("#goods-manager").hide();
 	$("#pers-manager").hide();
 	$("#user-manager").show();
@@ -45,6 +48,7 @@ function accountFun(){
 }
 //仪表盘的初始化（对应导航栏的报表分析）
 function dashboardFun(){
+	$("#init_img").hide();
 	$("#goods-manager").hide();
 	$("#pers-manager").hide();
 	$("#user-manager").hide();
