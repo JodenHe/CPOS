@@ -30,8 +30,8 @@ public class SaleController extends Controller {
 	 */
 	@RequiresPermissions("dashboard:manager")
 	public void getMonthlySales(){
-		String month = getPara("year");
-		renderJson(saleService.monthlySales(month));
+		String year = getPara("year");
+		renderJson(saleService.monthlySales(year));
 	}
 	
 	/**

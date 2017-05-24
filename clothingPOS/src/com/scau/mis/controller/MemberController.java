@@ -33,7 +33,7 @@ public class MemberController extends Controller {
 			map.put("status", true);
 			map.put("data", member);
 		}else{
-			map.put("status", true);
+			map.put("status", false);
 			map.put("data", "用户不存在");
 		}
 		
