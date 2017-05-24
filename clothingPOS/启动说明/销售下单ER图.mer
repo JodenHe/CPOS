@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="mysql" database="db_pos" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="payment">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="paymentNo" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="saleOrderNo" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="amount" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DECIMAL" size="10,2" />
+        </Column>
+        <Column name="payType" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="TINYINT" size="3" />
+        </Column>
+        <Column name="payTransactionNo" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="payDateTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATETIME" size="19" />
+        </Column>
+        <Column name="operatorId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="shopId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="sale_order">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="saleOrderNo" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="customerNo" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="saleDateTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATETIME" size="19" />
+        </Column>
+        <Column name="total" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DECIMAL" size="10,2" />
+        </Column>
+        <Column name="operatorId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="shopId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="FK_p_saleOrderNo">
+      <Details primary_table="sale_order" foreign_table="payment">
+        <PrimaryKeys>
+          <ColumnName name="saleOrderNo" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="saleOrderNo" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+

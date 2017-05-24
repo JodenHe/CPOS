@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="mysql" database="db_pos" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="goods">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="categoryId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="colorId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="brandId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="sizeId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="barcode" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="style" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="price" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DECIMAL" size="10,2" />
+        </Column>
+        <Column name="script" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="createTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATETIME" size="19" />
+        </Column>
+        <Column name="state" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="TINYINT" size="3" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="sale_reject_order">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="rejectNo" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="rejectOrderNo" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="rejectDateTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DATETIME" size="19" />
+        </Column>
+        <Column name="total" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DECIMAL" size="10,2" />
+        </Column>
+        <Column name="operatorId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="shopId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="sale_reject_order_item">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="rejectNo" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="itemId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="quantity" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rejectPrice" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DECIMAL" size="10,2" />
+        </Column>
+        <Column name="subTotal" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="DECIMAL" size="10,2" />
+        </Column>
+        <Column name="rejectReason" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="FK_sroi_itemId">
+      <Details primary_table="goods" foreign_table="sale_reject_order_item">
+        <PrimaryKeys>
+          <ColumnName name="barcode" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="itemId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK_sroi_rejectNo">
+      <Details primary_table="sale_reject_order" foreign_table="sale_reject_order_item">
+        <PrimaryKeys>
+          <ColumnName name="rejectNo" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="rejectNo" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+

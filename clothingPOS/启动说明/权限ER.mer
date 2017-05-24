@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="mysql" database="db_pos" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="permission">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="pId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="32" />
+        </Column>
+        <Column name="permissionSign" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="256" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="role">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="roleName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="32" />
+        </Column>
+        <Column name="roleSign" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="128" />
+        </Column>
+        <Column name="description" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="256" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="role_permission">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="roleId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="permissionId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="user">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="userName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="50" />
+        </Column>
+        <Column name="password" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="CHAR" size="64" />
+        </Column>
+        <Column name="state" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="32" />
+        </Column>
+        <Column name="createTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATETIME" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="user_role">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="userId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+        <Column name="roleId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="BIGINT" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="FK_per_pId">
+      <Details primary_table="permission" foreign_table="permission">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="pId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK_rp_roleId">
+      <Details primary_table="role" foreign_table="role_permission">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="roleId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK_rp_permissionId">
+      <Details primary_table="permission" foreign_table="role_permission">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="permissionId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK_userRole_roleId">
+      <Details primary_table="role" foreign_table="user_role">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="roleId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="FK_userRole_userId">
+      <Details primary_table="user" foreign_table="user_role">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="userId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+
