@@ -153,9 +153,10 @@ public class GoodsService {
 	 */
 	public List<Goods> getGoodsByBarcode(String barcode){
 		if(barcode.equals("")||null==barcode){//如果条形码为空，则返回所有商品
-			return getAllGoods();
+			String sql = "select g.*,(select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id) quantity from goods g where (select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id)>0";
+			return Goods.dao.find(sql);
 		}else{
-			String sql = "select * from goods as g where g.barcode like'%"+barcode+"%'";
+			String sql = "select g.*,(select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id) quantity from goods g where g.barcode like'%"+barcode+"%' and (select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id)>0";
 			return Goods.dao.find(sql);
 		}
 	}

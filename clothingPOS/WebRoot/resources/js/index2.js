@@ -37,6 +37,10 @@ function keyEvent() {
                     return false;
                 } 
                 break;
+            case 117://F6
+            	rejectBill();
+            	return false;
+                break;
            default :console.log(event.keyCode); break;
            }
                    
@@ -148,9 +152,24 @@ function inintSale() {
 
 }
 //添加销售明细
-function addSaleItem(barcode,name,price){
-    var str = "<tr><td>"+barcode+"</td><td>"+name+"</td><td><input type='number' min='0' value='1' onchange='subTotal(this,this.value);calSale();'></td><td>"+(price-0).toFixed(2)+"</td><td>"+(price-0).toFixed(2)+"</td><td onclick='deleteSaleItem(this);'><i class='fa fa-trash-o'></i></td>></tr>"
-    $("#sale-item-table tbody").prepend(str);
+function addSaleItem(barcode,name,price,quantity){
+	var trs = $("#sale-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    var flag = true;
+    for (var j= 0; j< len; j++) {
+    	var temp_barcode = trs.eq(j).find("td").eq(0).text();
+    	var temp_quantity = trs.eq(j).find("td").eq(2).find("input").eq(0).val()-0;
+    	if(temp_barcode == barcode ){
+    		trs.eq(j).find("td").eq(2).find("input").eq(0).val(temp_quantity+1);
+    		quantity +=temp_quantity;
+    		flag = false;
+    		break;
+    	}
+	}
+	if(flag){
+		var str = "<tr><td>"+barcode+"</td><td>"+name+"</td><td><input type='number' min='1' max="+quantity+" value='1' onkeyup='value=value>"+quantity+"?"+quantity+":value' onchange='subTotal(this,this.value);calSale();'></td><td>"+(price-0).toFixed(2)+"</td><td>"+(price-0).toFixed(2)+"</td><td onclick='deleteSaleItem(this);'><i class='fa fa-trash-o'></i></td>></tr>"
+		$("#sale-item-table tbody").prepend(str);
+	}
     calSale();
 }
 //删除销售明细
@@ -432,6 +451,20 @@ function searchGoods() {
 }
 //辅助searchGoods()方法，dataTable
 function goodsDataTable(data) {
+	
+	var trs = $("#sale-item-table tbody tr");//所有行
+    var len = trs.length-100;//获取表格中有值的长度
+    
+	for (var i = 0; i < data.length; i++) {
+	    for (var j= 0; j< len; j++) {
+	    	var temp_barcode = trs.eq(j).find("td").eq(0).text();
+	    	var temp_quantity = trs.eq(j).find("td").eq(2).find("input").eq(0).val()-0;
+	    	if(data[i].barcode == temp_barcode ){
+	    		data[i].quantity -= temp_quantity;
+	    	}
+		}
+	}
+	
     var goodsTable = $('#goods-table')
             .DataTable(
                     {
@@ -459,7 +492,8 @@ function goodsDataTable(data) {
                             "className": 'goods-price',
                             "data" : 'price'
                         }, {
-                            data : 'id'
+                        	"className": 'goods-quantity',
+                            data : 'quantity'
                         },{
                             data : 'script'
                         }, {
@@ -481,8 +515,16 @@ function goodsDataTable(data) {
         var barcode = $(this).find(".goods-barcode").text();
         var name = $(this).find(".goods-name").text();
         var price = $(this).find(".goods-price").text();
-        addSaleItem(barcode,name,price);
-        $("#goodsModal").modal('hide');//关闭模态库    
+        var quantity = $(this).find(".goods-quantity").text()-0;
+        if(quantity<=0){
+        	alert("库存数量不足！"); 
+        }
+        else{
+            addSaleItem(barcode,name,price,quantity);
+            quantity-=1;
+            $(this).find(".goods-price").html(quantity);
+        }
+        $("#goodsModal").modal('hide');//关闭模态库   
     } );
 }
 //退货记录

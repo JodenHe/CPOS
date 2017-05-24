@@ -13,6 +13,10 @@ import com.scau.mis.service.InventoryService;
 public class InventoryController extends Controller {
 	public static Log log = Log.getLog(InventoryController.class);
 	private InventoryService iservice =new InventoryService();
+	
+	public void getAllInv(){
+		renderJson(iservice.getAllInv());
+	}
 	/**
 	 * 入库商品
 	 */

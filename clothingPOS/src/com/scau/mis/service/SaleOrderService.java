@@ -31,7 +31,7 @@ public class SaleOrderService {
 		if (null == saleOrder.getCustomerNo()|| saleOrder.getCustomerNo().equals("")) {//判断是不是散客
 			saleOrder.setCustomerNo("0001");//完成登录功能你后，此处应改为从session中获取客户编号
 		}
-		saleOrder.setOperatorId(2l);//完成登录功能你后，此处应改为从session中获取用户编号
+		
 		saleOrder.setShopId(1l);//完成登录功能你后，此处应改为从session中获取用户编号
 
 		if(saleOrder.save()){

@@ -281,7 +281,9 @@
 							  <div class="form-group">
 							    <label for="salesOperator" class="col-sm-4 control-label">营业人员：</label>
 							    <div class="col-sm-7">
-							      <select id="salesOperator" class="form-control" disabled><option>123</option></select>
+							    	<@shiro.user>
+							    		<select id="salesOperator" class="form-control" disabled><option><@shiro.principal /></option></select>
+							    	</@shiro.user>
 							    </div>
 							  </div>
 							</form>
@@ -435,7 +437,7 @@
 										<div class="col-md-4 input-group-lg">
 											<span class="input-group-btn">
 												<button class="btn btn-success" onclick="rejectBill();">
-													<i class="fa fa-check"></i>F5&nbsp;&nbsp;退货
+													<i class="fa fa-check"></i>F6&nbsp;&nbsp;退货
 												</button>
 											</span>
 										</div>

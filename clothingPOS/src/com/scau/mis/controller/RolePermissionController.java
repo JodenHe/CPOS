@@ -15,7 +15,7 @@ import com.scau.mis.util.CommonUtil;
  * @author jodenhe
  *
  */
-public class RolePermissionControlller extends Controller{
+public class RolePermissionController extends Controller{
 	private PermissionService service = new PermissionService();
 
 	/**

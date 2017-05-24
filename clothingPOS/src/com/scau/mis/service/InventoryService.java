@@ -2,6 +2,7 @@ package com.scau.mis.service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.jfinal.log.Log;
@@ -14,6 +15,15 @@ import com.scau.mis.model.Inventory;
  */
 public class InventoryService {
 	public static Log log = Log.getLog(InventoryService.class);
+	
+	/**
+	 * 获取所有库存信息
+	 * @return
+	 */
+	public List<Inventory> getAllInv(){
+		String sql = "select * from inventory";
+		return Inventory.dao.find(sql);
+	}
 	
 	/**
 	 * 
