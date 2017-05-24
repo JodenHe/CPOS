@@ -393,12 +393,24 @@ function ordersDataTable(data1,data2,data3){
                 	$('td:eq(0)', nRow).html(
                 			data1[0].customerNo
                 	);
-                	$('td:eq(4)', nRow).html(
-                			data1[0].operatorId == 2 ? "cashier":"admin"
-                	);
                 	$('td:eq(5)', nRow).html(
                 			data1[0].saleDateTime
                 	);
+                	$.ajax({
+            			type:"post",
+            			url:contextPath + "/user/getUserById",
+            			datatype:"json",
+            			data:{
+            				"id":data1[0].operatorId
+            			},
+            			success:function(result){
+            				$('td:eq(4)', nRow).html( result.userName);
+            			},
+            			error:function(result){
+            				 console.log("未知错误！");
+            			}
+            		});
+                	
                 },
                 "fnRowCallback" : function(nRow, aaData, iDisplayIndex,
                         iDisplayIndexFull) {
@@ -571,12 +583,12 @@ function makeRejectItem(data){
     		url:contextPath + "/sroi/add",
     		dataType:"json",
     		data:{
-    			"SaleRejectOrderItem.rejectNo":data[0].rejectNo,
-    			"SaleRejectOrderItem.itemId":itemId,
-    			"SaleRejectOrderItem.rejectPrice":rejectPrice,
-    			"SaleRejectOrderItem.subTotal":subTotal,
-    			"SaleRejectOrderItem.quantity":quantity,
-    			"SaleRejectOrderItem.rejectReason":rejectReason
+    			"saleRejectOrderItem.rejectNo":data[0].rejectNo,
+    			"saleRejectOrderItem.itemId":itemId,
+    			"saleRejectOrderItem.rejectPrice":rejectPrice,
+    			"saleRejectOrderItem.subTotal":subTotal,
+    			"saleRejectOrderItem.quantity":quantity,
+    			"saleRejectOrderItem.rejectReason":rejectReason
     		},
     		success:function(result){
     			alert("退货成功");
@@ -785,4 +797,30 @@ function printSale(soNo,paymentNo,item) {
             deferred: $.Deferred().done(function() { })
         });
 //    $("#salePrint").html(content);
+}
+
+/*会员相关操作*/
+//根据会员手机号查询会员
+function getMemberByPhone(phone){
+	$.ajax({
+		type:"post",
+		url:contextPath + "/member/getMemberByPhone",
+		datatype:"json",
+		data:{
+			"phone":phone
+		},
+		success:function(result){
+			var data = result.data;
+			console.log(result)
+			if(result.status){
+				$("#memberName").val(data.name);
+				$("#memberScript").val(data.script);
+			}else{
+				alert(data);
+			}
+		},
+		error:function(result){
+			 console.log("未知错误！");
+		}
+	});
 }

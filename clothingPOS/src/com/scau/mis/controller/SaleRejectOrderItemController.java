@@ -16,14 +16,12 @@ public class SaleRejectOrderItemController extends Controller {
 	 * 增加一条退单详情
 	 */
 	public void add(){
-		
-		String rejectNo = getPara("SaleRejectOrderItem.rejectNo");
-		String itemId = getPara("SaleRejectOrderItem.itemId");
-		String rejectPrice = getPara("SaleRejectOrderItem.rejectPrice");
-		String subTotal = getPara("SaleRejectOrderItem.subTotal");
-		String rejectReason = getPara("SaleRejectOrderItem.rejectReason");
-		int quantity = getParaToInt("SaleRejectOrderItem.quantity");
-		renderJson(rejectService.addRejectItem(rejectNo,itemId,rejectPrice,subTotal,rejectReason,quantity));
+		SaleRejectOrderItem saleRejectOrderItem = getModel(SaleRejectOrderItem.class);
+		if(rejectService.addRejectItem(saleRejectOrderItem)){
+			renderJson(" {\"status\":true,\"data\":\"保存成功\"} ");
+		}else{
+			renderJson(" {\"status\":false,\"data\":\"保存失败\"} ");
+		}
 	}
 	/**
 	 * 更新一条退单详情

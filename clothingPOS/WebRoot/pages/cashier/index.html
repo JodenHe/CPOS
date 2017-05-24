@@ -293,7 +293,7 @@
 								<div class="form-group">
 									<label for="member" class="col-lg-3 control-label">会员编号:</label>
 									<div class="col-lg-5">
-										<input type="text" class="form-control" name="member" id="member" placeholder="会员手机号/会员编号">
+										<input type="text" class="form-control" name="member" id="member" placeholder="会员手机号" onchange="getMemberByPhone(this.value);" />
 
 									</div>
 									<div class="col-lg-4 checkbox">
@@ -305,13 +305,14 @@
 								<div class="form-group">
 									<label for="memberName" class="col-lg-3 control-label">会员姓名:	</label>
 									<div class="col-lg-5">
-										<input type="text" class="form-control" name="memberName" placeholder="会员姓名" disabled>
+										<input type="text" class="form-control" id="memberName" placeholder="会员姓名" disabled>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="memberPhone" class="col-lg-3 control-label">会员电话:	</label>
-									<div class="col-lg-5">
-										<input type="text" class="form-control" name="memberPhone" placeholder="会员电话" disabled>
+									<label for="memberPhone" class="col-lg-3 control-label">会员备注:	</label>
+									<div class="col-lg-7">
+										<textarea cols="55" id="memberScript" placeholder="会员备注" disabled></textarea>
+										<!-- <input type="text" class="form-control" name="memberPhone" placeholder="会员电话" disabled> -->
 									</div>
 								</div>
 							</form>							
@@ -519,7 +520,7 @@
 								</div>
 								<div class="input-group-lg col-md-3">
 									<button type="button" class="btn btn-lg btn-primary" onclick="makeReject();">
-										结账
+										确定
 									</button>
 								</div>
 							</div>

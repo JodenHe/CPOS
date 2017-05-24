@@ -17,7 +17,13 @@ public class SaleOrderItemController extends Controller {
 	 */
 	public void add(){
 		SaleOrderItem saleItem = getModel(SaleOrderItem.class);
-		renderJson(itemService.addItem(saleItem));
+		
+		if(itemService.addItem(saleItem)){
+			renderJson(" {\"status\":true,\"data\":\"保存成功\"} ");
+		}else{
+			renderJson(" {\"status\":false,\"data\":\"保存失败\"} ");
+		}
+		
 	}
 	/**
 	 * 通过订单号获取订单详情

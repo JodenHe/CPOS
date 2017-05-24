@@ -7,6 +7,7 @@ import com.scau.mis.controller.CategoryController;
 import com.scau.mis.controller.ColorController;
 import com.scau.mis.controller.GoodsController;
 import com.scau.mis.controller.InventoryController;
+import com.scau.mis.controller.MemberController;
 import com.scau.mis.controller.PermissionController;
 import com.scau.mis.controller.RoleController;
 import com.scau.mis.controller.RolePermissionController;
@@ -46,6 +47,7 @@ public class AdminRoutes extends Routes {
 		add("/per",PermissionController.class);
 		add("/rolePer",RolePermissionController.class);
 		add("/inv",InventoryController.class);
+		add("/member",MemberController.class);
 	}
 
 }

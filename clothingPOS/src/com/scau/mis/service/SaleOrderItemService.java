@@ -1,12 +1,16 @@
 package com.scau.mis.service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.jfinal.log.Log;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.IAtom;
 import com.scau.mis.model.Goods;
+import com.scau.mis.model.Inventory;
 import com.scau.mis.model.SaleOrder;
 import com.scau.mis.model.SaleOrderItem;
 import com.scau.mis.model.SaleRejectOrder;
@@ -24,16 +28,37 @@ public class SaleOrderItemService {
 	 * @param item
 	 * @return 添加订单详情
 	 */
-	public Map<String,Object> addItem(SaleOrderItem item){
-		Map<String,Object> result = new HashMap<String,Object>();
-		if(item.save()){
-			result.put("status", true);
-			result.put("data", "保存成功");
-		}else{
-			result.put("status", false);
-			result.put("data", "保存失败");
-		}
-		return result;
+	public boolean addItem(final SaleOrderItem item){
+		
+		boolean succeed = Db.tx(new IAtom() {
+
+			@Override
+			public boolean run() throws SQLException {
+				//先对库存减
+				String sql = "select * from inventory where goodsId=(select id from goods g where barcode = '"+item.getItemId()+"')";
+				List<Inventory> list = Inventory.dao.find(sql);
+				int itemQuantity = item.getQuantity();//所购买的数量
+				
+				for (Inventory inventory : list) {
+					int quantity = inventory.getQuantity();//库存数
+					
+					if(quantity<itemQuantity){//如果库存小于要购买的
+						inventory.setQuantity(0);
+						inventory.update();
+						itemQuantity-=quantity;
+					}else{
+						inventory.setQuantity(quantity-itemQuantity);
+						inventory.update();
+						break;
+					}
+				}
+				
+				return item.save();
+			}
+			
+		});
+		
+		return succeed;
 	}
 	/**
 	 * 

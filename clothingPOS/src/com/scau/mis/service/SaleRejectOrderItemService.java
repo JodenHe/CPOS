@@ -1,11 +1,14 @@
 package com.scau.mis.service;
 
-import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.jfinal.log.Log;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.IAtom;
+import com.scau.mis.model.Inventory;
 import com.scau.mis.model.SaleRejectOrderItem;
 
 /**
@@ -20,26 +23,32 @@ public class SaleRejectOrderItemService {
 	 * @param rejectItem
 	 * @return 添加退单详情
 	 */
-	public Map<String,Object> addRejectItem(String rejectNo,String itemId,String rejectPrice,String subTotal,String rejectReason,int quantity){
-		Map<String,Object> result = new HashMap<String,Object>();
-		SaleRejectOrderItem rejectItem = new SaleRejectOrderItem();
-		System.out.println(rejectNo+"  "+itemId+"  "+rejectPrice+"  "+subTotal+"  "+rejectReason);
-		BigDecimal price = new BigDecimal(rejectPrice);
-		BigDecimal subtotals = new BigDecimal(subTotal);
-		rejectItem.setRejectNo(rejectNo);
-		rejectItem.setRejectPrice(price);
-		rejectItem.setSubTotal(subtotals);
-		rejectItem.setItemId(itemId);
-		rejectItem.setQuantity(quantity);
-		rejectItem.setRejectReason(rejectReason);
-		if(rejectItem.save()){
-			result.put("status", true);
-			result.put("data", "保存成功");
-		}else{
-			result.put("status", false);
-			result.put("data", "保存失败");
-		}
-		return result;
+	public boolean addRejectItem(final SaleRejectOrderItem rejectItem){
+		
+		boolean succeed = Db.tx(new IAtom() {
+
+			@Override
+			public boolean run() throws SQLException {
+				//先对库存减
+				String sql = "select * from inventory where goodsId=(select id from goods g where barcode = '"+rejectItem.getItemId()+"' )";
+				List<Inventory> list = Inventory.dao.find(sql);
+				int quantity = rejectItem.getQuantity();//所退货的数量
+				System.out.println(list);
+				if(list.size()<=0){
+					return false;
+				}else{
+					list.get(0).setQuantity(list.get(0).getQuantity()+quantity);
+					if(!list.get(0).update()){
+						return false;
+					}
+				}
+				
+				return rejectItem.save();
+			}
+			
+		});
+		
+		return succeed;
 	}
 	/**
 	 * 

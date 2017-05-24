@@ -21,7 +21,7 @@ public class SaleOrderService {
 	 * @param saleOrder
 	 * @return 添加销售记录
 	 */
-	public Map<String,Object> addSaleOrder(SaleOrder saleOrder){
+	public Map<String,Object> addSaleOrder(final SaleOrder saleOrder){
 
 		Map<String,Object> result = new HashMap<String,Object>();
 		//SO-2017-04-22-1974409033,订单编号编码规则，SO-2017-04-22加上UUID的hashCOde

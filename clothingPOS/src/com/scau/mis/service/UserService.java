@@ -36,9 +36,13 @@ public class UserService {
 	 * 有特定的id获取用户信息
 	 * @return
 	 */
-	public List<User> getUserById(long id){
+	public User getUserById(long id){
 		String sql = "select u.*,(select r.roleName from user_role ur,role r where u.id=ur.userId and r.id=ur.roleId) roleName from user u where u.id="+id;
-		return User.dao.find(sql);
+		List<User> list = User.dao.find(sql);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 	
 	/**
