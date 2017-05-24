@@ -149,6 +149,7 @@ function inintSale() {
     $("#cashPay").val("");
     $("#change").val("");
     $("#payType").val("0");
+    $("#memberNo").html("");
 
 }
 //添加销售明细
@@ -605,12 +606,18 @@ function makeRejectItem(data){
 function makesale(){
     var total = $("#saleAmount").text()-0;
     var cashPay = $("#cashPay").val()-0;
+    var customerNo = $("#memberNo").text();
+    //判断是否选择普通客户
+    if($("#memberCheckbox").is( ":checked" )){
+    	customerNo = "";
+    }
     if (cashPay>=total) {
             $.ajax({
                 type : "POST",
                 url : contextPath + "/so/add",
                 data : {
-                    "saleOrder.total" : total
+                    "saleOrder.total" : total,
+                    "saleOrder.customerNo" : customerNo
                 },
                 datatype : "json",
                 success : function(result) {
@@ -811,10 +818,10 @@ function getMemberByPhone(phone){
 		},
 		success:function(result){
 			var data = result.data;
-			console.log(result)
 			if(result.status){
 				$("#memberName").val(data.name);
-				$("#memberScript").val(data.script);
+				$("#memberEmail").val(data.email);
+				$("#memberNo").html(data.customerNo);
 			}else{
 				alert(data);
 			}

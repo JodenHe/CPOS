@@ -292,9 +292,9 @@
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
 									<label for="member" class="col-lg-3 control-label">会员编号:</label>
+									<span class="sr-only" id="memberNo"></span>
 									<div class="col-lg-5">
 										<input type="text" class="form-control" name="member" id="member" placeholder="会员手机号" onchange="getMemberByPhone(this.value);" />
-
 									</div>
 									<div class="col-lg-4 checkbox">
 										<label>
@@ -309,10 +309,10 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="memberPhone" class="col-lg-3 control-label">会员备注:	</label>
-									<div class="col-lg-7">
-										<textarea cols="55" id="memberScript" placeholder="会员备注" disabled></textarea>
-										<!-- <input type="text" class="form-control" name="memberPhone" placeholder="会员电话" disabled> -->
+									<label for="memberPhone" class="col-lg-3 control-label">会员Email:	</label>
+									<div class="col-lg-5">
+										<!-- <textarea cols="55" id="memberScript" placeholder="会员备注" disabled></textarea> -->
+										<input type="text" class="form-control" id="memberEmail" placeholder="会员Email" disabled>
 									</div>
 								</div>
 							</form>							
