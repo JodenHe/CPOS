@@ -724,7 +724,7 @@ function printSale(soNo,paymentNo,item) {
                   '</tr>'+
               '</tbody>'+
         '</table>';
-        console.log(content)
+  //  $("#salePrint").html(content);
     jQuery("#salePrint").print({
             //Use Global styles
             /*globalStyles : false,*/
@@ -742,4 +742,5 @@ function printSale(soNo,paymentNo,item) {
             append : "<br/>Buh Bye!",
             deferred: $.Deferred().done(function() { })
         });
+//    $("#salePrint").html(content);
 }
