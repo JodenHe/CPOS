@@ -208,7 +208,7 @@ public class CategoryService {
 	 * @param name 类别名称
 	 * @return 存在添加返回true，不存在返回false
 	 */
-	private boolean existCategory(String name){
+	public boolean existCategory(String name){
 		List<Category> category = Category.dao.find("select `c`.`name` from `category` as `c` where `c`.`name` = '"+name+"'");
 		return category.size()>0;
 	}

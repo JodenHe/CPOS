@@ -535,7 +535,8 @@
 											<form class="form-horizontal">
 												<div class="form-group">
 													<div class="col-lg-3">
-														<label  for="category-name">类别名称：</label><input class="form-control " type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空"/>
+														<label  for="category-name">类别名称：</label><input class="form-control " type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空" onchange="validateCategoryName(this.value);"/>
+														<div id="validate-cate-name"></div>
 													</div>
 													<div class="col-lg-4">
 														<div class="row" style="margin-left: 0px;">
@@ -1263,6 +1264,7 @@
 
 		<!-- 加载自定义的js -->
 		<script src="..${contextPath}/resources/js/index.js"></script>
+		<script src="..${contextPath}/resources/js/validate.js"></script>
 		<script src="..${contextPath}/resources/js/myHighCharts.js"></script>
 		<script src="..${contextPath}/resources/js/myDataTable.js"></script>
 		<script src="..${contextPath}/resources/js/zTree_custom.js"></script>

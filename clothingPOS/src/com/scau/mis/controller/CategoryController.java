@@ -115,4 +115,19 @@ public class CategoryController extends Controller {
 			result.put("status", false);
 		renderJson(result);
 	}
+	
+	//验证名称是否存在
+	public void validateName(){
+		String name =getPara("category.name");
+		if(null!=name&&name.length()>0){
+			if(service.existCategory(name)){
+				renderJson(" {\"status\":true,\"msg\":\"名称已存在\"} ");
+			}else{
+				renderJson(" {\"status\":false,\"msg\":\"名称可用\"} ");
+			}
+		}else{
+			renderJson(" {\"status\":true,\"msg\":\"名称不能为空\"} ");
+		}
+		
+	}
 }
