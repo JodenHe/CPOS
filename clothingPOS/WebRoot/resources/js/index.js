@@ -392,7 +392,7 @@ function updateCategory(id, btnObject) {
 		var name = table.find("td #update-category-name").val();
 		var pId = table.find("td #update-category-secondCategory"+id).val()!= 0 ? table.find("td #update-category-secondCategory"+id).val() :table.find("td #update-category-firstCategory"+id).val();
 		var script = table.find("td #update-category-script").val();
-		
+		consloe.log(id+name+pId+script)
 		$.ajax({
 			type : "post",
 			url : contextPath + "/category/update",

@@ -28,7 +28,7 @@ public class ColorController extends Controller {
 		color.setCreateTime(new Date());
 		renderJson(service.addColor(color));
 	}
-	
+
 	/**
 	 * 新增一个颜色
 	 */
@@ -43,5 +43,19 @@ public class ColorController extends Controller {
 	 */
 	public void getAllColor(){
 		renderJson(service.getAllColor());
+	}
+
+	//验证名称是否存在
+	public void validateName(){
+		String name =getPara("name");
+		if(null!=name&&name.length()>0){
+			if(service.isExist(name)){
+				renderJson(" {\"status\":true,\"msg\":\"名称已存在\"} ");
+			}else{
+				renderJson(" {\"status\":false,\"msg\":\"名称可用\"} ");
+			}
+		}else{
+			renderJson(" {\"status\":true,\"msg\":\"名称不能为空\"} ");
+		}
 	}
 }

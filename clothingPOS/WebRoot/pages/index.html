@@ -80,7 +80,7 @@
 		<div id="wrapper">
 
 			<!-- Navigation -->
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> 
@@ -364,7 +364,7 @@
 							</#list>
 							<#list ["inventory:query","inventory:in","inventory:out"] as permission>
 								<@shiro.hasPermission name=permission>
-									<li><a href="#"><i class="fa fa-truck fa-fw"></i> 库存管理<span
+									<!-- <li><a href="#"><i class="fa fa-truck fa-fw"></i> 库存管理<span
 											class="fa arrow"></span></a>
 											<ul class="nav nav-second-level">
 												<@shiro.hasPermission name="inventory:query">
@@ -376,7 +376,7 @@
 												<@shiro.hasPermission name="inventory:out">
 													<li><a href="#">出库</a></li>
 												</@shiro.hasPermission>	
-											</ul> <!-- /.nav-second-level --></li>
+											</ul> /.nav-second-level</li> -->
 									<#break> 
 								</@shiro.hasPermission>
 							</#list>		
@@ -391,14 +391,16 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<@shiro.user>  
-							<h1 class="page-header" style="padding-top: 52.5px;"><@shiro.principal /> 欢迎使用35组pos机系统！</h1> 
+							<h1 class="page-header" ><@shiro.principal /> 欢迎使用35组pos机系统！</h1> 
 						</@shiro.user> 
 					</div>
 					<!-- /.col-lg-12 -->
 				</div> 
+				
+				
 
 				<div id="container">
-					
+					<div class="row"><div class="col-lg-8"></div><div class="validate-result col-lg-4"></div></div>
 					<div id="init_img"><img width="90%" alt="35组服装pos系统" src="..${contextPath}/resources/img/pos_background.png"></div>
 					<!-- 商品管理 -->
 					<div id="goods-manager" style="display: none;">
@@ -446,7 +448,7 @@
 													<form class="form-horizontal">
 														<div class="form-group">
 															<div class="col-lg-3">
-																<label  for="goods-name">商品名称：</label><input class="form-control " type="text" id="goods-name" name="goods-name" placeholder="请输入商品名称，不能为空"/>
+																<label  for="goods-name">商品名称：</label><input class="form-control " type="text" id="goods-name" name="goods-name" placeholder="请输入商品名称，不能为空" onchange="validateGoodsName(this.value);"/>
 															</div>
 															<div class="col-lg-3">
 																<label  for="goods-style">商品款式：</label><input class="form-control " type="text" id="goods-style" name="goods-style" placeholder="请输入商品款式，可以为空"/>
@@ -536,7 +538,7 @@
 												<div class="form-group">
 													<div class="col-lg-3">
 														<label  for="category-name">类别名称：</label><input class="form-control " type="text" id="category-name" name="category-name" placeholder="请输入类别名称，不能为空" onchange="validateCategoryName(this.value);"/>
-														<div id="validate-cate-name"></div>
+														<!-- <div id="validate-cate-name"></div> -->
 													</div>
 													<div class="col-lg-4">
 														<div class="row" style="margin-left: 0px;">
@@ -600,7 +602,7 @@
 											<form class="form-horizontal">
 												<div class="form-group">
 													<div class="col-lg-3">
-														<label  for="brand-name">品牌名称：</label><input class="form-control " type="text" id="brand-name" name="brand-name" placeholder="品牌名称，不能为空"/>
+														<label  for="brand-name">品牌名称：</label><input class="form-control " type="text" id="brand-name" name="brand-name" placeholder="品牌名称，不能为空" onchange="validateBrandName(this.value);"/>
 													</div>
 												</div>
 												
@@ -640,7 +642,7 @@
 											<form class="form-horizontal">
 												<div class="form-group">
 													<div class="col-lg-3">
-														<label  for="color-name">颜色名称：</label><input class="form-control " type="text" id="color-name" name="color-name" placeholder="颜色名称，不能为空"/>
+														<label  for="color-name">颜色名称：</label><input class="form-control " type="text" id="color-name" name="color-name" placeholder="颜色名称，不能为空" onchange="validateColorName(this.value);"/>
 													</div>
 												</div>
 												

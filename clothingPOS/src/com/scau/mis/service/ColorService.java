@@ -91,7 +91,7 @@ public class ColorService {
 	 *            颜色名称
 	 * @return 存在返回true，否则false
 	 */
-	private boolean isExist(String name) {
+	public boolean isExist(String name) {
 		String sql = "select `c`.`name` from `color` as `c`  where `c`.`name` = '"
 				+ name + "'";
 		return Color.dao.find(sql).size() > 0;

@@ -91,7 +91,7 @@ public class BrandService {
 	 * @param name 品牌名称
 	 * @return 存在返回true，否则false
 	 */
-	private boolean isExist(String name){
+	public boolean isExist(String name){
 		String sql = "select `b`.`name` from `brand` as `b`  where `b`.`name` = '"+name+"'";
 		return Brand.dao.find(sql).size()>0;
 	}

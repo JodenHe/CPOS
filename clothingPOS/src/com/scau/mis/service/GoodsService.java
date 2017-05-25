@@ -166,7 +166,7 @@ public class GoodsService {
 	 * @param name 商品名称
 	 * @return 存在返回true，否则false
 	 */
-	private boolean isExist(String name){
+	public boolean isExist(String name){
 		String sql = "select `g`.`name` from `goods` as `g`  where `g`.`name` = '"+name+"'";
 		return Goods.dao.find(sql).size()>0;
 	}
