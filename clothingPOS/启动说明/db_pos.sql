@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-05-25 03:51:32
+Date: 2017-05-25 12:01:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `brand` (
   `createTime` datetime NOT NULL,
   `state` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态,"0"为下架，"1"为上架，"2"为删除废弃',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of brand
@@ -59,8 +59,6 @@ INSERT INTO `category` VALUES ('15', '上衣', '14', '测试', '2017-03-24 10:26
 INSERT INTO `category` VALUES ('17', '皮衣', '15', '测试', '2017-03-18 22:01:48', '0');
 INSERT INTO `category` VALUES ('28', 'T恤', '15', '11221', '2017-04-09 21:26:40', '0');
 INSERT INTO `category` VALUES ('29', '鞋子', null, null, '2017-04-09 11:29:23', '0');
-INSERT INTO `category` VALUES ('31', '12', null, null, '2017-04-11 22:04:18', '0');
-INSERT INTO `category` VALUES ('32', '343', null, null, '2017-04-11 22:12:06', '0');
 
 -- ----------------------------
 -- Table structure for color
@@ -78,8 +76,8 @@ CREATE TABLE `color` (
 -- ----------------------------
 -- Records of color
 -- ----------------------------
-INSERT INTO `color` VALUES ('1', '黄色', '萨达是', '2017-03-27 22:35:58', '0');
-INSERT INTO `color` VALUES ('2', '蓝色', '阿达是', '2017-03-27 22:38:09', '0');
+INSERT INTO `color` VALUES ('1', '黄色', null, '2017-03-27 22:35:58', '0');
+INSERT INTO `color` VALUES ('2', '蓝色', null, '2017-03-27 22:38:09', '0');
 
 -- ----------------------------
 -- Table structure for goods
@@ -108,19 +106,20 @@ CREATE TABLE `goods` (
   CONSTRAINT `FK_goods_categoryId` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),
   CONSTRAINT `FK_goods_color` FOREIGN KEY (`colorId`) REFERENCES `color` (`id`),
   CONSTRAINT `FK_goods_sizeId` FOREIGN KEY (`sizeId`) REFERENCES `size` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
 INSERT INTO `goods` VALUES ('1', '28', '2', '3', '1', '20170411211559', '测试2', '士大夫是', '99.00', null, '2017-04-11 22:01:28', '0');
 INSERT INTO `goods` VALUES ('2', '28', '2', '3', '4', '20170325015835', '测试1', '阿三大婶a', '261.00', '1111\najfdasf', '2017-04-11 22:00:40', '0');
-INSERT INTO `goods` VALUES ('3', '28', '1', '1', '5', '20170411220201', '2016夏季新款运动衫', 'null', '88.00', 'safds', '2017-04-11 22:02:01', '0');
-INSERT INTO `goods` VALUES ('4', '28', '1', '1', '1', '20170411221135', '2017半袖新款夏装', 'null', '230.00', null, '2017-04-11 22:11:35', '0');
+INSERT INTO `goods` VALUES ('3', '28', '1', '1', '5', '20170411220201', '2016夏季新款运动衫', 'null', '88.00', 'safds', '2017-04-11 22:02:01', '1');
+INSERT INTO `goods` VALUES ('4', '28', '1', '1', '1', '20170411221135', '2017半袖新款夏装', 'null', '230.00', null, '2017-04-11 22:11:35', '1');
 INSERT INTO `goods` VALUES ('5', '17', '1', '1', '1', '20170411221145', '2016爆款', 'null', '250.00', null, '2017-04-11 22:11:45', '0');
 INSERT INTO `goods` VALUES ('6', '28', '2', '1', '1', '20170411221930', '2017夏季新款Polo衫', 'null', '140.00', null, '2017-04-11 22:19:30', '0');
 INSERT INTO `goods` VALUES ('7', '28', '1', '1', '1', '20170411222447', '2017夏季短袖', 'null', '200.00', null, '2017-04-11 22:24:47', '0');
 INSERT INTO `goods` VALUES ('8', '17', '1', '1', '1', '20170521165247', '更新测试', '', '100.00', null, '2017-05-21 16:52:47', '0');
+INSERT INTO `goods` VALUES ('9', '17', '2', '2', '4', '20170525112908', '测试商品1', '2017最新款', '100.00', null, '2017-05-25 11:29:08', '0');
 
 -- ----------------------------
 -- Table structure for inventory
@@ -139,13 +138,20 @@ CREATE TABLE `inventory` (
   KEY `FK_inventory_warehouseId` (`warehouseId`),
   CONSTRAINT `FK_inventory_goodsId` FOREIGN KEY (`goodsId`) REFERENCES `goods` (`id`),
   CONSTRAINT `FK_inventory_warehouseId` FOREIGN KEY (`warehouseId`) REFERENCES `warehouse` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of inventory
 -- ----------------------------
 INSERT INTO `inventory` VALUES ('1', '2', '1', '171', '20000', '商品一', '2017-05-24 20:45:57');
 INSERT INTO `inventory` VALUES ('2', '2', '1', '300', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('3', '1', '1', '173', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('4', '3', '1', '171', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('5', '4', '1', '171', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('6', '5', '1', '171', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('7', '6', '1', '171', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('8', '7', '1', '171', '20000', '商品一', '2017-05-24 20:45:57');
+INSERT INTO `inventory` VALUES ('9', '8', '1', '300', '20000', '商品一', '2017-05-24 20:45:57');
 
 -- ----------------------------
 -- Table structure for member
@@ -910,13 +916,14 @@ CREATE TABLE `role` (
   `roleSign` varchar(128) DEFAULT NULL COMMENT '角色标识,程序中判断使用,如"admin"',
   `description` varchar(256) DEFAULT NULL COMMENT '角色描述,UI界面显示使用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', 'admin', 'admin', '管理员');
 INSERT INTO `role` VALUES ('2', 'cashier', 'cashier', '收银员');
+INSERT INTO `role` VALUES ('3', 'test', 'test', '测试添加角色');
 
 -- ----------------------------
 -- Table structure for role_permission
@@ -931,7 +938,7 @@ CREATE TABLE `role_permission` (
   KEY `FK_rp_roleId` (`roleId`),
   CONSTRAINT `FK_rp_permissionId` FOREIGN KEY (`permissionId`) REFERENCES `permission` (`id`),
   CONSTRAINT `FK_rp_roleId` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=371 DEFAULT CHARSET=utf8 COMMENT='角色与权限关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=373 DEFAULT CHARSET=utf8 COMMENT='角色与权限关联表';
 
 -- ----------------------------
 -- Records of role_permission
@@ -958,6 +965,8 @@ INSERT INTO `role_permission` VALUES ('367', '2', '4');
 INSERT INTO `role_permission` VALUES ('368', '2', '7');
 INSERT INTO `role_permission` VALUES ('369', '2', '9');
 INSERT INTO `role_permission` VALUES ('370', '2', '16');
+INSERT INTO `role_permission` VALUES ('371', '3', '4');
+INSERT INTO `role_permission` VALUES ('372', '3', '5');
 
 -- ----------------------------
 -- Table structure for sale_order
@@ -2323,11 +2332,12 @@ CREATE TABLE `sale_reject_order` (
   CONSTRAINT `FK_sro_operatorId` FOREIGN KEY (`operatorId`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_sro_rejectOrderNo` FOREIGN KEY (`rejectOrderNo`) REFERENCES `sale_order` (`saleOrderNo`),
   CONSTRAINT `FK_sro_shopId` FOREIGN KEY (`shopId`) REFERENCES `shop` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of sale_reject_order
 -- ----------------------------
+INSERT INTO `sale_reject_order` VALUES ('1', 'R-2017-05-25-1596890484', 'SO-2017-03-02-0001', '2017-05-25 12:00:35', '198.00', '2', '1');
 
 -- ----------------------------
 -- Table structure for sale_reject_order_item
@@ -2346,11 +2356,12 @@ CREATE TABLE `sale_reject_order_item` (
   KEY `FK_sroi_itemId` (`itemId`),
   CONSTRAINT `FK_sroi_itemId` FOREIGN KEY (`itemId`) REFERENCES `goods` (`barcode`),
   CONSTRAINT `FK_sroi_rejectNo` FOREIGN KEY (`rejectNo`) REFERENCES `sale_reject_order` (`rejectNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of sale_reject_order_item
 -- ----------------------------
+INSERT INTO `sale_reject_order_item` VALUES ('1', 'R-2017-05-25-1596890484', '20170411211559', '2', '99.00', '198.00', '商品损坏');
 
 -- ----------------------------
 -- Table structure for shop
@@ -2395,10 +2406,10 @@ INSERT INTO `size` VALUES ('2', 'L', '衣服', null, '2017-03-24 22:36:21', '0')
 INSERT INTO `size` VALUES ('3', 'S', '衣服', null, '2017-03-23 23:24:57', '0');
 INSERT INTO `size` VALUES ('4', 'M', '衣服', null, '2017-03-23 23:24:59', '0');
 INSERT INTO `size` VALUES ('5', '30', '鞋子', '阿凡萨达', '2017-03-27 23:41:25', '0');
-INSERT INTO `size` VALUES ('6', 'ml', '衣服', null, '2017-04-08 18:02:20', '0');
-INSERT INTO `size` VALUES ('7', 'snad', '衣服', null, '2017-04-08 18:05:57', '0');
-INSERT INTO `size` VALUES ('8', 'a', '衣服', null, '2017-04-08 18:28:24', '0');
-INSERT INTO `size` VALUES ('9', 'ada', '鞋子', 'aasd', '2017-04-08 18:31:12', '0');
+INSERT INTO `size` VALUES ('6', 'XS', '衣服', null, '2017-04-08 18:02:20', '0');
+INSERT INTO `size` VALUES ('7', 'XXXL', '衣服', null, '2017-04-08 18:05:57', '0');
+INSERT INTO `size` VALUES ('8', 'XXL', '衣服', null, '2017-04-08 18:28:24', '0');
+INSERT INTO `size` VALUES ('9', '20', '鞋子', null, '2017-04-08 18:31:12', '0');
 
 -- ----------------------------
 -- Table structure for user
@@ -2411,13 +2422,14 @@ CREATE TABLE `user` (
   `state` varchar(32) DEFAULT NULL COMMENT '状态',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'admin', '060a897e18657b80b51ab9bc47276012', null, '2014-07-17 12:59:08');
 INSERT INTO `user` VALUES ('2', 'cashier', '060a897e18657b80b51ab9bc47276012', null, '2014-07-17 12:59:08');
+INSERT INTO `user` VALUES ('3', 'test', '060a897e18657b80b51ab9bc47276012', null, '2017-05-25 11:21:38');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -2432,13 +2444,14 @@ CREATE TABLE `user_role` (
   KEY `FK_userRole_roleId` (`roleId`),
   CONSTRAINT `FK_userRole_roleId` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`),
   CONSTRAINT `FK_userRole_userId` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户与角色关联表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户与角色关联表';
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
 INSERT INTO `user_role` VALUES ('1', '1', '1');
 INSERT INTO `user_role` VALUES ('3', '2', '2');
+INSERT INTO `user_role` VALUES ('4', '3', '3');
 
 -- ----------------------------
 -- Table structure for warehouse
