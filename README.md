@@ -14,9 +14,9 @@
 - 项目启动
  项目使用两种启动方式：
 
-    1. 1、将项目导入 myeclipse 或者别的 ide （按实际情况调整），直接运行 /src/com/scau/mis/config/Config.java 启动;
+    1. 将项目导入 myeclipse 或者别的 ide （按实际情况调整），直接运行 /src/com/scau/mis/config/Config.java 启动;
 
-    1. 2、将项目发布到 Tomcat 服务器，直接访问即可，附 ant 的打包文件，可直接打包成 war 文件，也可以导入 ide 中通过 ide 发布部署到Tomcat服务器。
+    2. 将项目发布到 Tomcat 服务器，直接访问即可，附 ant 的打包文件，可直接打包成 war 文件，也可以导入 ide 中通过 ide 发布部署到Tomcat服务器。
 
  
 - 初始密码 
