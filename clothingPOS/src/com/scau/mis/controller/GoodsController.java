@@ -56,6 +56,20 @@ public class GoodsController extends Controller {
 			result.put("status", false);
 		renderJson(result);
 	}
+	
+	/**
+	 * 删除一个商品
+	 */
+	@RequiresPermissions("goods:manage")
+	public void onsale() {
+		Map<String, Object> result = new HashMap<String, Object>();
+		long id = getParaToLong("id");
+		if (service.onSlaeGoodsById(id))
+			result.put("status", true);
+		else
+			result.put("status", false);
+		renderJson(result);
+	}
 
 	/**
 	 * 获得所有商品

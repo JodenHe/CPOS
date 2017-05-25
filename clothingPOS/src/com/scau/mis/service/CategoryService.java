@@ -56,7 +56,9 @@ public class CategoryService {
 	public Map<String, Object> updateCategory(Category category) {  
 		Map<String, Object> result = new HashMap<String, Object>();
 		String name = category.getName();
-
+		if (category.getPId()==0) {
+			category.setPId(null);
+		}
 		if (name != null && !"".equals(name)) {
 			if (existCategory(name,category.getId())) {
 				result.put("msg", "类别名称已存在！");
@@ -196,7 +198,7 @@ public class CategoryService {
 	/**
 	 * 删除商品类别
 	 */
-	public boolean deleteCategory(long id){
+	public boolean deleteCategory(long id) throws Exception{
 		if(selectCategory(id).delete())
 			return true;
 		else

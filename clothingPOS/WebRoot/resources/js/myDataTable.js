@@ -166,7 +166,7 @@ function goodsDataTable(data) {
 						}, {
 							data : 'script'
 						}, {
-							data : 'createTime'
+							data : 'state'
 						}, {
 							data : 'id'
 						}, ],
@@ -200,9 +200,15 @@ function goodsDataTable(data) {
 									.html(
 											'<button class="btn btn-default" onclick="updateGoods('
 													+ aData.id
-													+ ',this)">更新</button><button class="btn btn-primary" onclick="deleteGoods('
+													+ ',this)">更新</button><button class="btn btn-success" onclick="onSaleGoods('
 													+ aData.id
-													+ ')">删除</button>')
+													+ ')">上架</button>'
+													+'<button class="btn btn-primary" onclick="deleteGoods('
+													+ aData.id
+													+ ')">下架</button>'
+													);
+							$('td:eq(5)', nRow)
+									.html(aData.state==0?"未上架":"销售中");
 						},
 						"fnRowCallback" : function(nRow, aaData, iDisplayIndex,
 								iDisplayIndexFull) {
@@ -247,7 +253,7 @@ function goodsTableDetail ( d ) {
         '</tr>'+
         '<tr>'+
             '<td>商品款式：</td>'+
-            '<td><input class="form-control" id="update-goods-style" type="text" placeholder="商品款式" value="'+d.style+'"></td>'+
+            '<td><input class="form-control" id="update-goods-style" type="text" placeholder="商品款式" value="'+(d.style==null?"":d.style)+'"></td>'+
         '</tr>'+
         '<tr>'+
             '<td>商品类别：</td>'+
@@ -289,7 +295,7 @@ function goodsTableDetail ( d ) {
         '</tr>'+
         '<tr>'+
             '<td>商品描述：</td>'+
-            '<td><textarea class="form-control" rows="3" id="update-goods-script" name="update-goods-script" placeholder="请输入描述信息，可以为空">'+(d.script==null?'':d.script)+'</textarea></td>'+
+            '<td><textarea class="form-control" rows="3" cols="55" id="update-goods-script" name="update-goods-script" placeholder="请输入描述信息，可以为空">'+(d.script==null?'':d.script)+'</textarea></td>'+
         '</tr>'+
     '</table>';
 }

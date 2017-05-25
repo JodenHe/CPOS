@@ -368,12 +368,11 @@ function deleteCategory2(id) {
 			id : id
 		},
 		success : function(data) {
+			var msg = data.msg;
+			alert(msg);
 			if (data.status) {
-				alert("成功删除！");
 				selectAllCategory();
 				/* window.location.href=contextPath+"/test"; */
-			} else {
-				alert("未知错误!");
 			}
 		},
 		error : function() {
@@ -392,7 +391,6 @@ function updateCategory(id, btnObject) {
 		var name = table.find("td #update-category-name").val();
 		var pId = table.find("td #update-category-secondCategory"+id).val()!= 0 ? table.find("td #update-category-secondCategory"+id).val() :table.find("td #update-category-firstCategory"+id).val();
 		var script = table.find("td #update-category-script").val();
-		consloe.log(id+name+pId+script)
 		$.ajax({
 			type : "post",
 			url : contextPath + "/category/update",
@@ -888,10 +886,10 @@ function deleteGoods(id) {
 		},
 		success : function(data) {
 			if (data.status) {
-				alert("商品删除成功！");
+				alert("操作成功！");
 				getAllGoods();
 			} else {
-				alert("删除失败，未知错误！");
+				alert("操作失败，未知错误！");
 			}
 		},
 		error : function() {
@@ -899,6 +897,29 @@ function deleteGoods(id) {
 		}
 	});
 }
+//上架商品
+function onSaleGoods(id) {
+	$.ajax({
+		type : "post",
+		url : contextPath + "/goods/onsale",
+		dataType : "json",
+		data : {
+			id : id
+		},
+		success : function(data) {
+			if (data.status) {
+				alert("操作成功！");
+				getAllGoods();
+			} else {
+				alert("操作失败，未知错误！");
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
+
 //更新商品信息
 function updateGoods(id, btnObject) {
 	//判断详情页有无展开
@@ -944,7 +965,25 @@ function updateGoods(id, btnObject) {
 			}
 		});
 	}
-	
+	$.ajax({
+		type : "post",
+		url : contextPath + "/goods/delete",
+		dataType : "json",
+		data : {
+			id : id
+		},
+		success : function(data) {
+			if (data.status) {
+				alert("操作成功！");
+				getAllGoods();
+			} else {
+				alert("操作失败，未知错误！");
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
 }
 //列出所有的商品，dataTable展示
 function getAllGoods() {
@@ -1167,6 +1206,27 @@ function addBrand(){
 			}
 		});
 }
+//删除品牌
+function deleteBrand(id){
+	$.ajax({
+		type : "post",
+		url : contextPath + "/brand/delete",
+		dataType : "json",
+		data : {
+			id : id
+		},
+		success : function(data) {
+			var msg = data.msg;
+			alert(msg);
+			if (data.status) {				
+				getAllBrand();
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
+}
 //更新品牌信息
 function updateBrand(id, btnObject) {
 	var name = $(btnObject).parents().eq(0).siblings().eq(1).children().val();
@@ -1289,6 +1349,27 @@ function addColor(){
 				console.log("false")
 			}
 		});
+}
+//删除颜色
+function deleteColor(id){
+	$.ajax({
+		type : "post",
+		url : contextPath + "/color/delete",
+		dataType : "json",
+		data : {
+			id : id
+		},
+		success : function(data) {
+			var msg = data.msg;
+			alert(msg);
+			if (data.status) {				
+				getAllColor();
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
 }
 //更新颜色信息
 function updateColor(id, btnObject) {
@@ -1427,6 +1508,27 @@ function addSize(){
 				console.log("false")
 			}
 		});
+}
+//删除尺寸
+function deleteSize(id){
+	$.ajax({
+		type : "post",
+		url : contextPath + "/size/delete",
+		dataType : "json",
+		data : {
+			id : id
+		},
+		success : function(data) {
+			var msg = data.msg;
+			alert(msg);
+			if (data.status) {				
+				getAllSize();
+			}
+		},
+		error : function() {
+			console.log("false")
+		}
+	});
 }
 //更新尺寸信息
 function updateSize(id, btnObject) {
@@ -1735,11 +1837,12 @@ function getUserById(id){
 			"id" : id
 		},
 		success : function(result) {
-			if(result.length>0){
-				$("#userModel-user-name").val(result[0].userName);
-				$("#userModel-user-password").val(result[0].password);
+			console.log(result)
+			if(result!=null){
+				$("#userModel-user-name").val(result.userName);
+				$("#userModel-user-password").val(result.password);
 				$("#userModel-user-id").val(id);
-				allRoles(result[0].roleName);
+				allRoles(result.roleName);
 				function allRoles(role){
 					$.ajax({
 						type : "POST",

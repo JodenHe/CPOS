@@ -107,10 +107,22 @@ public class GoodsService {
 	 * @return 成功返回true，失败返回false
 	 */
 	public boolean deleteGoodsById(long id) {
-		if (Goods.dao.deleteById(id))
-			return true;
-		else
-			return false;
+		Goods goods = Goods.dao.findById(id);
+		goods.setState(0);
+		return goods.update();
+	}
+	
+	/**
+	 * 根据商品id,商品上架
+	 * 
+	 * @param id
+	 *            商品id
+	 * @return 成功返回true，失败返回false
+	 */
+	public boolean onSlaeGoodsById(long id) {
+		Goods goods = Goods.dao.findById(id);
+		goods.setState(1);
+		return goods.update();
 	}
 
 	/**
@@ -153,10 +165,10 @@ public class GoodsService {
 	 */
 	public List<Goods> getGoodsByBarcode(String barcode){
 		if(barcode.equals("")||null==barcode){//如果条形码为空，则返回所有商品
-			String sql = "select g.*,(select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id) quantity from goods g where (select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id)>0";
+			String sql = "select g.*,(select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id) quantity from goods g where (select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id)>0 and g.state=1";
 			return Goods.dao.find(sql);
 		}else{
-			String sql = "select g.*,(select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id) quantity from goods g where g.barcode like'%"+barcode+"%' and (select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id)>0";
+			String sql = "select g.*,(select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id) quantity from goods g where g.barcode like'%"+barcode+"%' and (select ifnull(sum(inv.quantity),0) from inventory inv where inv.goodsId=g.id)>0 and g.state=1";
 			return Goods.dao.find(sql);
 		}
 	}

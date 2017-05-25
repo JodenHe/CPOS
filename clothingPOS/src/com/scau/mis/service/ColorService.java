@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jfinal.log.Log;
+import com.scau.mis.model.Brand;
 import com.scau.mis.model.Color;
 
 /**
@@ -44,6 +45,16 @@ public class ColorService {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * 删除
+	 */
+	public boolean delete(long id) throws Exception{
+		if(Brand.dao.deleteById(id))
+			return true;
+		else
+			return false;
 	}
 
 	/**

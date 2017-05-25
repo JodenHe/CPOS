@@ -45,6 +45,16 @@ public class BrandService {
 		}
 		return result;
 	}
+	
+	/**
+	 * 删除
+	 */
+	public boolean delete(long id) throws Exception{
+		if(Brand.dao.deleteById(id))
+			return true;
+		else
+			return false;
+	}
 
 	/**
 	 * 更新品牌信息

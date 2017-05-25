@@ -1,6 +1,8 @@
 package com.scau.mis.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 
@@ -26,6 +28,27 @@ public class SizeController extends Controller {
 		Size size = getModel(Size.class);
 		size.setCreateTime(new Date());
 		renderJson(service.addSize(size));
+	}
+	
+	@RequiresPermissions("goods:manage")
+	public void delete() {
+		Map<String, Object> result = new HashMap<String, Object>();
+		long id = getParaToLong("id");
+		try {
+			if (service.delete(id)){
+				result.put("status", true);
+				result.put("msg", "操作成功！");
+			}
+			else{
+				result.put("status", false);
+				result.put("msg", "操作失败！");
+			}
+		} catch (Exception e) {
+			result.put("status", false);
+			result.put("msg", "该尺寸已被使用，请先删除参照此尺寸的商品！");
+			log.warn(e+e.getMessage());
+		}
+		renderJson(result);
 	}
 	
 	/**
