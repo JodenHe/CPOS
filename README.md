@@ -1,7 +1,7 @@
 # CPOS
 ####Clothing Point of Sale
 
-####服装销售终端系统** 
+####服装销售终端系统
   
  - 系统框架采用 jfinal 2.2 完成
  - 权限、会话管理采用 shiro 1.2.4 完成
