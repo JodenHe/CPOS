@@ -150,6 +150,7 @@ function inintSale() {
     $("#change").val("");
     $("#payType").val("0");
     $("#memberNo").html("");
+	$("#memberEmail").val("");
 
 }
 //添加销售明细
