@@ -1,0 +1,1143 @@
+
+2017-08-25 17:28:14
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Retrieving column information for table "%"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..brand"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..brand"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..brand"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..brand"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..brand"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..category"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..category"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "pId", data type -5, in table "db_pos..category"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..category"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..category"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..category"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..color"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..color"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..color"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..color"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..color"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "categoryId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "colorId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "brandId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "sizeId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "barcode", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "style", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "price", data type 3, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..goods"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "goodsId", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "warehouseId", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "amount", data type 3, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..inventory"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "customerNo", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "sex", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "email", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "birthday", data type 93, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "password", data type 1, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "grade", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..member"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "paymentNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "amount", data type 3, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payType", data type -6, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payTransactionNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payDateTime", data type 93, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "pId", data type -5, in table "db_pos..permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "permissionSign", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "description", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleName", data type 12, in table "db_pos..role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleSign", data type 12, in table "db_pos..role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "description", data type 12, in table "db_pos..role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleId", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "permissionId", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "customerNo", data type 12, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleDateTime", data type 93, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "total", data type 3, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..sale_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "itemId", data type 12, in table "db_pos..sale_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..sale_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "salePrice", data type 3, in table "db_pos..sale_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "subTotal", data type 3, in table "db_pos..sale_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectNo", data type 12, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectOrderNo", data type 12, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectDateTime", data type 93, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "total", data type 3, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectNo", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "itemId", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectPrice", data type 3, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "subTotal", data type 3, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectReason", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "manager", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..shop"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..size"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..size"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "type", data type 12, in table "db_pos..size"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..size"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..size"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..size"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..user"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "userName", data type 12, in table "db_pos..user"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "password", data type 1, in table "db_pos..user"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type 12, in table "db_pos..user"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..user"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "userId", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleId", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..warehouse"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "manager", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:28:15
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Retrieving column information for table "%"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..brand"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..brand"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..brand"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..brand"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..brand"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..category"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..category"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "pId", data type -5, in table "db_pos..category"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..category"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..category"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..category"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..color"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..color"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..color"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..color"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..color"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "categoryId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "colorId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "brandId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "sizeId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "barcode", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "style", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "price", data type 3, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..goods"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "goodsId", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "warehouseId", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "amount", data type 3, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..inventory"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "customerNo", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "sex", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "email", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "birthday", data type 93, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "password", data type 1, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "grade", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..member"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "paymentNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "amount", data type 3, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payType", data type -6, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payTransactionNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payDateTime", data type 93, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "pId", data type -5, in table "db_pos..permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "permissionSign", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "description", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleName", data type 12, in table "db_pos..role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleSign", data type 12, in table "db_pos..role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "description", data type 12, in table "db_pos..role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleId", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "permissionId", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "customerNo", data type 12, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleDateTime", data type 93, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "total", data type 3, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "itemId", data type 12, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "salePrice", data type 3, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "subTotal", data type 3, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectNo", data type 12, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectOrderNo", data type 12, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectDateTime", data type 93, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "total", data type 3, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectNo", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "itemId", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectPrice", data type 3, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "subTotal", data type 3, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectReason", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "manager", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..shop"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..size"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..size"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "type", data type 12, in table "db_pos..size"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..size"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..size"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..size"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..user"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "userName", data type 12, in table "db_pos..user"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "password", data type 1, in table "db_pos..user"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type 12, in table "db_pos..user"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..user"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "userId", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleId", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "manager", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:11
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..warehouse"
+
+2017-08-25 17:31:45
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Retrieving column information for table "%"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..brand"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..brand"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..brand"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..brand"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..brand"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..category"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..category"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "pId", data type -5, in table "db_pos..category"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..category"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..category"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..category"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..color"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..color"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..color"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..color"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..color"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "categoryId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "colorId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "brandId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "sizeId", data type -5, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "barcode", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "style", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "price", data type 3, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..goods"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "goodsId", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "warehouseId", data type -5, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "amount", data type 3, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..inventory"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "customerNo", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "sex", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "email", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "birthday", data type 93, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "password", data type 1, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "grade", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..member"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "paymentNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "amount", data type 3, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payType", data type -6, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payTransactionNo", data type 12, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "payDateTime", data type 93, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..payment"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "pId", data type -5, in table "db_pos..permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "permissionSign", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "description", data type 12, in table "db_pos..permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleName", data type 12, in table "db_pos..role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleSign", data type 12, in table "db_pos..role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "description", data type 12, in table "db_pos..role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleId", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "permissionId", data type -5, in table "db_pos..role_permission"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "customerNo", data type 12, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleDateTime", data type 93, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "total", data type 3, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..sale_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "saleOrderNo", data type 12, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "itemId", data type 12, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "salePrice", data type 3, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "subTotal", data type 3, in table "db_pos..sale_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectNo", data type 12, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectOrderNo", data type 12, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectDateTime", data type 93, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "total", data type 3, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "operatorId", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..sale_reject_order"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectNo", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "itemId", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "quantity", data type 4, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectPrice", data type 3, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "subTotal", data type 3, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "rejectReason", data type 12, in table "db_pos..sale_reject_order_item"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "manager", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..shop"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..size"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..size"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "type", data type 12, in table "db_pos..size"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..size"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..size"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type -6, in table "db_pos..size"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..user"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "userName", data type 12, in table "db_pos..user"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "password", data type 1, in table "db_pos..user"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "state", data type 12, in table "db_pos..user"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "createTime", data type 93, in table "db_pos..user"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "userId", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "roleId", data type -5, in table "db_pos..user_role"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "id", data type -5, in table "db_pos..warehouse"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "name", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "manager", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "telephone", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "address", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "script", data type 12, in table "db_pos..warehouse"
+
+2017-08-25 17:31:46
+[DEBUG]-[Thread: main]-[org.mybatis.generator.logging.Log4jImpl.debug()]: Found column "shopId", data type -5, in table "db_pos..warehouse"

@@ -1,0 +1,1916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scau.jodenhe.cpos.dao.SaleRejectOrderMapper">
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="rejectNo" jdbcType="VARCHAR" property="rejectno" />
+    <result column="rejectOrderNo" jdbcType="VARCHAR" property="rejectorderno" />
+    <result column="rejectDateTime" jdbcType="TIMESTAMP" property="rejectdatetime" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="operatorId" jdbcType="BIGINT" property="operatorid" />
+    <result column="shopId" jdbcType="BIGINT" property="shopid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, rejectNo, rejectOrderNo, rejectDateTime, total, operatorId, shopId
+  </sql>
+  <select id="selectByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_reject_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample">
+    delete from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order (id, rejectNo, rejectOrderNo, 
+      rejectDateTime, total, operatorId, 
+      shopId)
+    values (#{id,jdbcType=BIGINT}, #{rejectno,jdbcType=VARCHAR}, #{rejectorderno,jdbcType=VARCHAR}, 
+      #{rejectdatetime,jdbcType=TIMESTAMP}, #{total,jdbcType=DECIMAL}, #{operatorid,jdbcType=BIGINT}, 
+      #{shopid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    insert into sale_reject_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rejectno != null">
+        rejectNo,
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo,
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime,
+      </if>
+      <if test="total != null">
+        total,
+      </if>
+      <if test="operatorid != null">
+        operatorId,
+      </if>
+      <if test="shopid != null">
+        shopId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rejectno != null">
+        #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrderExample" resultType="java.lang.Long">
+    select count(*) from sale_reject_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sale_reject_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.rejectno != null">
+        rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectorderno != null">
+        rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rejectdatetime != null">
+        rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.total != null">
+        total = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.operatorid != null">
+        operatorId = #{record.operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="record.shopid != null">
+        shopId = #{record.shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sale_reject_order
+    set id = #{record.id,jdbcType=BIGINT},
+      rejectNo = #{record.rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{record.rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{record.rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{record.total,jdbcType=DECIMAL},
+      operatorId = #{record.operatorid,jdbcType=BIGINT},
+      shopId = #{record.shopid,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    <set>
+      <if test="rejectno != null">
+        rejectNo = #{rejectno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectorderno != null">
+        rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      </if>
+      <if test="rejectdatetime != null">
+        rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="total != null">
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="operatorid != null">
+        operatorId = #{operatorid,jdbcType=BIGINT},
+      </if>
+      <if test="shopid != null">
+        shopId = #{shopid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scau.jodenhe.cpos.entity.SaleRejectOrder">
+    update sale_reject_order
+    set rejectNo = #{rejectno,jdbcType=VARCHAR},
+      rejectOrderNo = #{rejectorderno,jdbcType=VARCHAR},
+      rejectDateTime = #{rejectdatetime,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=DECIMAL},
+      operatorId = #{operatorid,jdbcType=BIGINT},
+      shopId = #{shopid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
