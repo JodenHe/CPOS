@@ -1,30 +1,7 @@
 package com.scau.jodenhe.cpos.dao;
 
 import com.scau.jodenhe.cpos.entity.User;
-import com.scau.jodenhe.cpos.entity.UserExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.scau.jodenhe.cpos.plugins.mybatis.BaseMapper;
 
-public interface UserMapper {
-    long countByExample(UserExample example);
-
-    int deleteByExample(UserExample example);
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    List<User> selectByExample(UserExample example);
-
-    User selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
-
-    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
+public interface UserMapper extends BaseMapper<User> {
 }

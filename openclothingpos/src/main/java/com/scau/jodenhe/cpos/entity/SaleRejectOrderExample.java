@@ -166,203 +166,203 @@ public class SaleRejectOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoIsNull() {
+        public Criteria andRejectNoIsNull() {
             addCriterion("rejectNo is null");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoIsNotNull() {
+        public Criteria andRejectNoIsNotNull() {
             addCriterion("rejectNo is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoEqualTo(String value) {
-            addCriterion("rejectNo =", value, "rejectno");
+        public Criteria andRejectNoEqualTo(String value) {
+            addCriterion("rejectNo =", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoNotEqualTo(String value) {
-            addCriterion("rejectNo <>", value, "rejectno");
+        public Criteria andRejectNoNotEqualTo(String value) {
+            addCriterion("rejectNo <>", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoGreaterThan(String value) {
-            addCriterion("rejectNo >", value, "rejectno");
+        public Criteria andRejectNoGreaterThan(String value) {
+            addCriterion("rejectNo >", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoGreaterThanOrEqualTo(String value) {
-            addCriterion("rejectNo >=", value, "rejectno");
+        public Criteria andRejectNoGreaterThanOrEqualTo(String value) {
+            addCriterion("rejectNo >=", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoLessThan(String value) {
-            addCriterion("rejectNo <", value, "rejectno");
+        public Criteria andRejectNoLessThan(String value) {
+            addCriterion("rejectNo <", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoLessThanOrEqualTo(String value) {
-            addCriterion("rejectNo <=", value, "rejectno");
+        public Criteria andRejectNoLessThanOrEqualTo(String value) {
+            addCriterion("rejectNo <=", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoLike(String value) {
-            addCriterion("rejectNo like", value, "rejectno");
+        public Criteria andRejectNoLike(String value) {
+            addCriterion("rejectNo like", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoNotLike(String value) {
-            addCriterion("rejectNo not like", value, "rejectno");
+        public Criteria andRejectNoNotLike(String value) {
+            addCriterion("rejectNo not like", value, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoIn(List<String> values) {
-            addCriterion("rejectNo in", values, "rejectno");
+        public Criteria andRejectNoIn(List<String> values) {
+            addCriterion("rejectNo in", values, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoNotIn(List<String> values) {
-            addCriterion("rejectNo not in", values, "rejectno");
+        public Criteria andRejectNoNotIn(List<String> values) {
+            addCriterion("rejectNo not in", values, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoBetween(String value1, String value2) {
-            addCriterion("rejectNo between", value1, value2, "rejectno");
+        public Criteria andRejectNoBetween(String value1, String value2) {
+            addCriterion("rejectNo between", value1, value2, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectnoNotBetween(String value1, String value2) {
-            addCriterion("rejectNo not between", value1, value2, "rejectno");
+        public Criteria andRejectNoNotBetween(String value1, String value2) {
+            addCriterion("rejectNo not between", value1, value2, "rejectNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoIsNull() {
+        public Criteria andRejectOrderNoIsNull() {
             addCriterion("rejectOrderNo is null");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoIsNotNull() {
+        public Criteria andRejectOrderNoIsNotNull() {
             addCriterion("rejectOrderNo is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoEqualTo(String value) {
-            addCriterion("rejectOrderNo =", value, "rejectorderno");
+        public Criteria andRejectOrderNoEqualTo(String value) {
+            addCriterion("rejectOrderNo =", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoNotEqualTo(String value) {
-            addCriterion("rejectOrderNo <>", value, "rejectorderno");
+        public Criteria andRejectOrderNoNotEqualTo(String value) {
+            addCriterion("rejectOrderNo <>", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoGreaterThan(String value) {
-            addCriterion("rejectOrderNo >", value, "rejectorderno");
+        public Criteria andRejectOrderNoGreaterThan(String value) {
+            addCriterion("rejectOrderNo >", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoGreaterThanOrEqualTo(String value) {
-            addCriterion("rejectOrderNo >=", value, "rejectorderno");
+        public Criteria andRejectOrderNoGreaterThanOrEqualTo(String value) {
+            addCriterion("rejectOrderNo >=", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoLessThan(String value) {
-            addCriterion("rejectOrderNo <", value, "rejectorderno");
+        public Criteria andRejectOrderNoLessThan(String value) {
+            addCriterion("rejectOrderNo <", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoLessThanOrEqualTo(String value) {
-            addCriterion("rejectOrderNo <=", value, "rejectorderno");
+        public Criteria andRejectOrderNoLessThanOrEqualTo(String value) {
+            addCriterion("rejectOrderNo <=", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoLike(String value) {
-            addCriterion("rejectOrderNo like", value, "rejectorderno");
+        public Criteria andRejectOrderNoLike(String value) {
+            addCriterion("rejectOrderNo like", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoNotLike(String value) {
-            addCriterion("rejectOrderNo not like", value, "rejectorderno");
+        public Criteria andRejectOrderNoNotLike(String value) {
+            addCriterion("rejectOrderNo not like", value, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoIn(List<String> values) {
-            addCriterion("rejectOrderNo in", values, "rejectorderno");
+        public Criteria andRejectOrderNoIn(List<String> values) {
+            addCriterion("rejectOrderNo in", values, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoNotIn(List<String> values) {
-            addCriterion("rejectOrderNo not in", values, "rejectorderno");
+        public Criteria andRejectOrderNoNotIn(List<String> values) {
+            addCriterion("rejectOrderNo not in", values, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoBetween(String value1, String value2) {
-            addCriterion("rejectOrderNo between", value1, value2, "rejectorderno");
+        public Criteria andRejectOrderNoBetween(String value1, String value2) {
+            addCriterion("rejectOrderNo between", value1, value2, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectordernoNotBetween(String value1, String value2) {
-            addCriterion("rejectOrderNo not between", value1, value2, "rejectorderno");
+        public Criteria andRejectOrderNoNotBetween(String value1, String value2) {
+            addCriterion("rejectOrderNo not between", value1, value2, "rejectOrderNo");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeIsNull() {
+        public Criteria andRejectDateTimeIsNull() {
             addCriterion("rejectDateTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeIsNotNull() {
+        public Criteria andRejectDateTimeIsNotNull() {
             addCriterion("rejectDateTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeEqualTo(Date value) {
-            addCriterion("rejectDateTime =", value, "rejectdatetime");
+        public Criteria andRejectDateTimeEqualTo(Date value) {
+            addCriterion("rejectDateTime =", value, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeNotEqualTo(Date value) {
-            addCriterion("rejectDateTime <>", value, "rejectdatetime");
+        public Criteria andRejectDateTimeNotEqualTo(Date value) {
+            addCriterion("rejectDateTime <>", value, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeGreaterThan(Date value) {
-            addCriterion("rejectDateTime >", value, "rejectdatetime");
+        public Criteria andRejectDateTimeGreaterThan(Date value) {
+            addCriterion("rejectDateTime >", value, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("rejectDateTime >=", value, "rejectdatetime");
+        public Criteria andRejectDateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("rejectDateTime >=", value, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeLessThan(Date value) {
-            addCriterion("rejectDateTime <", value, "rejectdatetime");
+        public Criteria andRejectDateTimeLessThan(Date value) {
+            addCriterion("rejectDateTime <", value, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeLessThanOrEqualTo(Date value) {
-            addCriterion("rejectDateTime <=", value, "rejectdatetime");
+        public Criteria andRejectDateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("rejectDateTime <=", value, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeIn(List<Date> values) {
-            addCriterion("rejectDateTime in", values, "rejectdatetime");
+        public Criteria andRejectDateTimeIn(List<Date> values) {
+            addCriterion("rejectDateTime in", values, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeNotIn(List<Date> values) {
-            addCriterion("rejectDateTime not in", values, "rejectdatetime");
+        public Criteria andRejectDateTimeNotIn(List<Date> values) {
+            addCriterion("rejectDateTime not in", values, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeBetween(Date value1, Date value2) {
-            addCriterion("rejectDateTime between", value1, value2, "rejectdatetime");
+        public Criteria andRejectDateTimeBetween(Date value1, Date value2) {
+            addCriterion("rejectDateTime between", value1, value2, "rejectDateTime");
             return (Criteria) this;
         }
 
-        public Criteria andRejectdatetimeNotBetween(Date value1, Date value2) {
-            addCriterion("rejectDateTime not between", value1, value2, "rejectdatetime");
+        public Criteria andRejectDateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("rejectDateTime not between", value1, value2, "rejectDateTime");
             return (Criteria) this;
         }
 
@@ -426,123 +426,123 @@ public class SaleRejectOrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridIsNull() {
+        public Criteria andOperatorIdIsNull() {
             addCriterion("operatorId is null");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridIsNotNull() {
+        public Criteria andOperatorIdIsNotNull() {
             addCriterion("operatorId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridEqualTo(Long value) {
-            addCriterion("operatorId =", value, "operatorid");
+        public Criteria andOperatorIdEqualTo(Long value) {
+            addCriterion("operatorId =", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridNotEqualTo(Long value) {
-            addCriterion("operatorId <>", value, "operatorid");
+        public Criteria andOperatorIdNotEqualTo(Long value) {
+            addCriterion("operatorId <>", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridGreaterThan(Long value) {
-            addCriterion("operatorId >", value, "operatorid");
+        public Criteria andOperatorIdGreaterThan(Long value) {
+            addCriterion("operatorId >", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridGreaterThanOrEqualTo(Long value) {
-            addCriterion("operatorId >=", value, "operatorid");
+        public Criteria andOperatorIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("operatorId >=", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridLessThan(Long value) {
-            addCriterion("operatorId <", value, "operatorid");
+        public Criteria andOperatorIdLessThan(Long value) {
+            addCriterion("operatorId <", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridLessThanOrEqualTo(Long value) {
-            addCriterion("operatorId <=", value, "operatorid");
+        public Criteria andOperatorIdLessThanOrEqualTo(Long value) {
+            addCriterion("operatorId <=", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridIn(List<Long> values) {
-            addCriterion("operatorId in", values, "operatorid");
+        public Criteria andOperatorIdIn(List<Long> values) {
+            addCriterion("operatorId in", values, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridNotIn(List<Long> values) {
-            addCriterion("operatorId not in", values, "operatorid");
+        public Criteria andOperatorIdNotIn(List<Long> values) {
+            addCriterion("operatorId not in", values, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridBetween(Long value1, Long value2) {
-            addCriterion("operatorId between", value1, value2, "operatorid");
+        public Criteria andOperatorIdBetween(Long value1, Long value2) {
+            addCriterion("operatorId between", value1, value2, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatoridNotBetween(Long value1, Long value2) {
-            addCriterion("operatorId not between", value1, value2, "operatorid");
+        public Criteria andOperatorIdNotBetween(Long value1, Long value2) {
+            addCriterion("operatorId not between", value1, value2, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidIsNull() {
+        public Criteria andShopIdIsNull() {
             addCriterion("shopId is null");
             return (Criteria) this;
         }
 
-        public Criteria andShopidIsNotNull() {
+        public Criteria andShopIdIsNotNull() {
             addCriterion("shopId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShopidEqualTo(Long value) {
-            addCriterion("shopId =", value, "shopid");
+        public Criteria andShopIdEqualTo(Long value) {
+            addCriterion("shopId =", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidNotEqualTo(Long value) {
-            addCriterion("shopId <>", value, "shopid");
+        public Criteria andShopIdNotEqualTo(Long value) {
+            addCriterion("shopId <>", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidGreaterThan(Long value) {
-            addCriterion("shopId >", value, "shopid");
+        public Criteria andShopIdGreaterThan(Long value) {
+            addCriterion("shopId >", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidGreaterThanOrEqualTo(Long value) {
-            addCriterion("shopId >=", value, "shopid");
+        public Criteria andShopIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("shopId >=", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidLessThan(Long value) {
-            addCriterion("shopId <", value, "shopid");
+        public Criteria andShopIdLessThan(Long value) {
+            addCriterion("shopId <", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidLessThanOrEqualTo(Long value) {
-            addCriterion("shopId <=", value, "shopid");
+        public Criteria andShopIdLessThanOrEqualTo(Long value) {
+            addCriterion("shopId <=", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidIn(List<Long> values) {
-            addCriterion("shopId in", values, "shopid");
+        public Criteria andShopIdIn(List<Long> values) {
+            addCriterion("shopId in", values, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidNotIn(List<Long> values) {
-            addCriterion("shopId not in", values, "shopid");
+        public Criteria andShopIdNotIn(List<Long> values) {
+            addCriterion("shopId not in", values, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidBetween(Long value1, Long value2) {
-            addCriterion("shopId between", value1, value2, "shopid");
+        public Criteria andShopIdBetween(Long value1, Long value2) {
+            addCriterion("shopId between", value1, value2, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidNotBetween(Long value1, Long value2) {
-            addCriterion("shopId not between", value1, value2, "shopid");
+        public Criteria andShopIdNotBetween(Long value1, Long value2) {
+            addCriterion("shopId not between", value1, value2, "shopId");
             return (Criteria) this;
         }
     }

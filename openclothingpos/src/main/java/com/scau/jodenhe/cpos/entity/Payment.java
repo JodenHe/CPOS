@@ -5,95 +5,214 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class Payment implements Serializable {
+    //id标识
     private Long id;
 
-    private String paymentno;
+    //支付编号
+    private String paymentNo;
 
-    private String saleorderno;
+    //订单号，参照sale_order表
+    private String saleOrderNo;
 
+    //支付金额
     private BigDecimal amount;
 
-    private Byte paytype;
+    //支付方式，0代表现金支付
+    private Byte payType;
 
-    private String paytransactionno;
+    //支付交易号，现金支付为空
+    private String payTransactionNo;
 
-    private Date paydatetime;
+    //支付时间
+    private Date payDateTime;
 
-    private Long operatorid;
+    //操作员id，参照user表
+    private Long operatorId;
 
-    private Long shopid;
+    //店铺id
+    private Long shopId;
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 获取id标识
+     *
+     * @return id - id标识
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * 设置id标识
+     *
+     * @param id id标识
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getPaymentno() {
-        return paymentno;
+    /**
+     * 获取支付编号
+     *
+     * @return paymentNo - 支付编号
+     */
+    public String getPaymentNo() {
+        return paymentNo;
     }
 
-    public void setPaymentno(String paymentno) {
-        this.paymentno = paymentno == null ? null : paymentno.trim();
+    /**
+     * 设置支付编号
+     *
+     * @param paymentNo 支付编号
+     */
+    public void setPaymentNo(String paymentNo) {
+        this.paymentNo = paymentNo == null ? null : paymentNo.trim();
     }
 
-    public String getSaleorderno() {
-        return saleorderno;
+    /**
+     * 获取订单号，参照sale_order表
+     *
+     * @return saleOrderNo - 订单号，参照sale_order表
+     */
+    public String getSaleOrderNo() {
+        return saleOrderNo;
     }
 
-    public void setSaleorderno(String saleorderno) {
-        this.saleorderno = saleorderno == null ? null : saleorderno.trim();
+    /**
+     * 设置订单号，参照sale_order表
+     *
+     * @param saleOrderNo 订单号，参照sale_order表
+     */
+    public void setSaleOrderNo(String saleOrderNo) {
+        this.saleOrderNo = saleOrderNo == null ? null : saleOrderNo.trim();
     }
 
+    /**
+     * 获取支付金额
+     *
+     * @return amount - 支付金额
+     */
     public BigDecimal getAmount() {
         return amount;
     }
 
+    /**
+     * 设置支付金额
+     *
+     * @param amount 支付金额
+     */
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public Byte getPaytype() {
-        return paytype;
+    /**
+     * 获取支付方式，0代表现金支付
+     *
+     * @return payType - 支付方式，0代表现金支付
+     */
+    public Byte getPayType() {
+        return payType;
     }
 
-    public void setPaytype(Byte paytype) {
-        this.paytype = paytype;
+    /**
+     * 设置支付方式，0代表现金支付
+     *
+     * @param payType 支付方式，0代表现金支付
+     */
+    public void setPayType(Byte payType) {
+        this.payType = payType;
     }
 
-    public String getPaytransactionno() {
-        return paytransactionno;
+    /**
+     * 获取支付交易号，现金支付为空
+     *
+     * @return payTransactionNo - 支付交易号，现金支付为空
+     */
+    public String getPayTransactionNo() {
+        return payTransactionNo;
     }
 
-    public void setPaytransactionno(String paytransactionno) {
-        this.paytransactionno = paytransactionno == null ? null : paytransactionno.trim();
+    /**
+     * 设置支付交易号，现金支付为空
+     *
+     * @param payTransactionNo 支付交易号，现金支付为空
+     */
+    public void setPayTransactionNo(String payTransactionNo) {
+        this.payTransactionNo = payTransactionNo == null ? null : payTransactionNo.trim();
     }
 
-    public Date getPaydatetime() {
-        return paydatetime;
+    /**
+     * 获取支付时间
+     *
+     * @return payDateTime - 支付时间
+     */
+    public Date getPayDateTime() {
+        return payDateTime;
     }
 
-    public void setPaydatetime(Date paydatetime) {
-        this.paydatetime = paydatetime;
+    /**
+     * 设置支付时间
+     *
+     * @param payDateTime 支付时间
+     */
+    public void setPayDateTime(Date payDateTime) {
+        this.payDateTime = payDateTime;
     }
 
-    public Long getOperatorid() {
-        return operatorid;
+    /**
+     * 获取操作员id，参照user表
+     *
+     * @return operatorId - 操作员id，参照user表
+     */
+    public Long getOperatorId() {
+        return operatorId;
     }
 
-    public void setOperatorid(Long operatorid) {
-        this.operatorid = operatorid;
+    /**
+     * 设置操作员id，参照user表
+     *
+     * @param operatorId 操作员id，参照user表
+     */
+    public void setOperatorId(Long operatorId) {
+        this.operatorId = operatorId;
     }
 
-    public Long getShopid() {
-        return shopid;
+    /**
+     * 获取店铺id
+     *
+     * @return shopId - 店铺id
+     */
+    public Long getShopId() {
+        return shopId;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
+    /**
+     * 设置店铺id
+     *
+     * @param shopId 店铺id
+     */
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", paymentNo=").append(paymentNo);
+        sb.append(", saleOrderNo=").append(saleOrderNo);
+        sb.append(", amount=").append(amount);
+        sb.append(", payType=").append(payType);
+        sb.append(", payTransactionNo=").append(payTransactionNo);
+        sb.append(", payDateTime=").append(payDateTime);
+        sb.append(", operatorId=").append(operatorId);
+        sb.append(", shopId=").append(shopId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

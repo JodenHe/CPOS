@@ -1,30 +1,7 @@
 package com.scau.jodenhe.cpos.dao;
 
 import com.scau.jodenhe.cpos.entity.Brand;
-import com.scau.jodenhe.cpos.entity.BrandExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.scau.jodenhe.cpos.plugins.mybatis.BaseMapper;
 
-public interface BrandMapper {
-    long countByExample(BrandExample example);
-
-    int deleteByExample(BrandExample example);
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(Brand record);
-
-    int insertSelective(Brand record);
-
-    List<Brand> selectByExample(BrandExample example);
-
-    Brand selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") Brand record, @Param("example") BrandExample example);
-
-    int updateByExample(@Param("record") Brand record, @Param("example") BrandExample example);
-
-    int updateByPrimaryKeySelective(Brand record);
-
-    int updateByPrimaryKey(Brand record);
+public interface BrandMapper extends BaseMapper<Brand> {
 }

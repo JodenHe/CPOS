@@ -5,9 +5,24 @@
 
 <generatorConfiguration>
 	<properties resource="jdbc.properties" />
-	<context id="sqlserverTables" targetRuntime="MyBatis3">
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<!-- 生成的文件编码 -->
+		<property name="javaFileEncoding" value="utf-8"/>
+		
+		<!-- generate entity时，生成hashcode和equals方法 -->  
+        <!-- <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" /> -->  
+        <!-- 这个插件只会增加字符串字段映射到一个JDBC字符的方法 -->  
+        <!-- <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> --> 
+		
 		<!-- 生成的pojo，将implements Serializable -->
 		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!-- genenat entity时,生成toString -->  
+         <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+         <!-- 通过自定义插件类生成自定义注解和接口 -->
+		<plugin type="com.scau.jodenhe.cpos.plugins.mybatis.GenPlugin">
+			<property name="mappers" value="com.scau.jodenhe.cpos.plugins.mybatis.BaseMapper" />
+		</plugin>
+         
 		<commentGenerator>
 			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
 			<property name="suppressAllComments" value="true" />
@@ -47,16 +62,20 @@
 
 
 		<!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
-		<!-- <table tableName="%" domainObjectName="Role"
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false">
-			<property name="useActualColumnNames" value="false" />
-		</table> -->
-		
-		<!-- tableName：指定要生成的表名，可以使用SQL通配符匹配多个表。
-			生成所有的表可以这样设置<table tableName="%" />，
-			可以指定的表明生成指定的实体类和映射 -->
-		<table tableName="%" />
+		<!-- <table tableName="%" domainObjectName="Role" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"> <property name="useActualColumnNames" value="false" 
+			/> </table> -->
+
+		<!-- tableName：指定要生成的表名，可以使用SQL通配符匹配多个表。 生成所有的表可以这样设置<table tableName="%" 
+			/>， 可以指定的表明生成指定的实体类和映射 -->
+		<table tableName="%" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<!-- 由于数据库字段已经按驼峰命名了，因此开启使用实际列名，不然会全部变小写 -->
+			<property name="useActualColumnNames" value="true" />
+			<!--mysql 配置 -->
+			<generatedKey column="id" sqlStatement="Mysql" identity="true" />
+		</table>
 	</context>
 </generatorConfiguration>

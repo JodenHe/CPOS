@@ -13,6 +13,16 @@ import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
+/**
+ * 
+ * <p>Title: Mybatis 数据库生成实体映射工具类</p>
+ * <p>Description: </p>
+ * <p>Company: scau</p>
+ * <p>Copyright: 1.0</p>
+ * @author jodenhe
+ * @version 1.0
+ * @since 2017年8月28日 上午11:18:10
+ */
 public class MybatisGeneratorUtil {
 	public static void main(String[] args) {
 		fun2();

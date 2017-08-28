@@ -5,75 +5,160 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class SaleOrder implements Serializable {
+    //id标识
     private Long id;
 
-    private String saleorderno;
+    //订单编号
+    private String saleOrderNo;
 
-    private String customerno;
+    //客户编号
+    private String customerNo;
 
-    private Date saledatetime;
+    //下单时间
+    private Date saleDateTime;
 
     private BigDecimal total;
 
-    private Long operatorid;
+    private Long operatorId;
 
-    private Long shopid;
+    //店铺id
+    private Long shopId;
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 获取id标识
+     *
+     * @return id - id标识
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * 设置id标识
+     *
+     * @param id id标识
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getSaleorderno() {
-        return saleorderno;
+    /**
+     * 获取订单编号
+     *
+     * @return saleOrderNo - 订单编号
+     */
+    public String getSaleOrderNo() {
+        return saleOrderNo;
     }
 
-    public void setSaleorderno(String saleorderno) {
-        this.saleorderno = saleorderno == null ? null : saleorderno.trim();
+    /**
+     * 设置订单编号
+     *
+     * @param saleOrderNo 订单编号
+     */
+    public void setSaleOrderNo(String saleOrderNo) {
+        this.saleOrderNo = saleOrderNo == null ? null : saleOrderNo.trim();
     }
 
-    public String getCustomerno() {
-        return customerno;
+    /**
+     * 获取客户编号
+     *
+     * @return customerNo - 客户编号
+     */
+    public String getCustomerNo() {
+        return customerNo;
     }
 
-    public void setCustomerno(String customerno) {
-        this.customerno = customerno == null ? null : customerno.trim();
+    /**
+     * 设置客户编号
+     *
+     * @param customerNo 客户编号
+     */
+    public void setCustomerNo(String customerNo) {
+        this.customerNo = customerNo == null ? null : customerNo.trim();
     }
 
-    public Date getSaledatetime() {
-        return saledatetime;
+    /**
+     * 获取下单时间
+     *
+     * @return saleDateTime - 下单时间
+     */
+    public Date getSaleDateTime() {
+        return saleDateTime;
     }
 
-    public void setSaledatetime(Date saledatetime) {
-        this.saledatetime = saledatetime;
+    /**
+     * 设置下单时间
+     *
+     * @param saleDateTime 下单时间
+     */
+    public void setSaleDateTime(Date saleDateTime) {
+        this.saleDateTime = saleDateTime;
     }
 
+    /**
+     * @return total
+     */
     public BigDecimal getTotal() {
         return total;
     }
 
+    /**
+     * @param total
+     */
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    public Long getOperatorid() {
-        return operatorid;
+    /**
+     * @return operatorId
+     */
+    public Long getOperatorId() {
+        return operatorId;
     }
 
-    public void setOperatorid(Long operatorid) {
-        this.operatorid = operatorid;
+    /**
+     * @param operatorId
+     */
+    public void setOperatorId(Long operatorId) {
+        this.operatorId = operatorId;
     }
 
-    public Long getShopid() {
-        return shopid;
+    /**
+     * 获取店铺id
+     *
+     * @return shopId - 店铺id
+     */
+    public Long getShopId() {
+        return shopId;
     }
 
-    public void setShopid(Long shopid) {
-        this.shopid = shopid;
+    /**
+     * 设置店铺id
+     *
+     * @param shopId 店铺id
+     */
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", saleOrderNo=").append(saleOrderNo);
+        sb.append(", customerNo=").append(customerNo);
+        sb.append(", saleDateTime=").append(saleDateTime);
+        sb.append(", total=").append(total);
+        sb.append(", operatorId=").append(operatorId);
+        sb.append(", shopId=").append(shopId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

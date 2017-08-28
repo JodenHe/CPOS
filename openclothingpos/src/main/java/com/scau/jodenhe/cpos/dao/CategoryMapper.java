@@ -1,30 +1,7 @@
 package com.scau.jodenhe.cpos.dao;
 
 import com.scau.jodenhe.cpos.entity.Category;
-import com.scau.jodenhe.cpos.entity.CategoryExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.scau.jodenhe.cpos.plugins.mybatis.BaseMapper;
 
-public interface CategoryMapper {
-    long countByExample(CategoryExample example);
-
-    int deleteByExample(CategoryExample example);
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(Category record);
-
-    int insertSelective(Category record);
-
-    List<Category> selectByExample(CategoryExample example);
-
-    Category selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") Category record, @Param("example") CategoryExample example);
-
-    int updateByExample(@Param("record") Category record, @Param("example") CategoryExample example);
-
-    int updateByPrimaryKeySelective(Category record);
-
-    int updateByPrimaryKey(Category record);
+public interface CategoryMapper extends BaseMapper<Category> {
 }

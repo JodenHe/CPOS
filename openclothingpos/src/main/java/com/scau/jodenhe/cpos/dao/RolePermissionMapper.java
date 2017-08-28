@@ -1,30 +1,7 @@
 package com.scau.jodenhe.cpos.dao;
 
 import com.scau.jodenhe.cpos.entity.RolePermission;
-import com.scau.jodenhe.cpos.entity.RolePermissionExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
+import com.scau.jodenhe.cpos.plugins.mybatis.BaseMapper;
 
-public interface RolePermissionMapper {
-    long countByExample(RolePermissionExample example);
-
-    int deleteByExample(RolePermissionExample example);
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(RolePermission record);
-
-    int insertSelective(RolePermission record);
-
-    List<RolePermission> selectByExample(RolePermissionExample example);
-
-    RolePermission selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") RolePermission record, @Param("example") RolePermissionExample example);
-
-    int updateByExample(@Param("record") RolePermission record, @Param("example") RolePermissionExample example);
-
-    int updateByPrimaryKeySelective(RolePermission record);
-
-    int updateByPrimaryKey(RolePermission record);
+public interface RolePermissionMapper extends BaseMapper<RolePermission> {
 }

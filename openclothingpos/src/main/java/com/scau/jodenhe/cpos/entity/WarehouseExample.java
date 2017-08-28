@@ -514,63 +514,63 @@ public class WarehouseExample {
             return (Criteria) this;
         }
 
-        public Criteria andShopidIsNull() {
+        public Criteria andShopIdIsNull() {
             addCriterion("shopId is null");
             return (Criteria) this;
         }
 
-        public Criteria andShopidIsNotNull() {
+        public Criteria andShopIdIsNotNull() {
             addCriterion("shopId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andShopidEqualTo(Long value) {
-            addCriterion("shopId =", value, "shopid");
+        public Criteria andShopIdEqualTo(Long value) {
+            addCriterion("shopId =", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidNotEqualTo(Long value) {
-            addCriterion("shopId <>", value, "shopid");
+        public Criteria andShopIdNotEqualTo(Long value) {
+            addCriterion("shopId <>", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidGreaterThan(Long value) {
-            addCriterion("shopId >", value, "shopid");
+        public Criteria andShopIdGreaterThan(Long value) {
+            addCriterion("shopId >", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidGreaterThanOrEqualTo(Long value) {
-            addCriterion("shopId >=", value, "shopid");
+        public Criteria andShopIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("shopId >=", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidLessThan(Long value) {
-            addCriterion("shopId <", value, "shopid");
+        public Criteria andShopIdLessThan(Long value) {
+            addCriterion("shopId <", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidLessThanOrEqualTo(Long value) {
-            addCriterion("shopId <=", value, "shopid");
+        public Criteria andShopIdLessThanOrEqualTo(Long value) {
+            addCriterion("shopId <=", value, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidIn(List<Long> values) {
-            addCriterion("shopId in", values, "shopid");
+        public Criteria andShopIdIn(List<Long> values) {
+            addCriterion("shopId in", values, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidNotIn(List<Long> values) {
-            addCriterion("shopId not in", values, "shopid");
+        public Criteria andShopIdNotIn(List<Long> values) {
+            addCriterion("shopId not in", values, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidBetween(Long value1, Long value2) {
-            addCriterion("shopId between", value1, value2, "shopid");
+        public Criteria andShopIdBetween(Long value1, Long value2) {
+            addCriterion("shopId between", value1, value2, "shopId");
             return (Criteria) this;
         }
 
-        public Criteria andShopidNotBetween(Long value1, Long value2) {
-            addCriterion("shopId not between", value1, value2, "shopid");
+        public Criteria andShopIdNotBetween(Long value1, Long value2) {
+            addCriterion("shopId not between", value1, value2, "shopId");
             return (Criteria) this;
         }
     }
