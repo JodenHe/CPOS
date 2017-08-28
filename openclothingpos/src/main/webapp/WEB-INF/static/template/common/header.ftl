@@ -1,48 +1,25 @@
-<#assign config_v="20141009044">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="${shishuo_seo_description}">
-<meta name="author" content="师说CMS">
-<link rel="icon" href="${TEMPLATE_BASE_PATH}/images/favicon.ico">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<title>${shishuo_seo_title}</title>
+<link href="${request.contextPath}/resources/img/favicon.ico" rel="icon" type="image/x-icon" />
 
-<!-- Bootstrap core CSS -->
-<link href="${TEMPLATE_BASE_PATH}/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link href="${TEMPLATE_BASE_PATH}/css/blog.css" rel="stylesheet">
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="${TEMPLATE_BASE_PATH}/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="${TEMPLATE_BASE_PATH}/js/ie-emulation-modes-warning.js"></script>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="${TEMPLATE_BASE_PATH}/js/html5shiv.min.js"></script>
-      <script src="${TEMPLATE_BASE_PATH}/js/respond.min.js"></script>
+<!-- Bootstrap Core CSS -->
+<link href="${request.contextPath}/resources/sbAdmin/vendor/bootstrap/css/bootstrap.min.css"
+rel="stylesheet">
+<!-- MetisMenu CSS -->
+<link href="${request.contextPath}/resources/sbAdmin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="${request.contextPath}/resources/sbAdmin/dist/css/sb-admin-2.css" rel="stylesheet">
+<!-- Morris Charts CSS -->
+<link href="${request.contextPath}/resources/sbAdmin/vendor/morrisjs/morris.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="${request.contextPath}/resources/sbAdmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-</head>
-
-<body>
-	<div class="blog-masthead">
-		<div class="container">
-			<nav class="blog-nav">
-			<@shishuo_folder_list_tag folderId= 0>
-			<a class="blog-nav-item <#if 0==g_folderId>active</#if>" href="${BASE_PATH}/index.htm">首页</a>
-	                <#list tag_folder_list as tag_folder>
-	                	<a class="blog-nav-item <#if tag_folder.folderId==g_folderId>active</#if>" href="<@shishuo_folder_url_tag folderId=tag_folder.folderId/>">${tag_folder.name}</a>
-			</#list>
-           		</@shishuo_folder_list_tag>
-			</nav>
-		</div>
-	</div>
-	<div class="container">
-		<div class="blog-header">
-			<h1 class="blog-title">${shishuo_seo_title}</h1>
-			<p class="lead blog-description">${shishuo_seo_description}</p>
-		</div>

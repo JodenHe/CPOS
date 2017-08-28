@@ -25,6 +25,8 @@
 			1):加入对静态资源的处理
 			2)：允许使用”/“做整体映射
 	 -->
+	<!-- <mvc:default-servlet-handler /> -->
+	<mvc:resources mapping="/resources/**" location="/WEB-INF/static/resources/" cache-period="31556926"/>
 	<mvc:default-servlet-handler />
 	<!-- 3:配置视图解析器 显示viewResolver -->
 	<!-- FreeMarker的配置 -->
@@ -56,6 +58,8 @@
 		<property name="prefix" value="" />
 		<property name="suffix" value=".ftl" /><!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
 		<property name="contentType" value="text/html;charset=utf-8" />
+		<!-- 配置该属性，可以在前端模版使用${request.contextPath}访问上下文路径 -->
+		<property name="requestContextAttribute" value="request"/>
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
