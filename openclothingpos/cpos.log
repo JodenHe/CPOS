@@ -16000,3 +16000,72 @@
 
 2017-08-28 20:51:35
 [DEBUG]-[Thread: Thread-1]-[org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean()]: Retrieved dependent beans for bean 'brandMapper': [com.scau.jodenhe.cpos.dao.BrandMapperTest]
+
+2017-08-28 13:49:15
+[INFO]-[Thread: main]-[org.springframework.test.context.support.AbstractTestContextBootstrapper.getDefaultTestExecutionListenerClassNames()]: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+
+2017-08-28 13:49:15
+[INFO]-[Thread: main]-[org.springframework.test.context.support.AbstractTestContextBootstrapper.getTestExecutionListeners()]: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@586ca3ef, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@447ecd43, org.springframework.test.context.support.DirtiesContextTestExecutionListener@60d60cd6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4e4e745, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@500b6585]
+
+2017-08-28 13:49:15
+[INFO]-[Thread: main]-[org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions()]: Loading XML bean definitions from class path resource [spring/spring-dao.xml]
+
+2017-08-28 13:49:16
+[INFO]-[Thread: main]-[org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions()]: Loading XML bean definitions from class path resource [spring/spring-service.xml]
+
+2017-08-28 13:49:17
+[INFO]-[Thread: main]-[org.springframework.context.support.AbstractApplicationContext.prepareRefresh()]: Refreshing org.springframework.context.support.GenericApplicationContext@65c82af8: startup date [Mon Aug 28 13:49:17 CST 2017]; root of context hierarchy
+
+2017-08-28 13:49:17
+[INFO]-[Thread: main]-[org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties()]: Loading properties file from class path resource [jdbc.properties]
+
+2017-08-28 13:49:17
+[INFO]-[Thread: main]-[com.mchange.v2.log.MLog.<clinit>()]: MLog clients using log4j logging.
+
+2017-08-28 13:49:18
+[INFO]-[Thread: main]-[com.mchange.v2.c3p0.C3P0Registry.banner()]: Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+
+2017-08-28 13:49:21
+[INFO]-[Thread: main]-[com.scau.jodenhe.cpos.service.impl.BrandServiceImpl.getAllBrand()]: 查询所有品牌信息
+
+2017-08-28 13:49:21
+[INFO]-[Thread: main]-[com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource.getPoolManager()]: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 3, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 1000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1bqoxen9qaxfc221pt3zmi|3da73cfe, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1bqoxen9qaxfc221pt3zmi|3da73cfe, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://localhost:3306/db_pos?useUnicode=true&characterEncoding=utf8, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 10, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+
+2017-08-28 13:49:23
+[INFO]-[Thread: Thread-1]-[org.springframework.context.support.AbstractApplicationContext.doClose()]: Closing org.springframework.context.support.GenericApplicationContext@65c82af8: startup date [Mon Aug 28 13:49:17 CST 2017]; root of context hierarchy
+
+2017-08-28 14:20:09
+[INFO]-[Thread: main]-[org.springframework.test.context.support.AbstractTestContextBootstrapper.getDefaultTestExecutionListenerClassNames()]: Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+
+2017-08-28 14:20:09
+[INFO]-[Thread: main]-[org.springframework.test.context.support.AbstractTestContextBootstrapper.getTestExecutionListeners()]: Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@60d60cd6, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@4e4e745, org.springframework.test.context.support.DirtiesContextTestExecutionListener@500b6585, org.springframework.test.context.transaction.TransactionalTestExecutionListener@1c3627d1, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@277018cf]
+
+2017-08-28 14:20:09
+[INFO]-[Thread: main]-[org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions()]: Loading XML bean definitions from class path resource [spring/spring-dao.xml]
+
+2017-08-28 14:20:09
+[INFO]-[Thread: main]-[org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions()]: Loading XML bean definitions from class path resource [spring/spring-service.xml]
+
+2017-08-28 14:20:09
+[INFO]-[Thread: main]-[org.springframework.context.support.AbstractApplicationContext.prepareRefresh()]: Refreshing org.springframework.context.support.GenericApplicationContext@54e156e1: startup date [Mon Aug 28 14:20:09 CST 2017]; root of context hierarchy
+
+2017-08-28 14:20:10
+[INFO]-[Thread: main]-[org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties()]: Loading properties file from class path resource [jdbc.properties]
+
+2017-08-28 14:20:10
+[INFO]-[Thread: main]-[com.mchange.v2.log.MLog.<clinit>()]: MLog clients using log4j logging.
+
+2017-08-28 14:20:10
+[INFO]-[Thread: main]-[com.mchange.v2.c3p0.C3P0Registry.banner()]: Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+
+2017-08-28 14:20:12
+[INFO]-[Thread: main]-[com.scau.jodenhe.cpos.service.impl.BrandServiceImpl.getAllBrand()]: 查询所有品牌信息
+
+2017-08-28 14:20:12
+[INFO]-[Thread: main]-[com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource.getPoolManager()]: Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 3, acquireRetryAttempts -> 3, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 1000, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1bqoxen9qayj1491urzigo|3da73cfe, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1bqoxen9qayj1491urzigo|3da73cfe, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, jdbcUrl -> jdbc:mysql://localhost:3306/db_pos?useUnicode=true&characterEncoding=utf8, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 10, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {user=******, password=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+
+2017-08-28 14:20:14
+[INFO]-[Thread: main]-[com.scau.jodenhe.cpos.service.BrandServiceTest.testGetAllBrand()]: 查询品牌信息：[Brand [Hash = 1625960013, id=1, name=李宁, script=null, createTime=Sun Mar 19 12:59:07 CST 2017, state=0, serialVersionUID=1], Brand [Hash = 780530416, id=2, name=ANTA, script=null, createTime=Sun Mar 19 13:00:02 CST 2017, state=0, serialVersionUID=1], Brand [Hash = 1544585836, id=3, name=test, script=adad11, createTime=Mon Mar 27 22:23:54 CST 2017, state=0, serialVersionUID=1]]
+
+2017-08-28 14:20:14
+[INFO]-[Thread: Thread-1]-[org.springframework.context.support.AbstractApplicationContext.doClose()]: Closing org.springframework.context.support.GenericApplicationContext@54e156e1: startup date [Mon Aug 28 14:20:09 CST 2017]; root of context hierarchy

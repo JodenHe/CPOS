@@ -20,6 +20,19 @@
 		<mybatis-spring.version>1.2.3</mybatis-spring.version>
 	</properties>
 
+	<!-- Maven支持“物料单”（BOM）依赖。 您可以在dependencyManagement部分中导入spring-framework-bom，以确保所有弹簧依赖（直接和传递）都是相同的版本。 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<!-- 使用junit4,3.0版本的默认使用编程方式，而4.0版本使用的是注解 -->
 		<dependency>
@@ -101,45 +114,41 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
 		</dependency>
 		<!-- 4.2：spring Dao层依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<!-- 4.3：spring web相关依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<!-- 4.4：spring test相关依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -148,7 +157,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>seckill</finalName>
+		<finalName>openclothingpos</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
