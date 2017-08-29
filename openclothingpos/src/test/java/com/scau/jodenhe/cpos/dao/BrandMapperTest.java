@@ -108,7 +108,7 @@ public class BrandMapperTest {
 	public void testCount() {
 		fail("Not yet implemented");
 	}
-	
+
 	@Test
 	public void testSelectListByNameNotId() {
 		logger.info(dao.selectListByNameNotId("李宁", 1L));

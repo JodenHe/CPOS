@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.scau.jodenhe.cpos.entity.Brand;
+import com.scau.jodenhe.cpos.exception.CposException;
+import com.scau.jodenhe.cpos.exception.NameAlreadyExitException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:spring/spring-dao.xml", "classpath:spring/spring-service.xml" })
@@ -27,7 +29,12 @@ public class BrandServiceTest {
 	public void testSave() {
 		Brand brand = new Brand();
 		brand.setName("李宁2");
-		logger.info(service.save(brand));
+		try {
+			logger.info(service.save(brand));
+		} catch (CposException | NameAlreadyExitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
@@ -36,7 +43,15 @@ public class BrandServiceTest {
 		brand.setName("李宁");
 		brand.setState((byte) 1);
 		brand.setId(1L);
-		logger.info(service.update(brand));
+		try {
+			logger.info(service.update(brand));
+		} catch (CposException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NameAlreadyExitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test

@@ -3,6 +3,7 @@ package com.scau.jodenhe.cpos.service;
 import java.util.List;
 
 import com.scau.jodenhe.cpos.entity.Brand;
+import com.scau.jodenhe.cpos.exception.CposException;
 import com.scau.jodenhe.cpos.exception.NameAlreadyExitException;
 
 /**
@@ -27,17 +28,19 @@ public interface BrandService {
 	 * 新增品牌信息
 	 * @param brand
 	 * @return int
+	 * @throws CposException
 	 * @throws NameAlreadyExitException
 	 */
-	int save(Brand brand) throws NameAlreadyExitException;
+	int save(Brand brand) throws CposException, NameAlreadyExitException;
 	
 	/**
 	 * 更新品牌信息
 	 * @param brand 品牌信息
 	 * @return int
+	 * @throws CposException
 	 * @throws NameAlreadyExitException
 	 */
-	int update(Brand brand) throws NameAlreadyExitException;
+	int update(Brand brand) throws CposException, NameAlreadyExitException;
 	
 	/**
 	 * 根据名字获取品牌信息
@@ -52,5 +55,13 @@ public interface BrandService {
 	 * @return boolean
 	 */
 	boolean isExit(String name);
+	
+	/**
+	 * 判断除了本id外名字是否存在
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	boolean isExit(String name, Long id);
 }
 	

@@ -5,23 +5,29 @@ package com.scau.jodenhe.cpos.dto;
  * @author jodenhe
  *
  */
-public class Result<T> {
+public class ResultForJson<T> {
 	private boolean success;
 	
 	private T data;
 	
-	private String error;
+	private String msg;
 
-	public Result(boolean success, T data) {
+	public ResultForJson(boolean success, T data) {
 		super();
 		this.success = success;
 		this.data = data;
 	}
 
-	public Result(boolean success, String error) {
+	public ResultForJson(boolean success, String msg) {
 		super();
 		this.success = success;
-		this.error = error;
+		this.msg = msg;
+	}
+	public ResultForJson(boolean success, T data, String msg) {
+		super();
+		this.success = success;
+		this.data = data;
+		this.msg = msg;
 	}
 
 	public boolean isSuccess() {
@@ -40,12 +46,12 @@ public class Result<T> {
 		this.data = data;
 	}
 
-	public String getError() {
-		return error;
+	public String getMsg() {
+		return msg;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	
 }

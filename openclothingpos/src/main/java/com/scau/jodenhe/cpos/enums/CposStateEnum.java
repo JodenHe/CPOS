@@ -6,23 +6,22 @@ package com.scau.jodenhe.cpos.enums;
  * @author jodenhe
  * 
  */
-public enum SeckillStateEnum {
-	SUCCESS(1, "秒杀成功"),
-	END(0, "秒杀结束"),
-	REPEAT_KILL(-1, "重复秒杀"), 
-	INNER_ERROR(-2, "系统异常"),
-	DATA_REWRITE(-3, "数据篡改");
+public enum CposStateEnum {
+	SUCCESS(1, "成功"),
+	FAIL(0, "失败"),
+	REPEAT_NAME(-1, "名字已存在"), 
+	INNER_ERROR(-2, "系统异常");
 
 	private int state;
 	private String stateInfo;
 
-	SeckillStateEnum(int state, String stateInfo) {
+	CposStateEnum(int state, String stateInfo) {
 		this.state = state;
 		this.stateInfo = stateInfo;
 	}
 
-	public static SeckillStateEnum stateOf(int index) {
-		for (SeckillStateEnum state : values()) {
+	public static CposStateEnum stateOf(int index) {
+		for (CposStateEnum state : values()) {
 			if (state.getState() == index) {
 				return state;
 			}

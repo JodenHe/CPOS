@@ -10,9 +10,13 @@ package com.scau.jodenhe.cpos.exception;
  * @version 1.0
  * @since 2017年8月29日 下午12:33:10
  */
-public class NameAlreadyExitException extends RuntimeException{
+public class NameAlreadyExitException extends Exception{
 
 	private static final long serialVersionUID = 1L;
+	
+	public NameAlreadyExitException() {
+		super("Name already exist");
+	}
 	
 	public NameAlreadyExitException(String message) {
 		super(message);
