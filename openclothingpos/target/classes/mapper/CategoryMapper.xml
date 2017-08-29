@@ -35,7 +35,7 @@
     select <include refid="sql_columns" /> from category <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into category(
+    insert ignore into category(
 	  <if test="null != item.name"> name</if>
 	  <if test="null != item.pId">, pId</if>
 	  <if test="null != item.script">, script</if>

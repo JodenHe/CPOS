@@ -48,7 +48,7 @@ public class BrandMapperTest {
 	@Test
 	public void testSelectOne() {
 		Brand brand = new Brand();
-		brand.setId(2L);//只能查出一条记录
+		brand.setId(2L);// 只能查出一条记录
 		logger.info(dao.selectOne(brand));
 	}
 
@@ -107,6 +107,11 @@ public class BrandMapperTest {
 	@Test
 	public void testCount() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testSelectListByNameNotId() {
+		logger.info(dao.selectListByNameNotId("李宁", 1L));
 	}
 
 }

@@ -37,7 +37,7 @@
     select <include refid="sql_columns" /> from inventory <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into inventory(
+    insert ignore into inventory(
 	  <if test="null != item.goodsId"> goodsId</if>
 	  <if test="null != item.warehouseId">, warehouseId</if>
 	  <if test="null != item.quantity">, quantity</if>

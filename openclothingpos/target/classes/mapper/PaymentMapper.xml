@@ -41,7 +41,7 @@
     select <include refid="sql_columns" /> from payment <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into payment(
+    insert ignore into payment(
 	  <if test="null != item.paymentNo"> paymentNo</if>
 	  <if test="null != item.saleOrderNo">, saleOrderNo</if>
 	  <if test="null != item.amount">, amount</if>

@@ -100,8 +100,8 @@ public class GenPlugin extends PluginAdapter {
 		StringBuilder columnSQL = new StringBuilder();
 		// IF判断语句
 		StringBuilder ifSQL = new StringBuilder();
-		// 要插入的字段(排除自增主键)
-		StringBuilder saveColumn = new StringBuilder("insert into ").append(tableName).append("(\n");
+		// 要插入的字段(排除自增主键，ignore解决主键冲突报错问题，而是返回0)
+		StringBuilder saveColumn = new StringBuilder("insert ignore into ").append(tableName).append("(\n");
 		// 要保存的值
 		StringBuilder saveValue = new StringBuilder("(\n");
 		// 拼装更新字段

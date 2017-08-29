@@ -33,7 +33,7 @@
     select <include refid="sql_columns" /> from permission <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into permission(
+    insert ignore into permission(
 	  <if test="null != item.pId"> pId</if>
 	  <if test="null != item.name">, name</if>
 	  <if test="null != item.permissionSign">, permissionSign</if>

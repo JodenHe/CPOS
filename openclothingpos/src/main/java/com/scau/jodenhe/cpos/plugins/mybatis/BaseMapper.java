@@ -24,7 +24,7 @@ public interface BaseMapper<T> {
 	 * @param id
 	 * @return
 	 */
-	Object selectById(Serializable id);
+	T selectById(Serializable id);
 
 	/**
 	 * 查询单条记录
@@ -32,7 +32,7 @@ public interface BaseMapper<T> {
 	 * @param entity
 	 * @return
 	 */
-	Object selectOne(@Param("item") Object obj);
+	T selectOne(@Param("item") Object obj);
 
 	/**
 	 * 查询记录集合
@@ -40,7 +40,7 @@ public interface BaseMapper<T> {
 	 * @param entity
 	 * @return
 	 */
-	List<?> selectList(@Param("item") Object obj);
+	List<T> selectList(@Param("item") Object obj);
 
 	/**
 	 * 分页查询
@@ -57,7 +57,7 @@ public interface BaseMapper<T> {
 	 * @param <T>
 	 * @param entity
 	 */
-	void save(@Param("item") Object obj);
+	int save(@Param("item") Object obj);
 
 	/**
 	 * 批量保存

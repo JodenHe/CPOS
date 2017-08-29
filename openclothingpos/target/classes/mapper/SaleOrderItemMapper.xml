@@ -35,7 +35,7 @@
     select <include refid="sql_columns" /> from sale_order_item <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into sale_order_item(
+    insert ignore into sale_order_item(
 	  <if test="null != item.saleOrderNo"> saleOrderNo</if>
 	  <if test="null != item.itemId">, itemId</if>
 	  <if test="null != item.quantity">, quantity</if>

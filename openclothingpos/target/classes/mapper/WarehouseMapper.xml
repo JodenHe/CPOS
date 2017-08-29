@@ -37,7 +37,7 @@
     select <include refid="sql_columns" /> from warehouse <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into warehouse(
+    insert ignore into warehouse(
 	  <if test="null != item.name"> name</if>
 	  <if test="null != item.manager">, manager</if>
 	  <if test="null != item.telephone">, telephone</if>

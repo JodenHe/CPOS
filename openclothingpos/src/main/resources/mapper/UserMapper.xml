@@ -33,7 +33,7 @@
     select <include refid="sql_columns" /> from user <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into user(
+    insert ignore into user(
 	  <if test="null != item.userName"> userName</if>
 	  <if test="null != item.password">, password</if>
 	  <if test="null != item.state">, state</if>

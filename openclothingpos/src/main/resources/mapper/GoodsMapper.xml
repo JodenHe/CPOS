@@ -47,7 +47,7 @@
     select <include refid="sql_columns" /> from goods <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into goods(
+    insert ignore into goods(
 	  <if test="null != item.categoryId"> categoryId</if>
 	  <if test="null != item.colorId">, colorId</if>
 	  <if test="null != item.brandId">, brandId</if>

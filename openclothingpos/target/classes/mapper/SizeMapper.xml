@@ -35,7 +35,7 @@
     select <include refid="sql_columns" /> from size <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into size(
+    insert ignore into size(
 	  <if test="null != item.name"> name</if>
 	  <if test="null != item.type">, type</if>
 	  <if test="null != item.script">, script</if>

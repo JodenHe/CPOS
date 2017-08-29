@@ -51,7 +51,7 @@
     select <include refid="sql_columns" /> from member <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into member(
+    insert ignore into member(
 	  <if test="null != item.telephone"> telephone</if>
 	  <if test="null != item.shopId">, shopId</if>
 	  <if test="null != item.operatorId">, operatorId</if>

@@ -1,0 +1,51 @@
+package com.scau.jodenhe.cpos.dto;
+
+/**
+ * 所有的ajax请求返回类型，封装json结果
+ * @author jodenhe
+ *
+ */
+public class Result<T> {
+	private boolean success;
+	
+	private T data;
+	
+	private String error;
+
+	public Result(boolean success, T data) {
+		super();
+		this.success = success;
+		this.data = data;
+	}
+
+	public Result(boolean success, String error) {
+		super();
+		this.success = success;
+		this.error = error;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+	
+}

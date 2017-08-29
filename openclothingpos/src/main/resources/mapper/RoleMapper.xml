@@ -31,7 +31,7 @@
     select <include refid="sql_columns" /> from role <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into role(
+    insert ignore into role(
 	  <if test="null != item.roleName"> roleName</if>
 	  <if test="null != item.roleSign">, roleSign</if>
 	  <if test="null != item.description">, description</if>

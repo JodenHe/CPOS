@@ -39,7 +39,7 @@
     select <include refid="sql_columns" /> from shop <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into shop(
+    insert ignore into shop(
 	  <if test="null != item.name"> name</if>
 	  <if test="null != item.manager">, manager</if>
 	  <if test="null != item.telephone">, telephone</if>

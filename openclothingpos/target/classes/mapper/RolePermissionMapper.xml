@@ -29,7 +29,7 @@
     select <include refid="sql_columns" /> from role_permission <include refid="sql_where" /> limit #{page.startRow}, #{page.pageSize}
   </select>
   <sql id="sql_save_columns">
-    insert into role_permission(
+    insert ignore into role_permission(
 	  <if test="null != item.roleId"> roleId</if>
 	  <if test="null != item.permissionId">, permissionId</if>
 	) values

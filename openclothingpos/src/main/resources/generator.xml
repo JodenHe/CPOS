@@ -6,6 +6,9 @@
 <generatorConfiguration>
 	<properties resource="jdbc.properties" />
 	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<!-- 由于beginningDelimiter和endingDelimiter的默认值为双引号(")，在Mysql中不能这么写 -->
+		<property name="beginningDelimiter" value="`"/>
+		<property name="endingDelimiter" value="`"/> 
 		<!-- 生成的文件编码 -->
 		<property name="javaFileEncoding" value="utf-8"/>
 		
