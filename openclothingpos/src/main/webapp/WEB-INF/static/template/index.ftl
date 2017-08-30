@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<#include "common/navigation.ftl">
+			<#include "common/navbar/navigation.ftl">
 			<div id="page-wrapper">
 			sdjfksdjfk
 			</div>
