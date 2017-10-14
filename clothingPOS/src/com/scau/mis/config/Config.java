@@ -18,6 +18,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.FreeMarkerRender;
+import com.scau.mis.handler.SessionHandler;
 import com.scau.mis.interceptor.AuthInterceptor;
 import com.scau.mis.model._MappingKit;
 
@@ -100,6 +101,7 @@ public class Config extends JFinalConfig {
 	 * 配置处理器
 	 */
 	public void configHandler(Handlers me) {
+		me.add(new SessionHandler());
 		me.add(new ContextPathHandler("contextPath")) ;
 	}
 

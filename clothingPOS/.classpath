@@ -18,8 +18,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.20-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-3.2.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-lang-2.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.1.1.jar"/>
@@ -29,13 +27,15 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfinal-2.2-bin-with-src.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json-lib-2.2.3-jdk15.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/barcode4j-light-2.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-core-1.2.4.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-web-1.2.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.7.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.7.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfinal-shiro-freemarker-0.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfinal-shiro-2.0.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-core-1.2.4.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-web-1.2.4.jar" sourcepath="/tmp/.org.sf.feeling.decompiler1507954073810/source/shiro-web-1.2.4-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-log4j12-1.7.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
