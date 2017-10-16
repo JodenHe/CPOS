@@ -22,7 +22,7 @@ public class BrandServiceTest {
 
 	@Test
 	public void testGetAllBrand() {
-		logger.info("查询品牌信息：" + service.getAllBrand());
+		logger.info("查询品牌信息：" + service.listData());
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class BrandServiceTest {
 
 	@Test
 	public void testGetBrandByName() {
-		logger.info(service.getBrandByName("李宁"));
+		logger.info(service.getDataByName("李宁"));
 	}
 
 }

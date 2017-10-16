@@ -48,7 +48,8 @@ public class BrandMapperTest {
 	@Test
 	public void testSelectOne() {
 		Brand brand = new Brand();
-		brand.setId(2L);// 只能查出一条记录
+		// 只能查出一条记录
+		brand.setId(2L);
 		logger.info(dao.selectOne(brand));
 	}
 

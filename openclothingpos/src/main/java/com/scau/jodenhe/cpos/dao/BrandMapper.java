@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import com.scau.jodenhe.cpos.entity.Brand;
 import com.scau.jodenhe.cpos.plugins.mybatis.BaseMapper;
 
+/**
+ * 品牌dao
+ * @author jodenhe
+ * @create 2017年10月15日 下午7:29:47
+ */
 public interface BrandMapper extends BaseMapper<Brand> {
 	
 	/**

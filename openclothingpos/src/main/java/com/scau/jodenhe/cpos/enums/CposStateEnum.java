@@ -7,9 +7,21 @@ package com.scau.jodenhe.cpos.enums;
  * 
  */
 public enum CposStateEnum {
+	/**
+	 * SUCCESS
+	 */
 	SUCCESS(1, "成功"),
+	/**
+	 * FAIL
+	 */
 	FAIL(0, "失败"),
+	/**
+	 * Name already exits
+	 */
 	REPEAT_NAME(-1, "名字已存在"), 
+	/**
+	 * Inner error
+	 */
 	INNER_ERROR(-2, "系统异常");
 
 	private int state;
