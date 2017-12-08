@@ -1,7 +1,7 @@
 # CPOS
-####Clothing Point of Sale
+#### Clothing Point of Sale
 
-####服装销售终端系统
+#### 服装销售终端系统
   
  - 系统框架采用 jfinal 2.2 完成
  - 权限、会话管理采用 shiro 1.2.4 完成
@@ -23,6 +23,13 @@
     1. admin  123456
     1. cashier  123456
 
+#### 组织结构
+``` lua  
+CPOS  
+├── clothingPOS JFinal 后台框架搭建的服装POS系统  
+├── openclothingpos SSM 后台框架搭建的服装POS系统  
+```
+
 #### 扩展
 - 使用了 jfinal-shiro-freemarker-0.2.jar 的 <@shiro.principal /> 标签报错，查看源码发现cn/dreampie/shiro/freemarker/PrincipalTag.java 源码有误，使用了shiro-freemarker插件的该类的源码替换（具体代码项目可见），运行通过
 #### 感谢
@@ -32,7 +39,7 @@
 - java1234   [一头扎进shiro视频讲解](http://www.java1234.com/a/yuanchuang/shiro/)
 
 
-####部分截图
+#### 部分截图
 ![登录界面](https://git.oschina.net/uploads/images/2017/0525/230111_ecd8f602_942742.png "在这里输入图片标题")
 ![报表分析](https://git.oschina.net/uploads/images/2017/0525/230246_9c31093d_942742.png "在这里输入图片标题")
 ![权限--角色](https://git.oschina.net/uploads/images/2017/0525/230343_ce90cad6_942742.png "在这里输入图片标题")
