@@ -23,13 +23,6 @@
     1. admin  123456
     1. cashier  123456
 
-#### 组织结构
-``` lua  
-CPOS  
-├── clothingPOS JFinal 后台框架搭建的服装POS系统  
-├── openclothingpos SSM 后台框架搭建的服装POS系统  
-```
-
 #### 扩展
 - 使用了 jfinal-shiro-freemarker-0.2.jar 的 <@shiro.principal /> 标签报错，查看源码发现cn/dreampie/shiro/freemarker/PrincipalTag.java 源码有误，使用了shiro-freemarker插件的该类的源码替换（具体代码项目可见），运行通过
 #### 感谢
